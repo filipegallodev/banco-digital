@@ -1,19 +1,51 @@
 import React from "react";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [username, setUsername] = React.useState("");
   const [validUsername, setValidUsername] = React.useState(false);
+  const [usernameExist, setUsernameExist] = React.useState(false);
 
   const [password, setPassword] = React.useState("");
   const [validPassword, setValidPassword] = React.useState(false);
+
+  const [registerStatus, setRegisterStatus] = React.useState(0);
 
   // Obtém o username do input e salva o estado em uma variável
   function verifyUsername({ target }: any) {
     setUsername(target.value);
     if (target.value === "") {
-      setValidUsername(false);
+      return setValidUsername(false);
+    }
+    if ([...target.value].length >= 3) {
+      // searchExistingUsername(target.value);
     }
   }
+
+  React.useEffect(() => {
+    if (username !== "") {
+      const delayDebounceFn = setTimeout(async () => {
+        const response = await fetch(
+          `https://ng-cash-app-production.up.railway.app/byUsername/${username}`
+        );
+        const json = await response.json();
+        if (json) {
+          return setUsernameExist(true);
+        }
+        return setUsernameExist(false);
+      }, 1500);
+
+      return () => clearTimeout(delayDebounceFn);
+    }
+  }, [username]);
+
+  React.useEffect(() => {
+    const usernameExisting = document.querySelector(".username-existing");
+    if (usernameExist) {
+      return usernameExisting?.classList.add("active");
+    }
+    return usernameExisting?.classList.remove("active");
+  }, [usernameExist]);
 
   // Verifica se o username possui os requisitos necessários
   React.useEffect(() => {
@@ -112,18 +144,27 @@ const RegisterForm = () => {
   // Se o username e senha forem válidos, o botão ficará ativo, caso contrário, inativo
   React.useEffect(() => {
     const registerButton = document.querySelector(".register-button");
-    if (validUsername && validPassword) {
+    if (validUsername && validPassword && !usernameExist) {
       return registerButton?.classList.add("active");
     }
     return registerButton?.classList.remove("active");
-  }, [validUsername, validPassword]);
+  }, [validUsername, validPassword, usernameExist]);
 
   // Registra o usuário após todas as validações
   function registerUser(e: any) {
     e.preventDefault();
     if (validUsername && validPassword) {
-      console.log({ name: username, password: password });
+      fetchPostUser(username, password);
     }
+  }
+
+  async function fetchPostUser(user: any, pass: any) {
+    const userData = { username: user, password: pass };
+
+    axios
+      .post("https://ng-cash-app-production.up.railway.app/", userData)
+      .then((response) => console.log(response.status))
+      .catch((error) => console.log(error));
   }
 
   return (
@@ -136,6 +177,9 @@ const RegisterForm = () => {
         id="username"
         required
       />
+      <span className="username-existing">
+        Este nome de usuário já está em uso!
+      </span>
       <span className="condition">Pelo menos:</span>
       <div>
         <span className="username-condition">No mínimo 3 caracteres.</span>

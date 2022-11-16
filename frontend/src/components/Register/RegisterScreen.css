@@ -43,6 +43,17 @@ span {
   margin-top: 6px;
 }
 
+.username-existing {
+  display: none;
+}
+
+.username-existing.active {
+  display: block;
+  color: #f00;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
 .password-conditions span::before,
 .username-condition::before {
   content: "➖ ";
