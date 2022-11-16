@@ -15,6 +15,7 @@ const prisma = new PrismaClient();
 
 const routes = express();
 routes.use(express.json());
+routes.use(express.urlencoded({ extended: true }));
 routes.use(cors());
 
 routes.post("/", cors(postCorsOptions), async (req: Request, res: Response) => {
@@ -40,6 +41,20 @@ routes.get("/", cors(corsOptions), async (req: Request, res: Response) => {
   const usersList = await prisma.users.findMany();
   res.json(usersList);
 });
+
+routes.get(
+  "/byUsername/:username",
+  cors(corsOptions),
+  async (req: Request, res: Response) => {
+    const username = req.params.username;
+    const user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    });
+    res.json(user);
+  }
+);
 
 routes.get("/byId/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
