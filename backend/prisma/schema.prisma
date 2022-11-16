@@ -1,15 +1,31 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Users {
-  id        String @id @default(uuid())
-  username  String
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
   password  String
-  accountId String
+  account   accounts @relation(fields: [accountId], references: [id])
+  accountId Int      @unique
+}
+
+model accounts {
+  id      Int    @id @default(autoincrement())
+  balance String
+  users   users?
+}
+
+model transactions {
+  id        Int      @id @default(autoincrement())
+  value     String
+  createdAt DateTime @default(now())
 }
