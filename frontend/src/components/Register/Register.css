@@ -73,7 +73,7 @@ span {
 
 .register-button {
   font-size: 1.5rem;
-  background-color: #80f;
+  background-color: #555;
   padding: 16px 36px;
   border-radius: 6px;
   margin-top: 24px;
@@ -81,9 +81,15 @@ span {
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
+  opacity: 0.5;
 }
 
-.register-button:hover {
+.register-button.active {
+  background-color: #80f;
+  opacity: 1;
+}
+
+.register-button.active:hover {
   background-color: #60b;
 }
 

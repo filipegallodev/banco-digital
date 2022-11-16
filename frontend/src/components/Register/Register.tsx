@@ -12,6 +12,9 @@ const Register = () => {
   // Obtém o username do input e salva o estado em uma variável
   function verifyUsername({ target }: any) {
     setUsername(target.value);
+    if (target.value === "") {
+      setValidUsername(false);
+    }
   }
 
   // Verifica se o username possui os requisitos necessários
@@ -24,6 +27,7 @@ const Register = () => {
     // Verifica se o username contém o mínimo de 3 caracteres
     if ([...username].length < 3) {
       document.querySelector(".username-condition")?.classList.remove("active");
+      setValidUsername(false);
     } else {
       document.querySelector(".username-condition")?.classList.add("active");
       setValidUsername(true);
@@ -33,6 +37,9 @@ const Register = () => {
   // Obtém a senha do input e salva o estado em uma variável
   function verifyPassword({ target }: any) {
     setPassword(target.value);
+    if (target.value === "") {
+      setValidPassword(false);
+    }
   }
 
   // Verifica se a senha possui os requisitos necessários
@@ -98,16 +105,33 @@ const Register = () => {
 
     // Caso todos os requisitos de senha sejam atendidos, a senha é validada para uso
     if (condicoes === 5) {
-      setValidPassword(true);
+      return setValidPassword(true);
     } else {
-      setValidPassword(false);
+      return setValidPassword(false);
     }
   }, [password]);
+
+  // Se o username e senha forem válidos, o botão ficará ativo, caso contrário, inativo
+  React.useEffect(() => {
+    const registerButton = document.querySelector(".register-button");
+    if (validUsername && validPassword) {
+      return registerButton?.classList.add("active");
+    }
+    return registerButton?.classList.remove("active");
+  }, [validUsername, validPassword]);
+
+  // Registra o usuário após todas as validações
+  function registerUser(e: any) {
+    e.preventDefault();
+    if (validUsername && validPassword) {
+      console.log({ name: username, password: password });
+    }
+  }
 
   return (
     <div className="register-container">
       <h1 className="primary-title">Registre-se</h1>
-      <form>
+      <form className="register-form">
         <label htmlFor="username">Usuário</label>
         <input
           onChange={verifyUsername}
@@ -137,10 +161,7 @@ const Register = () => {
           <span className="password-condition-5">No mínimo 8 caracteres.</span>
         </div>
         <div className="register-button-container">
-          <button
-            className="register-button"
-            onClick={(e) => e.preventDefault()}
-          >
+          <button className="register-button" onClick={registerUser}>
             Registrar
           </button>
         </div>
