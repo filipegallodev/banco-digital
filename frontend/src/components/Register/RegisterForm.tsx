@@ -1,8 +1,6 @@
 import React from "react";
 
-import "./Register.css";
-
-const Register = () => {
+const RegisterForm = () => {
   const [username, setUsername] = React.useState("");
   const [validUsername, setValidUsername] = React.useState(false);
 
@@ -129,45 +127,42 @@ const Register = () => {
   }
 
   return (
-    <div className="register-container">
-      <h1 className="primary-title">Registre-se</h1>
-      <form className="register-form">
-        <label htmlFor="username">Usuário</label>
-        <input
-          onChange={verifyUsername}
-          type="text"
-          name="username"
-          id="username"
-          required
-        />
-        <span className="condition">Pelo menos:</span>
-        <div>
-          <span className="username-condition">No mínimo 3 caracteres.</span>
-        </div>
-        <label htmlFor="password">Senha</label>
-        <input
-          onChange={verifyPassword}
-          type="password"
-          name="password"
-          id="password"
-          required
-        />
-        <span className="condition">Pelo menos:</span>
-        <div className="password-conditions">
-          <span className="password-condition-1">1 letras minúsculas;</span>
-          <span className="password-condition-2">1 letra maiúscula;</span>
-          <span className="password-condition-3">1 número;</span>
-          <span className="password-condition-4">1 caracter especial;</span>
-          <span className="password-condition-5">No mínimo 8 caracteres.</span>
-        </div>
-        <div className="register-button-container">
-          <button className="register-button" onClick={registerUser}>
-            Registrar
-          </button>
-        </div>
-      </form>
-    </div>
+    <form className="register-form">
+      <label htmlFor="username">Usuário</label>
+      <input
+        onChange={verifyUsername}
+        type="text"
+        name="username"
+        id="username"
+        required
+      />
+      <span className="condition">Pelo menos:</span>
+      <div>
+        <span className="username-condition">No mínimo 3 caracteres.</span>
+      </div>
+      <label htmlFor="password">Senha</label>
+      <input
+        onChange={verifyPassword}
+        type="password"
+        name="password"
+        id="password"
+        required
+      />
+      <span className="condition">Pelo menos:</span>
+      <div className="password-conditions">
+        <span className="password-condition-1">1 letras minúsculas;</span>
+        <span className="password-condition-2">1 letra maiúscula;</span>
+        <span className="password-condition-3">1 número;</span>
+        <span className="password-condition-4">1 caracter especial;</span>
+        <span className="password-condition-5">No mínimo 8 caracteres.</span>
+      </div>
+      <div className="register-button-container">
+        <button className="register-button" onClick={registerUser}>
+          Registrar
+        </button>
+      </div>
+    </form>
   );
 };
 
-export default Register;
+export default RegisterForm;
