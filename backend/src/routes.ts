@@ -12,6 +12,14 @@ routes.post("/", async (req: Request, res: Response) => {
     data: {
       username: username,
       password: password,
+      account: {
+        create: {
+          balance: "R$ 100,00",
+        },
+      },
+    },
+    include: {
+      account: true,
     },
   });
   res.json(user);
