@@ -1,12 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
+import cors from "cors";
+
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  optionsSuccessStatus: 200,
+};
 
 const prisma = new PrismaClient();
 
 const routes = express();
 routes.use(express.json());
 
-routes.post("/", async (req: Request, res: Response) => {
+routes.post("/", cors(corsOptions), async (req: Request, res: Response) => {
   const { username, password } = req.body;
   const user = await prisma.users.create({
     data: {
@@ -25,7 +31,7 @@ routes.post("/", async (req: Request, res: Response) => {
   res.json(user);
 });
 
-routes.get("/", async (req: Request, res: Response) => {
+routes.get("/", cors(corsOptions), async (req: Request, res: Response) => {
   const usersList = await prisma.users.findMany();
   res.json(usersList);
 });
