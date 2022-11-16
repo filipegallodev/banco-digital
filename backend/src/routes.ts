@@ -1,25 +1,66 @@
 import { PrismaClient } from "@prisma/client";
-import express from "express";
+import express, { Request, Response } from "express";
 
 const prisma = new PrismaClient();
 
-const routes = express.Router();
+const routes = express();
+routes.use(express.json());
 
-routes.get("/", (req, res) => {
-  return res.json({ name: "Fulano Ciclano", age: 99 });
-});
-
-// Testando o caminho "/home"
-routes.get("/home", (req, res) => {
-  return res.json({ name: "Filipe", age: 22 });
-});
-
-routes.get("/users", async (req, res) => {
-  const usersResult = await prisma.users.findMany({
-    orderBy: { username: "desc" },
+routes.post("/", async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+  const user = await prisma.users.create({
+    data: {
+      username: username,
+      password: password,
+      account: {
+        create: {
+          balance: "R$ 100,00",
+        },
+      },
+    },
+    include: {
+      account: true,
+    },
   });
-
-  return res.json(usersResult);
+  res.json(user);
 });
 
-export { routes as default };
+routes.get("/", async (req: Request, res: Response) => {
+  const usersList = await prisma.users.findMany();
+  res.json(usersList);
+});
+
+routes.get("/byId/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const user = await prisma.users.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json(user);
+});
+
+routes.put("/", async (req: Request, res: Response) => {
+  const { id, username } = req.body;
+  const updatedUser = await prisma.users.update({
+    where: {
+      id: id,
+    },
+    data: {
+      username: username,
+    },
+  });
+  res.json(updatedUser);
+});
+
+routes.delete("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const deletedUser = await prisma.users.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json(deletedUser);
+});
+
+export default routes;
