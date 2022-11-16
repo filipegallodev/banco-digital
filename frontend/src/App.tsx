@@ -1,7 +1,7 @@
 import React from "react";
 
 // URL para o caminho "/home" do servidor
-const SERVER_URL = "https://ng-cash-app-production.up.railway.app/home";
+const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
 function App() {
   const [data, setData] = React.useState<any>([]);
@@ -10,7 +10,7 @@ function App() {
   React.useEffect(() => {
     fetch(SERVER_URL)
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((data) => console.log(data));
   }, []);
 
   return <div>{data ? <p>{data.name}</p> : <p>Carregando...</p>}</div>;
