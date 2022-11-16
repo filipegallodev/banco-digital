@@ -4,6 +4,10 @@ import cors from "cors";
 
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
+};
+
+const postCorsOptions = {
+  origin: "*",
   optionsSuccessStatus: 200,
 };
 
@@ -11,8 +15,9 @@ const prisma = new PrismaClient();
 
 const routes = express();
 routes.use(express.json());
+routes.use(cors());
 
-routes.post("/", cors(corsOptions), async (req: Request, res: Response) => {
+routes.post("/", cors(postCorsOptions), async (req: Request, res: Response) => {
   const { username, password } = req.body;
   const user = await prisma.users.create({
     data: {
