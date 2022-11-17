@@ -22,7 +22,7 @@ const LoginForm = () => {
     }
     const userData = { username: username, password: password };
     axios
-      .post("http://localhost:3333/login", userData)
+      .post("https://ng-cash-app-production.up.railway.app/login", userData)
       .then((response) => setLoginStatus(response.data))
       .catch((error) => console.log(error));
   }
@@ -45,7 +45,7 @@ const LoginForm = () => {
       <label htmlFor="login-password">Senha</label>
       <input
         onChange={verifyPassword}
-        type="login-password"
+        type="password"
         name="login-password"
         id="login-password"
         required
