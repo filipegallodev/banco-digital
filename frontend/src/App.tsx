@@ -29,8 +29,8 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<FirstScreen />} />
-          <Route path="login" element={<LoginScreen />} />
-          <Route path="register" element={<RegisterScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/register" element={<RegisterScreen />} />
         </Routes>
       </div>
     </BrowserRouter>
