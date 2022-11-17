@@ -19,13 +19,19 @@ model users {
 }
 
 model accounts {
-  id      Int    @id @default(autoincrement())
-  balance String
-  users   users?
+  id                   Int            @id @default(autoincrement())
+  balance              String
+  users                users?
+  debitedTransactions  transactions[] @relation("debitedAccount")
+  creditedTransactions transactions[] @relation("creditedAccount")
 }
 
 model transactions {
-  id        Int      @id @default(autoincrement())
-  value     String
-  createdAt DateTime @default(now())
+  id                Int      @id @default(autoincrement())
+  debitedAccount    accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
+  debitedAccountId  Int
+  creditedAccount   accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
+  creditedAccountId Int
+  value             String
+  createdAt         DateTime @default(now())
 }
