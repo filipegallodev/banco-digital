@@ -1,10 +1,12 @@
 import React from "react";
-import Register from "./components/Register/RegisterScreen";
+import LoginScreen from "./components/Login/LoginScreen";
+import RegisterScreen from "./components/Register/RegisterScreen";
 
 function App() {
   return (
     <React.Fragment>
-      <Register />
+      <LoginScreen />
+      <RegisterScreen />
     </React.Fragment>
   );
 }

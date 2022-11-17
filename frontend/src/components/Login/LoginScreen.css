@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.login-container {
+  max-width: 480px;
+  margin: 100px auto;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 24px 36px;
+}

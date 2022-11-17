@@ -3,7 +3,7 @@ import RegisterForm from "./RegisterForm";
 
 import "./RegisterScreen.css";
 
-const Register = () => {
+const RegisterScreen = () => {
   return (
     <div className="register-container">
       <h1 className="primary-title">Registre-se</h1>
@@ -12,4 +12,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterScreen;
