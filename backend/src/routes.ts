@@ -4,11 +4,16 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
 };
 
 const prisma = new PrismaClient();
+
+const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
 const routes = express();
 routes.use(express.json());
@@ -70,7 +75,7 @@ routes.post(
     const hashPassword = user?.password || "null";
     const comparisonResult = bcrypt.compareSync(password, hashPassword);
     if (comparisonResult) {
-      const token = jwt.sign({ userId: user?.id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ userId: user?.id }, JWT_SECRET, {
         expiresIn: 86400,
       });
       return res.json({ auth: true, token });
