@@ -17,11 +17,9 @@ const RegisterForm = () => {
     if (target.value === "") {
       return setValidUsername(false);
     }
-    if ([...target.value].length >= 3) {
-      // searchExistingUsername(target.value);
-    }
   }
 
+  // Faz a verificação se o username já existe
   React.useEffect(() => {
     if (username !== "") {
       const delayDebounceFn = setTimeout(async () => {
@@ -39,6 +37,7 @@ const RegisterForm = () => {
     }
   }, [username]);
 
+  // Caso o username já exista, será exibida uma mensagem alertando
   React.useEffect(() => {
     const usernameExisting = document.querySelector(".username-existing");
     if (usernameExist) {
@@ -158,6 +157,7 @@ const RegisterForm = () => {
     }
   }
 
+  // Realiza a operação de POST com o username e password do usuário
   async function fetchPostUser(user: any, pass: any) {
     const userData = { username: user, password: pass };
 
