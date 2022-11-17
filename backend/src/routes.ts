@@ -57,44 +57,13 @@ routes.post(
   }
 );
 
-async function transferMoney(amountToTransfer: any, [...accounts]) {
-  const [accountToDebit, accountToCredit] = accounts.map((account) => {
-    return {
-      id: account.id,
-      balance: account.balance.replace("R$ ", "").replace(",", "."),
-    };
-  });
-
-  if (Number(accountToDebit.balance) > amountToTransfer) {
-    const updateAccountDebited = await prisma.accounts.update({
-      where: {
-        id: accountToDebit.id,
-      },
-      data: {
-        balance: `R$ ${accountToDebit.balance - amountToTransfer}`,
-      },
-    });
-    const updateAccountCredited = await prisma.accounts.update({
-      where: {
-        id: accountToCredit.id,
-      },
-      data: {
-        balance: `R$ ${
-          Number(accountToCredit.balance) + Number(amountToTransfer)
-        }`,
-      },
-    });
-    return true;
-  }
-  return false;
-}
-
 async function addTransaction(
   accountToDebit: any,
   accountToCredit: any,
   amountToTransfer: any
 ) {
   const amountInBrFormat = `R$ ${amountToTransfer.replace(".", ",")}`;
+  console.log(amountInBrFormat);
   const transaction = await prisma.transactions.create({
     data: {
       creditedAccountId: accountToCredit.id,
@@ -103,6 +72,53 @@ async function addTransaction(
     },
   });
   if (transaction) return true;
+  return false;
+}
+
+async function transferMoney(amountToTransfer: any, [...accounts]) {
+  const [accountToDebit, accountToCredit] = accounts.map((account) => {
+    return {
+      id: account.id,
+      balance: account.balance.replace("R$ ", "").replace(",", "."),
+    };
+  });
+
+  const debitSum = `${accountToDebit.balance - amountToTransfer}`.replace(
+    ".",
+    ","
+  );
+
+  const creditSum = `${
+    Number(accountToCredit.balance) + Number(amountToTransfer)
+  }`.replace(".", ",");
+
+  if (Number(accountToDebit.balance) > amountToTransfer) {
+    const updateAccountDebited = await prisma.accounts.update({
+      where: {
+        id: accountToDebit.id,
+      },
+      data: {
+        balance: `R$ ${debitSum}`,
+      },
+    });
+    const updateAccountCredited = await prisma.accounts.update({
+      where: {
+        id: accountToCredit.id,
+      },
+      data: {
+        balance: `R$ ${creditSum}`,
+      },
+    });
+
+    const transaction = addTransaction(
+      accountToDebit,
+      accountToCredit,
+      amountToTransfer
+    );
+
+    if (await transaction) return true;
+    return false;
+  }
   return false;
 }
 
@@ -134,22 +150,15 @@ routes.post(
       },
     });
 
-    try {
-      const data = await transferMoney(amountToTransfer, [
-        accountToDebit,
-        accountToCredit,
-      ]);
+    const data = transferMoney(amountToTransfer, [
+      accountToDebit,
+      accountToCredit,
+    ]);
 
-      const transaction = await addTransaction(
-        accountToCredit,
-        accountToDebit,
-        amountToTransfer
-      );
-      if (data && transaction) {
-        res.status(200).json({ transactionStatus: true });
-      }
-    } catch (err) {
-      res.json({ transactionStatus: false }).end();
+    if (await data) {
+      res.status(200).json({ transactionStatus: true }).end();
+    } else {
+      res.status(400).json({ transactionStatus: false }).end();
     }
   }
 );
@@ -231,6 +240,16 @@ routes.get("/byId/:id", async (req: Request, res: Response) => {
     },
   });
   res.json(user);
+});
+
+routes.delete("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const deletedUser = await prisma.transactions.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json(deletedUser);
 });
 
 export default routes;
