@@ -8,7 +8,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: "http://127.0.0.1:5173",
+  // origin: process.env.CORS_ORIGIN,
 };
 
 const prisma = new PrismaClient();
@@ -45,22 +46,30 @@ routes.post("/", cors(corsOptions), async (req: Request, res: Response) => {
   res.json(user);
 });
 
-// process.env.SECRET
-// function verifyJWT(req: Request, res: Response, next) {
-//   const token = req.headers["x-access-token"];
-//   jwt.verify(token, SECRET, (err, decoded) => {
-//     if (err) return res.status(401).end();
+function verifyJWT(req: Request, res: Response, next: any) {
+  const token = req.headers.authorization;
+  jwt.verify(<any>token, JWT_SECRET, (err: any, decoded: any) => {
+    if (err) return res.status(401).end();
 
-//     req.userId = decoded.userId;
-//     next();
-//   });
-// }
+    req.body.userId = (<any>decoded).userId;
+    next();
+  });
+}
 
 // routes.get(
 //   "/transactions",
 //   verifyJWT,
 //   async (req: Request, res: Response) => {}
 // );
+
+routes.get(
+  "/teste",
+  cors(corsOptions),
+  verifyJWT,
+  async (req: Request, res: Response) => {
+    res.send("Tudo ok");
+  }
+);
 
 routes.post(
   "/login",
