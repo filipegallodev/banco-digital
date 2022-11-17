@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SERVER_LOGIN_URL = "https://ng-cash-app-production.up.railway.app/login";
-const LOCAL_LOGIN_URL = "http://localhost:3333/login";
 
 const LoginForm = () => {
   const [username, setUsername] = React.useState("");
@@ -32,12 +31,12 @@ const LoginForm = () => {
     }
     const userData = { username: username, password: password };
     axios
-      .post(LOCAL_LOGIN_URL, userData)
+      .post(SERVER_LOGIN_URL, userData)
       .then((response) => {
         setLoginStatus(response.data.auth);
         setAuthorizationToken(response.data.token);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => error);
   }
 
   // Verifica se o status de login e o token de autorização existem e depois salva no armazenamento da sessão
@@ -51,7 +50,7 @@ const LoginForm = () => {
   }, [loginStatus, authorizationToken]);
 
   return (
-    <form>
+    <form className="login-form">
       <label htmlFor="login-username">Usuário</label>
       <input
         onChange={verifyUsername}
@@ -69,7 +68,9 @@ const LoginForm = () => {
         required
       />
       <div>
-        <button onClick={handleLogin}>Entrar</button>
+        <button className="active" onClick={handleLogin}>
+          Entrar
+        </button>
       </div>
     </form>
   );

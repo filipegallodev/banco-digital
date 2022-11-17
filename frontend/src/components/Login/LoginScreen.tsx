@@ -8,9 +8,9 @@ const LoginScreen = () => {
   return (
     <div className="login-container">
       <NavLink to="/" end>
-        Voltar
+        <button className="return-button active">Voltar</button>
       </NavLink>
-      <h1 className="primary-title">FAZER LOGIN</h1>
+      <h2 className="primary-title">FAZER LOGIN</h2>
       <LoginForm />
     </div>
   );
