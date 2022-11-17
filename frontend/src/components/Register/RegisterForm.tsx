@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const SERVER_REGISTER_URL = "https://ng-cash-app-production.up.railway.app/";
+const SERVER_REGISTER_URL =
+  "https://ng-cash-app-production.up.railway.app/register";
 
 const RegisterForm = () => {
   const [username, setUsername] = React.useState("");
@@ -12,6 +14,8 @@ const RegisterForm = () => {
   const [validPassword, setValidPassword] = React.useState(false);
 
   const [registerStatus, setRegisterStatus] = React.useState(0);
+
+  const navigate = useNavigate();
 
   // Obtém o username do input e salva o estado em uma variável
   function verifyUsername({ target }: any) {
@@ -26,7 +30,7 @@ const RegisterForm = () => {
     if (username !== "") {
       const delayDebounceFn = setTimeout(async () => {
         const response = await fetch(
-          `${SERVER_REGISTER_URL}byUsername/${username}`
+          `https://ng-cash-app-production.up.railway.app/byUsername/${username}`
         );
         const json = await response.json();
         if (json) {
@@ -165,9 +169,16 @@ const RegisterForm = () => {
 
     axios
       .post(SERVER_REGISTER_URL, userData)
-      .then((response) => console.log(response.status))
-      .catch((error) => console.log(error));
+      .then((response) => setRegisterStatus(response.status))
+      .catch((error) => error);
   }
+
+  // Se o registro é sucedido, leva o usuário para a página de login
+  React.useEffect(() => {
+    if (registerStatus === 200) {
+      navigate("/login");
+    }
+  }, [registerStatus]);
 
   return (
     <form className="register-form">
@@ -177,14 +188,17 @@ const RegisterForm = () => {
         type="text"
         name="username"
         id="username"
+        placeholder="fulanodetal"
         required
       />
       <span className="username-existing">
         Este nome de usuário já está em uso!
       </span>
-      <span className="condition">Pelo menos:</span>
+      <span className="condition">
+        O nome de usuário deve conter no mínimo:
+      </span>
       <div>
-        <span className="username-condition">No mínimo 3 caracteres.</span>
+        <span className="username-condition">3 caracteres.</span>
       </div>
       <label htmlFor="password">Senha</label>
       <input
@@ -192,15 +206,16 @@ const RegisterForm = () => {
         type="password"
         name="password"
         id="password"
+        placeholder="Ex: Senha@302"
         required
       />
-      <span className="condition">Pelo menos:</span>
+      <span className="condition">A senha deve conter no mínimo:</span>
       <div className="password-conditions">
-        <span className="password-condition-1">1 letras minúsculas;</span>
+        <span className="password-condition-1">1 letra minúscula;</span>
         <span className="password-condition-2">1 letra maiúscula;</span>
         <span className="password-condition-3">1 número;</span>
         <span className="password-condition-4">1 caracter especial;</span>
-        <span className="password-condition-5">No mínimo 8 caracteres.</span>
+        <span className="password-condition-5">8 caracteres.</span>
       </div>
       <div className="register-button-container">
         <button className="register-button" onClick={registerUser}>

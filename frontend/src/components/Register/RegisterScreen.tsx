@@ -8,9 +8,9 @@ const RegisterScreen = () => {
   return (
     <div className="register-container">
       <NavLink to="/" end>
-        Voltar
+        <button className="return-button">Voltar</button>
       </NavLink>
-      <h1 className="primary-title">Registre-se</h1>
+      <h2 className="primary-title">Registre-se</h2>
       <RegisterForm />
     </div>
   );
