@@ -108,6 +108,7 @@ span {
 }
 
 body {
+  margin: 0;
   background-color: #111;
   font-family: "IBM Plex Sans", sans-serif;
   color: #111;

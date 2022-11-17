@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SERVER_LOGIN_URL = "https://ng-cash-app-production.up.railway.app/login";
 const LOCAL_LOGIN_URL = "http://localhost:3333/login";
@@ -10,6 +11,8 @@ const LoginForm = () => {
 
   const [loginStatus, setLoginStatus] = React.useState(false);
   const [authorizationToken, setAuthorizationToken] = React.useState("");
+
+  const navigate = useNavigate();
 
   // Obtém o username digitado pelo usuário
   function verifyUsername({ target }: any) {
@@ -44,6 +47,7 @@ const LoginForm = () => {
       "login",
       JSON.stringify({ status: loginStatus, token: authorizationToken })
     );
+    navigate("/home");
   }, [loginStatus, authorizationToken]);
 
   return (
