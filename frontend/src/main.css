@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+
+.first-screen-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ng-cash-logo {
+  max-width: 180px;
+  margin: 28px auto 0 auto;
+}
+
+.master-title {
+  font-size: 3rem;
+  color: #f5f5f5;
+  text-align: center;
+}
+
+.description-container {
+  height: 65vh;
+  display: flex;
+  align-items: center;
+}
+
+.first-screen-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 24px;
+}
+
+.first-screen-description p {
+  color: #f5f5f5;
+  margin: 0;
+}
+
+.first-screen-description p:first-child {
+  color: #f5f5f5;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.first-screen-description p:last-child {
+  font-size: 2.5rem;
+  font-weight: 300;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 24px;
+}
+
+input {
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-top: 4px;
+  width: 100%;
+  padding: 12px 12px;
+  font-size: 1.25rem;
+  box-sizing: border-box;
+  letter-spacing: 0.1rem;
+}
+
+form button,
+button.return-button {
+  font-size: 1.5rem;
+  background-color: #555;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 6px;
+  margin: 24px 0;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.2s;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.return-button {
+  cursor: pointer;
+  background-color: #777;
+  padding: 12px 36px;
+  font-size: 1.25rem;
+  opacity: 1;
+}
+
+button.return-button:hover {
+  background-color: #666;
+}
+
+body {
+  margin: 0;
+  background: url("./assets/background.svg");
+  font-family: "IBM Plex Sans", sans-serif;
+  color: #111;
+  letter-spacing: 0.05rem;
+}
+
+@media (max-width: 800px) {
+  .first-screen-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .master-title {
+    margin: 64px 0;
+  }
+}
