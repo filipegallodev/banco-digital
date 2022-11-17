@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+const SERVER_REGISTER_URL = "https://ng-cash-app-production.up.railway.app/";
+
 const RegisterForm = () => {
   const [username, setUsername] = React.useState("");
   const [validUsername, setValidUsername] = React.useState(false);
@@ -24,7 +26,7 @@ const RegisterForm = () => {
     if (username !== "") {
       const delayDebounceFn = setTimeout(async () => {
         const response = await fetch(
-          `https://ng-cash-app-production.up.railway.app/byUsername/${username}`
+          `${SERVER_REGISTER_URL}byUsername/${username}`
         );
         const json = await response.json();
         if (json) {
@@ -162,7 +164,7 @@ const RegisterForm = () => {
     const userData = { username: user, password: pass };
 
     axios
-      .post("https://ng-cash-app-production.up.railway.app/", userData)
+      .post(SERVER_REGISTER_URL, userData)
       .then((response) => console.log(response.status))
       .catch((error) => console.log(error));
   }
