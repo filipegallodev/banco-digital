@@ -2,14 +2,10 @@ import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
-};
-
-const postCorsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200,
 };
 
 const prisma = new PrismaClient();
@@ -19,7 +15,11 @@ routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 routes.use(cors());
 
-routes.post("/", cors(postCorsOptions), async (req: Request, res: Response) => {
+routes.get("/", cors(corsOptions), async (req: Request, res: Response) => {
+  res.json({ message: "Tudo okay por aqui!" });
+});
+
+routes.post("/", cors(corsOptions), async (req: Request, res: Response) => {
   const { username, password } = req.body;
   const saltRounds = 10;
   const hashPassword = bcrypt.hashSync(password, saltRounds);
@@ -40,10 +40,52 @@ routes.post("/", cors(postCorsOptions), async (req: Request, res: Response) => {
   res.json(user);
 });
 
-routes.get("/", cors(corsOptions), async (req: Request, res: Response) => {
-  const usersList = await prisma.users.findMany();
-  res.json(usersList);
-});
+// process.env.SECRET
+// function verifyJWT(req: Request, res: Response, next) {
+//   const token = req.headers["x-access-token"];
+//   jwt.verify(token, SECRET, (err, decoded) => {
+//     if (err) return res.status(401).end();
+
+//     req.userId = decoded.userId;
+//     next();
+//   });
+// }
+
+// routes.get(
+//   "/transactions",
+//   verifyJWT,
+//   async (req: Request, res: Response) => {}
+// );
+
+routes.post(
+  "/login",
+  cors(corsOptions),
+  async (req: Request, res: Response) => {
+    const { username, password } = req.body;
+    const user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    });
+    const hashPassword = user?.password || "null";
+    const comparisonResult = bcrypt.compareSync(password, hashPassword);
+    if (comparisonResult) {
+      const token = jwt.sign({ userId: user?.id }, process.env.JWT_SECRET, {
+        expiresIn: 86400,
+      });
+      return res.json({ auth: true, token });
+    }
+    res.status(401).end();
+  }
+);
+
+routes.post(
+  "/logout",
+  cors(corsOptions),
+  async (req: Request, res: Response) => {
+    res.end();
+  }
+);
 
 routes.get(
   "/byUsername/:username",
