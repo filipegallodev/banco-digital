@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import cors from "cors";
+import bcrypt from "bcrypt";
 
 const corsOptions = {
   origin: process.env.CORS_ORIGIN,
@@ -20,10 +21,12 @@ routes.use(cors());
 
 routes.post("/", cors(postCorsOptions), async (req: Request, res: Response) => {
   const { username, password } = req.body;
+  const saltRounds = 10;
+  const hashPassword = bcrypt.hashSync(password, saltRounds);
   const user = await prisma.users.create({
     data: {
       username: username,
-      password: password,
+      password: hashPassword,
       account: {
         create: {
           balance: "R$ 100,00",
