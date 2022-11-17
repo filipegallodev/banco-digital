@@ -116,10 +116,13 @@ const HomeScreen = () => {
   if (loading) {
     return <div className="home-screen">Carregando...</div>;
   }
+
   if (validToken) {
     return (
       <div className="home-screen">
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
         <div>
           <h1 className="primary-title">NG.CASH</h1>
         </div>

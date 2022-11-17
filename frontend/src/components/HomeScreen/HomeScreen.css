@@ -6,8 +6,26 @@
   height: 100%;
 }
 
-.primary-title {
+.logout-button {
+  font-size: 1.25rem;
+  background-color: #777;
+  padding: 12px 36px;
+  border: none;
+  border-radius: 6px;
+  margin: 24px;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #666;
+}
+
+.home-screen .primary-title {
   font-size: 3rem;
+  text-align: center;
 }
 
 .user-data {
