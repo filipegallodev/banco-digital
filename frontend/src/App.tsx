@@ -5,33 +5,34 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FirstScreen from "./components/FirstScreen/FirstScreen";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 
+import "./main.css";
+import logo from "./assets/ngcash-logo.svg";
+
 function App() {
-  const [token, setToken] = React.useState(null);
-
-  React.useEffect(() => {
-    const local = sessionStorage.getItem("login");
-    if (local !== null) {
-      const login = JSON.parse(local);
-      setToken(login.token);
-    }
-  }, []);
-
   return (
     <BrowserRouter>
       <Routes>
-        {token ? (
-          <Route path="/" element={<HomeScreen />} />
-        ) : (
-          <Route path="/" element={<FirstScreen />} />
-        )}
-        <Route path="login" element={<LoginScreen />} />
-        <Route path="register" element={<RegisterScreen />} />
         <Route path="home" element={<HomeScreen />} />
-        <Route
-          path="*"
-          element={<div>ERRO 404 - Página não encontrada.</div>}
-        />
       </Routes>
+      <div className="first-screen-container">
+        <div>
+          <div className="ng-cash-logo">
+            <img src={logo} alt="NG.Cash Logo"></img>
+            {/* Logo obtido no site oficial da NG.Cash, apenas para objetivo de uso neste projeto pessoal */}
+          </div>
+          <div className="description-container">
+            <div className="first-screen-description">
+              <p>A carteira da nova geração.</p>
+              <p>É para todas as idades!</p>
+            </div>
+          </div>
+        </div>
+        <Routes>
+          <Route path="/" element={<FirstScreen />} />
+          <Route path="login" element={<LoginScreen />} />
+          <Route path="register" element={<RegisterScreen />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
