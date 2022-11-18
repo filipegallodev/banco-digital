@@ -57,6 +57,7 @@ const LoginForm = () => {
         type="text"
         name="login-username"
         id="login-username"
+        placeholder="Seu nome de usuário"
         required
       />
       <label htmlFor="login-password">Senha</label>
@@ -65,6 +66,7 @@ const LoginForm = () => {
         type="password"
         name="login-password"
         id="login-password"
+        placeholder="Aquela que você cadastrou, lembra?"
         required
       />
       <div>
