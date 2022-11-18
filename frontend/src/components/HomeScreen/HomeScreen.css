@@ -91,6 +91,75 @@
   color: #0a0;
 }
 
+.filter-title {
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+.options-filter {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.options-filter option:nth-child(2) {
+  color: #0a0;
+}
+
+.options-filter option:nth-child(3) {
+  color: #a00;
+}
+
+.transaction-table {
+  width: 100%;
+  background-color: #eee;
+  padding: 16px 32px;
+  border: 1px solid #111;
+  border-radius: 8px;
+}
+
+.transaction-table thead {
+  height: 64px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.transaction-table tbody {
+  font-size: 1.125rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.transaction-table tbody tr {
+  height: 56px;
+  border-top: 1px solid #111;
+}
+
+.transaction-table tbody tr:hover > td {
+  background-color: #d7d7d7;
+}
+
+.transaction-table tbody tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+.sent-value {
+  color: #a00;
+  font-weight: 500;
+}
+
+.received-value {
+  color: #0a0;
+  font-weight: 500;
+}
+
+.inactive {
+  display: none;
+}
+
 .unauthorized-access {
   color: #f00;
   font-weight: 500;

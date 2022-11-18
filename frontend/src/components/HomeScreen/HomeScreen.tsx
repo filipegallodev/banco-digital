@@ -11,6 +11,9 @@ const SERVER_VALIDATE_URL =
 const SERVER_TRANSFER_URL =
   "https://ng-cash-app-production.up.railway.app/transfer";
 
+const SERVER_TRANSACTIONS_URL =
+  "https://ng-cash-app-production.up.railway.app/transactions";
+
 const HomeScreen = () => {
   const [validToken, setValidToken] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -23,8 +26,12 @@ const HomeScreen = () => {
   const [transactionLoading, setTransactionLoading] = React.useState(false);
   const [transactionStatus, setTransactionStatus] = React.useState(false);
 
+  const [transactionsList, setTransactionsList] = React.useState<any>(null);
+
   const userInput = React.useRef<any>(null);
   const amountInput = React.useRef<any>(null);
+
+  const [optionFilter, setOptionFilter] = React.useState("all");
 
   const navigate = useNavigate();
 
@@ -53,6 +60,14 @@ const HomeScreen = () => {
       });
     setLoading(false);
   }
+
+  // Obtém a lista de transações do usuário
+  React.useEffect(() => {
+    if (!validToken) return;
+    axios
+      .post(SERVER_TRANSACTIONS_URL, user)
+      .then((response) => setTransactionsList(response.data));
+  }, [validToken]);
 
   // Obtém o username
   function handleUsername({ target }: any) {
@@ -113,10 +128,47 @@ const HomeScreen = () => {
     navigate("/login");
   }
 
+  // Obtém o filtro escolhido
+  function handleOptionFilter({ target }: any) {
+    setOptionFilter(target.value);
+  }
+
+  // Filtra as informações da tabela dependendo do filtro escolhido
+  React.useEffect(() => {
+    const receivedValues = document.querySelectorAll(".received-value");
+    const sentValues = document.querySelectorAll(".sent-value");
+
+    if (optionFilter === "all") {
+      receivedValues.forEach((value) => {
+        value.classList.remove("inactive");
+      });
+      sentValues.forEach((value) => {
+        value.classList.remove("inactive");
+      });
+    }
+
+    if (optionFilter === "sent") {
+      receivedValues.forEach((value) => {
+        value.classList.add("inactive");
+      });
+      sentValues.forEach((value) => {
+        value.classList.remove("inactive");
+      });
+    }
+
+    if (optionFilter === "received") {
+      sentValues.forEach((value) => {
+        value.classList.add("inactive");
+      });
+      receivedValues.forEach((value) => {
+        value.classList.remove("inactive");
+      });
+    }
+  }, [optionFilter]);
+
   if (loading) {
     return <div className="home-screen">Carregando...</div>;
   }
-
   if (validToken) {
     return (
       <div className="home-screen">
@@ -185,10 +237,53 @@ const HomeScreen = () => {
         <section>
           <div className="section-container">
             <h2>Transferências realizadas</h2>
-            {/* <table>
-              <thead>Ola</thead>
-              <tbody>Teste</tbody>
-            </table> */}
+            <div>
+              <h3 className="filter-title">Filtro</h3>
+              <select className="options-filter" onChange={handleOptionFilter}>
+                <option value="all">Todas</option>
+                <option value="received">Recebidas</option>
+                <option value="sent">Enviadas</option>
+              </select>
+            </div>
+            <table className="transaction-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                  <th>ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactionsList &&
+                  transactionsList.transactions.map(
+                    ({ id, debitedAccountId, value, createdAt }: any) => (
+                      <tr
+                        key={id}
+                        className={
+                          debitedAccountId === transactionsList.accountId
+                            ? "sent-value"
+                            : "received-value"
+                        }
+                      >
+                        <td>
+                          {debitedAccountId === transactionsList.accountId
+                            ? "Enviado"
+                            : "Recebido"}
+                        </td>
+                        <td>{value}</td>
+                        <td>
+                          {createdAt.replace(
+                            /(\d+)\-(\d+)\-(\d+)(\D\d+\:\d+:\d+\.\d+\D+)/g,
+                            "$3/$2/$1"
+                          )}
+                        </td>
+                        <td>{id}</td>
+                      </tr>
+                    )
+                  )}
+              </tbody>
+            </table>
           </div>
         </section>
       </div>
