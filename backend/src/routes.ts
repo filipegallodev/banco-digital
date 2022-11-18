@@ -63,7 +63,6 @@ async function addTransaction(
   amountToTransfer: any
 ) {
   const amountInBrFormat = `R$ ${amountToTransfer.replace(".", ",")}`;
-  console.log(amountInBrFormat);
   const transaction = await prisma.transactions.create({
     data: {
       creditedAccountId: accountToCredit.id,
@@ -160,6 +159,43 @@ routes.post(
     } else {
       res.status(400).json({ transactionStatus: false }).end();
     }
+  }
+);
+
+routes.post(
+  "/transactions",
+  cors(corsOptions),
+  async (req: Request, res: Response) => {
+    const { username } = req.body;
+
+    const user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    });
+
+    const userDebitTransactions = await prisma.transactions.findMany({
+      where: {
+        debitedAccountId: user?.accountId,
+      },
+    });
+
+    const userCreditTransactions = await prisma.transactions.findMany({
+      where: {
+        creditedAccountId: user?.accountId,
+      },
+    });
+
+    if (userDebitTransactions || userCreditTransactions) {
+      res
+        .status(200)
+        .json({
+          transactions: [...userDebitTransactions, ...userCreditTransactions],
+          accountId: user?.accountId,
+        })
+        .end();
+    }
+    res.status(404).end();
   }
 );
 
