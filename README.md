@@ -16,7 +16,7 @@ Criação de uma aplicação WEB fictícia para o NG.Cash. Estruturar uma aplica
 ## 🔗 Link para teste
 [NG.Cash Fictício](https://ngcash-app.vercel.app/)
 
-Nota: Como o plano de hospedagem do Back-End é limitado, o uptime mensal é de apenas 500 horas, se o login/registro não funcionar é por conta disso.
+Nota: Como o plano de hospedagem do Back-End é limitado, de apenas 500 horas, algumas funcionalidades podem não funcionar por conta disso.
 
 ## 🛠 Tecnologias
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -28,4 +28,5 @@ Nota: Como o plano de hospedagem do Back-End é limitado, o uptime mensal é de 
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-## Status: Em andamento...
+## Status: 
+Finalizado.
