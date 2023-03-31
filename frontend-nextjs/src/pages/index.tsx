@@ -1,4 +1,6 @@
 import Head from "next/head";
+import * as Styled from "../styles/index.styled";
+import styled from "styled-components";
 
 export default function Home() {
   return (
@@ -10,8 +12,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Banco Digital</h1>
+        <Container>
+          <div>
+            <button>Registrar</button>
+            <button>Login</button>
+          </div>
+        </Container>
       </main>
     </>
   );
 }
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 1210px) {
+    margin: 0 24px;
+  }
+`;
