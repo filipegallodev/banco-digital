@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { fetchLogin } from "@/store/reducers/login";
+import React, { useState } from "react";
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    console.log(loginData);
-  }, [loginData]);
+  function handleLogin(event: React.FormEvent) {
+    event.preventDefault();
+    if (loginData.username && loginData.password) {
+      dispatch(fetchLogin(loginData));
+    }
+  }
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleLogin}>
         <label htmlFor="username">Usuário</label>
         <input
           type="text"
@@ -28,8 +34,8 @@ const FormLogin = () => {
             setLoginData({ ...loginData, password: target.value })
           }
         />
+        <button>Login</button>
       </form>
-      <button>Login</button>
     </div>
   );
 };
