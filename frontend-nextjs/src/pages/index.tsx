@@ -1,6 +1,7 @@
 import Head from "next/head";
 import * as Styled from "../styles/index.styled";
 import styled from "styled-components";
+import FormLogin from "@/components/Form/FormLogin";
 
 export default function Home() {
   return (
@@ -14,8 +15,8 @@ export default function Home() {
       <main>
         <Container>
           <div>
+            <FormLogin />
             <button>Registrar</button>
-            <button>Login</button>
           </div>
         </Container>
       </main>
