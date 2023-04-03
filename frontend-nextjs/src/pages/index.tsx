@@ -2,8 +2,11 @@ import Head from "next/head";
 import * as Styled from "../styles/index.styled";
 import styled from "styled-components";
 import FormLogin from "@/components/Form/FormLogin";
+import { useAppSelector } from "@/hooks/useAppSelector";
 
 export default function Home() {
+  const { data } = useAppSelector((state) => state.login);
+
   return (
     <>
       <Head>
@@ -15,6 +18,7 @@ export default function Home() {
       <main>
         <Container>
           <div>
+            {data && data.auth && <p>Logado.</p>}
             <FormLogin />
             <button>Registrar</button>
           </div>

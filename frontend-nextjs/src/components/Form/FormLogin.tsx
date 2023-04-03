@@ -1,10 +1,16 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchLogin } from "@/store/reducers/login";
 import React, { useState } from "react";
+
+// Login Test:
+// username: fulanodetal
+// password: Senha@302
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const dispatch = useAppDispatch();
+  const { loading, error } = useAppSelector((state) => state.login);
 
   function handleLogin(event: React.FormEvent) {
     event.preventDefault();
@@ -35,6 +41,8 @@ const FormLogin = () => {
           }
         />
         <button>Login</button>
+        {loading && <p>Carregando...</p>}
+        {error && <p>{error}</p>}
       </form>
     </div>
   );
