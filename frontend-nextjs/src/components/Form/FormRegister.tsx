@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { fetchRegister } from "@/store/reducers/register";
+import React, { useEffect, useRef, useState } from "react";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState({
@@ -7,14 +10,24 @@ const FormRegister = () => {
     email: "",
     password: "",
   });
+  const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector(
+    (state: IReduxState) => state.register
+  );
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   function handleRegister(event: React.FormEvent) {
     event.preventDefault();
     const { firstName, lastName, email, password } = registerData;
     if (firstName && lastName && email && password) {
-      console.log(registerData);
+      dispatch(fetchRegister({ username: email, password }));
     }
   }
+
+  useEffect(() => {
+    if (loading) return setButtonDisabled(true);
+    setButtonDisabled(false);
+  }, [loading]);
 
   return (
     <div>
@@ -58,7 +71,10 @@ const FormRegister = () => {
             setRegisterData({ ...registerData, password: target.value })
           }
         />
-        <button>Registrar</button>
+        <button disabled={buttonDisabled}>Registrar</button>
+        {loading && <p>Realizando cadastro...</p>}
+        {data?.status && <p>{data.status}</p>}
+        {error && <p>{error}</p>}
       </form>
     </div>
   );

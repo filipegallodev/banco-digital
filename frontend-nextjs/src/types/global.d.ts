@@ -24,7 +24,16 @@ interface IUserState {
   error: null | string;
 }
 
+interface IRegisterState {
+  loading: boolean;
+  data: null | {
+    status: string;
+  };
+  error: null | string;
+}
+
 interface IReduxState {
-  login: ILoginState;
   user: IUserState;
+  login: ILoginState;
+  register: IRegisterState;
 }

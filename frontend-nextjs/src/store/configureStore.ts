@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import login from "./reducers/login";
 import user from "./reducers/user";
+import register from "./reducers/register";
 
-const reducer = combineReducers({ login, user });
+const reducer = combineReducers({ user, login, register });
 const store = configureStore({ reducer });
 
 export type RootState = ReturnType<typeof store.getState>;
