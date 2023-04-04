@@ -21,6 +21,7 @@ const FormLogin = () => {
 
   return (
     <div>
+      <h2>Faça seu login</h2>
       <form onSubmit={handleLogin}>
         <label htmlFor="username">Usuário</label>
         <input
@@ -40,7 +41,7 @@ const FormLogin = () => {
             setLoginData({ ...loginData, password: target.value })
           }
         />
-        <button>Login</button>
+        <button>Entrar</button>
         {loading && <p>Carregando...</p>}
         {error && <p>{error}</p>}
       </form>

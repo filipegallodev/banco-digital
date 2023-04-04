@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { fetchToken, resetState } from "@/store/reducers/user";
+import FormRegister from "@/components/Form/FormRegister";
 
 export default function Home() {
   const { data } = useAppSelector((state: IReduxState) => state.login);
@@ -48,7 +49,7 @@ export default function Home() {
         <Container>
           <div>
             <FormLogin />
-            <button>Registrar</button>
+            <FormRegister />
           </div>
         </Container>
       </main>
