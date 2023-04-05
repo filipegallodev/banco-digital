@@ -36,9 +36,7 @@ const FormRegister = () => {
 
   function checkRegisterFields() {
     const { firstName, lastName, email, password } = registerData;
-    if (firstName && lastName && email && password) {
-      return true;
-    }
+    if (firstName && lastName && email && password) return true;
     return false;
   }
 

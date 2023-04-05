@@ -1,12 +1,24 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchLogin } from "@/store/reducers/login";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.login);
+  const [unfilledFields, setUnfilledFields] = useState(true);
+
+  useEffect(() => {
+    if (checkLoginFields()) return setUnfilledFields(false);
+    setUnfilledFields(true);
+  }, [loginData]);
+
+  function checkLoginFields() {
+    const { username, password } = loginData;
+    if (username && password) return true;
+    return false;
+  }
 
   function handleUserLogin(event: React.FormEvent) {
     event.preventDefault();
@@ -37,7 +49,7 @@ const FormLogin = () => {
             setLoginData({ ...loginData, password: target.value })
           }
         />
-        <button disabled={loading}>Entrar</button>
+        <button disabled={loading || unfilledFields}>Entrar</button>
         {loading && <p>Carregando...</p>}
         {error && <p>{error}</p>}
       </form>
