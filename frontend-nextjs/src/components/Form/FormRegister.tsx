@@ -16,7 +16,7 @@ const FormRegister = () => {
   );
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  function handleRegister(event: React.FormEvent) {
+  function handleUserRegister(event: React.FormEvent) {
     event.preventDefault();
     const { firstName, lastName, email, password } = registerData;
     if (firstName && lastName && email && password) {
@@ -32,7 +32,7 @@ const FormRegister = () => {
   return (
     <div>
       <h2>Preencha seu cadastro</h2>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleUserRegister}>
         <div>
           <label htmlFor="firstName">Nome</label>
           <input

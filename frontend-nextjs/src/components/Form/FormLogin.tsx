@@ -12,7 +12,7 @@ const FormLogin = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.login);
 
-  function handleLogin(event: React.FormEvent) {
+  function handleUserLogin(event: React.FormEvent) {
     event.preventDefault();
     if (loginData.username && loginData.password) {
       dispatch(fetchLogin(loginData));
@@ -22,7 +22,7 @@ const FormLogin = () => {
   return (
     <div>
       <h2>Faça seu login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleUserLogin}>
         <label htmlFor="username">Usuário</label>
         <input
           type="text"

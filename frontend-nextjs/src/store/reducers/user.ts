@@ -27,6 +27,7 @@ const slice = createSlice({
       state.loading = false;
       state.data = null;
       state.error = null;
+      localStorage.removeItem("jwt-token");
     },
   },
 });

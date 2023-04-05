@@ -21,12 +21,11 @@ export default function Home() {
 
   useEffect(() => {
     if (user.error) {
-      localStorage.removeItem("jwt-token");
       dispatch(resetState());
     }
   }, [user, dispatch]);
 
-  const validateToken = useCallback(() => {
+  const validateUserToken = useCallback(() => {
     const token = localStorage.getItem("jwt-token");
     if (token && !user.data?.validToken) {
       return dispatch(fetchToken(token));
@@ -34,8 +33,8 @@ export default function Home() {
   }, [dispatch, user.data?.validToken]);
 
   useEffect(() => {
-    validateToken();
-  }, [data, validateToken]);
+    validateUserToken();
+  }, [data, validateUserToken]);
 
   return (
     <>
