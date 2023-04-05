@@ -41,7 +41,7 @@ const FormLogin = () => {
             setLoginData({ ...loginData, password: target.value })
           }
         />
-        <button>Entrar</button>
+        <button disabled={loading}>Entrar</button>
         {loading && <p>Carregando...</p>}
         {error && <p>{error}</p>}
       </form>

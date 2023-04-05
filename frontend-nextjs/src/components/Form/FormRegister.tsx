@@ -14,7 +14,6 @@ const FormRegister = () => {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.register
   );
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   function handleUserRegister(event: React.FormEvent) {
     event.preventDefault();
@@ -23,11 +22,6 @@ const FormRegister = () => {
       dispatch(fetchRegister({ username: email, password }));
     }
   }
-
-  useEffect(() => {
-    if (loading) return setButtonDisabled(true);
-    setButtonDisabled(false);
-  }, [loading]);
 
   return (
     <div>
@@ -71,7 +65,7 @@ const FormRegister = () => {
             setRegisterData({ ...registerData, password: target.value })
           }
         />
-        <button disabled={buttonDisabled}>Registrar</button>
+        <button disabled={loading}>Registrar</button>
         {loading && <p>Realizando cadastro...</p>}
         {data?.status && <p>{data.status}</p>}
         {error && <p>{error}</p>}
