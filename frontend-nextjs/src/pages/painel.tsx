@@ -29,7 +29,10 @@ export default function Painel() {
       </Head>
       <main>
         <button onClick={handleUserLogout}>Sair</button>
-        Painel | {user.data?.user.username} | {user.data?.user.balance}
+        <div>
+          Painel | Olá, Sr{"("}a{")"} NOME | {user.data?.user.username} |{" "}
+          {user.data?.user.balance}
+        </div>
       </main>
     </>
   );

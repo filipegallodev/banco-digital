@@ -3,10 +3,6 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchLogin } from "@/store/reducers/login";
 import React, { useState } from "react";
 
-// Login Test:
-// username: fulanodetal
-// password: Senha@302
-
 const FormLogin = () => {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const dispatch = useAppDispatch();

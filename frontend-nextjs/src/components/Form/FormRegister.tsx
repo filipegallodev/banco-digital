@@ -10,17 +10,45 @@ const FormRegister = () => {
     email: "",
     password: "",
   });
+  const [invalidPassword, setInvalidPassword] = useState(false);
+  const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.register
   );
 
+  useEffect(() => {
+    if (checkRegisterFields()) return setUnfilledFields(false);
+    setUnfilledFields(true);
+  }, [registerData]);
+
   function handleUserRegister(event: React.FormEvent) {
     event.preventDefault();
+    if (checkRegisterFields() && !invalidPassword) {
+      dispatch(
+        fetchRegister({
+          username: registerData.email,
+          password: registerData.password,
+        })
+      );
+    }
+  }
+
+  function checkRegisterFields() {
     const { firstName, lastName, email, password } = registerData;
     if (firstName && lastName && email && password) {
-      dispatch(fetchRegister({ username: email, password }));
+      return true;
     }
+    return false;
+  }
+
+  function handleUserPassword() {
+    const passwordRequirementsRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
+    if (!passwordRequirementsRegex.test(registerData.password)) {
+      return setInvalidPassword(true);
+    }
+    setInvalidPassword(false);
   }
 
   return (
@@ -56,16 +84,20 @@ const FormRegister = () => {
             setRegisterData({ ...registerData, email: target.value })
           }
         />
-        <label htmlFor="password">Senha</label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          onChange={({ target }) =>
-            setRegisterData({ ...registerData, password: target.value })
-          }
-        />
-        <button disabled={loading}>Registrar</button>
+        <div>
+          <label htmlFor="password">Senha</label>
+          <input
+            type="text"
+            id="password"
+            name="password"
+            onChange={({ target }) =>
+              setRegisterData({ ...registerData, password: target.value })
+            }
+            onBlur={handleUserPassword}
+          />
+          {invalidPassword && <p>Formato inválido.</p>}
+        </div>
+        <button disabled={loading || unfilledFields}>Registrar</button>
         {loading && <p>Realizando cadastro...</p>}
         {data?.status && <p>{data.status}</p>}
         {error && <p>{error}</p>}
