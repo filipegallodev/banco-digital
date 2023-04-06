@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchRegister } from "@/store/reducers/register";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState({
@@ -17,10 +17,16 @@ const FormRegister = () => {
     (state: IReduxState) => state.register
   );
 
+  const checkRegisterFields = useCallback(() => {
+    const { firstName, lastName, email, password } = registerData;
+    if (firstName && lastName && email && password) return true;
+    return false;
+  }, [registerData]);
+
   useEffect(() => {
     if (checkRegisterFields()) return setUnfilledFields(false);
     setUnfilledFields(true);
-  }, [registerData]);
+  }, [registerData, checkRegisterFields]);
 
   function handleUserRegister(event: React.FormEvent) {
     event.preventDefault();
@@ -32,12 +38,6 @@ const FormRegister = () => {
         })
       );
     }
-  }
-
-  function checkRegisterFields() {
-    const { firstName, lastName, email, password } = registerData;
-    if (firstName && lastName && email && password) return true;
-    return false;
   }
 
   function handleUserPassword() {
