@@ -16,8 +16,6 @@ Criação de uma aplicação WEB fictícia para o NG.Cash. Estruturar uma aplica
 ## 🔗 Link para teste
 [NG.Cash Fictício](https://ngcash-app.vercel.app/)
 
-Nota: Como o plano de hospedagem do Back-End é limitado, de apenas 500 horas, algumas funcionalidades podem não funcionar por conta disso.
-
 ## 🛠 Tecnologias
 - ![Next.js](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
