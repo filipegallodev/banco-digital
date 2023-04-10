@@ -28,9 +28,9 @@ export default function Painel() {
       <main>
         <Container>
           <Title>Visão geral</Title>
-          <p>
+          <WelcomeMessage>
             Olá, Sr{"("}a{")"} NOME
-          </p>
+          </WelcomeMessage>
           <DashboardContainer>
             <DashboardItem name="Saldo" data={user.data?.user.balance} />
             <DashboardItem name="Transferências" data={2} />
@@ -63,4 +63,8 @@ const Title = styled.h1`
     background-color: #c500d0;
     position: absolute;
   }
+`;
+
+const WelcomeMessage = styled.p`
+  font-size: 1.35rem;
 `;

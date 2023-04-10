@@ -11,6 +11,7 @@ const Container = styled.div`
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #555;
+  margin: 32px 0;
 `;
 
 export default DashboardContainer;
