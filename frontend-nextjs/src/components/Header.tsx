@@ -16,17 +16,17 @@ const Header = () => {
     <Container>
       <div>Header</div>
       <UserInfoContainer>
-        {user && <p>NOME COMPLETO</p>}
-        {user && <button onClick={handleUserLogout}>Sair</button>}
+        {user && <Name>Nome Completo</Name>}
+        {user && <LogoutButton onClick={handleUserLogout}>Sair</LogoutButton>}
       </UserInfoContainer>
     </Container>
   );
 };
 
 const Container = styled.header`
-  background-color: #111;
+  background-color: #151515;
   color: #f5f5f5;
-  padding: 16px;
+  padding: 40px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,6 +37,24 @@ const UserInfoContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 32px;
+`;
+
+const Name = styled.p`
+  text-transform: uppercase;
+  font-size: 1.25rem;
+`;
+
+const LogoutButton = styled.button`
+  padding: 8px 16px;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: #ccc;
+  }
 `;
 
 export default Header;
