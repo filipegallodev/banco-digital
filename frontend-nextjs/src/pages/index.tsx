@@ -8,6 +8,7 @@ import { useCallback, useEffect } from "react";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { fetchToken, resetState } from "@/store/reducers/user";
 import FormRegister from "@/components/Form/FormRegister";
+import Header from "@/components/Header";
 
 export default function Home() {
   const { data } = useAppSelector((state: IReduxState) => state.login);
@@ -44,6 +45,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main>
         <Container>
           <div>
