@@ -93,7 +93,13 @@ const FormRegister = () => {
             }
             onBlur={handleUserPassword}
           />
-          {invalidPassword && <p>Formato inválido.</p>}
+          {invalidPassword && (
+            <p>
+              Formato de senha inválido. Utilize ao menos oito caracteres, uma
+              letra minúscula, uma letra maiúscula, um número e um caractere
+              especial.
+            </p>
+          )}
         </div>
         <button disabled={loading || unfilledFields}>Registrar</button>
         {loading && <p>Realizando cadastro...</p>}
