@@ -1,7 +1,5 @@
 import Header from "@/components/Header";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { resetState } from "@/store/reducers/user";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
