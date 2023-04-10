@@ -1,3 +1,5 @@
+import DashboardContainer from "@/components/Dashboard/DashboardContainer";
+import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Head from "next/head";
@@ -30,9 +32,9 @@ export default function Painel() {
             Olá, Sr{"("}a{")"} NOME
           </p>
           <DashboardContainer>
-            <DashboardItem>Saldo: {user.data?.user.balance}</DashboardItem>
-            <DashboardItem>Transferências hoje:</DashboardItem>
-            <DashboardItem>Saída/Entrada</DashboardItem>
+            <DashboardItem name="Saldo" data={user.data?.user.balance} />
+            <DashboardItem name="Transferências" data={2} />
+            <DashboardItem name="Saída/Entrada" data={100} />
           </DashboardContainer>
         </Container>
       </main>
@@ -61,21 +63,4 @@ const Title = styled.h1`
     background-color: #c500d0;
     position: absolute;
   }
-`;
-
-const DashboardContainer = styled.div`
-  display: flex;
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #555;
-`;
-
-const DashboardItem = styled.div`
-  /* border: 1px solid #555; */
-  width: 100%;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
