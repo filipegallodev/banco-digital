@@ -43,7 +43,12 @@ export const fetchRegister =
         },
         body: JSON.stringify(registerData),
       });
-      if (!response.ok) throw new Error("Erro ao realizar cadastro.");
+      if (!response.ok)
+        throw new Error(
+          `Falha ao cadastrar usuário. ${
+            response.status === 401 && "E-mail já cadastrado"
+          }.`
+        );
       const data = await response.json();
       dispatch(fetchSuccess(data));
     } catch (error) {
