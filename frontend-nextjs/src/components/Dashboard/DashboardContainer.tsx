@@ -10,8 +10,9 @@ const Container = styled.div`
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #555;
   margin: 32px 0;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export default DashboardContainer;

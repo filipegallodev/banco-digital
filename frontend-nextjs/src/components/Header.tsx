@@ -14,11 +14,13 @@ const Header = () => {
 
   return (
     <Container>
-      <div>Header</div>
-      <UserInfoContainer>
-        {user && <Name>Nome Completo</Name>}
-        {user && <LogoutButton onClick={handleUserLogout}>Sair</LogoutButton>}
-      </UserInfoContainer>
+      <Content>
+        <Title>Banco Digital</Title>
+        <UserInfoContainer>
+          {user && <Name>Nome Completo</Name>}
+          {user && <LogoutButton onClick={handleUserLogout}>Sair</LogoutButton>}
+        </UserInfoContainer>
+      </Content>
     </Container>
   );
 };
@@ -26,10 +28,22 @@ const Header = () => {
 const Container = styled.header`
   background-color: #151515;
   color: #f5f5f5;
-  padding: 40px 24px;
+  height: 132px;
+  display: flex;
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
+`;
+
+const Content = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const Title = styled.span`
+  font-size: 2rem;
 `;
 
 const UserInfoContainer = styled.div`
@@ -45,15 +59,15 @@ const Name = styled.p`
 `;
 
 const LogoutButton = styled.button`
-  padding: 8px 16px;
-  font-size: 1.125rem;
+  padding: 12px 24px;
+  font-size: 1.25rem;
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   transition: 0.2s;
   cursor: pointer;
   &:hover {
-    background-color: #ccc;
+    background-color: #ffddff;
   }
 `;
 

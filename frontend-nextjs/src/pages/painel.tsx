@@ -48,11 +48,11 @@ const Container = styled.section`
   align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
 `;
 
 const Title = styled.h1`
-  margin: 32px 0;
+  margin: 48px 0;
   font-size: 2.5rem;
   text-transform: uppercase;
   box-sizing: border-box;
