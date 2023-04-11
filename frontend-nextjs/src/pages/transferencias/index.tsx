@@ -1,5 +1,3 @@
-import DashboardContainer from "@/components/Dashboard/DashboardContainer";
-import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Head from "next/head";
@@ -7,7 +5,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-export default function Painel() {
+export default function Transferencias() {
   const { user } = useAppSelector((state: IReduxState) => state);
   const route = useRouter();
 
@@ -15,7 +13,6 @@ export default function Painel() {
     if (!user.data?.validToken) route.push("/");
   }, [user.data, route]);
 
-  if (!user.data) return <Header />;
   return (
     <>
       <Head>
@@ -27,19 +24,7 @@ export default function Painel() {
       <Header />
       <main>
         <Container>
-          <Title>Visão geral</Title>
-          <WelcomeMessage>
-            Olá, Sr{"("}a{")"} NOME
-          </WelcomeMessage>
-          <DashboardContainer>
-            <DashboardItem name="Saldo" data={user.data?.user.balance} />
-            <DashboardItem
-              name="Transferências"
-              data={2}
-              page="transferencias"
-            />
-            <DashboardItem name="Saída/Entrada" data={100} />
-          </DashboardContainer>
+          <Title>Transferências</Title>
         </Container>
       </main>
     </>
@@ -67,8 +52,4 @@ const Title = styled.h1`
     background-color: #c500d0;
     position: absolute;
   }
-`;
-
-const WelcomeMessage = styled.p`
-  font-size: 1.35rem;
 `;
