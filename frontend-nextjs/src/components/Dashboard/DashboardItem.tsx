@@ -1,14 +1,22 @@
-import React, { ReactNode } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 import styled from "styled-components";
 
 interface IProps {
   name: string;
   data: string | number;
+  page?: string;
 }
 
-const DashboardItem = ({ name, data }: IProps) => {
+const DashboardItem = ({ name, data, page }: IProps) => {
+  const route = useRouter();
+
+  function handleClick() {
+    if (page) route.push(`/${page}`);
+  }
+
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <Name>{name}</Name>
       <Data>{data}</Data>
     </Container>
@@ -26,6 +34,7 @@ const Container = styled.div`
   background-color: #fff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   transition: 0.2s;
+  cursor: pointer;
   &:hover {
     box-shadow: 0px 0px 4px #ce3ccc;
   }
