@@ -1,3 +1,4 @@
+import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -25,7 +26,7 @@ export default function Transferencias() {
     }
   }, [user, route]);
 
-  if (!user.data) return <Header />;
+  if (!user.data) return <AuthPage />;
   return (
     <>
       <Head>

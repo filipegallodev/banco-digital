@@ -48,14 +48,10 @@ export default function Home() {
       <Header />
       <main>
         <Container>
-          {!user.loading ? (
-            <div>
-              <FormLogin />
-              <FormRegister />
-            </div>
-          ) : (
-            <p>Autenticando...</p>
-          )}
+          <div>
+            <FormLogin />
+            <FormRegister />
+          </div>
         </Container>
       </main>
     </>
