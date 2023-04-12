@@ -17,22 +17,22 @@
     "semver" "^7.3.5"
     "tar" "^6.1.11"
 
-"@prisma/client@^4.6.1":
-  "integrity" "sha512-M1+NNrMzqaOIxT7PBGcTs3IZo7d1EW/+gVQd4C4gUgWBDGgD9AcIeZnUSidgWClmpMSgVUdnVORjsWWGUameYA=="
-  "resolved" "https://registry.npmjs.org/@prisma/client/-/client-4.6.1.tgz"
-  "version" "4.6.1"
+"@prisma/client@^4.12.0":
+  "integrity" "sha512-j9/ighfWwux97J2dS15nqhl60tYoH8V0IuSsgZDb6bCFcQD3fXbXmxjYC8GHhIgOk3lB7Pq+8CwElz2MiDpsSg=="
+  "resolved" "https://registry.npmjs.org/@prisma/client/-/client-4.12.0.tgz"
+  "version" "4.12.0"
   dependencies:
-    "@prisma/engines-version" "4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32"
+    "@prisma/engines-version" "4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7"
 
-"@prisma/engines-version@4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32":
-  "integrity" "sha512-HUCmkXAU2jqp2O1RvNtbE+seLGLyJGEABZS/R38rZjSAafAy0WzBuHq+tbZMnD+b5OSCsTVtIPVcuvx1ySxcWQ=="
-  "resolved" "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32.tgz"
-  "version" "4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32"
+"@prisma/engines-version@4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7":
+  "integrity" "sha512-JIHNj5jlXb9mcaJwakM0vpgRYJIAurxTUqM0iX0tfEQA5XLZ9ONkIckkhuAKdAzocZ+80GYg7QSsfpjg7OxbOA=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7.tgz"
+  "version" "4.12.0-67.659ef412370fa3b41cd7bf6e94587c1dfb7f67e7"
 
-"@prisma/engines@4.6.1":
-  "integrity" "sha512-3u2/XxvxB+Q7cMXHnKU0CpBiUK1QWqpgiBv28YDo1zOIJE3FCF8DI2vrp6vuwjGt5h0JGXDSvmSf4D4maVjJdw=="
-  "resolved" "https://registry.npmjs.org/@prisma/engines/-/engines-4.6.1.tgz"
-  "version" "4.6.1"
+"@prisma/engines@4.12.0":
+  "integrity" "sha512-0alKtnxhNB5hYU+ymESBlGI4b9XrGGSdv7Ud+8TE/fBNOEhIud0XQsAR+TrvUZgS4na5czubiMsODw0TUrgkIA=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines/-/engines-4.12.0.tgz"
+  "version" "4.12.0"
 
 "@types/bcrypt@^5.0.0":
   "integrity" "sha512-agtcFKaruL8TmcvqbndlqHPSJgsolhf/qPWchFlgnW1gECTN/nKbFcoFnvKAQRFfKbh+BO6A3SWdJu9t+xF3Lw=="
@@ -943,12 +943,12 @@
   dependencies:
     "xtend" "^4.0.0"
 
-"prisma@*", "prisma@^4.6.1":
-  "integrity" "sha512-BR4itMCuzrDV4tn3e2TF+nh1zIX/RVU0isKtKoN28ADeoJ9nYaMhiuRRkFd2TZN8+l/XfYzoRKyHzUFXLQhmBQ=="
-  "resolved" "https://registry.npmjs.org/prisma/-/prisma-4.6.1.tgz"
-  "version" "4.6.1"
+"prisma@*", "prisma@^4.12.0":
+  "integrity" "sha512-xqVper4mbwl32BWzLpdznHAYvYDWQQWK2tBfXjdUD397XaveRyAP7SkBZ6kFlIg8kKayF4hvuaVtYwXd9BodAg=="
+  "resolved" "https://registry.npmjs.org/prisma/-/prisma-4.12.0.tgz"
+  "version" "4.12.0"
   dependencies:
-    "@prisma/engines" "4.6.1"
+    "@prisma/engines" "4.12.0"
 
 "proxy-addr@~2.0.7":
   "integrity" "sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg=="

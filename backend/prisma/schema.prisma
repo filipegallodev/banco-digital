@@ -14,6 +14,8 @@ model users {
   id        Int      @id @default(autoincrement())
   username  String   @unique
   password  String
+  firstName String
+  lastName  String
   account   accounts @relation(fields: [accountId], references: [id])
   accountId Int      @unique
 }
