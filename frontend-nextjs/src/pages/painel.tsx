@@ -1,7 +1,9 @@
 import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { fetchToken, resetState } from "@/store/reducers/user";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -10,10 +12,20 @@ import styled from "styled-components";
 export default function Painel() {
   const { user } = useAppSelector((state: IReduxState) => state);
   const route = useRouter();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!user.data?.validToken) route.push("/");
-  }, [user.data, route]);
+    const token = localStorage.getItem("jwt-token");
+    if (!user.data?.validToken && token) dispatch(fetchToken(token));
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt-token");
+    if (user.error || !token) {
+      dispatch(resetState());
+      route.push("/");
+    }
+  }, [user, route]);
 
   if (!user.data) return <Header />;
   return (
