@@ -42,11 +42,13 @@ export const fetchLogin =
         },
         body: JSON.stringify(loginData),
       });
-      if (!response.ok) throw new Error(`Usuário ou senha incorreto.`);
       const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
       dispatch(fetchSuccess(data));
-    } catch (error) {
-      if (error instanceof Error) dispatch(fetchError(error.message));
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch(fetchError(err.message));
+      }
     }
   };
 
