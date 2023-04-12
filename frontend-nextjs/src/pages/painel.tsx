@@ -25,7 +25,7 @@ export default function Painel() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
+      <main className="animeRight">
         <Container>
           <Title>Visão geral</Title>
           <WelcomeMessage>

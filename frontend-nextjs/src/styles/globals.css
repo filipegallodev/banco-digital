@@ -22,3 +22,16 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@keyframes slideToRight {
+  to {
+    transform: initial;
+    opacity: initial;
+  }
+}
+
+.animeRight {
+  opacity: 0;
+  transform: translateX(-200px);
+  animation: slideToRight 0.5s forwards;
+}

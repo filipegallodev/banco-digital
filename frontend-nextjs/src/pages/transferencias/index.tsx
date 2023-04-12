@@ -22,7 +22,7 @@ export default function Transferencias() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
+      <main className="animeRight">
         <Container>
           <Title>Transferências</Title>
         </Container>
