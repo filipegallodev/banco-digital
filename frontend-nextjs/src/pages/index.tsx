@@ -2,40 +2,19 @@ import Head from "next/head";
 import * as Styled from "../styles/index.styled";
 import styled from "styled-components";
 import FormLogin from "@/components/Form/FormLogin";
-import { useAppSelector } from "@/hooks/useAppSelector";
 import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { fetchToken, resetState } from "@/store/reducers/user";
+import { useEffect } from "react";
 import FormRegister from "@/components/Form/FormRegister";
 import Header from "@/components/Header";
+import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 
 export default function Home() {
-  const { data } = useAppSelector((state: IReduxState) => state.login);
-  const { user } = useAppSelector((state: IReduxState) => state);
-  const dispatch = useAppDispatch();
+  const user = useTokenAuthentication();
   const route = useRouter();
 
   useEffect(() => {
     if (user.data?.validToken) route.push("/painel");
   }, [user.data, route]);
-
-  useEffect(() => {
-    if (user.error) {
-      dispatch(resetState());
-    }
-  }, [user, dispatch]);
-
-  const validateUserToken = useCallback(() => {
-    const token = localStorage.getItem("jwt-token");
-    if (token && !user.data?.validToken) {
-      return dispatch(fetchToken(token));
-    }
-  }, [dispatch, user.data?.validToken]);
-
-  useEffect(() => {
-    validateUserToken();
-  }, [data, validateUserToken]);
 
   return (
     <>

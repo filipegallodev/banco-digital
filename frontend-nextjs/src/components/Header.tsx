@@ -1,15 +1,18 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { resetState } from "@/store/reducers/user";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
 const Header = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
   const dispatch = useAppDispatch();
+  const route = useRouter();
 
   function handleUserLogout() {
     dispatch(resetState());
+    route.push("/");
   }
 
   return (

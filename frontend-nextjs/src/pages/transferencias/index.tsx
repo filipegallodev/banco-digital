@@ -1,30 +1,14 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { fetchToken, resetState } from "@/store/reducers/user";
+import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 export default function Transferencias() {
-  const { user } = useAppSelector((state: IReduxState) => state);
+  const user = useTokenAuthentication();
   const route = useRouter();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
-    if (!user.data?.validToken && token) dispatch(fetchToken(token));
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
-    if (user.error || !token) {
-      dispatch(resetState());
-      route.push("/");
-    }
-  }, [user, route]);
 
   if (!user.data) return <AuthPage />;
   return (
@@ -39,6 +23,9 @@ export default function Transferencias() {
       <main className="animeRight">
         <Container>
           <Title>Transferências</Title>
+          <button onClick={() => route.push("transferencias/nova")}>
+            Transferir
+          </button>
         </Container>
       </main>
     </>
