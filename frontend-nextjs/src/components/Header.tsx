@@ -20,7 +20,7 @@ const Header = () => {
       <Content>
         <Title>Banco Digital</Title>
         <UserInfoContainer>
-          {user && <Name>Nome Completo</Name>}
+          {user && <Name>{user.firstName} {user.lastName}</Name>}
           {user && <LogoutButton onClick={handleUserLogout}>Sair</LogoutButton>}
         </UserInfoContainer>
       </Content>
