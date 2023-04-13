@@ -24,7 +24,7 @@ export default function Painel() {
         <Container>
           <Title>Visão geral</Title>
           <WelcomeMessage>
-            Olá, Sr{"("}a{")"} NOME
+            Olá, {user.data.user.firstName}! Aqui está o resumo de sua conta:
           </WelcomeMessage>
           <DashboardContainer>
             <DashboardItem name="Saldo" data={user.data?.user.balance} />

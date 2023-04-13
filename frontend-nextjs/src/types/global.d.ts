@@ -3,6 +3,13 @@ interface ILogin {
   password: string;
 }
 
+interface IRegisterData {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
 interface ILoginState {
   loading: boolean;
   data: null | {
@@ -19,6 +26,8 @@ interface IUserState {
     user: {
       username: string;
       balance: string;
+      firstName: string;
+      lastName: string;
     };
   };
   error: null | string;
