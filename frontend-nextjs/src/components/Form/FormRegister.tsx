@@ -35,6 +35,8 @@ const FormRegister = () => {
         fetchRegister({
           username: registerData.email,
           password: registerData.password,
+          firstName: registerData.firstName,
+          lastName: registerData.lastName,
         })
       );
     }
