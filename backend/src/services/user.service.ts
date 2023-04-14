@@ -65,7 +65,7 @@ export async function register({
       lastName: lastName,
       account: {
         create: {
-          balance: "R$ 100,00",
+          balance: 100,
         },
       },
     },
@@ -101,9 +101,16 @@ export async function token(authorization: string | undefined) {
       id: dbUser.accountId,
     },
   });
+  const brCurrencyFormatBalance = Number(dbUserAccount?.balance).toLocaleString(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL",
+    }
+  );
   const user = {
     username: dbUser.username,
-    balance: dbUserAccount?.balance,
+    balance: brCurrencyFormatBalance,
     firstName: dbUser.firstName,
     lastName: dbUser.lastName,
   };

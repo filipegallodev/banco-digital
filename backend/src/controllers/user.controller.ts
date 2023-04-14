@@ -21,7 +21,7 @@ export async function register(
 ) {
   try {
     const data = await UserService.register(req.body);
-    if (!data.success) throw new Error(data.status);
+    if (!data?.success) throw new Error(data?.status);
     res.status(200).json({ status: data.status });
   } catch (err) {
     if (err instanceof Error) {
@@ -34,7 +34,7 @@ export async function register(
 export async function token(req: Request, res: Response, next: NextFunction) {
   try {
     const data = await UserService.token(req.headers.authorization);
-    if (!data.success) throw new Error(data.status);
+    if (!data?.success) throw new Error(data?.status);
     res.status(200).json({ validToken: true, user: data.user });
   } catch (err) {
     if (err instanceof Error) {
