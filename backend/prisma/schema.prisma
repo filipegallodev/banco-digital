@@ -22,7 +22,7 @@ model users {
 
 model accounts {
   id                   Int            @id @default(autoincrement())
-  balance              String
+  balance              Decimal
   users                users?
   debitedTransactions  transactions[] @relation("debitedAccount")
   creditedTransactions transactions[] @relation("creditedAccount")
@@ -34,6 +34,6 @@ model transactions {
   debitedAccountId  Int
   creditedAccount   accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
   creditedAccountId Int
-  value             String
+  value             Decimal
   createdAt         DateTime @default(now())
 }
