@@ -34,7 +34,7 @@ const slice = createSlice({
 
 export const { resetState } = slice.actions;
 const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
-const SERVER_VALIDATE_URL = "http://localhost:3333/validateToken";
+const SERVER_VALIDATE_URL = "http://localhost:3333/token/validate";
 // const SERVER_VALIDATE_URL = "https://ng-cash-app-production.up.railway.app/validateToken";
 
 export const fetchToken =
@@ -47,11 +47,11 @@ export const fetchToken =
           Authorization: `${token}`,
         },
       });
-      if (!response.ok) throw new Error("Error: " + response.status);
       const data = await response.json();
+      if (!response.ok) throw new Error("Error: " + data.error);
       dispatch(fetchSuccess(data));
-    } catch (error) {
-      if (error instanceof Error) dispatch(fetchError(error.message));
+    } catch (err) {
+      if (err instanceof Error) dispatch(fetchError(err.message));
     }
   };
 
