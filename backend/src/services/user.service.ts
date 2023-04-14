@@ -17,6 +17,12 @@ interface IRegisterData {
   lastName: string;
 }
 
+interface IJwtDecoded {
+  userId: string;
+  iat: number;
+  exp: number;
+}
+
 export async function login({ username, password }: ILoginData) {
   const dbUser = await prisma.users.findUnique({
     where: {
@@ -75,4 +81,31 @@ export async function register({
   return {
     status: "Ocorreu um erro ao cadastrar o usuário.",
   };
+}
+
+export async function token(authorization: string | undefined) {
+  const token = authorization ? authorization : "";
+  let userId;
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) return { status: "Token inválido." };
+    userId = (<IJwtDecoded>decoded).userId;
+  });
+  const dbUser = await prisma.users.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+  if (!dbUser) return { status: "ID de usuário inválido." };
+  const dbUserAccount = await prisma.accounts.findUnique({
+    where: {
+      id: dbUser.accountId,
+    },
+  });
+  const user = {
+    username: dbUser.username,
+    balance: dbUserAccount?.balance,
+    firstName: dbUser.firstName,
+    lastName: dbUser.lastName,
+  };
+  return { status: "Token validado com sucesso", success: true, user };
 }
