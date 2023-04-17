@@ -1,5 +1,6 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
+import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -22,6 +23,7 @@ export default function Transferencias() {
       <Header />
       <main className="animeRight">
         <Container>
+          <ReturnButton />
           <Title>Transferências</Title>
           <button onClick={() => route.push("transferencias/nova")}>
             Transferir

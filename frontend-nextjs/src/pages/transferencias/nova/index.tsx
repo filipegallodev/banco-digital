@@ -1,5 +1,6 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
+import ReturnButton from "@/components/ReturnButton";
 import TransactionForm from "@/components/Transaction/TransactionForm";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
@@ -21,6 +22,7 @@ export default function Nova() {
       <Header />
       <main className="animeRight">
         <Container>
+          <ReturnButton />
           <Title>Realizar Transferência</Title>
           <TransactionForm />
         </Container>
