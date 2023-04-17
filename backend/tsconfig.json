@@ -3,7 +3,7 @@
     "outDir": "dist",
 
     "incremental": true,
-    "target": "es6",
+    "target": "ESNext",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,

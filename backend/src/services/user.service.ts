@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { compareSync, hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
+import validateToken from "../helpers/validateToken";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
@@ -15,12 +16,6 @@ interface IRegisterData {
   password: string;
   firstName: string;
   lastName: string;
-}
-
-interface IJwtDecoded {
-  userId: string;
-  iat: number;
-  exp: number;
 }
 
 export async function login({ username, password }: ILoginData) {
@@ -84,12 +79,7 @@ export async function register({
 }
 
 export async function token(authorization: string | undefined) {
-  const token = authorization ? authorization : "";
-  let userId;
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) return { status: "Token inválido." };
-    userId = (<IJwtDecoded>decoded).userId;
-  });
+  const userId = validateToken(authorization);
   const dbUser = await prisma.users.findUnique({
     where: {
       id: userId,
