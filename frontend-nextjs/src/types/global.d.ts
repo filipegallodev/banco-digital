@@ -10,17 +10,24 @@ interface IRegisterData {
   lastName: string;
 }
 
-interface ILoginState {
+interface ITransactionData {
+  value: string;
+  target: string;
+}
+
+interface IFetchState {
   loading: boolean;
+  error: null | string;
+}
+
+interface ILoginState extends IFetchState {
   data: null | {
     auth: boolean;
     token: string;
   };
-  error: null | string;
 }
 
-interface IUserState {
-  loading: boolean;
+interface IUserState extends IFetchState {
   data: null | {
     validToken: boolean;
     user: {
@@ -30,19 +37,23 @@ interface IUserState {
       lastName: string;
     };
   };
-  error: null | string;
 }
 
-interface IRegisterState {
-  loading: boolean;
+interface IRegisterState extends IFetchState {
   data: null | {
     status: string;
   };
-  error: null | string;
+}
+
+interface ITransactionState extends IFetchState {
+  data: null | {
+    status: string;
+  };
 }
 
 interface IReduxState {
   user: IUserState;
   login: ILoginState;
   register: IRegisterState;
+  transactions: ITransactionState;
 }

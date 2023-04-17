@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
@@ -7,6 +9,7 @@ const TransactionForm = () => {
     target: "",
   });
   const [transactionValue, setTransactionValue] = useState<string>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!transactionValue) return;
@@ -19,12 +22,11 @@ const TransactionForm = () => {
     });
   }, [transactionValue]);
 
-  useEffect(() => {
-    console.log(transactionData);
-  }, [transactionData]);
-
   function handleTransaction(event: React.FormEvent) {
     event.preventDefault();
+    if (transactionData.value && transactionData.target) {
+      dispatch(fetchTransaction(transactionData));
+    }
   }
 
   return (
