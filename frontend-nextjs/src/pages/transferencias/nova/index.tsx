@@ -1,5 +1,6 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
+import TransactionForm from "@/components/Transaction/TransactionForm";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React from "react";
@@ -21,6 +22,7 @@ export default function Nova() {
       <main className="animeRight">
         <Container>
           <Title>Realizar Transferência</Title>
+          <TransactionForm />
         </Container>
       </main>
     </>
