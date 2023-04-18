@@ -1,4 +1,5 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
@@ -10,6 +11,9 @@ const TransactionForm = () => {
   });
   const [transactionValue, setTransactionValue] = useState<string>();
   const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector(
+    (state: IReduxState) => state.transactions
+  );
 
   useEffect(() => {
     if (!transactionValue) return;
@@ -58,6 +62,9 @@ const TransactionForm = () => {
         Confirme os dados preenchidos.
         <button>Enviar</button>
       </form>
+      {loading && <p>Realizando transferência...</p>}
+      {data && data.status}
+      {error && <p>{error}</p>}
     </div>
   );
 };
