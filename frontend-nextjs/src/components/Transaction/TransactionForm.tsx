@@ -63,7 +63,7 @@ const TransactionForm = () => {
         <button>Enviar</button>
       </form>
       {loading && <p>Realizando transferência...</p>}
-      {data && data.status}
+      {data && !data.allTransactions && data.status}
       {error && <p>{error}</p>}
     </div>
   );
