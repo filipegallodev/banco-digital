@@ -7,7 +7,7 @@ interface IJwtDecoded {
   exp: number;
 }
 
-export default function validateToken(authorization: string | undefined) {
+export default function checkAuth(authorization: string | undefined) {
   const token = authorization ? authorization : "";
   let userId;
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
