@@ -4,9 +4,14 @@ import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
 
 const FormLogin = () => {
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [loginData, setLoginData] = useState<ILoginFormData>({
+    username: "",
+    password: "",
+  });
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.login);
+  const { loading, error } = useAppSelector(
+    (state: IReduxState) => state.login
+  );
   const [unfilledFields, setUnfilledFields] = useState(true);
 
   const checkLoginFields = useCallback(() => {

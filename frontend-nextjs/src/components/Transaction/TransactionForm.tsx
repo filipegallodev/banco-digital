@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 
 const TransactionForm = () => {
-  const [transactionData, setTransactionData] = useState({
+  const [transactionData, setTransactionData] = useState<ITransactionFormData>({
     value: "",
     target: "",
   });

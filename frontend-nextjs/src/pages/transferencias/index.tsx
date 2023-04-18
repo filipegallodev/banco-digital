@@ -1,15 +1,26 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 export default function Transferencias() {
   const user = useTokenAuthentication();
   const route = useRouter();
+  const dispatch = useAppDispatch();
+  const { data, loading, error } = useAppSelector(
+    (state: IReduxState) => state.transactions
+  );
+
+  useEffect(() => {
+    dispatch(fetchTransactionsList());
+  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (

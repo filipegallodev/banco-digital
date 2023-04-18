@@ -1,13 +1,13 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchRegister } from "@/store/reducers/register";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const FormRegister = () => {
-  const [registerData, setRegisterData] = useState({
+  const [registerData, setRegisterData] = useState<IRegisterFormData>({
     firstName: "",
     lastName: "",
-    email: "",
+    username: "",
     password: "",
   });
   const [invalidPassword, setInvalidPassword] = useState(false);
@@ -18,8 +18,8 @@ const FormRegister = () => {
   );
 
   const checkRegisterFields = useCallback(() => {
-    const { firstName, lastName, email, password } = registerData;
-    if (firstName && lastName && email && password) return true;
+    const { firstName, lastName, username, password } = registerData;
+    if (firstName && lastName && username && password) return true;
     return false;
   }, [registerData]);
 
@@ -33,7 +33,7 @@ const FormRegister = () => {
     if (checkRegisterFields() && !invalidPassword) {
       dispatch(
         fetchRegister({
-          username: registerData.email,
+          username: registerData.username,
           password: registerData.password,
           firstName: registerData.firstName,
           lastName: registerData.lastName,
@@ -81,7 +81,7 @@ const FormRegister = () => {
           id="email"
           name="email"
           onChange={({ target }) =>
-            setRegisterData({ ...registerData, email: target.value })
+            setRegisterData({ ...registerData, username: target.value })
           }
         />
         <div>
