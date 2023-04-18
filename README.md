@@ -1,12 +1,13 @@
-# 💸 NG.Cash App
+# 💸 Banco Digital
 
-![NG.Cash App Cover](https://i.imgur.com/lHEZFnI.jpg)
+![Banco Digital Cover](https://i.imgur.com/lHEZFnI.jpg)
 
 ## 🎯 Objetivo
 
-Criação de uma aplicação WEB fictícia para o NG.Cash. Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possibilitar que usuários da NG consigam realizar transferências internas entre si.
+Criação de uma aplicação WEB para um Banco Digital fictício. Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possibilitar que usuários da NG consigam realizar transferências internas entre si.
 
 ## ⚙️ Funcionalidades
+
 - Cadastrar um usuário
 - Realizar login
 - Conferir o balanço atual da conta
@@ -14,9 +15,11 @@ Criação de uma aplicação WEB fictícia para o NG.Cash. Estruturar uma aplica
 - Conferir a lista de transferências
 
 ## 🔗 Link para teste
-[NG.Cash Fictício](https://ngcash-app.vercel.app/)
+
+[Banco Digital Fictício](https://ngcash-app.vercel.app/)
 
 ## 🛠 Tecnologias
+
 - ![Next.js](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 - ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 - ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -28,5 +31,6 @@ Criação de uma aplicação WEB fictícia para o NG.Cash. Estruturar uma aplica
 - ![Styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 - ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-## Status: 
+## Status:
+
 Em atualização.
