@@ -77,7 +77,7 @@ export async function token(authorization: string | undefined) {
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "ID de usuário inválido." };
   const dbUserAccount = await PrismaUtil.findAccount(dbUser);
-  const brazilianCurrency = currencyFormatter("pt-BR", "BRL", dbUserAccount);
+  const brazilianCurrency = currencyFormatter("pt-BR", "BRL", dbUserAccount?.balance);
   const user = {
     username: dbUser.username,
     balance: brazilianCurrency,

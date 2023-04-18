@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Decimal from "decimal.js";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
+import { currencyFormatterFromAList } from "../helpers/currencyFormatter";
 
 const prisma = new PrismaClient();
 
@@ -59,16 +60,12 @@ export async function list(authorization: string | undefined) {
   const userId = checkAuth(authorization);
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "Usuário não encontrado.", success: false };
-  const receivedTransactions = await prisma.transactions.findMany({
-    where: {
-      debitedAccountId: dbUser.id,
-    },
-  });
-  const sentTransactions = await prisma.transactions.findMany({
-    where: {
-      creditedAccountId: dbUser.id,
-    },
-  });
+  const receivedTransactions = currencyFormatterFromAList(
+    await PrismaUtil.findTransactions("debitedAccountId", dbUser)
+  );
+  const sentTransactions = currencyFormatterFromAList(
+    await PrismaUtil.findTransactions("creditedAccountId", dbUser)
+  );
   if (!receivedTransactions && !sentTransactions)
     return { status: "Nenhuma transferência encontrada.", success: false };
   return {
