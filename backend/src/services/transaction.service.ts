@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import validateToken from "../helpers/validateToken";
 import Decimal from "decimal.js";
+import checkAuth from "../middleware/checkAuth.middleware";
+import * as PrismaUtil from "../utils/prisma.util";
 
 const prisma = new PrismaClient();
 
@@ -10,37 +11,20 @@ interface ITransactionData {
 }
 
 export async function create(
-  body: ITransactionData,
+  { target, value }: ITransactionData,
   authorization: string | undefined
 ) {
-  const userId = validateToken(authorization);
-  const { target, value } = body;
-  const originUser = await prisma.users.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-  const targetUser = await prisma.users.findUnique({
-    where: {
-      username: target,
-    },
-  });
-  if (!originUser || !targetUser) return { status: "Usuário não encontrado." };
-  const originUserAccount = await prisma.accounts.findUnique({
-    where: {
-      id: originUser.accountId,
-    },
-  });
-  const targetUserAccount = await prisma.accounts.findUnique({
-    where: {
-      id: targetUser.accountId,
-    },
-  });
+  const userId = checkAuth(authorization);
+  const originUser = await PrismaUtil.findUser("id", userId);
+  const destinyUser = await PrismaUtil.findUser("username", target);
+  if (!originUser || !destinyUser) return { status: "Usuário não encontrado." };
+  const originUserAccount = await PrismaUtil.findAccount(originUser);
+  const destinyUserAccount = await PrismaUtil.findAccount(destinyUser);
   if (!originUserAccount?.balance) return { status: "Saldo insuficiente." };
-  if (!targetUserAccount?.balance) return;
+  if (!destinyUserAccount?.balance) return;
   const transactionValue = new Decimal(value);
   const originUserAccountBalance = originUserAccount?.balance;
-  const targetUserAccountBalance = new Decimal(targetUserAccount?.balance);
+  const destinyUserAccountBalance = new Decimal(destinyUserAccount?.balance);
   if (transactionValue.greaterThan(originUserAccount?.balance))
     return { status: "Saldo insuficiente." };
   await prisma.accounts.update({
@@ -53,16 +37,16 @@ export async function create(
   });
   await prisma.accounts.update({
     where: {
-      id: targetUserAccount.id,
+      id: destinyUserAccount.id,
     },
     data: {
-      balance: transactionValue.plus(targetUserAccountBalance),
+      balance: transactionValue.plus(destinyUserAccountBalance),
     },
   });
   await prisma.transactions.create({
     data: {
       creditedAccountId: originUserAccount.id,
-      debitedAccountId: targetUserAccount.id,
+      debitedAccountId: destinyUserAccount.id,
       value: transactionValue,
     },
   });

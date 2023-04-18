@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { compareSync, hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
-import validateToken from "../helpers/validateToken";
+import checkAuth from "../middleware/checkAuth.middleware";
+import * as PrismaUtil from "../utils/prisma.util";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
@@ -19,11 +20,7 @@ interface IRegisterData {
 }
 
 export async function login({ username, password }: ILoginData) {
-  const dbUser = await prisma.users.findUnique({
-    where: {
-      username: username,
-    },
-  });
+  const dbUser = await PrismaUtil.findUser("username", username);
   if (!dbUser?.username) return;
   const dbPassword = dbUser?.password || "null";
   const passwordComparisonResult = compareSync(password, dbPassword);
@@ -41,11 +38,7 @@ export async function register({
   firstName,
   lastName,
 }: IRegisterData) {
-  const dbUser = await prisma.users.findUnique({
-    where: {
-      username: username,
-    },
-  });
+  const dbUser = await PrismaUtil.findUser("username", username);
   if (dbUser)
     return {
       status: "E-mail já cadastrado.",
@@ -79,18 +72,10 @@ export async function register({
 }
 
 export async function token(authorization: string | undefined) {
-  const userId = validateToken(authorization);
-  const dbUser = await prisma.users.findUnique({
-    where: {
-      id: userId,
-    },
-  });
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "ID de usuário inválido." };
-  const dbUserAccount = await prisma.accounts.findUnique({
-    where: {
-      id: dbUser.accountId,
-    },
-  });
+  const dbUserAccount = await PrismaUtil.findAccount(dbUser);
   const brCurrencyFormatBalance = Number(dbUserAccount?.balance).toLocaleString(
     "pt-BR",
     {
@@ -104,5 +89,5 @@ export async function token(authorization: string | undefined) {
     firstName: dbUser.firstName,
     lastName: dbUser.lastName,
   };
-  return { status: "Token validado com sucesso", success: true, user };
+  return { status: "Token validado com sucesso.", success: true, user };
 }
