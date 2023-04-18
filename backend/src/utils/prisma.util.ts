@@ -1,15 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, users } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
-interface IUser {
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  accountId: number;
-}
 
 type TProperty = string | number | undefined;
 
@@ -22,10 +13,18 @@ export async function findUser(field: string, property: TProperty) {
   });
 }
 
-export async function findAccount(user: IUser) {
+export async function findAccount(user: users) {
   return await prisma.accounts.findUnique({
     where: {
       id: user.accountId,
+    },
+  });
+}
+
+export async function findTransactions(field: string, user: users) {
+  return await prisma.transactions.findMany({
+    where: {
+      [field]: user.id,
     },
   });
 }
