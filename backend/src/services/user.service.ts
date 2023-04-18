@@ -3,6 +3,7 @@ import { compareSync, hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
+import currencyFormatter from "../helpers/currencyFormatter";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
@@ -76,16 +77,10 @@ export async function token(authorization: string | undefined) {
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "ID de usuário inválido." };
   const dbUserAccount = await PrismaUtil.findAccount(dbUser);
-  const brCurrencyFormatBalance = Number(dbUserAccount?.balance).toLocaleString(
-    "pt-BR",
-    {
-      style: "currency",
-      currency: "BRL",
-    }
-  );
+  const brazilianCurrency = currencyFormatter("pt-BR", "BRL", dbUserAccount);
   const user = {
     username: dbUser.username,
-    balance: brCurrencyFormatBalance,
+    balance: brazilianCurrency,
     firstName: dbUser.firstName,
     lastName: dbUser.lastName,
   };
