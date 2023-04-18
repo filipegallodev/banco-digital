@@ -5,4 +5,6 @@ const transactionRouter = express.Router();
 
 transactionRouter.post("/transaction/create", TransactionController.create);
 
+transactionRouter.post("/transaction/list", TransactionController.list)
+
 export default transactionRouter;
