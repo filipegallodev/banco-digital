@@ -1,4 +1,4 @@
-import { Prisma, transactions } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 export default function currencyFormatter(
   locale: string,

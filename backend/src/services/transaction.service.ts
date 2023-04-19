@@ -3,6 +3,7 @@ import Decimal from "decimal.js";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
 import { currencyFormatterFromAList } from "../helpers/currencyFormatter";
+import getTotalTransferValue from "../helpers/getTotalTransferValue";
 
 const prisma = new PrismaClient();
 
@@ -60,19 +61,30 @@ export async function list(authorization: string | undefined) {
   const userId = checkAuth(authorization);
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "Usuário não encontrado.", success: false };
-  const receivedTransactions = currencyFormatterFromAList(
-    await PrismaUtil.findTransactions("debitedAccountId", dbUser)
+  const dbUserAccount = await PrismaUtil.findAccount(dbUser);
+  if (!dbUserAccount)
+    return { status: "Conta não encontrada.", success: false };
+  const receivedTransactions = await PrismaUtil.findTransactions(
+    "debitedAccountId",
+    dbUser
   );
-  const sentTransactions = currencyFormatterFromAList(
-    await PrismaUtil.findTransactions("creditedAccountId", dbUser)
+  const sentTransactions = await PrismaUtil.findTransactions(
+    "creditedAccountId",
+    dbUser
   );
   if (!receivedTransactions && !sentTransactions)
     return { status: "Nenhuma transferência encontrada.", success: false };
+  const allTransactions = [...receivedTransactions, ...sentTransactions];
+  const totalTransferValue = getTotalTransferValue(
+    dbUserAccount,
+    allTransactions
+  );
   return {
     status: "Busca concluída com sucesso.",
-    receivedTransactions,
-    sentTransactions,
-    allTransactions: [...receivedTransactions, ...sentTransactions],
+    receivedTransactions: currencyFormatterFromAList(receivedTransactions),
+    sentTransactions: currencyFormatterFromAList(sentTransactions),
+    allTransactions: currencyFormatterFromAList(allTransactions),
+    totalTransferValue,
     success: true,
   };
 }
