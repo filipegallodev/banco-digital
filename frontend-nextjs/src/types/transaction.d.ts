@@ -17,6 +17,7 @@ interface ITransactionReducerState extends IFetchReducerState {
     receivedTransactions?: ITransaction[] | null;
     sentTransactions?: ITransaction[] | null;
     allTransactions?: ITransaction[];
+    totalTransferValue: string;
     success?: boolean;
   };
 }

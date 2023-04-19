@@ -3,6 +3,7 @@ import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
@@ -12,12 +13,15 @@ import styled from "styled-components";
 export default function Painel() {
   const user = useTokenAuthentication();
   const dispatch = useAppDispatch();
+  const { data, loading } = useAppSelector(
+    (state: IReduxState) => state.transactions
+  );
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
   }, [dispatch]);
 
-  if (!user.data) return <AuthPage />;
+  if (!user.data || loading) return <AuthPage />;
   return (
     <>
       <Head>
@@ -37,10 +41,13 @@ export default function Painel() {
             <DashboardItem name="Saldo" data={user.data?.user.balance} />
             <DashboardItem
               name="Transferências"
-              data={2}
+              data={data?.allTransactions ? data?.allTransactions?.length : 0}
               page="transferencias"
             />
-            <DashboardItem name="Saída/Entrada" data={100} />
+            <DashboardItem
+              name="Saída/Entrada"
+              data={data?.totalTransferValue ? data.totalTransferValue : 0}
+            />
           </DashboardContainer>
         </Container>
       </main>
