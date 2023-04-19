@@ -46,6 +46,7 @@ export default function Painel() {
             />
             <DashboardItem
               name="Saída/Entrada"
+              type="out/in"
               data={data?.totalTransferValue ? data.totalTransferValue : 0}
             />
           </DashboardContainer>

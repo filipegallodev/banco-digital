@@ -1,24 +1,35 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 interface IProps {
   name: string;
   data: string | number;
   page?: string;
+  type?: string;
 }
 
-const DashboardItem = ({ name, data, page }: IProps) => {
+const DashboardItem = ({ name, data, page, type }: IProps) => {
   const route = useRouter();
+  const dataRef = useRef<HTMLParagraphElement>(null);
 
   function handleClick() {
     if (page) route.push(`/${page}`);
   }
 
+  useEffect(() => {
+    if (!(typeof data === "string")) return;
+    if (!(type === "out/in")) return;
+    if (data.includes("-R$") && dataRef) {
+      return dataRef.current?.classList.add("negative");
+    }
+    return dataRef.current?.classList.add("positive");
+  }, []);
+
   return (
     <Container onClick={handleClick}>
       <Name>{name}</Name>
-      <Data>{data}</Data>
+      <Data ref={dataRef}>{data}</Data>
     </Container>
   );
 };
@@ -47,6 +58,12 @@ const Name = styled.h2`
 
 const Data = styled.p`
   font-size: 1.75rem;
+  &.negative {
+    color: #f22;
+  }
+  &.positive {
+    color: #2b2;
+  }
 `;
 
 export default DashboardItem;

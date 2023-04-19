@@ -12,7 +12,7 @@ const TransactionList = () => {
   useEffect(() => {
     if (data?.allTransactions) return;
     dispatch(fetchTransactionsList());
-  }, [dispatch]);
+  }, [dispatch, data]);
 
   if (loading) return <p>Buscando novas transferências...</p>;
   if (error) return <p>{error}</p>;
