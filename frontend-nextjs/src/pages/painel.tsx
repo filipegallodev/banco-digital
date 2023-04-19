@@ -2,13 +2,20 @@ import AuthPage from "@/components/AuthPage";
 import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 export default function Painel() {
   const user = useTokenAuthentication();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTransactionsList());
+  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (
