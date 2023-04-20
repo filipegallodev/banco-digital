@@ -4,11 +4,20 @@ import styled from "styled-components";
 
 const ReturnButton = () => {
   const router = useRouter();
+  const routesName = router.pathname.split("/").filter((path) => path !== "");
 
   return (
     <Container>
       <Button onClick={router.back}>{"<"}</Button>
-      <p>PAINEL{router.pathname.toUpperCase().replaceAll("/", " > ")}</p>
+      <RoutesPathContainer>
+        <span>Painel</span>
+        {routesName.map((route) => (
+          <span key={route}>
+            {" > "}
+            {route}
+          </span>
+        ))}
+      </RoutesPathContainer>
     </Container>
   );
 };
@@ -24,6 +33,12 @@ const Container = styled.div`
 
 const Button = styled.button`
   padding: 4px 16px;
+  cursor: pointer;
+`;
+
+const RoutesPathContainer = styled.div`
+  cursor: default;
+  text-transform: uppercase;
 `;
 
 export default ReturnButton;
