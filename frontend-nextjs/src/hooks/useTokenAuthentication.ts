@@ -8,7 +8,8 @@ export default function useTokenAuthentication() {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.user
   );
-  const route = useRouter();
+  const { login } = useAppSelector((state: IReduxState) => state);
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,20 +18,20 @@ export default function useTokenAuthentication() {
       dispatch(fetchToken(token));
       return;
     }
-    if (route.pathname === "/painel" && token && !loading)
+    if (router.pathname === "/painel" && token && !loading && !login.data)
       dispatch(fetchToken(token));
-  }, [dispatch, route]);
+  }, [dispatch, router, login]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
     if (error) {
       dispatch(resetState());
-      route.push("/");
+      router.push("/");
     }
     if (!token) {
-      route.push("/");
+      router.push("/");
     }
-  }, [dispatch, route, error]);
+  }, [dispatch, error]);
 
   return { data, loading, error };
 }

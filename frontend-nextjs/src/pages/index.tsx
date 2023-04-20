@@ -10,11 +10,11 @@ import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 
 export default function Home() {
   const user = useTokenAuthentication();
-  const route = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    if (user.data?.validToken) route.push("/painel");
-  }, [user.data, route]);
+    if (user.data?.validToken) router.push("/painel");
+  }, [user.data?.validToken]);
 
   return (
     <>
