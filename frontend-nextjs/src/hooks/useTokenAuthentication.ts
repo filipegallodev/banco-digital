@@ -5,27 +5,32 @@ import { fetchToken, resetState } from "@/store/reducers/user";
 import { useEffect } from "react";
 
 export default function useTokenAuthentication() {
-  const { user } = useAppSelector((state: IReduxState) => state);
-  const { login } = useAppSelector((state: IReduxState) => state);
+  const { data, loading, error } = useAppSelector(
+    (state: IReduxState) => state.user
+  );
   const route = useRouter();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    if (!user.data?.validToken && token) dispatch(fetchToken(token));
-    if (route.pathname === "/painel" && token) dispatch(fetchToken(token));
-  }, [login, route]);
+    if (!data?.validToken && token && !loading) {
+      dispatch(fetchToken(token));
+      return;
+    }
+    if (route.pathname === "/painel" && token && !loading)
+      dispatch(fetchToken(token));
+  }, [dispatch, route]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    if (user.error) {
+    if (error) {
       dispatch(resetState());
       route.push("/");
     }
     if (!token) {
       route.push("/");
     }
-  }, [user.error]);
+  }, [dispatch, route, error]);
 
-  return user;
+  return { data, loading, error };
 }

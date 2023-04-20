@@ -10,7 +10,6 @@ const slice = createSlice({
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
-      state.data = null;
       state.error = null;
     },
     fetchSuccess: (state, action) => {
