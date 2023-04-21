@@ -23,11 +23,22 @@ const TransactionList = () => {
       </button>
       <div>
         {data && (
-          <ul>
-            {data.allTransactions?.map((transaction) => (
-              <li key={transaction.id}>{transaction.value}</li>
-            ))}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Valor</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.allTransactions?.map((transaction) => (
+                <tr key={transaction.id}>
+                  <td>{transaction.value}</td>
+                  <td>TIPO</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     </div>
