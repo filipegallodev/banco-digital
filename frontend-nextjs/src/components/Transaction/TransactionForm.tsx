@@ -3,6 +3,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
+import styled from "styled-components";
 
 const TransactionForm = () => {
   const [transactionData, setTransactionData] = useState<ITransactionFormData>({
@@ -36,8 +37,8 @@ const TransactionForm = () => {
   return (
     <div>
       <h2>Preencha os campos necessários para realizar uma transação:</h2>
-      <form onSubmit={handleTransaction}>
-        <label htmlFor="transaction-value">Quanto deseja transferir?</label>
+      <Form onSubmit={handleTransaction}>
+        <Label htmlFor="transaction-value">Quanto deseja transferir?</Label>
         <CurrencyInput
           id="transaction-value"
           name="transaction-value"
@@ -47,9 +48,9 @@ const TransactionForm = () => {
           value={transactionValue}
           onValueChange={(value) => setTransactionValue(value)}
         />
-        <label htmlFor="transaction-target">
+        <Label htmlFor="transaction-target">
           Para quem você deseja transferir essa quantia?
-        </label>
+        </Label>
         <input
           type="text"
           id="transaction-target"
@@ -59,14 +60,67 @@ const TransactionForm = () => {
             setTransactionData({ ...transactionData, target: target.value })
           }
         />
-        Confirme os dados preenchidos.
-        <button>Enviar</button>
-      </form>
-      {loading && <p>Realizando transferência...</p>}
-      {data && !data.allTransactions && data.status}
-      {error && <p>{error}</p>}
+        <Verify>Confirme os dados preenchidos.</Verify>
+        <Submit>Enviar</Submit>
+      </Form>
+      {loading && <Loading>Realizando transferência...</Loading>}
+      {data && !data.allTransactions && <Success>{data.status}</Success>}
+      {error && <Error>{error}</Error>}
     </div>
   );
 };
+
+const Form = styled.form`
+  & input {
+    width: 100%;
+    margin: 2px 0px 8px 0px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.125rem;
+  }
+`;
+
+const Label = styled.label`
+  font-size: 1.25rem;
+  display: block;
+`;
+
+const Verify = styled.p`
+  font-size: 1.25rem;
+`;
+
+const Submit = styled.button`
+  background-color: #fa92ff;
+  margin: 8px 0px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    background-color: #f53fff;
+  }
+`;
+
+const Loading = styled.p`
+  font-size: 1.125rem;
+  font-weight: 500;
+`;
+
+const Error = styled.p`
+  color: #f22;
+  font-size: 1.125rem;
+  font-weight: 500;
+`;
+
+const Success = styled.p`
+  color: #2b2;
+  font-size: 1.125rem;
+  font-weight: 500;
+`;
 
 export default TransactionForm;
