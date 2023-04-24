@@ -8,11 +8,11 @@ import styled from "styled-components";
 const Header = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
   const dispatch = useAppDispatch();
-  const route = useRouter();
+  const router = useRouter();
 
   function handleUserLogout() {
     dispatch(resetState());
-    route.push("/");
+    router.push("/");
   }
 
   return (

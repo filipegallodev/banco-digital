@@ -6,6 +6,7 @@ interface IUserReducerState extends IFetchReducerState {
       balance: string;
       firstName: string;
       lastName: string;
+      accountId: number;
     };
   };
 }
