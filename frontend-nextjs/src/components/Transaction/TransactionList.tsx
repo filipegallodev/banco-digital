@@ -18,8 +18,6 @@ const TransactionList = () => {
     dispatch(fetchTransactionsList());
   }, [dispatch, data]);
 
-  if (loading) return <p>Buscando novas transferências...</p>;
-  if (error) return <p>{error}</p>;
   return (
     <Container>
       <ButtonContainer>
@@ -30,43 +28,48 @@ const TransactionList = () => {
           Atualizar transações
         </Button>
       </ButtonContainer>
-      {data && (
-        <Table>
-          <thead>
-            <tr>
-              <ColumnName>Valor</ColumnName>
-              <ColumnName>Tipo</ColumnName>
-              <ColumnName>Data</ColumnName>
-            </tr>
-          </thead>
-          <tbody>
-            {data.allTransactions?.map((transaction) => (
-              <BodyLine key={transaction.id}>
-                <Value
-                  className={
-                    transaction.creditedAccountId === user?.accountId
-                      ? "negative"
-                      : "positive"
-                  }
-                >
-                  {transaction.value}
-                </Value>
-                <td>
-                  {transaction.creditedAccountId === user?.accountId
-                    ? "Enviado"
-                    : "Recebido"}
-                </td>
-                <td>
-                  {transaction.createdAt.replace(
-                    /((\d{4})\-(\d{2})\-(\d{2}))\D(\d{2}\:\d{2})\:\d{2}\.\d+\D+/g,
-                    "$4/$3/$2 às $5"
-                  )}
-                </td>
-              </BodyLine>
-            ))}
-          </tbody>
-        </Table>
+      {!loading ? (
+        data && (
+          <Table>
+            <thead>
+              <tr>
+                <ColumnName>Valor</ColumnName>
+                <ColumnName>Tipo</ColumnName>
+                <ColumnName>Data</ColumnName>
+              </tr>
+            </thead>
+            <tbody>
+              {data.allTransactions?.map((transaction) => (
+                <BodyLine key={transaction.id}>
+                  <Value
+                    className={
+                      transaction.creditedAccountId === user?.accountId
+                        ? "negative"
+                        : "positive"
+                    }
+                  >
+                    {transaction.value}
+                  </Value>
+                  <td>
+                    {transaction.creditedAccountId === user?.accountId
+                      ? "Enviado"
+                      : "Recebido"}
+                  </td>
+                  <td>
+                    {transaction.createdAt.replace(
+                      /((\d{4})\-(\d{2})\-(\d{2}))\D(\d{2}\:\d{2})\:\d{2}\.\d+\D+/g,
+                      "$4/$3/$2 às $5"
+                    )}
+                  </td>
+                </BodyLine>
+              ))}
+            </tbody>
+          </Table>
+        )
+      ) : (
+        <p>Buscando novas transferências...</p>
       )}
+      {error && <p>{error}</p>}
     </Container>
   );
 };
