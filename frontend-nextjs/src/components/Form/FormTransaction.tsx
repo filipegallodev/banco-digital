@@ -15,6 +15,13 @@ const TransactionForm = () => {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
+  const [unfilledFields, setUnfilledFields] = useState(true);
+
+  useEffect(() => {
+    if (transactionData.value && transactionData.target)
+      return setUnfilledFields(false);
+    setUnfilledFields(true);
+  }, [transactionData]);
 
   useEffect(() => {
     if (!transactionValue) return;
@@ -61,7 +68,7 @@ const TransactionForm = () => {
           }
         />
         <Verify>Confirme os dados preenchidos.</Verify>
-        <Submit>Enviar</Submit>
+        <Submit disabled={loading || unfilledFields}>Enviar</Submit>
       </Form>
       {loading && <Loading>Realizando transferência...</Loading>}
       {data && !data.allTransactions && <Success>{data.status}</Success>}
@@ -101,7 +108,11 @@ const Submit = styled.button`
   font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;
-  &:hover {
+  &:disabled {
+    background-color: #e5e5e5;
+    cursor: not-allowed;
+  }
+  &:enabled:hover {
     background-color: #f53fff;
   }
 `;

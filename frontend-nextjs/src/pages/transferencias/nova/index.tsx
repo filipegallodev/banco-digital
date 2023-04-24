@@ -1,7 +1,7 @@
 import AuthPage from "@/components/AuthPage";
+import FormTransaction from "@/components/Form/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
-import TransactionForm from "@/components/Transaction/TransactionForm";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React from "react";
@@ -24,7 +24,7 @@ export default function Nova() {
         <Container>
           <ReturnButton />
           <Title>Realizar Transferência</Title>
-          <TransactionForm />
+          <FormTransaction />
         </Container>
       </main>
     </>
