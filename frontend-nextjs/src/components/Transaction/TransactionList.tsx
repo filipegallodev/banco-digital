@@ -49,7 +49,12 @@ const TransactionList = () => {
                     ? "Enviado"
                     : "Recebido"}
                 </td>
-                <td>{transaction.createdAt}</td>
+                <td>
+                  {transaction.createdAt.replace(
+                    /((\d{4})\-(\d{2})\-(\d{2}))\D(\d{2}\:\d{2})\:\d{2}\.\d+\D+/g,
+                    "$4/$3/$2 às $5"
+                  )}
+                </td>
               </BodyLine>
             ))}
           </tbody>
@@ -65,6 +70,7 @@ const Container = styled.div`
 
 const Table = styled.table`
   width: 100%;
+  table-layout: fixed;
   text-align: left;
   margin: 24px 0px;
   border-spacing: 0px;
