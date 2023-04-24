@@ -41,7 +41,7 @@ const Container = styled.section`
 `;
 
 const Title = styled.h1`
-  margin: 48px 0;
+  margin: 52px 0px;
   font-size: 2.5rem;
   text-transform: uppercase;
   box-sizing: border-box;

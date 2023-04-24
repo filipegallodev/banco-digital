@@ -4,13 +4,11 @@ import ReturnButton from "@/components/ReturnButton";
 import TransactionList from "@/components/Transaction/TransactionList";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
 export default function Transferencias() {
   const user = useTokenAuthentication();
-  const route = useRouter();
 
   if (!user.data) return <AuthPage />;
   return (
@@ -26,9 +24,6 @@ export default function Transferencias() {
         <Container>
           <ReturnButton />
           <Title>Transferências</Title>
-          <button onClick={() => route.push("transferencias/nova")}>
-            Transferir
-          </button>
           <TransactionList />
         </Container>
       </main>
@@ -46,7 +41,7 @@ const Container = styled.section`
 `;
 
 const Title = styled.h1`
-  margin: 48px 0;
+  margin: 52px 0px;
   font-size: 2.5rem;
   text-transform: uppercase;
   box-sizing: border-box;

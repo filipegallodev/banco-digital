@@ -1,15 +1,17 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const TransactionList = () => {
-  const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (data?.allTransactions) return;
@@ -20,9 +22,14 @@ const TransactionList = () => {
   if (error) return <p>{error}</p>;
   return (
     <Container>
-      <button onClick={() => dispatch(fetchTransactionsList())}>
-        Atualizar transações
-      </button>
+      <ButtonContainer>
+        <Button onClick={() => router.push("transferencias/nova")}>
+          Transferir
+        </Button>
+        <Button onClick={() => dispatch(fetchTransactionsList())}>
+          Atualizar transações
+        </Button>
+      </ButtonContainer>
       {data && (
         <Table>
           <thead>
@@ -66,6 +73,25 @@ const TransactionList = () => {
 
 const Container = styled.div`
   width: 100%;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+const Button = styled.button`
+  background-color: #fa92ff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    background-color: #f53fff;
+  }
 `;
 
 const Table = styled.table`
