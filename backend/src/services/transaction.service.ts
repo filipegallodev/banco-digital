@@ -21,6 +21,11 @@ export async function create(
   const destinyUser = await PrismaUtil.findUser("username", target);
   if (!originUser || !destinyUser)
     return { status: "Usuário não encontrado.", success: false };
+  if (originUser.accountId === destinyUser.accountId)
+    return {
+      status: "Não é possível realizar uma transferência para a própria conta.",
+      success: false,
+    };
   const originUserAccount = await PrismaUtil.findAccount(originUser);
   const destinyUserAccount = await PrismaUtil.findAccount(destinyUser);
   if (!originUserAccount?.balance)

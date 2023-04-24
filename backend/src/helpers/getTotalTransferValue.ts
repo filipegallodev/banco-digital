@@ -1,4 +1,4 @@
-import { accounts, transactions, users } from "@prisma/client";
+import { accounts, transactions } from "@prisma/client";
 import Decimal from "decimal.js";
 import currencyFormatter from "./currencyFormatter";
 
