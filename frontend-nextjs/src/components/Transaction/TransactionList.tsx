@@ -52,6 +52,7 @@ const TransactionList = () => {
                   <ColumnName>Valor</ColumnName>
                   <ColumnName>Tipo</ColumnName>
                   <ColumnName>Data</ColumnName>
+                  <ColumnName>ID</ColumnName>
                 </tr>
               </thead>
               <tbody>
@@ -77,6 +78,7 @@ const TransactionList = () => {
                         "$4/$3/$2 às $5"
                       )}
                     </td>
+                    <td>{transaction.id}</td>
                   </BodyLine>
                 ))}
               </tbody>
@@ -108,7 +110,7 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   background-color: #fa92ff;
-  padding: 10px 16px;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -135,7 +137,7 @@ const TableContainer = styled.div`
 const Table = styled.table`
   width: 100%;
   table-layout: fixed;
-  text-align: left;
+  text-align: center;
   border-spacing: 0px;
   border-radius: 6px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);

@@ -101,7 +101,7 @@ const Verify = styled.p`
 const Submit = styled.button`
   background-color: #fa92ff;
   margin: 8px 0px;
-  padding: 10px 16px;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
