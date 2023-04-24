@@ -20,11 +20,13 @@ interface ITransaction {
 }
 
 export function currencyFormatterFromAList(list: any[]) {
-  const newList = list.map((transaction: ITransaction) => {
-    return {
-      ...transaction,
-      value: currencyFormatter("pt-BR", "BRL", transaction.value),
-    };
-  });
+  const newList = list
+    .map((transaction: ITransaction) => {
+      return {
+        ...transaction,
+        value: currencyFormatter("pt-BR", "BRL", transaction.value),
+      };
+    })
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   return newList;
 }
