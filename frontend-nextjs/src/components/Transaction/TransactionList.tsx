@@ -13,7 +13,7 @@ const TransactionList = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [transactionsList, setTransactionsList] = useState<ITransaction[]>();
-  const [maxItems, setMaxItems] = useState(5);
+  const [maxItems, setMaxItems] = useState<number>(5);
 
   useEffect(() => {
     if (data?.allTransactions) {
@@ -30,16 +30,26 @@ const TransactionList = () => {
     dispatch(fetchTransactionsList());
   }, [dispatch, data, maxItems]);
 
+  useEffect(() => {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [transactionsList]);
+
+  function handleTransactionListRefresh() {
+    dispatch(fetchTransactionsList());
+    setMaxItems(5);
+  }
+
   return (
     <Container>
       <ButtonContainer>
         <Button onClick={() => router.push("transferencias/nova")}>
           Transferir
         </Button>
-        <Button
-          disabled={loading}
-          onClick={() => dispatch(fetchTransactionsList())}
-        >
+        <Button disabled={loading} onClick={handleTransactionListRefresh}>
           Atualizar transações
         </Button>
       </ButtonContainer>
