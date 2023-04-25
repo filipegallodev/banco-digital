@@ -2,6 +2,8 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchRegister } from "@/store/reducers/register";
 import React, { useCallback, useEffect, useState } from "react";
+import Input from "./Input";
+import * as Styled from "../styles/Components.styled";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState<IRegisterFormData>({
@@ -52,47 +54,36 @@ const FormRegister = () => {
   }
 
   return (
-    <div>
-      <h2>Preencha seu cadastro</h2>
+    <Styled.FormContainer>
+      <Styled.SubTitle>Preencha seu cadastro</Styled.SubTitle>
       <form onSubmit={handleUserRegister}>
         <div>
-          <label htmlFor="firstName">Nome</label>
-          <input
-            type="text"
+          <Input
+            name="Nome"
             id="firstName"
-            name="firstName"
-            onChange={({ target }) =>
-              setRegisterData({ ...registerData, firstName: target.value })
-            }
+            formData={registerData}
+            saveFormData={setRegisterData}
           />
-          <label htmlFor="lastName">Sobrenome</label>
-          <input
-            type="text"
+          <Input
+            name="Sobrenome"
             id="lastName"
-            name="lastName"
-            onChange={({ target }) =>
-              setRegisterData({ ...registerData, lastName: target.value })
-            }
+            formData={registerData}
+            saveFormData={setRegisterData}
           />
         </div>
-        <label htmlFor="email">E-mail</label>
-        <input
+        <Input
+          name="E-mail"
+          id="username"
           type="email"
-          id="email"
-          name="email"
-          onChange={({ target }) =>
-            setRegisterData({ ...registerData, username: target.value })
-          }
+          formData={registerData}
+          saveFormData={setRegisterData}
         />
         <div>
-          <label htmlFor="password">Senha</label>
-          <input
-            type="text"
+          <Input
+            name="Senha"
             id="password"
-            name="password"
-            onChange={({ target }) =>
-              setRegisterData({ ...registerData, password: target.value })
-            }
+            formData={registerData}
+            saveFormData={setRegisterData}
             onBlur={handleUserPassword}
           />
           {invalidPassword && (
@@ -103,12 +94,14 @@ const FormRegister = () => {
             </p>
           )}
         </div>
-        <button disabled={loading || unfilledFields}>Registrar</button>
+        <Styled.Button disabled={loading || unfilledFields}>
+          Registrar
+        </Styled.Button>
         {loading && <p>Realizando cadastro...</p>}
         {data?.status && <p>{data.status}</p>}
         {error && <p>{error}</p>}
       </form>
-    </div>
+    </Styled.FormContainer>
   );
 };
 

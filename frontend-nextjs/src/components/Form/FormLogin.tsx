@@ -2,6 +2,8 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
+import Input from "./Input";
+import * as Styled from "../styles/Components.styled";
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState<ILoginFormData>({
@@ -33,32 +35,28 @@ const FormLogin = () => {
   }
 
   return (
-    <div>
-      <h2>Faça seu login</h2>
+    <Styled.FormContainer>
+      <Styled.SubTitle>Faça seu login</Styled.SubTitle>
       <form onSubmit={handleUserLogin}>
-        <label htmlFor="username">Usuário</label>
-        <input
-          type="text"
+        <Input
+          name="Nome"
           id="username"
-          name="username"
-          onChange={({ target }) =>
-            setLoginData({ ...loginData, username: target.value })
-          }
+          formData={loginData}
+          saveFormData={setLoginData}
         />
-        <label htmlFor="password">Senha</label>
-        <input
-          type="text"
+        <Input
+          name="Senha"
           id="password"
-          name="password"
-          onChange={({ target }) =>
-            setLoginData({ ...loginData, password: target.value })
-          }
+          formData={loginData}
+          saveFormData={setLoginData}
         />
-        <button disabled={loading || unfilledFields}>Entrar</button>
+        <Styled.Button disabled={loading || unfilledFields}>
+          Entrar
+        </Styled.Button>
         {loading && <p>Carregando...</p>}
         {error && <p>{error}</p>}
       </form>
-    </div>
+    </Styled.FormContainer>
   );
 };
 

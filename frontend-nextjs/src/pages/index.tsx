@@ -25,26 +25,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
+      <main className="animeRight">
         <Container>
-          <div>
-            <FormLogin />
-            <FormRegister />
-          </div>
+          <FormRegister />
+          <FormLogin />
         </Container>
       </main>
     </>
   );
 }
 
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+const Container = styled.section`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 1210px) {
-    margin: 0 24px;
-  }
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 120px;
+  margin: 0 auto;
+  max-width: 1200px;
 `;
