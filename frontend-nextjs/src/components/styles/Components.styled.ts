@@ -19,6 +19,7 @@ export const SubTitle = styled.h2`
 `;
 
 export const Button = styled.button`
+  display: flex;
   background-color: #fa92ff;
   padding: 12px 24px;
   border: none;
@@ -27,12 +28,13 @@ export const Button = styled.button`
   font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;
-  display: flex;
   &:disabled {
+    box-shadow: none;
     background-color: #e5e5e5;
     cursor: not-allowed;
   }
   &:enabled:hover {
+    box-shadow: 0px 0px 0px 3px #fa92ff;
     background-color: #f53fff;
   }
 `;
