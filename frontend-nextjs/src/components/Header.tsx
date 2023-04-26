@@ -4,6 +4,7 @@ import { resetState } from "@/store/reducers/user";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
@@ -20,8 +21,17 @@ const Header = () => {
       <Content>
         <Title>Banco Digital</Title>
         <UserInfoContainer>
-          {user && <Name>{user.firstName} {user.lastName}</Name>}
-          {user && <LogoutButton onClick={handleUserLogout}>Sair</LogoutButton>}
+          {user && (
+            <Name>
+              {user.firstName} {user.lastName}
+            </Name>
+          )}
+          {user && (
+            <LogoutButton onClick={handleUserLogout}>
+              <p>Sair</p>
+              <LogoutIcon />
+            </LogoutButton>
+          )}
         </UserInfoContainer>
       </Content>
     </Container>
@@ -69,6 +79,8 @@ const LogoutButton = styled.button`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   transition: 0.2s;
   cursor: pointer;
+  display: flex;
+  gap: 8px;
   &:hover {
     background-color: #ffddff;
   }

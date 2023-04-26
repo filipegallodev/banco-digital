@@ -20,7 +20,6 @@ export const SubTitle = styled.h2`
 
 export const Button = styled.button`
   background-color: #fa92ff;
-  margin: 8px 0px;
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
@@ -28,6 +27,7 @@ export const Button = styled.button`
   font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;
+  display: flex;
   &:disabled {
     background-color: #e5e5e5;
     cursor: not-allowed;

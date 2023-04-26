@@ -4,8 +4,10 @@ import { fetchTransactionsList } from "@/store/reducers/transactions";
 import { CircularProgress, Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import TransactionTable from "./TransactionTable";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
+import * as Styled from "../styles/Components.styled";
 
 const TransactionList = () => {
   const { data, loading, error } = useAppSelector(
@@ -48,12 +50,15 @@ const TransactionList = () => {
   return (
     <Container>
       <ButtonContainer>
-        <Button onClick={() => router.push("transferencias/nova")}>
+        <Styled.Button onClick={() => router.push("transferencias/nova")}>
           Transferir
-        </Button>
-        <Button disabled={loading} onClick={handleTransactionListRefresh}>
-          Atualizar transações
-        </Button>
+        </Styled.Button>
+        <Styled.Button
+          disabled={loading}
+          onClick={handleTransactionListRefresh}
+        >
+          <RefreshRoundedIcon />
+        </Styled.Button>
         {loading && <CircularProgress />}
       </ButtonContainer>
       <TableContainer>
@@ -86,24 +91,6 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-`;
-
-const Button = styled.button`
-  background-color: #fa92ff;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: 0.1s;
-  &:disabled {
-    background-color: #e5e5e5;
-    cursor: not-allowed;
-  }
-  &:enabled:hover {
-    background-color: #f53fff;
-  }
 `;
 
 const TableContainer = styled.div`

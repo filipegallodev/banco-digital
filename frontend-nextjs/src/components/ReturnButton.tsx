@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 const ReturnButton = () => {
   const router = useRouter();
@@ -8,7 +9,9 @@ const ReturnButton = () => {
 
   return (
     <Container>
-      <Button onClick={router.back}>{"<"}</Button>
+      <Button onClick={router.back}>
+        <ArrowBackRoundedIcon />
+      </Button>
       <RoutesPathContainer>
         <span>Painel</span>
         {routesName.map((route) => (
@@ -24,7 +27,7 @@ const ReturnButton = () => {
 
 const Container = styled.div`
   position: absolute;
-  top: 10px;
+  top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +36,7 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 8px 36px;
+  padding: 6px 36px;
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -41,6 +44,7 @@ const Button = styled.button`
   color: #fff;
   cursor: pointer;
   transition: 0.1s;
+  display: flex;
   &:hover {
     background-color: #222;
   }
