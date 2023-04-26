@@ -46,7 +46,7 @@ export async function register({
     };
   const saltRounds = 10;
   const hashedPassword = hashSync(password, saltRounds);
-  const user = await prisma.users.create({
+  const user = await prisma.user.create({
     data: {
       username: username,
       password: hashedPassword,

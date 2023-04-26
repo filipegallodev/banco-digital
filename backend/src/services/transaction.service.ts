@@ -27,16 +27,16 @@ export async function create(
       success: false,
     };
   const originUserAccount = await PrismaUtil.findAccount(originUser);
-  const destinyUserAccount = await PrismaUtil.findAccount(destinyUser);
+  const destinationUserAccount = await PrismaUtil.findAccount(destinyUser);
   if (!originUserAccount?.balance)
     return { status: "Saldo insuficiente.", success: false };
-  if (!destinyUserAccount?.balance) return;
+  if (!destinationUserAccount?.balance) return;
   const transactionValue = new Decimal(value);
   const originUserAccountBalance = originUserAccount?.balance;
-  const destinyUserAccountBalance = new Decimal(destinyUserAccount?.balance);
+  const destinationUserAccountBalance = new Decimal(destinationUserAccount?.balance);
   if (transactionValue.greaterThan(originUserAccount?.balance))
     return { status: "Saldo insuficiente.", success: false };
-  await prisma.accounts.update({
+  await prisma.account.update({
     where: {
       id: originUserAccount.id,
     },
@@ -44,18 +44,18 @@ export async function create(
       balance: originUserAccountBalance.minus(transactionValue),
     },
   });
-  await prisma.accounts.update({
+  await prisma.account.update({
     where: {
-      id: destinyUserAccount.id,
+      id: destinationUserAccount.id,
     },
     data: {
-      balance: transactionValue.plus(destinyUserAccountBalance),
+      balance: transactionValue.plus(destinationUserAccountBalance),
     },
   });
-  await prisma.transactions.create({
+  await prisma.transaction.create({
     data: {
-      creditedAccountId: originUserAccount.id,
-      debitedAccountId: destinyUserAccount.id,
+      originAccountId: originUserAccount.id,
+      destinationAccountId: destinationUserAccount.id,
       value: transactionValue,
     },
   });
@@ -70,11 +70,11 @@ export async function list(authorization: string | undefined) {
   if (!dbUserAccount)
     return { status: "Conta não encontrada.", success: false };
   const receivedTransactions = await PrismaUtil.findTransactions(
-    "debitedAccountId",
+    "destinationAccountId",
     dbUser
   );
   const sentTransactions = await PrismaUtil.findTransactions(
-    "creditedAccountId",
+    "originAccountId",
     dbUser
   );
   if (!receivedTransactions && !sentTransactions)

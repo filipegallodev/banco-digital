@@ -10,30 +10,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
+model User {
+  id        String  @id @unique @default(uuid())
+  username  String  @unique
   password  String
   firstName String
   lastName  String
-  account   accounts @relation(fields: [accountId], references: [id])
-  accountId Int      @unique
+  account   Account @relation(fields: [accountId], references: [id])
+  accountId String  @unique
 }
 
-model accounts {
-  id                   Int            @id @default(autoincrement())
+model Account {
+  id                   String        @id @unique @default(uuid())
   balance              Decimal
-  users                users?
-  debitedTransactions  transactions[] @relation("debitedAccount")
-  creditedTransactions transactions[] @relation("creditedAccount")
+  users                User?
+  receivedTransactions Transaction[] @relation("destinationAccount")
+  sentTransactions     Transaction[] @relation("originAccount")
 }
 
-model transactions {
-  id                Int      @id @default(autoincrement())
-  debitedAccount    accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
-  debitedAccountId  Int
-  creditedAccount   accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
-  creditedAccountId Int
-  value             Decimal
-  createdAt         DateTime @default(now())
+model Transaction {
+  id                   String   @id @unique @default(uuid())
+  value                Decimal
+  createdAt            DateTime @default(now())
+  destinationAccount   Account  @relation("destinationAccount", fields: [destinationAccountId], references: [id])
+  destinationAccountId String
+  originAccount        Account  @relation("originAccount", fields: [originAccountId], references: [id])
+  originAccountId      String
 }

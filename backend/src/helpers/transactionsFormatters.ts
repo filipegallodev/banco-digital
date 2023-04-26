@@ -1,7 +1,7 @@
 import currencyFormatter from "./currencyFormatter";
 
 interface ITransaction {
-  id: number;
+  id: string;
   debitedAccountId: number;
   creditedAccountId: number;
   value: string;
