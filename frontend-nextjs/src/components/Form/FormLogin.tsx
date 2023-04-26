@@ -37,7 +37,7 @@ const FormLogin = () => {
   return (
     <Styled.FormContainer>
       <Styled.SubTitle>Faça seu login</Styled.SubTitle>
-      <form onSubmit={handleUserLogin}>
+      <Styled.Form onSubmit={handleUserLogin}>
         <Input
           name="Nome"
           id="username"
@@ -55,7 +55,7 @@ const FormLogin = () => {
         </Styled.Button>
         {loading && <p>Carregando...</p>}
         {error && <p>{error}</p>}
-      </form>
+      </Styled.Form>
     </Styled.FormContainer>
   );
 };

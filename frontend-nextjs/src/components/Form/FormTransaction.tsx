@@ -4,6 +4,7 @@ import { fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
+import * as Styled from "@/components/styles/Components.styled";
 
 const TransactionForm = () => {
   const [transactionData, setTransactionData] = useState<ITransactionFormData>({
@@ -68,7 +69,9 @@ const TransactionForm = () => {
           }
         />
         <Verify>Confirme os dados preenchidos.</Verify>
-        <Submit disabled={loading || unfilledFields}>Enviar</Submit>
+        <Styled.Button disabled={loading || unfilledFields}>
+          Enviar
+        </Styled.Button>
       </Form>
       {loading && <Loading>Realizando transferência...</Loading>}
       {data && !data.allTransactions && <Success>{data.status}</Success>}
@@ -78,43 +81,34 @@ const TransactionForm = () => {
 };
 
 const Form = styled.form`
+  margin-bottom: 24px;
   & input {
     width: 100%;
-    margin: 2px 0px 8px 0px;
     padding: 10px 12px;
     border: none;
     border-radius: 4px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     font-size: 1.125rem;
+    transition: 0.1s;
+    &:hover {
+      box-shadow: 0px 0px 0px 2px #aaa;
+    }
+    &:focus {
+      box-shadow: 0px 0px 0px 2px #222;
+      outline: double;
+    }
   }
 `;
 
 const Label = styled.label`
-  font-size: 1.25rem;
   display: block;
+  margin: 16px 0px 8px 0px;
+  font-size: 1.25rem;
 `;
 
 const Verify = styled.p`
+  margin: 16px 0px;
   font-size: 1.25rem;
-`;
-
-const Submit = styled.button`
-  background-color: #fa92ff;
-  margin: 8px 0px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: 0.1s;
-  &:disabled {
-    background-color: #e5e5e5;
-    cursor: not-allowed;
-  }
-  &:enabled:hover {
-    background-color: #f53fff;
-  }
 `;
 
 const Loading = styled.p`

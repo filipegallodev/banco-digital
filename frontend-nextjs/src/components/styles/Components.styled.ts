@@ -4,6 +4,10 @@ export const FormContainer = styled.div`
   width: 100%;
 `;
 
+export const Form = styled.form`
+  margin-bottom: 24px;
+`;
+
 export const SubTitle = styled.h2`
   margin: 32px 0px;
   font-size: 2rem;

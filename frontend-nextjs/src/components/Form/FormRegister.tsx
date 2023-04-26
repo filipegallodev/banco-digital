@@ -56,7 +56,7 @@ const FormRegister = () => {
   return (
     <Styled.FormContainer>
       <Styled.SubTitle>Preencha seu cadastro</Styled.SubTitle>
-      <form onSubmit={handleUserRegister}>
+      <Styled.Form onSubmit={handleUserRegister}>
         <div>
           <Input
             name="Nome"
@@ -100,7 +100,7 @@ const FormRegister = () => {
         {loading && <p>Realizando cadastro...</p>}
         {data?.status && <p>{data.status}</p>}
         {error && <p>{error}</p>}
-      </form>
+      </Styled.Form>
     </Styled.FormContainer>
   );
 };
