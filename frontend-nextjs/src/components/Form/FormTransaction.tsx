@@ -1,11 +1,11 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { fetchTransaction } from "@/store/reducers/transactions";
+import { fetchTransaction, resetData } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
-import { Alert, CircularProgress, Fade } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import Error from "../Status/Error";
 import Success from "../Status/Success";
 
@@ -15,11 +15,15 @@ const TransactionForm = () => {
     target: "",
   });
   const [transactionValue, setTransactionValue] = useState<string>();
+  const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
-  const [unfilledFields, setUnfilledFields] = useState(true);
+
+  useEffect(() => {
+    dispatch(resetData());
+  }, [dispatch]);
 
   useEffect(() => {
     if (transactionData.value && transactionData.target)

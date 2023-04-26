@@ -23,16 +23,20 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
+    resetData: (state) => {
+      state.data = null;
+    },
   },
 });
 
+export const { resetData } = slice.actions;
 const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 const SERVER_NEW_TRANSACTION_URL = "http://localhost:3333/transaction/create";
 // const SERVER_NEW_TRANSACTION_URL =
 //   "https://ng-cash-app-production.up.railway.app/transaction/create";
 const SERVER_TRANSACTIONS_LIST_URL = "http://localhost:3333/transaction/list";
-// const SERVER_NEW_TRANSACTION_URL =
-//   "https://ng-cash-app-production.up.railway.app/transaction/create";
+// const SERVER_TRANSACTIONS_LIST_URL =
+//   "https://ng-cash-app-production.up.railway.app/transaction/list";
 
 export const fetchTransaction =
   (transactionData: ITransactionFormData) =>
