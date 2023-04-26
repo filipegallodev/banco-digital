@@ -84,8 +84,8 @@ const TransactionList = () => {
                     </td>
                     <td>
                       {transaction.createdAt.replace(
-                        /((\d{4})\-(\d{2})\-(\d{2}))\D(\d{2}\:\d{2})\:\d{2}\.\d+\D+/g,
-                        "$4/$3/$2 às $5"
+                        /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
+                        "$1 às $2"
                       )}
                     </td>
                     <td>{transaction.id}</td>
