@@ -31,6 +31,7 @@ const TransactionList = () => {
   }, [dispatch, data, maxItems]);
 
   useEffect(() => {
+    if (maxItems === 5) return;
     window.scrollTo({
       left: 0,
       top: document.body.scrollHeight,
