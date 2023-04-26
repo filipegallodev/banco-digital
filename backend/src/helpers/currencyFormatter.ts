@@ -10,23 +10,3 @@ export default function currencyFormatter(
     currency: currency,
   });
 }
-
-interface ITransaction {
-  id: number;
-  debitedAccountId: number;
-  creditedAccountId: number;
-  value: string;
-  createdAt: Date;
-}
-
-export function currencyFormatterFromAList(list: any[]) {
-  const newList = list
-    .map((transaction: ITransaction) => {
-      return {
-        ...transaction,
-        value: currencyFormatter("pt-BR", "BRL", transaction.value),
-      };
-    })
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
-  return newList;
-}

@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Decimal from "decimal.js";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
-import { currencyFormatterFromAList } from "../helpers/currencyFormatter";
+import transactionsFormatter from "../helpers/transactionsFormatters";
 import getTotalTransferValue from "../helpers/getTotalTransferValue";
 
 const prisma = new PrismaClient();
@@ -86,9 +86,9 @@ export async function list(authorization: string | undefined) {
   );
   return {
     status: "Busca concluída com sucesso.",
-    receivedTransactions: currencyFormatterFromAList(receivedTransactions),
-    sentTransactions: currencyFormatterFromAList(sentTransactions),
-    allTransactions: currencyFormatterFromAList(allTransactions),
+    receivedTransactions: transactionsFormatter(receivedTransactions),
+    sentTransactions: transactionsFormatter(sentTransactions),
+    allTransactions: transactionsFormatter(allTransactions),
     totalTransferValue,
     success: true,
   };
