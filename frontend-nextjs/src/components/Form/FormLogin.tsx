@@ -4,6 +4,8 @@ import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
+import Error from "../Status/Error";
+import { CircularProgress } from "@mui/material";
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState<ILoginFormData>({
@@ -50,11 +52,13 @@ const FormLogin = () => {
           formData={loginData}
           saveFormData={setLoginData}
         />
-        <Styled.Button disabled={loading || unfilledFields}>
-          Entrar
-        </Styled.Button>
-        {loading && <p>Carregando...</p>}
-        {error && <p>{error}</p>}
+        <Styled.ButtonContainer>
+          <Styled.Button disabled={loading || unfilledFields}>
+            {loading ? "Entrando" : "Entrar"}
+          </Styled.Button>
+          {loading && <CircularProgress />}
+        </Styled.ButtonContainer>
+        <Error message={error} />
       </Styled.Form>
     </Styled.FormContainer>
   );

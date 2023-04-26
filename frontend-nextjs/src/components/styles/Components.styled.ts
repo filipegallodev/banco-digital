@@ -22,13 +22,19 @@ export const SubTitle = styled.h2`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
 export const Button = styled.button`
   display: flex;
   background-color: #fa92ff;
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
   font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;

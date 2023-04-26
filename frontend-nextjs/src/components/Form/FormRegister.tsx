@@ -4,6 +4,9 @@ import { fetchRegister } from "@/store/reducers/register";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
+import Success from "../Status/Success";
+import Error from "../Status/Error";
+import { CircularProgress } from "@mui/material";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState<IRegisterFormData>({
@@ -94,12 +97,14 @@ const FormRegister = () => {
             </p>
           )}
         </div>
-        <Styled.Button disabled={loading || unfilledFields}>
-          Registrar
-        </Styled.Button>
-        {loading && <p>Realizando cadastro...</p>}
-        {data?.status && <p>{data.status}</p>}
-        {error && <p>{error}</p>}
+        <Styled.ButtonContainer>
+          <Styled.Button disabled={loading || unfilledFields}>
+            {loading ? "Cadastrando" : "Registrar"}
+          </Styled.Button>
+          {loading && <CircularProgress />}
+        </Styled.ButtonContainer>
+        <Success message={data?.status} />
+        <Error message={error} />
       </Styled.Form>
     </Styled.FormContainer>
   );

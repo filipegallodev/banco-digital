@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
+import { Alert, CircularProgress, Fade } from "@mui/material";
+import Error from "../Status/Error";
+import Success from "../Status/Success";
 
 const TransactionForm = () => {
   const [transactionData, setTransactionData] = useState<ITransactionFormData>({
@@ -43,7 +46,7 @@ const TransactionForm = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h2>Preencha os campos necessários para realizar uma transação:</h2>
       <Form onSubmit={handleTransaction}>
         <Label htmlFor="transaction-value">Quanto deseja transferir?</Label>
@@ -69,19 +72,24 @@ const TransactionForm = () => {
           }
         />
         <Verify>Confirme os dados preenchidos.</Verify>
-        <Styled.Button disabled={loading || unfilledFields}>
-          Enviar
-        </Styled.Button>
+        <ButtonContainer>
+          <Styled.Button disabled={loading || unfilledFields}>
+            {loading ? "Transferindo" : "Enviar"}
+          </Styled.Button>
+          {loading && <CircularProgress />}
+        </ButtonContainer>
       </Form>
-      {loading && <Loading>Realizando transferência...</Loading>}
-      {data && !data.allTransactions && <Success>{data.status}</Success>}
-      {error && <Error>{error}</Error>}
-    </div>
+      <Success message={data?.status} />
+      <Error message={error} />
+    </Container>
   );
 };
 
-const Form = styled.form`
+const Container = styled.div`
   margin-bottom: 24px;
+`;
+
+const Form = styled.form`
   & input {
     width: 100%;
     padding: 10px 12px;
@@ -111,21 +119,10 @@ const Verify = styled.p`
   font-size: 1.25rem;
 `;
 
-const Loading = styled.p`
-  font-size: 1.125rem;
-  font-weight: 500;
-`;
-
-const Error = styled.p`
-  color: #f22;
-  font-size: 1.125rem;
-  font-weight: 500;
-`;
-
-const Success = styled.p`
-  color: #2b2;
-  font-size: 1.125rem;
-  font-weight: 500;
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export default TransactionForm;
