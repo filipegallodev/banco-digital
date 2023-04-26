@@ -29,7 +29,7 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
             <BodyLine key={transaction.id}>
               <Value
                 className={
-                  transaction.creditedAccountId === user?.accountId
+                  transaction.originAccountId === user?.accountId
                     ? "negative"
                     : "positive"
                 }
@@ -37,7 +37,7 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
                 {transaction.value}
               </Value>
               <td>
-                {transaction.creditedAccountId === user?.accountId
+                {transaction.originAccountId === user?.accountId
                   ? "Enviado"
                   : "Recebido"}
               </td>

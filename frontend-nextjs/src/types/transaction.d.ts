@@ -5,10 +5,10 @@ interface ITransactionFormData {
 
 interface ITransaction {
   id: number;
-  debitedAccountId: number;
-  creditedAccountId: number;
   value: string;
   createdAt: string;
+  destinationAccountId: number;
+  originAccountId: number;
 }
 
 interface ITransactionReducerState extends IFetchReducerState {
