@@ -22,9 +22,12 @@ const Header = () => {
         <Title>Banco Digital</Title>
         <UserInfoContainer>
           {user && (
-            <Name>
-              {user.firstName} {user.lastName}
-            </Name>
+            <>
+              <UserProfile />
+              <Name>
+                {user.firstName} {user.lastName}
+              </Name>
+            </>
           )}
           {user && (
             <LogoutButton onClick={handleUserLogout}>
@@ -43,7 +46,7 @@ const Container = styled.header`
   color: #f5f5f5;
   height: 132px;
   display: flex;
-  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 4px 2px #fa92ff;
 `;
 
 const Content = styled.div`
@@ -66,13 +69,20 @@ const UserInfoContainer = styled.div`
   gap: 32px;
 `;
 
+const UserProfile = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 100%;
+`;
+
 const Name = styled.p`
   text-transform: uppercase;
   font-size: 1.25rem;
 `;
 
 const LogoutButton = styled.button`
-  padding: 12px 24px;
+  padding: 16px;
   font-size: 1.25rem;
   border: none;
   border-radius: 6px;
@@ -82,7 +92,7 @@ const LogoutButton = styled.button`
   display: flex;
   gap: 8px;
   &:hover {
-    background-color: #ffddff;
+    background-color: #ffc1ff;
   }
 `;
 

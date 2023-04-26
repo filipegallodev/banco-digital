@@ -44,10 +44,10 @@ const Container = styled.div`
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  transition: 0.2s;
+  transition: 0.1s;
   cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 4px #ce3ccc;
+    box-shadow: 0px 0px 0px 2px #ce3ccc;
   }
 `;
 
