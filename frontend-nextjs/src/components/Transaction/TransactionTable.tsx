@@ -12,7 +12,7 @@ interface IProps {
 const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
 
-  if (!transactions) return null;
+  if (!transactions?.length) return <p>Nenhuma transação encontrada.</p>;
   return (
     <>
       <Table>
@@ -47,7 +47,9 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
                   "$1 às $2"
                 )}
               </td>
-              <td>{transaction.id}</td>
+              <td>
+                <TransactionId>{transaction.id}</TransactionId>
+              </td>
             </BodyLine>
           ))}
         </tbody>
@@ -56,7 +58,9 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
         onClick={() => setMaxItems(maxItems + 5)}
         disabled={transactions.length < maxItems ? true : false}
       >
-        Carregar mais
+        {transactions.length < maxItems
+          ? "Fim das transações"
+          : "Carregar mais"}
       </Button>
     </>
   );
@@ -68,7 +72,7 @@ const Table = styled.table`
   text-align: center;
   border-spacing: 0px;
   border-radius: 6px;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;
 
@@ -110,6 +114,10 @@ const Value = styled.td`
   &.positive {
     color: #2b2;
   }
+`;
+
+const TransactionId = styled.span`
+  font-size: 0.875rem;
 `;
 
 export default TransactionTable;
