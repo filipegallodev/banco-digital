@@ -1,0 +1,115 @@
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { Button } from "../styles/Components.styled";
+import { useAppSelector } from "@/hooks/useAppSelector";
+
+interface IProps {
+  transactions: ITransaction[] | undefined;
+  maxItems: number;
+  setMaxItems: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
+  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+
+  if (!transactions) return null;
+  return (
+    <>
+      <Table>
+        <thead>
+          <tr>
+            <ColumnName>Valor</ColumnName>
+            <ColumnName>Tipo</ColumnName>
+            <ColumnName>Data</ColumnName>
+            <ColumnName>ID</ColumnName>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((transaction) => (
+            <BodyLine key={transaction.id}>
+              <Value
+                className={
+                  transaction.creditedAccountId === user?.accountId
+                    ? "negative"
+                    : "positive"
+                }
+              >
+                {transaction.value}
+              </Value>
+              <td>
+                {transaction.creditedAccountId === user?.accountId
+                  ? "Enviado"
+                  : "Recebido"}
+              </td>
+              <td>
+                {transaction.createdAt.replace(
+                  /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
+                  "$1 às $2"
+                )}
+              </td>
+              <td>{transaction.id}</td>
+            </BodyLine>
+          ))}
+        </tbody>
+      </Table>
+      <Button
+        onClick={() => setMaxItems(maxItems + 5)}
+        disabled={transactions.length < maxItems ? true : false}
+      >
+        Carregar mais
+      </Button>
+    </>
+  );
+};
+
+const Table = styled.table`
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  border-spacing: 0px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+`;
+
+const ColumnName = styled.th`
+  font-size: 1.5rem;
+  background-color: #ddd;
+  height: 64px;
+  padding: 0px 16px;
+  text-transform: uppercase;
+`;
+
+const AppearAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`;
+
+const BodyLine = styled.tr`
+  font-size: 1.25rem;
+  height: 56px;
+  animation: ${AppearAnimation} 0.5s forwards;
+  &:nth-child(even) {
+    background-color: #eee;
+  }
+  & td {
+    padding: 0px 16px;
+  }
+`;
+
+const Value = styled.td`
+  &.negative {
+    color: #f22;
+  }
+  &.positive {
+    color: #2b2;
+  }
+`;
+
+export default TransactionTable;

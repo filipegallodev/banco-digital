@@ -1,15 +1,16 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
+import { CircularProgress, Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import TransactionTable from "./TransactionTable";
 
 const TransactionList = () => {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
-  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [transactionsList, setTransactionsList] = useState<ITransaction[]>();
@@ -53,58 +54,25 @@ const TransactionList = () => {
         <Button disabled={loading} onClick={handleTransactionListRefresh}>
           Atualizar transações
         </Button>
+        {loading && <CircularProgress />}
       </ButtonContainer>
-      {!loading ? (
-        transactionsList && (
-          <TableContainer>
-            <Table>
-              <thead>
-                <tr>
-                  <ColumnName>Valor</ColumnName>
-                  <ColumnName>Tipo</ColumnName>
-                  <ColumnName>Data</ColumnName>
-                  <ColumnName>ID</ColumnName>
-                </tr>
-              </thead>
-              <tbody>
-                {transactionsList.map((transaction) => (
-                  <BodyLine key={transaction.id}>
-                    <Value
-                      className={
-                        transaction.creditedAccountId === user?.accountId
-                          ? "negative"
-                          : "positive"
-                      }
-                    >
-                      {transaction.value}
-                    </Value>
-                    <td>
-                      {transaction.creditedAccountId === user?.accountId
-                        ? "Enviado"
-                        : "Recebido"}
-                    </td>
-                    <td>
-                      {transaction.createdAt.replace(
-                        /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
-                        "$1 às $2"
-                      )}
-                    </td>
-                    <td>{transaction.id}</td>
-                  </BodyLine>
-                ))}
-              </tbody>
-            </Table>
-            <Button
-              onClick={() => setMaxItems(maxItems + 5)}
-              disabled={transactionsList.length < maxItems ? true : false}
-            >
-              Carregar mais
-            </Button>
-          </TableContainer>
-        )
-      ) : (
-        <p>Buscando novas transferências...</p>
-      )}
+      <TableContainer>
+        {loading ? (
+          <Skeleton
+            animation={"wave"}
+            variant="rectangular"
+            width={1200}
+            height={344}
+            sx={{ borderRadius: "6px" }}
+          />
+        ) : (
+          <TransactionTable
+            transactions={transactionsList}
+            maxItems={maxItems}
+            setMaxItems={setMaxItems}
+          />
+        )}
+      </TableContainer>
       {error && <p>{error}</p>}
     </Container>
   );
@@ -116,6 +84,7 @@ const Container = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -143,56 +112,6 @@ const TableContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 24px;
-`;
-
-const Table = styled.table`
-  width: 100%;
-  table-layout: fixed;
-  text-align: center;
-  border-spacing: 0px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-`;
-
-const ColumnName = styled.th`
-  font-size: 1.5rem;
-  background-color: #ddd;
-  height: 64px;
-  padding: 0px 16px;
-  text-transform: uppercase;
-`;
-
-const AppearAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: initial;
-    transform: initial;
-  }
-`;
-
-const BodyLine = styled.tr`
-  font-size: 1.25rem;
-  height: 56px;
-  animation: ${AppearAnimation} 0.5s forwards;
-  &:nth-child(even) {
-    background-color: #eee;
-  }
-  & td {
-    padding: 0px 16px;
-  }
-`;
-
-const Value = styled.td`
-  &.negative {
-    color: #f22;
-  }
-  &.positive {
-    color: #2b2;
-  }
 `;
 
 export default TransactionList;
