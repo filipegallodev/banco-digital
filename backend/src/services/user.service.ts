@@ -22,14 +22,19 @@ interface IRegisterData {
 
 export async function login({ username, password }: ILoginData) {
   const dbUser = await PrismaUtil.findUser("username", username);
-  if (!dbUser?.username) return;
+  if (!dbUser?.username)
+    return { status: "E-mail ou senha incorretos.", success: false };
   const dbPassword = dbUser?.password || "null";
   const passwordComparisonResult = compareSync(password, dbPassword);
   if (passwordComparisonResult) {
     const token = jwt.sign({ userId: dbUser.id }, JWT_SECRET, {
       expiresIn: 86400,
     });
-    return { token: token };
+    return {
+      token: token,
+      status: "Login realizado com sucesso.",
+      success: true,
+    };
   }
 }
 
@@ -43,6 +48,7 @@ export async function register({
   if (dbUser)
     return {
       status: "E-mail já cadastrado.",
+      success: false,
     };
   const user = await PrismaUtil.createUser({
     username,
@@ -57,6 +63,7 @@ export async function register({
     };
   return {
     status: "Ocorreu um erro ao cadastrar o usuário.",
+    success: false,
   };
 }
 
