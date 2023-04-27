@@ -32,7 +32,7 @@ const SERVER_REGISTER_URL = "http://localhost:3333/register";
 //   "https://ng-cash-app-production.up.railway.app/register";
 
 export const fetchRegister =
-  (registerData: IRegisterData) =>
+  (registerData: IRegisterFormData) =>
   async (dispatch: Dispatch<Action<string>>) => {
     try {
       dispatch(fetchStarted());

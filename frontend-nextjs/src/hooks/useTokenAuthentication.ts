@@ -14,13 +14,18 @@ export default function useTokenAuthentication() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    if (!data?.validToken && token && !loading) {
+    if (router.pathname !== "/painel" && !data?.validToken && token && !loading) {
       dispatch(fetchToken(token));
       return;
     }
-    if (router.pathname === "/painel" && token && !loading && !login.data)
-      dispatch(fetchToken(token));
   }, [dispatch, router, login]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt-token");
+    if (router.pathname === "/painel" && token && !loading && !login.data) {
+      dispatch(fetchToken(token));
+    }
+  }, [dispatch, router]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");

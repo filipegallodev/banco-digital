@@ -2,13 +2,20 @@ import AuthPage from "@/components/AuthPage";
 import FormTransaction from "@/components/Form/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import { resetData } from "@/store/reducers/transactions";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 export default function Nova() {
   const user = useTokenAuthentication();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetData());
+  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import { resetLoginData } from "@/store/reducers/login";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
@@ -16,9 +17,11 @@ export default function Painel() {
   const { data, loading } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
+  const login = useAppSelector((state: IReduxState) => state.login);
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
+    if (login.data) dispatch(resetLoginData());
   }, [dispatch]);
 
   if (!user.data || loading) return <AuthPage />;

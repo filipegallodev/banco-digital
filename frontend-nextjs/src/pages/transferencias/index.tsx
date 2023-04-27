@@ -1,7 +1,7 @@
 import AuthPage from "@/components/AuthPage";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
-import TransactionList from "@/components/Transaction/TransactionList";
+import TransactionSection from "@/components/Transaction/TransactionSection";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React from "react";
@@ -24,7 +24,7 @@ export default function Transferencias() {
         <Container>
           <ReturnButton />
           <Title>Transferências</Title>
-          <TransactionList />
+          <TransactionSection />
         </Container>
       </main>
     </>

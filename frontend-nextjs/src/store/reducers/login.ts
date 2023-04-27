@@ -24,15 +24,19 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
+    resetLoginData: (state) => {
+      state.data = null;
+    },
   },
 });
 
+export const { resetLoginData } = slice.actions;
 const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 const SERVER_LOGIN_URL = "http://localhost:3333/login";
 // const SERVER_LOGIN_URL = "https://ng-cash-app-production.up.railway.app/login";
 
 export const fetchLogin =
-  (loginData: ILogin) => async (dispatch: Dispatch<Action<string>>) => {
+  (loginData: ILoginFormData) => async (dispatch: Dispatch<Action<string>>) => {
     try {
       dispatch(fetchStarted());
       const response = await fetch(SERVER_LOGIN_URL, {

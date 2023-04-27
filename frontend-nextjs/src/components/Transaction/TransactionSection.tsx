@@ -9,8 +9,8 @@ import TransactionTable from "./TransactionTable";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import * as Styled from "../styles/Components.styled";
 
-const TransactionList = () => {
-  const { data, loading, error } = useAppSelector(
+const TransactionSection = () => {
+  const { data, loading } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
   const dispatch = useAppDispatch();
@@ -100,4 +100,4 @@ const TableContainer = styled.div`
   gap: 24px;
 `;
 
-export default TransactionList;
+export default TransactionSection;
