@@ -1,8 +1,10 @@
-# 💸 Banco Digital
+# 💸 Banco Digital (EM ATUALIZAÇÃO)
 
 ![Banco Digital Cover](https://i.imgur.com/lHEZFnI.jpg)
 
 ## 🎯 Objetivo
+
+OBS: Como está em atualização, apenas a tela antiga está disponível, mas já não possui mais as suas funcionalidades ativas.
 
 Criação de uma aplicação WEB para um Banco Digital fictício. Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possibilitar que usuários da NG consigam realizar transferências internas entre si.
 
