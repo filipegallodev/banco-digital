@@ -12,7 +12,7 @@ interface IRegisterFormData {
 
 interface ILoginReducerState extends IFetchReducerState {
   data: null | {
-    auth: boolean;
+    status: string;
     token: string;
   };
 }

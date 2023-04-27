@@ -14,7 +14,7 @@ import styled from "styled-components";
 export default function Painel() {
   const user = useTokenAuthentication();
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(
+  const transactions = useAppSelector(
     (state: IReduxState) => state.transactions
   );
   const login = useAppSelector((state: IReduxState) => state.login);
@@ -24,7 +24,6 @@ export default function Painel() {
     if (login.data) dispatch(resetLoginData());
   }, [dispatch]);
 
-  if (!user.data || loading) return <AuthPage />;
   return (
     <>
       <Head>
@@ -38,19 +37,25 @@ export default function Painel() {
         <Container>
           <Title>Visão geral</Title>
           <WelcomeMessage>
-            Olá, {user.data.user.firstName}! Aqui está o resumo de sua conta:
+            Olá, {user.data && user.data.user.firstName}! Aqui está o resumo de
+            sua conta:
           </WelcomeMessage>
           <DashboardContainer>
-            <DashboardItem name="Saldo" data={user.data?.user.balance} />
+            <DashboardItem
+              name="Saldo"
+              data={user.data?.user.balance}
+              loading={user.loading}
+            />
             <DashboardItem
               name="Transferências"
-              data={data?.allTransactions ? data?.allTransactions?.length : 0}
+              data={String(transactions.data?.allTransactions?.length)}
               page="transferencias"
+              loading={transactions.loading}
             />
             <DashboardItem
               name="Saída/Entrada"
-              type="out/in"
-              data={data?.totalTransferValue ? data.totalTransferValue : 0}
+              data={transactions.data?.totalTransferValue}
+              loading={transactions.loading}
             />
           </DashboardContainer>
         </Container>

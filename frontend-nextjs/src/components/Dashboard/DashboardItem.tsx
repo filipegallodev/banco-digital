@@ -4,32 +4,32 @@ import styled from "styled-components";
 
 interface IProps {
   name: string;
-  data: string | number;
+  data?: string;
   page?: string;
-  type?: string;
+  loading: boolean;
 }
 
-const DashboardItem = ({ name, data, page, type }: IProps) => {
+const DashboardItem = ({ name, data = "R$ 0", page, loading }: IProps) => {
   const route = useRouter();
-  const dataRef = useRef<HTMLParagraphElement>(null);
 
   function handleClick() {
     if (page) route.push(`/${page}`);
   }
 
-  useEffect(() => {
-    if (!(typeof data === "string")) return;
-    if (!(type === "out/in")) return;
-    if (data.includes("-R$") && dataRef) {
-      return dataRef.current?.classList.add("negative");
-    }
-    return dataRef.current?.classList.add("positive");
-  }, []);
-
   return (
     <Container onClick={handleClick}>
       <Name>{name}</Name>
-      <Data ref={dataRef}>{data}</Data>
+      <Data
+        className={
+          name === "Saída/Entrada" && !loading
+            ? data.includes("-R$")
+              ? "negative"
+              : "positive"
+            : ""
+        }
+      >
+        {loading ? "Carregando..." : data}
+      </Data>
     </Container>
   );
 };
