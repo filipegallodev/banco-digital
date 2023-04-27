@@ -44,23 +44,11 @@ export async function register({
     return {
       status: "E-mail já cadastrado.",
     };
-  const saltRounds = 10;
-  const hashedPassword = hashSync(password, saltRounds);
-  const user = await prisma.user.create({
-    data: {
-      username: username,
-      password: hashedPassword,
-      firstName: firstName,
-      lastName: lastName,
-      account: {
-        create: {
-          balance: 100,
-        },
-      },
-    },
-    include: {
-      account: true,
-    },
+  const user = await PrismaUtil.createUser({
+    username,
+    password,
+    firstName,
+    lastName,
   });
   if (user)
     return {
