@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Transaction } from "@prisma/client";
 import Decimal from "decimal.js";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
@@ -33,7 +33,9 @@ export async function create(
   if (!destinationUserAccount?.balance) return;
   const transactionValue = new Decimal(value);
   const originUserAccountBalance = originUserAccount?.balance;
-  const destinationUserAccountBalance = new Decimal(destinationUserAccount?.balance);
+  const destinationUserAccountBalance = new Decimal(
+    destinationUserAccount?.balance
+  );
   if (transactionValue.greaterThan(originUserAccount?.balance))
     return { status: "Saldo insuficiente.", success: false };
   await prisma.account.update({
@@ -77,17 +79,18 @@ export async function list(authorization: string | undefined) {
     "originAccountId",
     dbUser
   );
-  if (!receivedTransactions && !sentTransactions)
+  let allTransactions: Transaction[] = [];
+  if (receivedTransactions) allTransactions = [...receivedTransactions];
+  if (sentTransactions)
+    allTransactions = [...allTransactions, ...sentTransactions];
+  if (!allTransactions.length)
     return { status: "Nenhuma transferência encontrada.", success: false };
-  const allTransactions = [...receivedTransactions, ...sentTransactions];
   const totalTransferValue = getTotalTransferValue(
     dbUserAccount,
     allTransactions
   );
   return {
     status: "Busca concluída com sucesso.",
-    receivedTransactions: transactionsFormatter(receivedTransactions),
-    sentTransactions: transactionsFormatter(sentTransactions),
     allTransactions: transactionsFormatter(allTransactions),
     totalTransferValue,
     success: true,

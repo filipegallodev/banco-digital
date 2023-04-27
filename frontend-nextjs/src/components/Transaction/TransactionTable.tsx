@@ -11,8 +11,11 @@ interface IProps {
 
 const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const { error } = useAppSelector(
+    (state: IReduxState) => state.transactions
+  );
 
-  if (!transactions?.length) return <p>Nenhuma transação encontrada.</p>;
+  if (!transactions?.length) return <p>{error}</p>;
   return (
     <>
       <Table>

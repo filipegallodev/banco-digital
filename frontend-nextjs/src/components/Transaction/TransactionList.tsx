@@ -40,7 +40,7 @@ const TransactionList = () => {
       top: document.body.scrollHeight,
       behavior: "smooth",
     });
-  }, [transactionsList]);
+  }, [transactionsList, maxItems]);
 
   function handleTransactionListRefresh() {
     dispatch(fetchTransactionsList());
@@ -78,7 +78,6 @@ const TransactionList = () => {
           />
         )}
       </TableContainer>
-      {error && <p>{error}</p>}
     </Container>
   );
 };
