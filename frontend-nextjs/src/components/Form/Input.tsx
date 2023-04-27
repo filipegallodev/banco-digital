@@ -26,7 +26,10 @@ const Input = ({
         id={id}
         name={id}
         onChange={({ target }) =>
-          saveFormData({ ...formData, [id]: target.value })
+          saveFormData({
+            ...formData,
+            [id.replace(/\D+\-/g, "")]: target.value,
+          })
         }
         {...args}
       />
@@ -35,18 +38,25 @@ const Input = ({
 };
 
 const Label = styled.label`
-  font-size: 1.25rem;
   display: block;
+  font-size: 1.25rem;
 `;
 
 const StyledInput = styled.input`
+  margin: 4px 0px 12px 0px;
   width: 100%;
-  margin: 2px 0px 8px 0px;
   padding: 10px 12px;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   font-size: 1.125rem;
+  &:hover {
+    box-shadow: 0px 0px 0px 2px #aaa;
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 2px #222;
+    outline: double;
+  }
 `;
 
 export default Input;

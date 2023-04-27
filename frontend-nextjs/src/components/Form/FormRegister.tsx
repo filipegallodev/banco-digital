@@ -63,20 +63,20 @@ const FormRegister = () => {
         <div>
           <Input
             name="Nome"
-            id="firstName"
+            id="register-firstName"
             formData={registerData}
             saveFormData={setRegisterData}
           />
           <Input
             name="Sobrenome"
-            id="lastName"
+            id="register-lastName"
             formData={registerData}
             saveFormData={setRegisterData}
           />
         </div>
         <Input
           name="E-mail"
-          id="username"
+          id="register-username"
           type="email"
           formData={registerData}
           saveFormData={setRegisterData}
@@ -84,7 +84,7 @@ const FormRegister = () => {
         <div>
           <Input
             name="Senha"
-            id="password"
+            id="register-password"
             formData={registerData}
             saveFormData={setRegisterData}
             onBlur={handleUserPassword}

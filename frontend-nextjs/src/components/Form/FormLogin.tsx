@@ -43,13 +43,13 @@ const FormLogin = () => {
       <Styled.Form onSubmit={handleUserLogin}>
         <Input
           name="Nome"
-          id="username"
+          id="login-username"
           formData={loginData}
           saveFormData={setLoginData}
         />
         <Input
           name="Senha"
-          id="password"
+          id="login-password"
           formData={loginData}
           saveFormData={setLoginData}
         />
