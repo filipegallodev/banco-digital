@@ -20,22 +20,18 @@ const Header = () => {
     <Container>
       <Content>
         <Title>Banco Digital</Title>
-        <UserInfoContainer>
-          {user && (
-            <>
-              <UserProfile />
-              <Name>
+        {user && (
+          <ControllContainer>
+              <UserProfile onClick={() => router.push("/perfil")} />
+              <UserName>
                 {user.firstName} {user.lastName}
-              </Name>
-            </>
-          )}
-          {user && (
-            <LogoutButton onClick={handleUserLogout}>
-              <p>Sair</p>
-              <LogoutIcon />
-            </LogoutButton>
-          )}
-        </UserInfoContainer>
+              </UserName>
+              <LogoutButton onClick={handleUserLogout}>
+                <p>Sair</p>
+                <LogoutIcon />
+              </LogoutButton>
+          </ControllContainer>
+        )}
       </Content>
     </Container>
   );
@@ -62,7 +58,7 @@ const Title = styled.span`
   font-size: 2rem;
 `;
 
-const UserInfoContainer = styled.div`
+const ControllContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,13 +66,18 @@ const UserInfoContainer = styled.div`
 `;
 
 const UserProfile = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   background-color: #fff;
   border-radius: 100%;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    opacity: 0.75;
+  }
 `;
 
-const Name = styled.p`
+const UserName = styled.p`
   text-transform: uppercase;
   font-size: 1.25rem;
 `;
