@@ -19,17 +19,19 @@ const Header = () => {
   return (
     <Container>
       <Content>
-        <Title>Banco Digital</Title>
+        <Title onClick={() => router.push("/painel")}>Banco Digital</Title>
         {user && (
           <ControllContainer>
-              <UserProfile onClick={() => router.push("/perfil")} />
+            <UserProfile onClick={() => router.push("/perfil")}>
+              <UserIcon />
               <UserName>
                 {user.firstName} {user.lastName}
               </UserName>
-              <LogoutButton onClick={handleUserLogout}>
-                <p>Sair</p>
-                <LogoutIcon />
-              </LogoutButton>
+            </UserProfile>
+            <LogoutButton onClick={handleUserLogout}>
+              <p>Sair</p>
+              <LogoutIcon />
+            </LogoutButton>
           </ControllContainer>
         )}
       </Content>
@@ -56,25 +58,33 @@ const Content = styled.div`
 
 const Title = styled.span`
   font-size: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
 `;
 
 const ControllContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 64px;
 `;
 
 const UserProfile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    opacity: 0.85;
+  }
+`;
+
+const UserIcon = styled.div`
   width: 56px;
   height: 56px;
   background-color: #fff;
   border-radius: 100%;
-  cursor: pointer;
-  transition: 0.1s;
-  &:hover {
-    opacity: 0.75;
-  }
 `;
 
 const UserName = styled.p`
