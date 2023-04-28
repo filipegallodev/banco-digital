@@ -13,11 +13,11 @@ const ReturnButton = () => {
         <ArrowBackRoundedIcon />
       </Button>
       <RoutesPathContainer>
-        <span>Painel</span>
+        <Route onClick={() => router.push("/painel")}>Painel</Route>
         {routesName.map((route) => (
           <span key={route}>
             <RightArrow>{" > "}</RightArrow>
-            <span>{route}</span>
+            <Route onClick={() => router.push(`/${route}`)}>{route}</Route>
           </span>
         ))}
       </RoutesPathContainer>
@@ -32,7 +32,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
-  color: #555;
 `;
 
 const Button = styled.button`
@@ -57,7 +56,18 @@ const RightArrow = styled.span`
 
 const RoutesPathContainer = styled.div`
   cursor: default;
+  color: #777;
+  font-weight: 500;
+  font-style: italic;
   text-transform: uppercase;
+`;
+
+const Route = styled.span`
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    color: #111;
+  }
 `;
 
 export default ReturnButton;
