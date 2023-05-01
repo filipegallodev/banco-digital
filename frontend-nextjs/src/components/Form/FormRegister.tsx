@@ -57,7 +57,7 @@ const FormRegister = () => {
   }
 
   return (
-    <Styled.FormContainer>
+    <Styled.FormContainer className="animeRight">
       <Styled.SubTitle>Preencha seu cadastro</Styled.SubTitle>
       <Styled.Form onSubmit={handleUserRegister}>
         <div>

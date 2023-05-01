@@ -38,11 +38,11 @@ const FormLogin = () => {
   }
 
   return (
-    <Styled.FormContainer>
+    <Styled.FormContainer className="animeRight">
       <Styled.SubTitle>Faça seu login</Styled.SubTitle>
       <Styled.Form onSubmit={handleUserLogin}>
         <Input
-          name="Nome"
+          name="E-mail"
           id="login-username"
           formData={loginData}
           saveFormData={setLoginData}
@@ -59,7 +59,7 @@ const FormLogin = () => {
           </Styled.Button>
           {loading && <CircularProgress />}
         </Styled.ButtonContainer>
-        <Success message={data?.status}/>
+        <Success message={data?.status} />
         <Error message={error} />
       </Styled.Form>
     </Styled.FormContainer>

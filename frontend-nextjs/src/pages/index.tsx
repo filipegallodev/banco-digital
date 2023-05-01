@@ -2,14 +2,16 @@ import Head from "next/head";
 import styled from "styled-components";
 import FormLogin from "@/components/Form/FormLogin";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import FormRegister from "@/components/Form/FormRegister";
 import Header from "@/components/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import * as Styled from "@/components/styles/Components.styled";
 
 export default function Home() {
   const user = useTokenAuthentication();
   const router = useRouter();
+  const [form, setForm] = useState<string>("");
 
   useEffect(() => {
     if (user.data?.validToken) router.push("/painel");
@@ -26,8 +28,20 @@ export default function Home() {
       <Header />
       <main className="animeRight">
         <Container>
-          <FormRegister />
-          <FormLogin />
+          <Title>O que deseja fazer?</Title>
+          <Styled.ButtonContainer>
+            <Styled.Button onClick={() => setForm("register")}>
+              Criar uma conta
+            </Styled.Button>
+            <Styled.Button onClick={() => setForm("login")}>
+              Fazer login
+            </Styled.Button>
+          </Styled.ButtonContainer>
+          {form === "login" ? (
+            <FormLogin />
+          ) : form === "register" ? (
+            <FormRegister />
+          ) : null}
         </Container>
       </main>
     </>
@@ -37,8 +51,22 @@ export default function Home() {
 const Container = styled.section`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 120px;
+  flex-direction: column;
   margin: 0 auto;
   max-width: 1200px;
+  min-height: 50vh;
+`;
+
+const Title = styled.h1`
+  margin: 52px 0px;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  &::before {
+    content: "";
+    width: 32px;
+    height: 4px;
+    background-color: #c500d0;
+    position: absolute;
+  }
 `;
