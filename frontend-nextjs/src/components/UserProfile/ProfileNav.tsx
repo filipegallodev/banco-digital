@@ -1,24 +1,49 @@
-import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
-const ProfileNav = () => {
-  const router = useRouter();
+interface IProps {
+  menuItem: string;
+  setMenuItem: React.Dispatch<React.SetStateAction<any>>;
+}
 
+const ProfileNav = ({ menuItem, setMenuItem }: IProps) => {
   return (
     <nav>
-      <ul>
-        <NavItem>Informações gerais</NavItem>
-        <NavItem>Editar perfil</NavItem>
-        <NavItem>Trocar e-mail/senha</NavItem>
-        <NavItem>Gerenciar conta</NavItem>
-      </ul>
+      <NavContainer>
+        <NavItem
+          className={menuItem === "geral" ? "active" : ""}
+          onClick={() => setMenuItem("geral")}
+        >
+          Informações gerais
+        </NavItem>
+        <NavItem
+          className={menuItem === "editar" ? "active" : ""}
+          onClick={() => setMenuItem("editar")}
+        >
+          Editar perfil
+        </NavItem>
+        <NavItem
+          className={menuItem === "trocar" ? "active" : ""}
+          onClick={() => setMenuItem("trocar")}
+        >
+          Trocar e-mail/senha
+        </NavItem>
+        <NavItem
+          className={menuItem === "gerenciar" ? "active" : ""}
+          onClick={() => setMenuItem("gerenciar")}
+        >
+          Gerenciar conta
+        </NavItem>
+      </NavContainer>
     </nav>
   );
 };
 
+const NavContainer = styled.ul`
+  display: flex;
+`;
+
 const NavItem = styled.li`
-  display: inline;
   border-bottom: 2px solid #333;
   list-style: none;
   padding: 16px 24px;
@@ -32,7 +57,6 @@ const NavItem = styled.li`
   }
   &.active {
     background-color: #ccc;
-    font-weight: 500;
   }
 `;
 
