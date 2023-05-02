@@ -3,10 +3,13 @@ import styled from "styled-components";
 import Header from "@/components/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import ReturnButton from "@/components/ReturnButton";
+import ProfileNav from "@/components/UserProfile/ProfileNav";
+import AuthPage from "@/components/AuthPage";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
 
+  if (!user.data) return <AuthPage />;
   return (
     <>
       <Head>
@@ -20,14 +23,7 @@ export default function Perfil() {
         <Container>
           <ReturnButton />
           <Title>Meu perfil</Title>
-          <nav>
-            <ul>
-              <NavItem>Informações gerais</NavItem>
-              <NavItem>Editar perfil</NavItem>
-              <NavItem>Trocar e-mail/senha</NavItem>
-              <NavItem>Gerenciar conta</NavItem>
-            </ul>
-          </nav>
+          <ProfileNav />
         </Container>
       </main>
     </>
@@ -54,19 +50,5 @@ const Title = styled.h1`
     height: 4px;
     background-color: #c500d0;
     position: absolute;
-  }
-`;
-
-const NavItem = styled.li`
-  display: inline;
-  border-bottom: 2px solid #333;
-  list-style: none;
-  padding: 16px 24px;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: 0.1s;
-  &:hover {
-    background-color: #ddd;
-    border-bottom: 2px solid #c500d0;
   }
 `;
