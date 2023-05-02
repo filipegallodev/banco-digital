@@ -5,9 +5,29 @@ import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import ReturnButton from "@/components/ReturnButton";
 import ProfileNav from "@/components/UserProfile/ProfileNav";
 import AuthPage from "@/components/AuthPage";
+import { useEffect, useState } from "react";
+import ProfileOverview from "@/components/UserProfile/ProfileOverview";
+import ProfileEdit from "@/components/UserProfile/ProfileEdit";
+import ProfileChange from "@/components/UserProfile/ProfileChange";
+import ProfileManage from "@/components/UserProfile/ProfileManage";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
+  const [menuItem, setMenuItem] = useState<string>("geral");
+  const [profileScreen, setProfileScreen] = useState<JSX.Element>(<p></p>);
+
+  useEffect(() => {
+    switch (menuItem) {
+      case "geral":
+        return setProfileScreen(<ProfileOverview />);
+      case "editar":
+        return setProfileScreen(<ProfileEdit />);
+      case "trocar":
+        return setProfileScreen(<ProfileChange />);
+      default:
+        return setProfileScreen(<ProfileManage />);
+    }
+  }, [menuItem]);
 
   if (!user.data) return <AuthPage />;
   return (
@@ -23,7 +43,8 @@ export default function Perfil() {
         <Container>
           <ReturnButton />
           <Title>Meu perfil</Title>
-          <ProfileNav />
+          <ProfileNav menuItem={menuItem} setMenuItem={setMenuItem} />
+          {profileScreen}
         </Container>
       </main>
     </>
