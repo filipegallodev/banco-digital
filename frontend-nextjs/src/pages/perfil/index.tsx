@@ -61,7 +61,8 @@ const NavItem = styled.li`
   display: inline;
   border-bottom: 2px solid #333;
   list-style: none;
-  padding: 16px;
+  padding: 16px 24px;
+  font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;
   &:hover {
