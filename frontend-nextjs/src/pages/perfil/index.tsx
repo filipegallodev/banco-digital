@@ -20,6 +20,14 @@ export default function Perfil() {
         <Container>
           <ReturnButton />
           <Title>Meu perfil</Title>
+          <nav>
+            <ul>
+              <NavItem>Informações gerais</NavItem>
+              <NavItem>Editar perfil</NavItem>
+              <NavItem>Trocar e-mail/senha</NavItem>
+              <NavItem>Gerenciar conta</NavItem>
+            </ul>
+          </nav>
         </Container>
       </main>
     </>
@@ -29,9 +37,9 @@ export default function Perfil() {
 const Container = styled.section`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 120px;
+  flex-direction: column;
   margin: 0 auto;
+  min-height: 50vh;
   max-width: 1200px;
 `;
 
@@ -46,5 +54,18 @@ const Title = styled.h1`
     height: 4px;
     background-color: #c500d0;
     position: absolute;
+  }
+`;
+
+const NavItem = styled.li`
+  display: inline;
+  border-bottom: 2px solid #333;
+  list-style: none;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    background-color: #ddd;
+    border-bottom: 2px solid #c500d0;
   }
 `;

@@ -1,4 +1,3 @@
-import AuthPage from "@/components/AuthPage";
 import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
