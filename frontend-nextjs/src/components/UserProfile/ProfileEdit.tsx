@@ -1,7 +1,120 @@
+import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
+import * as Styled from "../styles/Components.styled";
+import Input from "../Form/Input";
+import { useState, useEffect } from "react";
 
 const ProfileEdit = () => {
-  return <div className="animeRight">Editar perfil</div>;
+  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const [formData, setFormData] = useState<IUserUpdateFormData>({
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    username: "",
+    accountId: 0,
+    birth: "",
+    phoneNumber: "",
+    city: "",
+    state: "",
+    income: "",
+    job: "",
+  });
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  return (
+    <div className="animeRight">
+      <Styled.SubTitle>Editar informações</Styled.SubTitle>
+      <Styled.FormContainer>
+        <Styled.Form>
+          <div>
+            <h3>Básico</h3>
+            <Input
+              name="Nome"
+              id="edit-first-name"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={user?.firstName}
+              disabled
+            />
+            <Input
+              name="Sobrenome"
+              id="edit-last-name"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={user?.lastName}
+              disabled
+            />
+            <Input
+              name="Data de nascimento"
+              id="edit-birth"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+            <Input
+              name="E-mail"
+              id="edit-username"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+              disabled
+            />
+            <Input
+              name="Data de nascimento"
+              id="edit-birth"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+            <Input
+              name="Telefone"
+              id="edit-phone-number"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+          </div>
+          <div>
+            <h3>Endereço</h3>
+            <Input
+              name="Cidade"
+              id="edit-city"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+            <Input
+              name="Estado"
+              id="edit-state"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+          </div>
+          <div>
+            <h3>Financeiro</h3>
+            <Input
+              name="Renda"
+              id="edit-income"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+            <Input
+              name="Emprego"
+              id="edit-job"
+              formData={formData}
+              saveFormData={setFormData}
+              placeholder={""}
+            />
+          </div>
+          <Styled.Button>Salvar</Styled.Button>
+        </Styled.Form>
+      </Styled.FormContainer>
+    </div>
+  );
 };
 
 export default ProfileEdit;

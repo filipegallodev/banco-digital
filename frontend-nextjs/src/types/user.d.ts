@@ -10,3 +10,16 @@ interface IUserReducerState extends IFetchReducerState {
     };
   };
 }
+
+interface IUserUpdateFormData {
+  firstName: string;
+  lastName: string;
+  username: string;
+  accountId: number;
+  birth?: string;
+  phoneNumber?: string;
+  city?: string;
+  state?: string;
+  income?: string;
+  job?: string;
+}

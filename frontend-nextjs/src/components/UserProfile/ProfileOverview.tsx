@@ -11,6 +11,7 @@ const ProfileOverview = () => {
         <h3>Básico</h3>
         <p>Nome: {user?.firstName}</p>
         <p>Sobrenome: {user?.lastName}</p>
+        <p>Data de nascimento:</p>
         <p>E-mail:</p>
         <p>Telefone:</p>
       </div>
@@ -18,6 +19,11 @@ const ProfileOverview = () => {
         <h3>Endereço</h3>
         <p>Cidade:</p>
         <p>Estado:</p>
+      </div>
+      <div>
+        <h3>Financeiro</h3>
+        <p>Renda:</p>
+        <p>Emprego:</p>
       </div>
     </div>
   );

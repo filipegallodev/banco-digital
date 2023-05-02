@@ -63,13 +63,13 @@ const FormRegister = () => {
         <div>
           <Input
             name="Nome"
-            id="register-firstName"
+            id="register-first-name"
             formData={registerData}
             saveFormData={setRegisterData}
           />
           <Input
             name="Sobrenome"
-            id="register-lastName"
+            id="register-last-name"
             formData={registerData}
             saveFormData={setRegisterData}
           />
