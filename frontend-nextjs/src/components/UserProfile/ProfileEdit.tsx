@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfileEdit = () => {
-  return <div>Editar perfil</div>;
+  return <div className="animeRight">Editar perfil</div>;
 };
 
 export default ProfileEdit;
