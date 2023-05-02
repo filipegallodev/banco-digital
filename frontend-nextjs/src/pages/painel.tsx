@@ -57,6 +57,21 @@ export default function Painel() {
               data={transactions.data?.totalTransferValue}
               loading={transactions.loading}
             />
+            <DashboardItem
+              name="Cartões"
+              data={"0"}
+              loading={transactions.loading}
+            />
+            <DashboardItem
+              name="Investimentos"
+              data={"0"}
+              loading={transactions.loading}
+            />
+            <DashboardItem
+              name="Empréstimos"
+              data={"0"}
+              loading={transactions.loading}
+            />
           </DashboardContainer>
         </Container>
       </main>
