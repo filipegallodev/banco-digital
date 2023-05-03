@@ -2,7 +2,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { fetchUserUpdate } from "@/store/reducers/user";
 

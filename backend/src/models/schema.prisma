@@ -11,13 +11,19 @@ datasource db {
 }
 
 model User {
-  id        String  @id @unique @default(uuid())
-  username  String  @unique
-  password  String
-  firstName String
-  lastName  String
-  account   Account @relation(fields: [accountId], references: [id])
-  accountId String  @unique
+  id          String  @id @unique @default(uuid())
+  username    String  @unique
+  password    String
+  firstName   String
+  lastName    String
+  birth       String?
+  phoneNumber String?
+  city        String?
+  state       String?
+  income      String?
+  job         String?
+  account     Account @relation(fields: [accountId], references: [id])
+  accountId   String  @unique
 }
 
 model Account {
