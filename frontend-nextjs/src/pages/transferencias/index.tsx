@@ -14,8 +14,8 @@ export default function Transferencias() {
   return (
     <>
       <Head>
-        <title>Painel | Banco Digital</title>
-        <meta name="description" content="Painel do seu Banco Digital!" />
+        <title>Transferências | Banco Digital</title>
+        <meta name="description" content="Transferências do seu Banco Digital!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

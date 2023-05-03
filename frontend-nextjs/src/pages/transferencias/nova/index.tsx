@@ -21,8 +21,8 @@ export default function Nova() {
   return (
     <>
       <Head>
-        <title>Painel | Banco Digital</title>
-        <meta name="description" content="Painel do seu Banco Digital!" />
+        <title>Nova transferência | Banco Digital</title>
+        <meta name="description" content="Realizar uma nova transferência." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
