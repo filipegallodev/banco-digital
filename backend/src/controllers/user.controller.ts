@@ -35,7 +35,7 @@ export async function update(req: Request, res: Response, next: NextFunction) {
   try {
     const data = await UserService.update(req.body, req.headers.authorization);
     if (!data?.success) throw new Error(data?.status);
-    res.status(200).json({ status: data.status });
+    res.status(200).json({ user: data.user, status: data.status });
   } catch (err) {
     if (err instanceof Error) {
       res.status(400).json({ error: err.message });

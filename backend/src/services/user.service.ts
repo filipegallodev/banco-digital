@@ -89,7 +89,9 @@ export async function update(
   if (!dbUser) return { status: "ID de usuário inválido.", success: false };
   const updatedUser = await PrismaUtil.updateUser(formData);
   return {
-    ...updatedUser,
+    user: {
+      ...updatedUser,
+    },
     status: "Dados atualizados com sucesso.",
     success: true,
   };
