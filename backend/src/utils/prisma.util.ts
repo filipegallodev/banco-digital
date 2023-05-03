@@ -12,6 +12,19 @@ interface IRegisterData {
   lastName: string;
 }
 
+interface IUserUpdateFormData {
+  firstName: string;
+  lastName: string;
+  username: string;
+  accountId: string;
+  birth?: string;
+  phoneNumber?: string;
+  city?: string;
+  state?: string;
+  income?: string;
+  job?: string;
+}
+
 export async function createUser({
   username,
   password,
@@ -35,6 +48,27 @@ export async function createUser({
       },
       include: {
         account: true,
+      },
+    });
+    return user;
+  } catch (error) {
+    return;
+  }
+}
+
+export async function updateUser(formData: IUserUpdateFormData) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        accountId: formData.accountId,
+      },
+      data: {
+        birth: formData.birth,
+        phoneNumber: formData.phoneNumber,
+        city: formData.city,
+        state: formData.state,
+        income: formData.income,
+        job: formData.job,
       },
     });
     return user;

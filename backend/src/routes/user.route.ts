@@ -7,6 +7,8 @@ userRouter.post("/login", UserController.login);
 
 userRouter.post("/register", UserController.register);
 
+userRouter.put('/user/update', UserController.update)
+
 userRouter.post("/token/validate", UserController.token);
 
 export default userRouter;

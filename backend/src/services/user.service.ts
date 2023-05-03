@@ -20,6 +20,19 @@ interface IRegisterData {
   lastName: string;
 }
 
+interface IUserUpdateFormData {
+  firstName: string;
+  lastName: string;
+  username: string;
+  accountId: string;
+  birth?: string;
+  phoneNumber?: string;
+  city?: string;
+  state?: string;
+  income?: string;
+  job?: string;
+}
+
 export async function login({ username, password }: ILoginData) {
   const dbUser = await PrismaUtil.findUser("username", username);
   if (!dbUser?.username)
@@ -67,10 +80,25 @@ export async function register({
   };
 }
 
+export async function update(
+  formData: IUserUpdateFormData,
+  authorization: string | undefined
+) {
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
+  if (!dbUser) return { status: "ID de usuário inválido.", success: false };
+  const updatedUser = await PrismaUtil.updateUser(formData);
+  return {
+    ...updatedUser,
+    status: "Dados atualizados com sucesso.",
+    success: true,
+  };
+}
+
 export async function token(authorization: string | undefined) {
   const userId = checkAuth(authorization);
   const dbUser = await PrismaUtil.findUser("id", userId);
-  if (!dbUser) return { status: "ID de usuário inválido." };
+  if (!dbUser) return { status: "ID de usuário inválido.", success: false };
   const dbUserAccount = await PrismaUtil.findAccount(dbUser);
   const brazilianCurrency = currencyFormatter(
     "pt-BR",
@@ -78,11 +106,8 @@ export async function token(authorization: string | undefined) {
     dbUserAccount?.balance
   );
   const user = {
-    username: dbUser.username,
+    ...dbUser,
     balance: brazilianCurrency,
-    firstName: dbUser.firstName,
-    lastName: dbUser.lastName,
-    accountId: dbUser.accountId,
   };
   return { status: "Token validado com sucesso.", success: true, user };
 }
