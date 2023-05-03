@@ -7,9 +7,16 @@ const ReturnButton = () => {
   const router = useRouter();
   const routesName = router.pathname.split("/").filter((path) => path !== "");
 
+  function handleRoute() {
+    if (routesName.length > 0 && routesName[routesName.length - 2]) {
+      return router.push(`/${routesName[routesName.length - 2]}`);
+    }
+    return router.push("/painel");
+  }
+
   return (
     <Container>
-      <Button onClick={router.back}>
+      <Button onClick={handleRoute}>
         <ArrowBackRoundedIcon />
       </Button>
       <RoutesPathContainer>
