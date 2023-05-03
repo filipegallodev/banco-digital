@@ -3,14 +3,16 @@ import React from "react";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
 import { useState, useEffect } from "react";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { fetchUserUpdate } from "@/store/reducers/user";
 
 const ProfileEdit = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
   const [formData, setFormData] = useState<IUserUpdateFormData>({
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
-    username: "",
-    accountId: 0,
+    username: user?.username || "",
+    accountId: user?.accountId || 0,
     birth: "",
     phoneNumber: "",
     city: "",
@@ -18,16 +20,20 @@ const ProfileEdit = () => {
     income: "",
     job: "",
   });
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  function handleUserUpdate(event: React.FormEvent) {
+    event.preventDefault();
+    if (formData) {
+      dispatch(fetchUserUpdate(formData));
+    }
+  }
 
   return (
     <div className="animeRight">
       <Styled.SubTitle>Editar informações</Styled.SubTitle>
       <Styled.FormContainer>
-        <Styled.Form>
+        <Styled.Form onSubmit={handleUserUpdate}>
           <div>
             <h3>Básico</h3>
             <Input
@@ -47,23 +53,17 @@ const ProfileEdit = () => {
               disabled
             />
             <Input
-              name="Data de nascimento"
-              id="edit-birth"
-              formData={formData}
-              saveFormData={setFormData}
-              placeholder={""}
-            />
-            <Input
               name="E-mail"
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.username}
               disabled
             />
             <Input
               name="Data de nascimento"
               id="edit-birth"
+              type="date"
               formData={formData}
               saveFormData={setFormData}
               placeholder={""}
@@ -71,6 +71,7 @@ const ProfileEdit = () => {
             <Input
               name="Telefone"
               id="edit-phone-number"
+              type="tel"
               formData={formData}
               saveFormData={setFormData}
               placeholder={""}

@@ -54,10 +54,11 @@ export const fetchToken =
     }
   };
 
-export const updateUser =
+export const fetchUserUpdate =
   (formData: IUserUpdateFormData) =>
   async (dispatch: Dispatch<Action<string>>) => {
     try {
+      console.log("REDUX:");
       console.log(formData);
     } catch (err) {
       if (err instanceof Error) dispatch(fetchError(err.message));
