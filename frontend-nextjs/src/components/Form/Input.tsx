@@ -7,7 +7,6 @@ interface IProps {
   type?: string;
   formData: object;
   saveFormData: React.Dispatch<React.SetStateAction<any>>;
-  placeholder?: string;
   [key: string]: any;
 }
 
@@ -17,7 +16,6 @@ const Input = ({
   type = "text",
   formData,
   saveFormData,
-  placeholder,
   ...args
 }: IProps) => {
   return (
@@ -33,7 +31,6 @@ const Input = ({
             [id.replace(/\D+\-/g, "")]: target.value,
           })
         }
-        placeholder={placeholder}
         {...args}
       />
     </>

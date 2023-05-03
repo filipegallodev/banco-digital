@@ -47,7 +47,7 @@ const ProfileEdit = () => {
               id="edit-first-name"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.firstName}
+              value={formData.firstName}
               disabled
             />
             <Input
@@ -55,7 +55,7 @@ const ProfileEdit = () => {
               id="edit-last-name"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.lastName}
+              value={formData.lastName}
               disabled
             />
             <Input
@@ -63,7 +63,7 @@ const ProfileEdit = () => {
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.username}
+              value={formData.username}
               disabled
             />
             <Input
@@ -72,7 +72,7 @@ const ProfileEdit = () => {
               type="date"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.birth}
+              value={formData.birth}
             />
             <Input
               name="Telefone"
@@ -80,7 +80,7 @@ const ProfileEdit = () => {
               type="tel"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.phoneNumber}
+              value={formData.phoneNumber}
             />
           </div>
           <div>
@@ -90,14 +90,14 @@ const ProfileEdit = () => {
               id="edit-city"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.city}
+              value={formData.city}
             />
             <Input
               name="Estado"
               id="edit-state"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.state}
+              value={formData.state}
             />
           </div>
           <div>
@@ -107,14 +107,14 @@ const ProfileEdit = () => {
               id="edit-income"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.income}
+              value={formData.income}
             />
             <Input
               name="Emprego"
               id="edit-job"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={user?.job}
+              value={formData.job}
             />
           </div>
           <Styled.ButtonContainer>
