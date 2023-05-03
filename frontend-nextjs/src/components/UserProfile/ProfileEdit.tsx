@@ -12,13 +12,13 @@ const ProfileEdit = () => {
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
     username: user?.username || "",
-    accountId: user?.accountId || 0,
-    birth: "",
-    phoneNumber: "",
-    city: "",
-    state: "",
-    income: "",
-    job: "",
+    accountId: user?.accountId || "",
+    birth: user?.birth || "",
+    phoneNumber: user?.phoneNumber || "",
+    city: user?.city || "",
+    state: user?.state || "",
+    income: user?.income || "",
+    job: user?.job || "",
   });
   const dispatch = useAppDispatch();
 
@@ -66,7 +66,7 @@ const ProfileEdit = () => {
               type="date"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.birth}
             />
             <Input
               name="Telefone"
@@ -74,7 +74,7 @@ const ProfileEdit = () => {
               type="tel"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.phoneNumber}
             />
           </div>
           <div>
@@ -84,14 +84,14 @@ const ProfileEdit = () => {
               id="edit-city"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.city}
             />
             <Input
               name="Estado"
               id="edit-state"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.state}
             />
           </div>
           <div>
@@ -101,14 +101,14 @@ const ProfileEdit = () => {
               id="edit-income"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.income}
             />
             <Input
               name="Emprego"
               id="edit-job"
               formData={formData}
               saveFormData={setFormData}
-              placeholder={""}
+              placeholder={user?.job}
             />
           </div>
           <Styled.Button>Salvar</Styled.Button>

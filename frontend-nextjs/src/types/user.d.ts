@@ -6,7 +6,13 @@ interface IUserReducerState extends IFetchReducerState {
       balance: string;
       firstName: string;
       lastName: string;
-      accountId: number;
+      accountId: string;
+      birth?: string;
+      phoneNumber?: string;
+      city?: string;
+      state?: string;
+      income?: string;
+      job?: string;
     };
   };
 }
@@ -15,7 +21,7 @@ interface IUserUpdateFormData {
   firstName: string;
   lastName: string;
   username: string;
-  accountId: number;
+  accountId: string;
   birth?: string;
   phoneNumber?: string;
   city?: string;
