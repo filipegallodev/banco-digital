@@ -7,16 +7,20 @@ import FormRegister from "@/components/Form/FormRegister";
 import Header from "@/components/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import * as Styled from "@/components/styles/Components.styled";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import AuthPage from "@/components/AuthPage";
 
 export default function Home() {
   const user = useTokenAuthentication();
   const router = useRouter();
   const [form, setForm] = useState<string>("");
+  const login = useAppSelector((state: IReduxState) => state.login);
 
   useEffect(() => {
     if (user.data?.validToken) router.push("/painel");
   }, [user.data?.validToken]);
 
+  if (login.data) return <AuthPage />;
   return (
     <>
       <Head>

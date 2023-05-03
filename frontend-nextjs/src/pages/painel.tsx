@@ -1,3 +1,4 @@
+import AuthPage from "@/components/AuthPage";
 import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
@@ -23,6 +24,7 @@ export default function Painel() {
     if (login.data) dispatch(resetLoginData());
   }, [dispatch]);
 
+  if (!user.data) return <AuthPage />;
   return (
     <>
       <Head>

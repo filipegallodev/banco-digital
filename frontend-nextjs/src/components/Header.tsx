@@ -12,8 +12,8 @@ const Header = () => {
   const router = useRouter();
 
   function handleUserLogout() {
-    router.push("/");
     dispatch(resetState());
+    router.push("/");
   }
 
   return (
