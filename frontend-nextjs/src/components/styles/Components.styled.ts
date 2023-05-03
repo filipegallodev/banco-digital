@@ -17,8 +17,22 @@ export const SubTitle = styled.h2`
   box-sizing: border-box;
   &::before {
     content: "";
-    width: 32px;
+    width: 26px;
     height: 4px;
+    background-color: #c500d0;
+    position: absolute;
+  }
+`;
+
+export const ThirdTitle = styled.h3`
+  margin: 16px 0px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  &::before {
+    content: "";
+    width: 18px;
+    height: 3px;
     background-color: #c500d0;
     position: absolute;
   }

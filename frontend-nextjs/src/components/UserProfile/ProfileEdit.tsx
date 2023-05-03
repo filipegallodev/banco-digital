@@ -41,7 +41,7 @@ const ProfileEdit = () => {
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleUserUpdate}>
           <div>
-            <h3>Básico</h3>
+            <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
             <Input
               name="Nome"
               id="edit-first-name"
@@ -84,7 +84,7 @@ const ProfileEdit = () => {
             />
           </div>
           <div>
-            <h3>Endereço</h3>
+            <Styled.ThirdTitle>Endereço</Styled.ThirdTitle>
             <Input
               name="Cidade"
               id="edit-city"
@@ -101,7 +101,7 @@ const ProfileEdit = () => {
             />
           </div>
           <div>
-            <h3>Financeiro</h3>
+            <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
             <Input
               name="Renda"
               id="edit-income"
