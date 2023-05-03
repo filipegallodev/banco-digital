@@ -11,19 +11,19 @@ const ProfileOverview = () => {
         <h3>Básico</h3>
         <p>Nome: {user?.firstName}</p>
         <p>Sobrenome: {user?.lastName}</p>
-        <p>Data de nascimento:</p>
-        <p>E-mail:</p>
-        <p>Telefone:</p>
+        <p>Data de nascimento: {user?.birth}</p>
+        <p>E-mail: {user?.username}</p>
+        <p>Telefone: {user?.phoneNumber}</p>
       </div>
       <div>
         <h3>Endereço</h3>
-        <p>Cidade:</p>
-        <p>Estado:</p>
+        <p>Cidade: {user?.city}</p>
+        <p>Estado: {user?.state}</p>
       </div>
       <div>
         <h3>Financeiro</h3>
-        <p>Renda:</p>
-        <p>Emprego:</p>
+        <p>Renda: {user?.income}</p>
+        <p>Emprego: {user?.job}</p>
       </div>
     </div>
   );

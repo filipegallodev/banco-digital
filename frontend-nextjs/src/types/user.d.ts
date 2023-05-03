@@ -14,6 +14,7 @@ interface IUserReducerState extends IFetchReducerState {
       income?: string;
       job?: string;
     };
+    status: string;
   };
 }
 
