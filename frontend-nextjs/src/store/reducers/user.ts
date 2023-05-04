@@ -37,6 +37,8 @@ const SERVER_VALIDATE_URL = "http://localhost:3333/token/validate";
 // const SERVER_VALIDATE_URL = "https://ng-cash-app-production.up.railway.app/token/validate";
 const SERVER_USER_UPDATE_URL = "http://localhost:3333/user/update";
 // const SERVER_USER_UPDATE_URL = "https://ng-cash-app-production.up.railway.app/user/update";
+const SERVER_USER_DELETE_URL = "http://localhost:3333/user/delete";
+// const SERVER_USER_DELETE_URL = "https://ng-cash-app-production.up.railway.app/user/delete";
 
 export const fetchToken =
   (token: string) => async (dispatch: Dispatch<Action<string>>) => {
@@ -68,6 +70,24 @@ export const fetchUserUpdate =
           Authorization: `${localStorage.getItem("jwt-token")}`,
         },
         body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error("Error: " + data.error);
+      dispatch(fetchSuccess(data));
+    } catch (err) {
+      if (err instanceof Error) dispatch(fetchError(err.message));
+    }
+  };
+
+export const fetchUserDelete =
+  () => async (dispatch: Dispatch<Action<string>>) => {
+    try {
+      dispatch(fetchStarted());
+      const response = await fetch(SERVER_USER_DELETE_URL, {
+        method: "DELETE",
+        headers: {
+          Authorization: `${localStorage.getItem("jwt-token")}`,
+        },
       });
       const data = await response.json();
       if (!response.ok) throw new Error("Error: " + data.error);
