@@ -49,7 +49,7 @@ export default function Painel() {
             />
             <DashboardItem
               name="Transferências"
-              data={String(transactions.data?.allTransactions?.length)}
+              data={String(transactions.data?.allTransactions?.length || 0)}
               page="transferencias"
               loading={transactions.loading}
             />

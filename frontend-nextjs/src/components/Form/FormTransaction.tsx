@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { fetchTransaction } from "@/store/reducers/transactions";
+import { fetchTransaction, resetData } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
@@ -20,6 +20,10 @@ const TransactionForm = () => {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
+
+  useEffect(() => {
+    dispatch(resetData());
+  }, [dispatch]);
 
   useEffect(() => {
     if (transactionData.value && transactionData.target)

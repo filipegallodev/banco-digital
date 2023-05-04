@@ -25,6 +25,7 @@ const slice = createSlice({
     },
     resetData: (state) => {
       state.data = null;
+      state.error = null;
     },
   },
 });

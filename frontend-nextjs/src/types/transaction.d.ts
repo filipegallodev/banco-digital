@@ -7,8 +7,8 @@ interface ITransaction {
   id: number;
   value: string;
   createdAt: string;
-  destinationAccountId: number;
-  originAccountId: number;
+  destinationAccountId: string;
+  originAccountId: string;
 }
 
 interface ITransactionReducerState extends IFetchReducerState {
