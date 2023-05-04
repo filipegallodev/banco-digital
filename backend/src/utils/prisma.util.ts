@@ -56,6 +56,20 @@ export async function createUser({
   }
 }
 
+export async function findUser(field: string, property: TProperty) {
+  if (!property) return null;
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        [field]: property,
+      },
+    });
+    return user;
+  } catch (error) {
+    return;
+  }
+}
+
 export async function updateUser(formData: IUserUpdateFormData) {
   try {
     const user = await prisma.user.update({
@@ -77,15 +91,19 @@ export async function updateUser(formData: IUserUpdateFormData) {
   }
 }
 
-export async function findUser(field: string, property: TProperty) {
-  if (!property) return null;
+export async function deleteUser(dbUser: User) {
   try {
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.delete({
       where: {
-        [field]: property,
+        id: dbUser.id,
       },
     });
-    return user;
+    const account = await prisma.account.delete({
+      where: {
+        id: dbUser.accountId,
+      },
+    });
+    return { user, account };
   } catch (error) {
     return;
   }

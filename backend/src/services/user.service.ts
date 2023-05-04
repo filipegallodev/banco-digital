@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { compareSync, hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
 import currencyFormatter from "../helpers/currencyFormatter";
 
-const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
 interface ILoginData {
@@ -95,6 +93,16 @@ export async function update(
     status: "Dados atualizados com sucesso.",
     success: true,
   };
+}
+
+export async function deleteUser(authorization: string | undefined) {
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
+  if (!dbUser) return { status: "ID de usuário inválido.", success: false };
+  const data = await PrismaUtil.deleteUser(dbUser);
+  if (!data?.user && !data?.account)
+    return { status: "Falha ao excluir usuário.", success: false };
+  return { status: "Usuário excluído com sucesso.", success: true };
 }
 
 export async function token(authorization: string | undefined) {
