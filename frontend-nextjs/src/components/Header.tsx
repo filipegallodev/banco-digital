@@ -76,7 +76,7 @@ const UserProfile = styled.div`
   cursor: pointer;
   transition: 0.1s;
   &:hover {
-    opacity: 0.85;
+    color: #fa92ff;
   }
 `;
 
@@ -85,6 +85,7 @@ const UserIcon = styled.div`
   height: 56px;
   background-color: #fff;
   border-radius: 100%;
+  filter: drop-shadow(0px 0px 2px #fff);
 `;
 
 const UserName = styled.p`
