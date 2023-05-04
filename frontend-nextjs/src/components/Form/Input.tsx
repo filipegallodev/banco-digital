@@ -51,7 +51,7 @@ const StyledInput = styled.input`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   font-size: 1.125rem;
   transition: 0.1s;
-  &:hover {
+  &:enabled:hover {
     box-shadow: 0px 0px 0px 2px #aaa;
   }
   &:focus {
