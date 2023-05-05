@@ -3,8 +3,9 @@ import login from "./reducers/login";
 import user from "./reducers/user";
 import register from "./reducers/register";
 import transactions from "./reducers/transactions";
+import modal from "./reducers/modal";
 
-const reducer = combineReducers({ user, login, register, transactions });
+const reducer = combineReducers({ user, login, register, transactions, modal });
 const store = configureStore({ reducer });
 
 export type RootState = ReturnType<typeof store.getState>;
