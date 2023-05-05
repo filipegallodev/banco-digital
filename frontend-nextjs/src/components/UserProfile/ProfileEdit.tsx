@@ -8,6 +8,7 @@ import { fetchUserUpdate } from "@/store/reducers/user";
 import Success from "../Status/Success";
 import Error from "../Status/Error";
 import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 
 const ProfileEdit = () => {
   const { data, loading, error } = useAppSelector(
@@ -36,7 +37,7 @@ const ProfileEdit = () => {
   }
 
   return (
-    <div className="animeRight">
+    <Container className="animeRight">
       <Styled.SubTitle>Editar informações</Styled.SubTitle>
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleUserUpdate}>
@@ -63,7 +64,11 @@ const ProfileEdit = () => {
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
-              value={formData.username.replace(/(\w+)(\w{4}\@\D+)/g,'$1************')}
+              value={formData.username.replace(
+                /(\w+)(\w{4}\@\D+)/g,
+                "$1************"
+              )}
+              eyeToDisplay={true}
               disabled
             />
             <Input
@@ -127,8 +132,13 @@ const ProfileEdit = () => {
           <Error message={error} />
         </Styled.Form>
       </Styled.FormContainer>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  max-width: 600px;
+  width: 100%;
+`;
 
 export default ProfileEdit;
