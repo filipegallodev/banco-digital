@@ -33,7 +33,12 @@ const FormLogin = () => {
   function handleUserLogin(event: React.FormEvent) {
     event.preventDefault();
     if (loginData.username && loginData.password) {
-      dispatch(fetchLogin(loginData));
+      dispatch(
+        fetchLogin({
+          username: loginData.username.toLowerCase(),
+          password: loginData.password,
+        })
+      );
     }
   }
 

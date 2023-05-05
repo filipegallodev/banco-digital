@@ -38,7 +38,7 @@ const FormRegister = () => {
     if (checkRegisterFields() && !invalidPassword) {
       dispatch(
         fetchRegister({
-          username: registerData.username,
+          username: registerData.username.toLowerCase(),
           password: registerData.password,
           firstName: registerData.firstName,
           lastName: registerData.lastName,
