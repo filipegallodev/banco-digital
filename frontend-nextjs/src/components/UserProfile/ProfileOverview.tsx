@@ -1,14 +1,15 @@
 import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
+import * as Styled from "../styles/Components.styled";
 
 const ProfileOverview = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data?.user);
 
   return (
     <div className="animeRight">
-      <h2>Informações Gerais</h2>
+      <Styled.SubTitle>Informações Gerais</Styled.SubTitle>
       <div>
-        <h3>Básico</h3>
+        <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
         <p>Nome: {user?.firstName}</p>
         <p>Sobrenome: {user?.lastName}</p>
         <p>Data de nascimento: {user?.birth}</p>
@@ -16,12 +17,12 @@ const ProfileOverview = () => {
         <p>Telefone: {user?.phoneNumber}</p>
       </div>
       <div>
-        <h3>Endereço</h3>
+        <Styled.ThirdTitle>Endereço</Styled.ThirdTitle>
         <p>Cidade: {user?.city}</p>
         <p>Estado: {user?.state}</p>
       </div>
       <div>
-        <h3>Financeiro</h3>
+        <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
         <p>Renda: {user?.income}</p>
         <p>Emprego: {user?.job}</p>
       </div>

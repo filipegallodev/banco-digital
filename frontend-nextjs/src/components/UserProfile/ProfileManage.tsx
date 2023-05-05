@@ -2,6 +2,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { fetchUserDelete } from "@/store/reducers/user";
 import { useRouter } from "next/router";
 import React from "react";
+import * as Styled from "../styles/Components.styled";
 
 const ProfileManage = () => {
   const router = useRouter();
@@ -14,8 +15,8 @@ const ProfileManage = () => {
 
   return (
     <div className="animeRight">
-      <h2>Gerenciar perfil</h2>
-      <button onClick={handleUserDelete}>Excluir</button>
+      <Styled.SubTitle>Gerenciar perfil</Styled.SubTitle>
+      <Styled.Button onClick={handleUserDelete}>Excluir</Styled.Button>
     </div>
   );
 };
