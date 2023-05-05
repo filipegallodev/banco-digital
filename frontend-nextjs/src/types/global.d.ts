@@ -8,4 +8,5 @@ interface IReduxState {
   login: ILoginReducerState;
   register: IRegisterReducerState;
   transactions: ITransactionReducerState;
+  modal: IModalReducerState;
 }

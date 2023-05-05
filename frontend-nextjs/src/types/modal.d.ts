@@ -1,0 +1,3 @@
+interface IModalReducerState {
+  open: boolean;
+}
