@@ -38,10 +38,6 @@ export const ThirdTitle = styled.h3`
   }
 `;
 
-export const Text = styled.p`
-  font-size: 1.125rem;
-`;
-
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
@@ -73,6 +69,6 @@ export const DangerButton = styled(Button)`
   background-color: #f55;
   &:enabled:hover {
     box-shadow: 0px 0px 0px 3px #f55;
-    background-color: #f00;
+    background-color: #f22;
   }
-`
+`;

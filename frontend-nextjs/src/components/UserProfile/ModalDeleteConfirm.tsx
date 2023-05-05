@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { closeModal } from "@/store/reducers/modal";
 import { fetchUserDelete } from "@/store/reducers/user";
 import { useRouter } from "next/router";
+import { Alert } from "@mui/material";
 
 const ModalDeleteConfirm = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,12 @@ const ModalDeleteConfirm = () => {
       <Styled.ThirdTitle>
         Tem certeza de que deseja excluir a sua conta?
       </Styled.ThirdTitle>
-      <Styled.Text>Esta é uma ação irreversível.</Styled.Text>
+      <Alert
+          severity="warning"
+          sx={{
+            boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
+          }}
+        >Esta é uma ação irreversível.</Alert>
       <Styled.ButtonContainer>
         <Styled.DangerButton onClick={handleUserDelete}>
           Sim, tenho certeza.
