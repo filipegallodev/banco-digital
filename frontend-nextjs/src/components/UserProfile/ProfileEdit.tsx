@@ -63,7 +63,7 @@ const ProfileEdit = () => {
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
-              value={formData.username}
+              value={formData.username.replace(/(\w+)(\w{4}\@\D+)/g,'$1************')}
               disabled
             />
             <Input
