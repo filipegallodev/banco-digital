@@ -6,7 +6,7 @@ import Input from "@/components/Form/Input";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
 import { CircularProgress } from "@mui/material";
-import { fetchEmailUpdate } from "@/store/reducers/user";
+import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +21,10 @@ const ProfileChangeEmail = () => {
   const [inputError, setInputError] = useState<string>("");
 
   useEffect(() => {
+    dispatch(clearStatus());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (changeEmailData.newEmail !== changeEmailData.newEmailConfirm) {
       return setInputError("E-mails não coincidem.");
     }
@@ -29,10 +33,10 @@ const ProfileChangeEmail = () => {
 
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
-    if (changeEmailData.oldEmail !== data?.user.username) {
+    if (changeEmailData.oldEmail !== data.user?.username) {
       return setInputError("E-mail atual não coincide com o cadastrado.");
     }
-    if (changeEmailData.newEmail === data?.user.username) {
+    if (changeEmailData.newEmail === data.user?.username) {
       return setInputError("O novo e-mail é igual ao e-mail atual.");
     }
     if (changeEmailData.oldEmail && changeEmailData.newEmail && !inputError)
@@ -87,7 +91,7 @@ const ProfileChangeEmail = () => {
               Trocar e-mail
             </Styled.Button>
             {loading && <CircularProgress />}
-            <Success message={!inputError ? data?.status : ""} />
+            <Success message={!inputError ? data.status : ""} />
             <Error message={error || inputError} />
           </Styled.ButtonContainer>
         </Styled.Form>

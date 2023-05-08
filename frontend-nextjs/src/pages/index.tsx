@@ -17,8 +17,8 @@ export default function Home() {
   const login = useAppSelector((state: IReduxState) => state.login);
 
   useEffect(() => {
-    if (user.data?.validToken) router.push("/painel");
-  }, [user.data?.validToken]);
+    if (user.data.validToken) router.push("/painel");
+  }, [user.data.validToken]);
 
   if (login.data) return <AuthPage />;
   return (

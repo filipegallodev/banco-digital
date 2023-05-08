@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
-  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const user = useAppSelector((state: IReduxState) => state.user.data.user);
   const { error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );

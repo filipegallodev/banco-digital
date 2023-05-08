@@ -4,7 +4,11 @@ const slice = createSlice({
   name: "user",
   initialState: {
     loading: false,
-    data: null,
+    data: {
+      user: null,
+      validToken: null,
+      status: null,
+    },
     error: null,
   },
   reducers: {
@@ -19,20 +23,30 @@ const slice = createSlice({
     },
     fetchError: (state, action) => {
       state.loading = false;
-      state.data = null;
+      clearData();
       state.error = action.payload;
     },
     resetState: (state) => {
       state.loading = false;
-      state.data = null;
+      clearData();
       state.error = null;
       localStorage.removeItem("jwt-token");
+    },
+    clearData: (state) => {
+      state.data = {
+        user: null,
+        validToken: null,
+        status: null,
+      };
+    },
+    clearStatus: (state) => {
+      state.data = { ...state.data, status: null };
     },
   },
 });
 
-export const { resetState } = slice.actions;
-const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+export const { resetState, clearStatus } = slice.actions;
+const { fetchStarted, fetchSuccess, fetchError, clearData } = slice.actions;
 const SERVER_VALIDATE_URL = "http://localhost:3333/token/validate";
 // const SERVER_VALIDATE_URL = "https://ng-cash-app-production.up.railway.app/token/validate";
 const SERVER_USER_UPDATE_URL = "http://localhost:3333/user/update";

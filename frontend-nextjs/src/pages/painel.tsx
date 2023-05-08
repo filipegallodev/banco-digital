@@ -44,7 +44,7 @@ export default function Painel() {
           <DashboardContainer>
             <DashboardItem
               name="Saldo"
-              data={user.data?.user.balance}
+              data={user.data.user.balance}
               loading={user.loading}
             />
             <DashboardItem

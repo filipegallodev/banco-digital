@@ -7,7 +7,7 @@ import styled from "styled-components";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header = () => {
-  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const user = useAppSelector((state: IReduxState) => state.user.data.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
 

@@ -1,7 +1,7 @@
 interface IUserReducerState extends IFetchReducerState {
-  data: null | {
-    validToken: boolean;
-    user: {
+  data: {
+    validToken: null | boolean;
+    user: null | {
       username: string;
       balance: string;
       firstName: string;
@@ -14,7 +14,7 @@ interface IUserReducerState extends IFetchReducerState {
       income?: string;
       job?: string;
     };
-    status: string;
+    status: null | string;
   };
 }
 

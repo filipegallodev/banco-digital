@@ -3,7 +3,7 @@ import React from "react";
 import * as Styled from "../styles/Components.styled";
 
 const ProfileOverview = () => {
-  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const user = useAppSelector((state: IReduxState) => state.user.data.user);
 
   return (
     <div className="animeRight">

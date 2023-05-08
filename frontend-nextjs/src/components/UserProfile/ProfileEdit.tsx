@@ -1,10 +1,9 @@
 import { useAppSelector } from "@/hooks/useAppSelector";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
-import { useState } from "react";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { fetchUserUpdate } from "@/store/reducers/user";
+import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
 import Success from "../Status/Success";
 import Error from "../Status/Error";
 import { CircularProgress } from "@mui/material";
@@ -14,7 +13,7 @@ const ProfileEdit = () => {
   const { data, loading, error } = useAppSelector(
     (state: IReduxState) => state.user
   );
-  const user = useAppSelector((state: IReduxState) => state.user.data?.user);
+  const user = useAppSelector((state: IReduxState) => state.user.data.user);
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<IUserUpdateFormData>({
     firstName: user?.firstName || "",
@@ -28,6 +27,10 @@ const ProfileEdit = () => {
     income: user?.income || "",
     job: user?.job || "",
   });
+
+  useEffect(() => {
+    dispatch(clearStatus());
+  }, [dispatch]);
 
   function handleUserUpdate(event: React.FormEvent) {
     event.preventDefault();
@@ -128,7 +131,7 @@ const ProfileEdit = () => {
             </Styled.Button>
             {loading && <CircularProgress />}
           </Styled.ButtonContainer>
-          <Success message={data?.status} />
+          <Success message={data.status} />
           <Error message={error} />
         </Styled.Form>
       </Styled.FormContainer>

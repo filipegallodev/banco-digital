@@ -14,7 +14,7 @@ export default function useTokenAuthentication() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    if (router.pathname !== "/painel" && !data?.validToken && token && !loading) {
+    if (router.pathname !== "/painel" && !data.validToken && token && !loading) {
       dispatch(fetchToken(token));
       return;
     }

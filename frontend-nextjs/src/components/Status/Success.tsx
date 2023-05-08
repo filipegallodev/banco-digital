@@ -2,7 +2,7 @@ import React from "react";
 import { Alert, Fade } from "@mui/material";
 import styled from "styled-components";
 
-const Success = ({ message }: { message: string | undefined }) => {
+const Success = ({ message }: { message: string | undefined | null }) => {
   if (!message) return null;
   return (
     <Container>
