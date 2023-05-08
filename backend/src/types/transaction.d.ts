@@ -1,4 +1,4 @@
-interface ITransaction {
+export interface ITransaction {
   id: string;
   debitedAccountId: number;
   creditedAccountId: number;
@@ -6,7 +6,7 @@ interface ITransaction {
   createdAt: Date;
 }
 
-interface ITransactionData {
+export interface ITransactionData {
   value: string;
   target: string;
 }

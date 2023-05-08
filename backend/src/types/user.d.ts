@@ -1,4 +1,4 @@
-interface IUserUpdateFormData {
+export interface IUserUpdateFormData {
   firstName: string;
   lastName: string;
   username: string;
@@ -11,17 +11,17 @@ interface IUserUpdateFormData {
   job?: string;
 }
 
-interface IEmailUpdateFormData {
+export interface IEmailUpdateFormData {
   oldEmail: string;
   newEmail: string;
 }
 
-interface ILoginData {
+export interface ILoginData {
   username: string;
   password: string;
 }
 
-interface IRegisterData {
+export interface IRegisterData {
   username: string;
   password: string;
   firstName: string;

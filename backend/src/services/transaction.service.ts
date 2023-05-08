@@ -4,6 +4,7 @@ import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
 import transactionsFormatter from "../helpers/transactionsFormatters";
 import getTotalTransferValue from "../helpers/getTotalTransferValue";
+import { ITransaction, ITransactionData } from "../types/transaction";
 
 const prisma = new PrismaClient();
 

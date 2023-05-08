@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-
     "incremental": true,
     "target": "ESNext",
     "module": "commonjs",
@@ -9,5 +8,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["src", "**/types/user.d.ts"]
 }

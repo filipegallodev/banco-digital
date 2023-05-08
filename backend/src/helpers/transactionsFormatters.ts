@@ -1,4 +1,5 @@
 import currencyFormatter from "./currencyFormatter";
+import { ITransaction, ITransactionData } from "../types/transaction";
 
 export default function transactionsFormatter(transactions: any[]) {
   const newList = transactionCurrencyFormatter(transactions);

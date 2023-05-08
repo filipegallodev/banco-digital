@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
 import currencyFormatter from "../helpers/currencyFormatter";
+import { ILoginData, IRegisterData, IUserUpdateFormData, IEmailUpdateFormData } from '../types/user';
 
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 

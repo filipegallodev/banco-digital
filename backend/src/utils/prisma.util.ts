@@ -1,5 +1,6 @@
 import { PrismaClient, User } from "@prisma/client";
 import { hashSync } from "bcrypt";
+import { IRegisterData, IUserUpdateFormData, IEmailUpdateFormData } from '../types/user';
 
 const prisma = new PrismaClient();
 
