@@ -31,27 +31,41 @@ export async function register(
   }
 }
 
-export async function updateUser(req: Request, res: Response, next: NextFunction) {
+export async function updateUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
-    const data = await UserService.updateUser(req.body, req.headers.authorization);
+    const data = await UserService.updateUser(
+      req.body,
+      req.headers.authorization
+    );
     if (!data?.success) throw new Error(data?.status);
     res.status(200).json({ user: data.user, status: data.status });
   } catch (err) {
     if (err instanceof Error) {
-      res.status(400).json({ error: err.message });
+      res.status(401).json({ error: err.message });
     }
     next(err);
   }
 }
 
-export async function updateEmail(req: Request, res: Response, next: NextFunction) {
+export async function updateEmail(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
-    const data = await UserService.updateEmail(req.body, req.headers.authorization);
+    const data = await UserService.updateEmail(
+      req.body,
+      req.headers.authorization
+    );
     if (!data?.success) throw new Error(data?.status);
     res.status(200).json({ user: data.user, status: data.status });
   } catch (err) {
     if (err instanceof Error) {
-      res.status(400).json({ error: err.message });
+      res.status(401).json({ error: err.message });
     }
     next(err);
   }

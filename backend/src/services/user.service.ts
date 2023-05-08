@@ -3,7 +3,12 @@ import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
 import currencyFormatter from "../helpers/currencyFormatter";
-import { ILoginData, IRegisterData, IUserUpdateFormData, IEmailUpdateFormData } from '../types/user';
+import {
+  ILoginData,
+  IRegisterData,
+  IUserUpdateFormData,
+  IEmailUpdateFormData,
+} from "../types/user";
 
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
@@ -23,6 +28,7 @@ export async function login({ username, password }: ILoginData) {
       success: true,
     };
   }
+  return { status: "E-mail ou senha incorretos.", success: false };
 }
 
 export async function register({
@@ -83,6 +89,8 @@ export async function updateEmail(
       status: "E-mail atual não coincide com o cadastrado.",
       success: false,
     };
+  if (dbUser.username === formData.newEmail)
+    return { status: "O novo e-mail é igual ao e-mail atual.", success: false };
   const updatedUser = await PrismaUtil.updateEmail(formData);
   return {
     user: {
