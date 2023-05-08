@@ -8,7 +8,7 @@ import AuthPage from "@/components/AuthPage";
 import { useEffect, useState } from "react";
 import ProfileOverview from "@/components/UserProfile/ProfileOverview";
 import ProfileEdit from "@/components/UserProfile/ProfileEdit";
-import ProfileChange from "@/components/UserProfile/ProfileChange";
+import ProfileChange from "@/components/UserProfile/ProfileChange/ProfileChange";
 import ProfileManage from "@/components/UserProfile/ProfileManage";
 
 export default function Perfil() {
