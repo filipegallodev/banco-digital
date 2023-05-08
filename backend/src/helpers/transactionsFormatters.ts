@@ -1,13 +1,5 @@
 import currencyFormatter from "./currencyFormatter";
 
-interface ITransaction {
-  id: string;
-  debitedAccountId: number;
-  creditedAccountId: number;
-  value: string;
-  createdAt: Date;
-}
-
 export default function transactionsFormatter(transactions: any[]) {
   const newList = transactionCurrencyFormatter(transactions);
   return transactionDateFormatter(newList);

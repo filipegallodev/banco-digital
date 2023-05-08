@@ -6,31 +6,6 @@ import currencyFormatter from "../helpers/currencyFormatter";
 
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
-interface ILoginData {
-  username: string;
-  password: string;
-}
-
-interface IRegisterData {
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-}
-
-interface IUserUpdateFormData {
-  firstName: string;
-  lastName: string;
-  username: string;
-  accountId: string;
-  birth?: string;
-  phoneNumber?: string;
-  city?: string;
-  state?: string;
-  income?: string;
-  job?: string;
-}
-
 export async function login({ username, password }: ILoginData) {
   const dbUser = await PrismaUtil.findUser("username", username);
   if (!dbUser?.username)
@@ -78,7 +53,7 @@ export async function register({
   };
 }
 
-export async function update(
+export async function updateUser(
   formData: IUserUpdateFormData,
   authorization: string | undefined
 ) {
@@ -91,6 +66,20 @@ export async function update(
       ...updatedUser,
     },
     status: "Dados atualizados com sucesso.",
+    success: true,
+  };
+}
+
+export async function updateEmail(
+  formData: any,
+  authorization: string | undefined
+) {
+  const updatedUser = {};
+  return {
+    user: {
+      ...updatedUser,
+    },
+    status: "E-mail atualizado com sucesso.",
     success: true,
   };
 }

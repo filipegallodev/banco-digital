@@ -7,11 +7,6 @@ import getTotalTransferValue from "../helpers/getTotalTransferValue";
 
 const prisma = new PrismaClient();
 
-interface ITransactionData {
-  value: string;
-  target: string;
-}
-
 export async function create(
   { target, value }: ITransactionData,
   authorization: string | undefined

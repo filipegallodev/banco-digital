@@ -5,26 +5,6 @@ const prisma = new PrismaClient();
 
 type TProperty = string | number | undefined;
 
-interface IRegisterData {
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-}
-
-interface IUserUpdateFormData {
-  firstName: string;
-  lastName: string;
-  username: string;
-  accountId: string;
-  birth?: string;
-  phoneNumber?: string;
-  city?: string;
-  state?: string;
-  income?: string;
-  job?: string;
-}
-
 export async function createUser({
   username,
   password,
