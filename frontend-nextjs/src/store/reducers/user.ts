@@ -1,5 +1,4 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
-import fetchData from "../utils/fetchData";
 
 const slice = createSlice({
   name: "user",
@@ -32,8 +31,8 @@ const slice = createSlice({
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError, resetState } =
-  slice.actions;
+export const { resetState } = slice.actions;
+const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 const SERVER_VALIDATE_URL = "http://localhost:3333/token/validate";
 // const SERVER_VALIDATE_URL = "https://ng-cash-app-production.up.railway.app/token/validate";
 const SERVER_USER_UPDATE_URL = "http://localhost:3333/user/update";
@@ -42,6 +41,22 @@ const SERVER_EMAIL_UPDATE_URL = "http://localhost:3333/user/update/email";
 // const SERVER_EMAIL_UPDATE_URL = "https://ng-cash-app-production.up.railway.app/user/update/email";
 const SERVER_USER_DELETE_URL = "http://localhost:3333/user/delete";
 // const SERVER_USER_DELETE_URL = "https://ng-cash-app-production.up.railway.app/user/delete";
+
+async function fetchData(
+  dispatch: Dispatch<Action<string>>,
+  fetchUrl: string,
+  fetchOptions: {}
+) {
+  try {
+    dispatch(fetchStarted());
+    const response = await fetch(fetchUrl, fetchOptions);
+    const data = await response.json();
+    if (!response.ok) throw new Error("Error: " + data.error);
+    dispatch(fetchSuccess(data));
+  } catch (err) {
+    if (err instanceof Error) dispatch(fetchError(err.message));
+  }
+}
 
 export const fetchToken =
   (token: string) => async (dispatch: Dispatch<Action<string>>) => {
