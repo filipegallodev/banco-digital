@@ -1,4 +1,5 @@
-interface IUserReducerState extends IFetchReducerState {
+interface IUserReducerState {
+  loading: boolean;
   data: {
     validToken: null | boolean;
     user: null | {
@@ -16,6 +17,7 @@ interface IUserReducerState extends IFetchReducerState {
     };
     status: null | string;
   };
+  error: null | string;
 }
 
 interface IUserUpdateFormData {
