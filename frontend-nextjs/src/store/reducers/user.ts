@@ -84,19 +84,19 @@ export const fetchUserUpdate =
 export const fetchEmailUpdate =
   (formData: IEmailUpdateFormData) =>
   async (dispatch: Dispatch<Action<string>>) => {
-    dispatch(fetchStarted());
-    const response = await fetch(SERVER_EMAIL_UPDATE_URL, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${localStorage.getItem("jwt-token")}`,
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error("Error: " + data.error);
-    dispatch(fetchSuccess(data));
     try {
+      dispatch(fetchStarted());
+      const response = await fetch(SERVER_EMAIL_UPDATE_URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("jwt-token")}`,
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error("Error: " + data.error);
+      dispatch(fetchSuccess(data));
     } catch (err) {
       if (err instanceof Error) dispatch(fetchError(err.message));
     }
