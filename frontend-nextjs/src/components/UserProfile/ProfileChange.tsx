@@ -28,6 +28,13 @@ const ProfileChange = () => {
   });
 
   useEffect(() => {
+    return setChangeEmailData({
+      ...changeEmailData,
+      error: "",
+    });
+  }, [changeEmailData.oldEmail]);
+
+  useEffect(() => {
     if (changeEmailData.newEmail !== changeEmailData.newEmailConfirm) {
       return setChangeEmailData({
         ...changeEmailData,
@@ -57,6 +64,18 @@ const ProfileChange = () => {
 
   function handleEmailChange(event: React.FormEvent) {
     event.preventDefault();
+    if (changeEmailData.oldEmail !== data?.user.username) {
+      return setChangeEmailData({
+        ...changeEmailData,
+        error: "E-mail atual não coincide com o cadastrado.",
+      });
+    }
+    if (changeEmailData.newEmail === data?.user.username) {
+      return setChangeEmailData({
+        ...changeEmailData,
+        error: "O novo e-mail é igual ao e-mail atual.",
+      });
+    }
     if (
       changeEmailData.oldEmail &&
       changeEmailData.newEmail &&
@@ -102,7 +121,14 @@ const ProfileChange = () => {
           />
           <Styled.ButtonContainer>
             <Styled.Button
-              disabled={changeEmailData.error || loading ? true : false}
+              disabled={
+                !changeEmailData.oldEmail ||
+                !changeEmailData.newEmailConfirm ||
+                changeEmailData.error ||
+                loading
+                  ? true
+                  : false
+              }
             >
               Trocar e-mail
             </Styled.Button>
@@ -138,7 +164,15 @@ const ProfileChange = () => {
             value={changePasswordData.newPasswordConfirm}
           />
           <Styled.ButtonContainer>
-            <Styled.Button disabled={changePasswordData.error ? true : false}>
+            <Styled.Button
+              disabled={
+                !changePasswordData.oldPassword ||
+                !changePasswordData.newPasswordConfirm ||
+                changePasswordData.error
+                  ? true
+                  : false
+              }
+            >
               Trocar senha
             </Styled.Button>
             {changePasswordData.error && (
