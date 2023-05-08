@@ -33,7 +33,7 @@ export default function Perfil() {
   return (
     <>
       <Head>
-        <title>Meu perfil | Seja Bem-vindo!</title>
+        <title>Meu perfil | Banco Digital</title>
         <meta name="description" content="Meu perfil do Banco Digital." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
