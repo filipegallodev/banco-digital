@@ -30,3 +30,8 @@ interface IUserUpdateFormData {
   income?: string;
   job?: string;
 }
+
+interface IEmailUpdateFormData {
+  oldEmail: string;
+  newEmail: string;
+}

@@ -3,8 +3,17 @@ import * as Styled from "../styles/Components.styled";
 import styled from "styled-components";
 import Input from "../Form/Input";
 import Error from "../Status/Error";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { fetchEmailUpdate } from "@/store/reducers/user";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import Success from "../Status/Success";
+import { CircularProgress } from "@mui/material";
 
 const ProfileChange = () => {
+  const dispatch = useAppDispatch();
+  const { data, error, loading } = useAppSelector(
+    (state: IReduxState) => state.user
+  );
   const [changeEmailData, setChangeEmailData] = useState({
     oldEmail: "",
     newEmail: "",
@@ -29,7 +38,7 @@ const ProfileChange = () => {
       ...changeEmailData,
       error: "",
     });
-  }, [changeEmailData]);
+  }, [changeEmailData.newEmail, changeEmailData.newEmailConfirm]);
 
   useEffect(() => {
     if (
@@ -44,14 +53,29 @@ const ProfileChange = () => {
       ...changePasswordData,
       error: "",
     });
-  }, [changePasswordData]);
+  }, [changePasswordData.newPassword, changePasswordData.newPasswordConfirm]);
+
+  function handleEmailChange(event: React.FormEvent) {
+    event.preventDefault();
+    if (
+      changeEmailData.oldEmail &&
+      changeEmailData.newEmail &&
+      !changeEmailData.error
+    )
+      dispatch(
+        fetchEmailUpdate({
+          oldEmail: changeEmailData.oldEmail,
+          newEmail: changeEmailData.newEmail,
+        })
+      );
+  }
 
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Trocar e-mail/senha</Styled.SubTitle>
       <Styled.ThirdTitle>E-mail</Styled.ThirdTitle>
       <Styled.FormContainer>
-        <Styled.Form>
+        <Styled.Form onSubmit={handleEmailChange}>
           <Input
             name="E-mail atual"
             id="oldEmail"
@@ -77,9 +101,14 @@ const ProfileChange = () => {
             value={changeEmailData.newEmailConfirm}
           />
           <Styled.ButtonContainer>
-            <Styled.Button disabled={changeEmailData.error ? true : false}>
+            <Styled.Button
+              disabled={changeEmailData.error || loading ? true : false}
+            >
               Trocar e-mail
             </Styled.Button>
+            {loading && <CircularProgress />}
+            <Success message={data?.status} />
+            <Error message={error} />
             {changeEmailData.error && <Error message={changeEmailData.error} />}
           </Styled.ButtonContainer>
         </Styled.Form>

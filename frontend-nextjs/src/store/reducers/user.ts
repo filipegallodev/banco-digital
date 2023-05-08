@@ -37,6 +37,8 @@ const SERVER_VALIDATE_URL = "http://localhost:3333/token/validate";
 // const SERVER_VALIDATE_URL = "https://ng-cash-app-production.up.railway.app/token/validate";
 const SERVER_USER_UPDATE_URL = "http://localhost:3333/user/update";
 // const SERVER_USER_UPDATE_URL = "https://ng-cash-app-production.up.railway.app/user/update";
+const SERVER_EMAIL_UPDATE_URL = "http://localhost:3333/user/update/email";
+// const SERVER_EMAIL_UPDATE_URL = "https://ng-cash-app-production.up.railway.app/user/update/email";
 const SERVER_USER_DELETE_URL = "http://localhost:3333/user/delete";
 // const SERVER_USER_DELETE_URL = "https://ng-cash-app-production.up.railway.app/user/delete";
 
@@ -74,6 +76,27 @@ export const fetchUserUpdate =
       const data = await response.json();
       if (!response.ok) throw new Error("Error: " + data.error);
       dispatch(fetchSuccess(data));
+    } catch (err) {
+      if (err instanceof Error) dispatch(fetchError(err.message));
+    }
+  };
+
+export const fetchEmailUpdate =
+  (formData: IEmailUpdateFormData) =>
+  async (dispatch: Dispatch<Action<string>>) => {
+    dispatch(fetchStarted());
+    const response = await fetch(SERVER_EMAIL_UPDATE_URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${localStorage.getItem("jwt-token")}`,
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error("Error: " + data.error);
+    dispatch(fetchSuccess(data));
+    try {
     } catch (err) {
       if (err instanceof Error) dispatch(fetchError(err.message));
     }
