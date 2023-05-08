@@ -1,4 +1,4 @@
-import { compareSync, hashSync } from "bcrypt";
+import { compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
@@ -71,10 +71,18 @@ export async function updateUser(
 }
 
 export async function updateEmail(
-  formData: any,
+  formData: IEmailUpdateFormData,
   authorization: string | undefined
 ) {
-  const updatedUser = {};
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
+  if (!dbUser) return { status: "ID de usuário inválido.", success: false };
+  if (dbUser?.username !== formData.oldEmail)
+    return {
+      status: "E-mail atual não coincide com o cadastrado.",
+      success: false,
+    };
+  const updatedUser = await PrismaUtil.updateEmail(formData);
   return {
     user: {
       ...updatedUser,

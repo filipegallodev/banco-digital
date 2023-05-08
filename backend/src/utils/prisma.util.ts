@@ -71,6 +71,22 @@ export async function updateUser(formData: IUserUpdateFormData) {
   }
 }
 
+export async function updateEmail(formData: IEmailUpdateFormData) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        username: formData.oldEmail,
+      },
+      data: {
+        username: formData.newEmail,
+      },
+    });
+    return user;
+  } catch (error) {
+    return;
+  }
+}
+
 export async function deleteUser(dbUser: User) {
   try {
     const user = await prisma.user.delete({
