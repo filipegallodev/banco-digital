@@ -1,4 +1,5 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
+import { AppThunk } from "../configureStore";
 
 const initialState: IUserReducerState = {
   loading: false,
@@ -50,11 +51,11 @@ export const {
 const SERVER_URL = "http://localhost:3333/";
 // const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
-async function fetchData(
+const fetchData = async (
   dispatch: Dispatch<Action<string>>,
   fetchPath: string,
   fetchOptions: {}
-) {
+) => {
   try {
     dispatch(fetchStarted());
     const response = await fetch(SERVER_URL + fetchPath, fetchOptions);
@@ -64,11 +65,12 @@ async function fetchData(
   } catch (err) {
     if (err instanceof Error) dispatch(fetchError(err.message));
   }
-}
+};
 
 export const fetchToken =
-  (token: string) => async (dispatch: Dispatch<Action<string>>) => {
-    await fetchData(dispatch, "token/validate", {
+  (token: string): AppThunk =>
+  async (dispatch) => {
+    fetchData(dispatch, "token/validate", {
       method: "POST",
       headers: {
         Authorization: `${token}`,
@@ -77,10 +79,10 @@ export const fetchToken =
   };
 
 export const fetchUserUpdate =
-  (formData: IUserUpdateFormData) =>
-  async (dispatch: Dispatch<Action<string>>) => {
+  (formData: IUserUpdateFormData): AppThunk =>
+  (dispatch) => {
     const token = localStorage.getItem("jwt-token");
-    await fetchData(dispatch, "user/update", {
+    fetchData(dispatch, "user/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -91,10 +93,10 @@ export const fetchUserUpdate =
   };
 
 export const fetchEmailUpdate =
-  (formData: IEmailUpdateFormData) =>
-  async (dispatch: Dispatch<Action<string>>) => {
+  (formData: IEmailUpdateFormData): AppThunk =>
+  (dispatch) => {
     const token = localStorage.getItem("jwt-token");
-    await fetchData(dispatch, "user/update/email", {
+    fetchData(dispatch, "user/update/email", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -104,15 +106,14 @@ export const fetchEmailUpdate =
     });
   };
 
-export const fetchUserDelete =
-  () => async (dispatch: Dispatch<Action<string>>) => {
-    const token = localStorage.getItem("jwt-token");
-    await fetchData(dispatch, "user/delete", {
-      method: "DELETE",
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
-  };
+export const fetchUserDelete = (): AppThunk => (dispatch) => {
+  const token = localStorage.getItem("jwt-token");
+  fetchData(dispatch, "user/delete", {
+    method: "DELETE",
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+};
 
 export default slice.reducer;
