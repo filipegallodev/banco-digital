@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
-import { resetData } from "@/store/reducers/transactions";
+import { clearStatus } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ export default function Nova() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(resetData());
+    dispatch(clearStatus());
   }, [dispatch]);
 
   if (!user.data) return <AuthPage />;

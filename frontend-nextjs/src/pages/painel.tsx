@@ -38,13 +38,13 @@ export default function Painel() {
         <Container>
           <Title>Visão geral</Title>
           <WelcomeMessage>
-            Olá, {user.data && user.data.user.firstName}! Aqui está o resumo de
+            Olá, {user.data && user.data.user?.firstName}! Aqui está o resumo de
             sua conta:
           </WelcomeMessage>
           <DashboardContainer>
             <DashboardItem
               name="Saldo"
-              data={user.data.user.balance}
+              data={user.data.user?.balance}
               loading={user.loading}
             />
             <DashboardItem

@@ -11,11 +11,12 @@ interface ITransaction {
   originAccountId: string;
 }
 
-interface ITransactionReducerState extends IFetchReducerState {
+interface ITransactionReducerState {
+  loading: boolean;
   data: null | {
-    status: string;
-    allTransactions?: ITransaction[];
-    totalTransferValue: string;
-    success?: boolean;
+    status: null | string;
+    allTransactions?: undefined | ITransaction[];
+    totalTransferValue: undefined | string;
   };
+  error: null | string;
 }

@@ -1,12 +1,19 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
+import { AppThunk } from "../configureStore";
+
+const initialState: ITransactionReducerState = {
+  loading: false,
+  data: {
+    status: null,
+    allTransactions: undefined,
+    totalTransferValue: undefined,
+  },
+  error: null,
+};
 
 const slice = createSlice({
   name: "transactions",
-  initialState: {
-    loading: false,
-    data: null,
-    error: null,
-  },
+  initialState,
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
@@ -23,59 +30,56 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
-    resetData: (state) => {
-      state.data = null;
+    clearStatus: (state) => {
+      if (state.data) state.data.status = null;
       state.error = null;
     },
   },
 });
 
-export const { resetData } = slice.actions;
-export const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
-const SERVER_NEW_TRANSACTION_URL = "http://localhost:3333/transaction/create";
-// const SERVER_NEW_TRANSACTION_URL =
-//   "https://ng-cash-app-production.up.railway.app/transaction/create";
-const SERVER_TRANSACTIONS_LIST_URL = "http://localhost:3333/transaction/list";
-// const SERVER_TRANSACTIONS_LIST_URL =
-//   "https://ng-cash-app-production.up.railway.app/transaction/list";
+export const { fetchStarted, fetchSuccess, fetchError, clearStatus } =
+  slice.actions;
+const SERVER_URL = "http://localhost:3333/";
+// const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
-async function fetchData(
+const fetchData = async (
   dispatch: Dispatch<Action<string>>,
-  fetchUrl: string,
+  fetchPath: string,
   fetchOptions: {}
-) {
+) => {
   try {
     dispatch(fetchStarted());
-    const response = await fetch(fetchUrl, fetchOptions);
+    const response = await fetch(SERVER_URL + fetchPath, fetchOptions);
     const data = await response.json();
     if (!response.ok) throw new Error("Error: " + data.error);
     dispatch(fetchSuccess(data));
   } catch (err) {
     if (err instanceof Error) dispatch(fetchError(err.message));
   }
-}
+};
 
 export const fetchTransaction =
-  (transactionData: ITransactionFormData) =>
-  async (dispatch: Dispatch<Action<string>>) => {
-    await fetchData(dispatch, SERVER_NEW_TRANSACTION_URL, {
+  (transactionData: ITransactionFormData): AppThunk =>
+  async (dispatch) => {
+    const token = localStorage.getItem("jwt-token");
+    await fetchData(dispatch, "transaction/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${localStorage.getItem("jwt-token")}`,
+        Authorization: `${token}`,
       },
       body: JSON.stringify(transactionData),
     });
   };
 
-export const fetchTransactionsList =
-  () => async (dispatch: Dispatch<Action<string>>) => {
-    await fetchData(dispatch, SERVER_TRANSACTIONS_LIST_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `${localStorage.getItem("jwt-token")}`,
-      },
-    });
-  };
+export const fetchTransactionsList = (): AppThunk => async (dispatch) => {
+  const token = localStorage.getItem("jwt-token");
+  await fetchData(dispatch, "transaction/list", {
+    method: "POST",
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+};
 
 export default slice.reducer;

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { fetchTransaction, resetData } from "@/store/reducers/transactions";
+import { clearStatus, fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
@@ -22,7 +22,7 @@ const TransactionForm = () => {
   );
 
   useEffect(() => {
-    dispatch(resetData());
+    dispatch(clearStatus());
   }, [dispatch]);
 
   useEffect(() => {
