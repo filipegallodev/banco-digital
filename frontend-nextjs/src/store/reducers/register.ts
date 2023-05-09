@@ -1,12 +1,16 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 
+const initialState: IRegisterReducerState = {
+  loading: false,
+  data: {
+    status: null,
+  },
+  error: null,
+};
+
 const slice = createSlice({
   name: "register",
-  initialState: {
-    loading: false,
-    data: null,
-    error: null,
-  },
+  initialState,
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
@@ -27,16 +31,15 @@ const slice = createSlice({
 });
 
 const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
-const SERVER_REGISTER_URL = "http://localhost:3333/register";
-// const SERVER_REGISTER_URL =
-//   "https://ng-cash-app-production.up.railway.app/register";
+const SERVER_URL = "http://localhost:3333/";
+// const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
 export const fetchRegister =
   (registerData: IRegisterFormData) =>
   async (dispatch: Dispatch<Action<string>>) => {
     try {
       dispatch(fetchStarted());
-      const response = await fetch(SERVER_REGISTER_URL, {
+      const response = await fetch(SERVER_URL + "register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

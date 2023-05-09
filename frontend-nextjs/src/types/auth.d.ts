@@ -10,15 +10,19 @@ interface IRegisterFormData {
   lastName: string;
 }
 
-interface ILoginReducerState extends IFetchReducerState {
+interface ILoginReducerState {
+  loading: boolean;
   data: null | {
     status: string;
     token: string;
   };
+  error: null | string;
 }
 
-interface IRegisterReducerState extends IFetchReducerState {
+interface IRegisterReducerState {
+  loading: boolean;
   data: null | {
-    status: string;
+    status: null | string;
   };
+  error: null | string;
 }
