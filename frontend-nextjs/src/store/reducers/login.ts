@@ -1,12 +1,17 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 
+const initialState: ILoginReducerState = {
+  loading: false,
+  data: {
+    status: null,
+    token: null,
+  },
+  error: null,
+};
+
 const slice = createSlice({
   name: "login",
-  initialState: {
-    loading: false,
-    data: null,
-    error: null,
-  },
+  initialState,
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
@@ -30,16 +35,16 @@ const slice = createSlice({
   },
 });
 
-export const { resetLoginData } = slice.actions;
-const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
-const SERVER_LOGIN_URL = "http://localhost:3333/login";
-// const SERVER_LOGIN_URL = "https://ng-cash-app-production.up.railway.app/login";
+export const { fetchStarted, fetchSuccess, fetchError, resetLoginData } =
+  slice.actions;
+const SERVER_URL = "http://localhost:3333/";
+// const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
 export const fetchLogin =
   (loginData: ILoginFormData) => async (dispatch: Dispatch<Action<string>>) => {
     try {
       dispatch(fetchStarted());
-      const response = await fetch(SERVER_LOGIN_URL, {
+      const response = await fetch(SERVER_URL + "login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +55,7 @@ export const fetchLogin =
       if (!response.ok) throw new Error(data.error);
       dispatch(fetchSuccess(data));
     } catch (err) {
-      if (err instanceof Error) {
-        dispatch(fetchError(err.message));
-      }
+      if (err instanceof Error) dispatch(fetchError(err.message));
     }
   };
 

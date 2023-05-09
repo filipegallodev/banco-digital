@@ -13,8 +13,8 @@ interface IRegisterFormData {
 interface ILoginReducerState {
   loading: boolean;
   data: null | {
-    status: string;
-    token: string;
+    status: null | string;
+    token: null | string;
   };
   error: null | string;
 }
