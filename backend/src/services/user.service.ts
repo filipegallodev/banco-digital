@@ -125,7 +125,7 @@ export async function token(authorization: string | undefined) {
   const user = {
     ...dbUser,
     balance: brazilianCurrency,
-    loan: loanCalculation(dbUser.income)
+    loan: currencyFormatter("pt-BR", "BRL", loanCalculation(dbUser.income)),
   };
   return { status: "Token validado com sucesso.", success: true, user };
 }

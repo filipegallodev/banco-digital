@@ -21,7 +21,7 @@ export default function Painel() {
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
-    if (login.data) dispatch(resetLoginData());
+    if (login.data?.token) dispatch(resetLoginData());
   }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
@@ -70,6 +70,7 @@ export default function Painel() {
             />
             <DashboardItem
               name="Empréstimos"
+              prefix="até"
               data={user.data.user?.loan}
               loading={transactions.loading}
             />

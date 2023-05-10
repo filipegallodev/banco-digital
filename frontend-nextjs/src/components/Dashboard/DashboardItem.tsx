@@ -7,9 +7,16 @@ interface IProps {
   data?: string;
   page?: string;
   loading: boolean;
+  prefix?: string;
 }
 
-const DashboardItem = ({ name, data = "R$ 0", page, loading }: IProps) => {
+const DashboardItem = ({
+  name,
+  data = "R$ 0",
+  page,
+  loading,
+  prefix = "",
+}: IProps) => {
   const route = useRouter();
 
   function handleClick() {
@@ -28,7 +35,7 @@ const DashboardItem = ({ name, data = "R$ 0", page, loading }: IProps) => {
             : ""
         }
       >
-        {loading ? "Carregando..." : data}
+        {loading ? "Carregando..." : `${prefix} ${data}`}
       </Data>
     </Container>
   );
