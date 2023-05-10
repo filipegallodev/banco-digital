@@ -14,6 +14,7 @@ interface IUserReducerState {
       state?: string;
       income?: string;
       job?: string;
+      loan?: string;
     };
     status: null | string;
   };

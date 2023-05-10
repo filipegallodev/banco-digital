@@ -9,6 +9,7 @@ import {
   IUserUpdateFormData,
   IEmailUpdateFormData,
 } from "../types/user";
+import loanCalculation from "../helpers/loanCalculation";
 
 const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
@@ -124,6 +125,7 @@ export async function token(authorization: string | undefined) {
   const user = {
     ...dbUser,
     balance: brazilianCurrency,
+    loan: loanCalculation(dbUser.income)
   };
   return { status: "Token validado com sucesso.", success: true, user };
 }

@@ -70,7 +70,7 @@ export default function Painel() {
             />
             <DashboardItem
               name="Empréstimos"
-              data={"0"}
+              data={user.data.user?.loan}
               loading={transactions.loading}
             />
           </DashboardContainer>
