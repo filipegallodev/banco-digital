@@ -20,7 +20,6 @@ export default function Home() {
     if (user.data.validToken) router.push("/painel");
   }, [user.data.validToken]);
 
-  if (login.data) return <AuthPage />;
   return (
     <>
       <Head>

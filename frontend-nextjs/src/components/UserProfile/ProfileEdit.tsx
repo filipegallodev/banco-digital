@@ -8,6 +8,7 @@ import Success from "../Status/Success";
 import Error from "../Status/Error";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
+import CurrencyInput from "react-currency-input-field";
 
 const ProfileEdit = () => {
   const { data, loading, error } = useAppSelector(
@@ -110,13 +111,20 @@ const ProfileEdit = () => {
           </div>
           <div>
             <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
-            <Input
-              name="Renda"
-              id="edit-income"
-              formData={formData}
-              saveFormData={setFormData}
-              value={formData.income}
-            />
+            <Styled.Label>Renda</Styled.Label>
+            <Styled.CurrencyInputContainer>
+              <CurrencyInput
+                id="transaction-value"
+                name="transaction-value"
+                placeholder="R$ 0,00"
+                prefix="R$ "
+                decimalsLimit={2}
+                value={formData.income}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, income: value })
+                }
+              />
+            </Styled.CurrencyInputContainer>
             <Input
               name="Emprego"
               id="edit-job"
@@ -130,9 +138,9 @@ const ProfileEdit = () => {
               {loading ? "Salvando" : "Salvar"}
             </Styled.Button>
             {loading && <CircularProgress />}
+            <Success message={data.status} />
+            <Error message={error} />
           </Styled.ButtonContainer>
-          <Success message={data.status} />
-          <Error message={error} />
         </Styled.Form>
       </Styled.FormContainer>
     </Container>

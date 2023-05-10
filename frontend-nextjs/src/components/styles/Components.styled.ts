@@ -10,6 +10,44 @@ export const Form = styled.form`
   margin-bottom: 24px;
 `;
 
+export const Label = styled.label`
+  display: block;
+  font-size: 1.25rem;
+`;
+
+export const CurrencyInputContainer = styled.div`
+  margin: 4px 0px 12px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  & svg {
+    color: #555;
+    cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+      color: #000;
+    }
+  }
+  & input {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.125rem;
+    transition: 0.1s;
+    &:enabled:hover {
+      box-shadow: 0px 0px 0px 2px #aaa;
+    }
+    &:focus {
+      box-shadow: 0px 0px 0px 2px #222;
+      outline: double;
+    }
+  }
+`;
+
 export const SubTitle = styled.h2`
   margin: 32px 0px;
   font-size: 2rem;
