@@ -71,6 +71,7 @@ export default function Painel() {
             <DashboardItem
               name="Empréstimos"
               prefix="até"
+              page="emprestimos"
               data={user.data.user?.loan}
               loading={transactions.loading}
             />
