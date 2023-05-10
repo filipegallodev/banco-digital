@@ -29,7 +29,7 @@ export default function Perfil() {
     }
   }, [menuItem]);
 
-  if (!user.data) return <AuthPage />;
+  if (!user.data.user) return <AuthPage />;
   return (
     <>
       <Head>

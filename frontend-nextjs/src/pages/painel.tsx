@@ -24,7 +24,7 @@ export default function Painel() {
     if (login.data?.token) dispatch(resetLoginData());
   }, [dispatch]);
 
-  if (!user.data) return <AuthPage />;
+  if (!user.data.user) return <AuthPage />;
   return (
     <>
       <Head>

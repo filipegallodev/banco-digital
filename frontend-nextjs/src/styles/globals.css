@@ -36,6 +36,7 @@ a {
   animation: slideToRight 0.5s forwards;
 }
 
+/* Scrollbar */
 html {
   overflow-y: scroll;
 }

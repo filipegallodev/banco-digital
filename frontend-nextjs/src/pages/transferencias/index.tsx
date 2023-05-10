@@ -10,7 +10,7 @@ import styled from "styled-components";
 export default function Transferencias() {
   const user = useTokenAuthentication();
 
-  if (!user.data) return <AuthPage />;
+  if (!user.data.user) return <AuthPage />;
   return (
     <>
       <Head>

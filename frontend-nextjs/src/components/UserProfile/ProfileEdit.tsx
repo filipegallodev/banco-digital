@@ -1,8 +1,8 @@
-import { useAppSelector } from "@/hooks/useAppSelector";
 import React, { useState, useEffect } from "react";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
 import Success from "../Status/Success";
 import Error from "../Status/Error";
@@ -84,9 +84,10 @@ const ProfileEdit = () => {
               value={formData.birth}
             />
             <Input
-              name="Telefone"
-              id="edit-phone-number"
+              name="Telefone celular"
+              id="edit-phoneNumber"
               type="tel"
+              placeholder="(00) 00000-0000"
               formData={formData}
               saveFormData={setFormData}
               value={formData.phoneNumber}
@@ -114,8 +115,8 @@ const ProfileEdit = () => {
             <Styled.Label>Renda</Styled.Label>
             <Styled.CurrencyInputContainer>
               <CurrencyInput
-                id="transaction-value"
-                name="transaction-value"
+                id="income-value"
+                name="income-value"
                 placeholder="R$ 0,00"
                 prefix="R$ "
                 decimalsLimit={2}

@@ -17,7 +17,7 @@ export default function Nova() {
     dispatch(clearStatus());
   }, [dispatch]);
 
-  if (!user.data) return <AuthPage />;
+  if (!user.data.user) return <AuthPage />;
   return (
     <>
       <Head>
