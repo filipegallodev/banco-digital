@@ -1,6 +1,11 @@
 import { PrismaClient, User } from "@prisma/client";
 import { hashSync } from "bcrypt";
-import { IRegisterData, IUserUpdateFormData, IEmailUpdateFormData } from '../types/user';
+import {
+  IRegisterData,
+  IUserUpdateFormData,
+  IEmailUpdateFormData,
+  IPasswordUpdateFormData,
+} from "../types/user";
 
 const prisma = new PrismaClient();
 
@@ -83,6 +88,27 @@ export async function updateEmail(formData: IEmailUpdateFormData) {
       },
     });
     return user;
+  } catch (error) {
+    return;
+  }
+}
+
+export async function updatePassword(
+  formData: IPasswordUpdateFormData,
+  user: User
+) {
+  try {
+    const saltRounds = 10;
+    const hashedPassword = hashSync(formData.newPassword, saltRounds);
+    const updatedUser = await prisma.user.update({
+      where: {
+        username: user.username,
+      },
+      data: {
+        password: hashedPassword,
+      },
+    });
+    return updatedUser;
   } catch (error) {
     return;
   }

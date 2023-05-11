@@ -9,7 +9,9 @@ userRouter.post("/register", UserController.register);
 
 userRouter.put("/user/update", UserController.updateUser);
 
-userRouter.put("/user/update/email", UserController.updateEmail)
+userRouter.put("/user/update/email", UserController.updateEmail);
+
+userRouter.put("/user/update/password", UserController.updatePassword);
 
 userRouter.delete("/user/delete", UserController.deleteUser);
 

@@ -1,4 +1,4 @@
-import { compareSync } from "bcrypt";
+import { compareSync, hashSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import checkAuth from "../middleware/checkAuth.middleware";
 import * as PrismaUtil from "../utils/prisma.util";
@@ -8,6 +8,7 @@ import {
   IRegisterData,
   IUserUpdateFormData,
   IEmailUpdateFormData,
+  IPasswordUpdateFormData,
 } from "../types/user";
 import loanCalculation from "../helpers/loanCalculation";
 
@@ -15,11 +16,8 @@ const JWT_SECRET = process.env.JWT_SECRET || "ngcash2022";
 
 export async function login({ username, password }: ILoginData) {
   const dbUser = await PrismaUtil.findUser("username", username);
-  if (!dbUser?.username)
-    return { status: "E-mail ou senha incorretos.", success: false };
-  const dbPassword = dbUser?.password || "null";
-  const passwordComparisonResult = compareSync(password, dbPassword);
-  if (passwordComparisonResult) {
+  if (!dbUser) return { status: "E-mail ou senha incorretos.", success: false };
+  if (compareSync(password, dbUser.password)) {
     const token = jwt.sign({ userId: dbUser.id }, JWT_SECRET, {
       expiresIn: 86400,
     });
@@ -98,6 +96,33 @@ export async function updateEmail(
       ...updatedUser,
     },
     status: "E-mail atualizado com sucesso.",
+    success: true,
+  };
+}
+
+export async function updatePassword(
+  formData: IPasswordUpdateFormData,
+  authorization: string | undefined
+) {
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
+  if (!dbUser) return { status: "ID de usuário inválido.", success: false };
+  if (!compareSync(formData.oldPassword, dbUser.password))
+    return {
+      status: "Senha atual incorreta.",
+      success: false,
+    };
+  if (compareSync(formData.newPassword, dbUser.password))
+    return {
+      status: "A nova senha deve ser diferente da senha atual.",
+      success: false,
+    };
+  const updatedUser = await PrismaUtil.updatePassword(formData, dbUser);
+  return {
+    user: {
+      ...updatedUser,
+    },
+    status: "Senha atualizada com sucesso.",
     success: true,
   };
 }

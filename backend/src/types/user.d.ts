@@ -16,6 +16,11 @@ export interface IEmailUpdateFormData {
   newEmail: string;
 }
 
+export interface IPasswordUpdateFormData {
+  oldPassword: string;
+  newPassword: string;
+}
+
 export interface ILoginData {
   username: string;
   password: string;
