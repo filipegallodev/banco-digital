@@ -62,7 +62,8 @@ const fetchData = async (
     if (!response.ok) throw new Error("Error: " + data.error);
     dispatch(fetchSuccess(data));
   } catch (err) {
-    if (err instanceof Error) dispatch(fetchError(err.message));
+    if (err instanceof Error)
+      dispatch(fetchError(err.message.replace("Error: ", "")));
   }
 };
 
