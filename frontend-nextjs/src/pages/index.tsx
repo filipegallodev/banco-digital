@@ -9,17 +9,20 @@ import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import * as Styled from "@/components/styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import AuthPage from "@/components/AuthPage";
+import Error from "@/components/Status/Error";
 
 export default function Home() {
   const user = useTokenAuthentication();
   const router = useRouter();
   const [form, setForm] = useState<string>("");
   const login = useAppSelector((state: IReduxState) => state.login);
+  const register = useAppSelector((state: IReduxState) => state.register);
 
   useEffect(() => {
     if (user.data.validToken) router.push("/painel");
   }, [user.data.validToken]);
 
+  if (user.data.user) return <AuthPage />;
   return (
     <>
       <Head>
@@ -47,6 +50,7 @@ export default function Home() {
           ) : null}
         </Container>
       </main>
+      <Error message={login.error || register.error} />
     </>
   );
 }
