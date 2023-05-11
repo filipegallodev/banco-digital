@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useAppSelector } from "./useAppSelector";
 import { useAppDispatch } from "./useAppDispatch";
-import { fetchToken, resetState } from "@/store/reducers/user";
+import { fetchToken } from "@/store/reducers/user";
 import { useEffect } from "react";
 
 export default function useTokenAuthentication() {
@@ -29,10 +29,6 @@ export default function useTokenAuthentication() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt-token");
-    if (error) {
-      dispatch(resetState());
-      router.push("/");
-    }
     if (!token) {
       router.push("/");
     }

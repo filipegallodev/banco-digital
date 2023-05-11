@@ -26,7 +26,6 @@ const slice = createSlice({
     },
     fetchError: (state, action) => {
       state.loading = false;
-      state.data = initialState.data;
       state.error = action.payload;
     },
     resetState: (state) => {
