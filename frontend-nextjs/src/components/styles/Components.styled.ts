@@ -38,12 +38,13 @@ export const CurrencyInputContainer = styled.div`
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     font-size: 1.125rem;
     transition: 0.1s;
-    &:enabled:hover {
+    &:enabled:not(&:focus):hover {
       box-shadow: 0px 0px 0px 2px #aaa;
     }
     &:focus {
-      box-shadow: 0px 0px 0px 2px #222;
-      outline: double;
+      box-shadow: 0px 0px 0px 2px #f200ff;
+      outline: none;
+      border-inline: 0px;
     }
   }
 `;
