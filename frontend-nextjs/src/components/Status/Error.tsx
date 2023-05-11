@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Alert, AlertTitle, Fade } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
@@ -9,15 +9,28 @@ import { clearTransactionStatus } from "@/store/reducers/transactions";
 
 const Error = ({ message }: { message: string | null }) => {
   const dispatch = useAppDispatch();
+  const [showAlert, setShowAlert] = useState(true);
 
-  function handleClose() {
+  useEffect(() => {
+    if (message) setShowAlert(true);
+  }, [message]);
+
+  const handleClose = useCallback(() => {
     dispatch(clearStatus());
     dispatch(resetLoginData());
     dispatch(clearRegisterStatus());
     dispatch(clearTransactionStatus());
-  }
+  }, [dispatch]);
 
-  if (!message) return null;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAlert(false);
+      handleClose();
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [showAlert, handleClose]);
+
+  if (!message || !showAlert) return null;
   return (
     <Container>
       <Fade in={true}>
