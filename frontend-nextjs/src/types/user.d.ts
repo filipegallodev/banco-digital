@@ -38,3 +38,8 @@ interface IEmailUpdateFormData {
   oldEmail: string;
   newEmail: string;
 }
+
+interface IPasswordUpdateFormData {
+  oldPassword: string;
+  newPassword: string;
+}

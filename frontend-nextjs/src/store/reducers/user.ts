@@ -106,6 +106,20 @@ export const fetchEmailUpdate =
     });
   };
 
+export const fetchPasswordUpdate =
+  (formData: IPasswordUpdateFormData): AppThunk =>
+  (dispatch) => {
+    const token = localStorage.getItem("jwt-token");
+    fetchData(dispatch, "user/update/password", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify(formData),
+    });
+  };
+
 export const fetchUserDelete = (): AppThunk => (dispatch) => {
   const token = localStorage.getItem("jwt-token");
   fetchData(dispatch, "user/delete", {
