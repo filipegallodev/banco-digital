@@ -30,14 +30,14 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
-    clearStatus: (state) => {
+    clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;
       state.error = null;
     },
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError, clearStatus } =
+export const { fetchStarted, fetchSuccess, fetchError, clearTransactionStatus } =
   slice.actions;
 const SERVER_URL = "http://localhost:3333/";
 // const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";

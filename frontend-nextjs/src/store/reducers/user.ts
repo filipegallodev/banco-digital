@@ -36,6 +36,7 @@ const slice = createSlice({
     },
     clearStatus: (state) => {
       state.data.status = null;
+      state.error = null;
     },
   },
 });

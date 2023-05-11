@@ -14,7 +14,7 @@ const slice = createSlice({
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
-      state.data = null;
+      state.data = initialState.data;
       state.error = null;
     },
     fetchSuccess: (state, action) => {
@@ -24,13 +24,18 @@ const slice = createSlice({
     },
     fetchError: (state, action) => {
       state.loading = false;
-      state.data = null;
+      state.data = initialState.data;
       state.error = action.payload;
+    },
+    clearRegisterStatus: (state) => {
+      state.data = initialState.data;
+      state.error = null;
     },
   },
 });
 
-const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+export const { fetchStarted, fetchSuccess, fetchError, clearRegisterStatus } =
+  slice.actions;
 const SERVER_URL = "http://localhost:3333/";
 // const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 

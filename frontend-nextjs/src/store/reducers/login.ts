@@ -15,7 +15,7 @@ const slice = createSlice({
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
-      state.data = null;
+      state.data = initialState.data;
       state.error = null;
     },
     fetchSuccess: (state, action) => {
@@ -26,11 +26,12 @@ const slice = createSlice({
     },
     fetchError: (state, action) => {
       state.loading = false;
-      state.data = null;
+      state.data = initialState.data;
       state.error = action.payload;
     },
     resetLoginData: (state) => {
-      state.data = null;
+      state.data = initialState.data;
+      state.error = null;
     },
   },
 });

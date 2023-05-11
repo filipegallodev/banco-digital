@@ -1,27 +1,67 @@
-import React from "react";
-import { Alert, Fade } from "@mui/material";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import { Alert, AlertTitle, Fade } from "@mui/material";
+import styled, { keyframes } from "styled-components";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { clearStatus } from "@/store/reducers/user";
+import { resetLoginData } from "@/store/reducers/login";
+import { clearRegisterStatus } from "@/store/reducers/register";
+import { clearTransactionStatus } from "@/store/reducers/transactions";
 
 const Error = ({ message }: { message: string | null }) => {
+  const dispatch = useAppDispatch();
+
+  function handleClose() {
+    dispatch(clearStatus());
+    dispatch(resetLoginData());
+    dispatch(clearRegisterStatus());
+    dispatch(clearTransactionStatus());
+  }
+
   if (!message) return null;
   return (
     <Container>
       <Fade in={true}>
         <Alert
           severity="error"
-          sx={{
-            boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
-          }}
+          sx={{ boxShadow: "0px 0px 2px rgba(0,0,0,0.25)" }}
+          onClose={handleClose}
+          className="fadeIn alert-container"
         >
-          {message}
+          <AlertTitle>
+            <strong>Erro</strong>
+          </AlertTitle>
+          <TextError>{message}</TextError>
         </Alert>
       </Fade>
     </Container>
   );
 };
 
+const FadeAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+`;
+
 const Container = styled.div`
-  margin: 8px 0px;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  border-radius: 4px;
+  animation: ${FadeAnimation} 0.75s;
+  &.alert-container {
+    box-shadow: 0px 0px 0px 2px rgba(255, 120, 120, 1);
+  }
+`;
+
+const TextError = styled.p`
+  font-size: 1rem;
 `;
 
 export default Error;
