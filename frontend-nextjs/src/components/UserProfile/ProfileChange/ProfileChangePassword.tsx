@@ -6,6 +6,7 @@ import Input from "@/components/Form/Input";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
 import { CircularProgress } from "@mui/material";
+import { fetchPasswordUpdate } from "@/store/reducers/user";
 
 const ProfileChangePassword = () => {
   const dispatch = useAppDispatch();
@@ -28,11 +29,26 @@ const ProfileChangePassword = () => {
     setInputError("");
   }, [changePasswordData.newPassword, changePasswordData.newPasswordConfirm]);
 
+  function handleFormSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    if (
+      changePasswordData.oldPassword &&
+      changePasswordData.newPassword &&
+      !inputError
+    )
+      dispatch(
+        fetchPasswordUpdate({
+          oldPassword: changePasswordData.oldPassword,
+          newPassword: changePasswordData.newPassword,
+        })
+      );
+  }
+
   return (
     <>
       <Styled.ThirdTitle>Senha</Styled.ThirdTitle>
       <Styled.FormContainer>
-        <Styled.Form>
+        <Styled.Form onSubmit={handleFormSubmit}>
           <Input
             name="Senha atual"
             id="oldPassword"
@@ -66,7 +82,9 @@ const ProfileChangePassword = () => {
             >
               Trocar senha
             </Styled.Button>
-            <Error message={inputError} />
+            {loading && <CircularProgress />}
+            <Success message={!inputError ? data.status : ""} />
+            <Error message={error || inputError} />
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>

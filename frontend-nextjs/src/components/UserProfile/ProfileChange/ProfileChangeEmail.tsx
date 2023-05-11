@@ -34,10 +34,10 @@ const ProfileChangeEmail = () => {
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (changeEmailData.oldEmail !== data.user?.username) {
-      return setInputError("E-mail atual não coincide com o cadastrado.");
+      return setInputError("E-mail atual incorreto.");
     }
     if (changeEmailData.newEmail === data.user?.username) {
-      return setInputError("O novo e-mail é igual ao e-mail atual.");
+      return setInputError("O novo e-mail deve ser diferente do e-mail atual.");
     }
     if (changeEmailData.oldEmail && changeEmailData.newEmail && !inputError)
       dispatch(
