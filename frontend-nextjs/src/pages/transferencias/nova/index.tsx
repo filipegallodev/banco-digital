@@ -2,19 +2,24 @@ import AuthPage from "@/components/AuthPage";
 import FormTransaction from "@/components/Form/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
+import Error from "@/components/Status/Error";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
-import { clearStatus } from "@/store/reducers/transactions";
+import { clearTransactionStatus } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
 export default function Nova() {
   const user = useTokenAuthentication();
+  const transactions = useAppSelector(
+    (state: IReduxState) => state.transactions
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(clearStatus());
+    dispatch(clearTransactionStatus());
   }, [dispatch]);
 
   if (!user.data.user) return <AuthPage />;
@@ -34,6 +39,7 @@ export default function Nova() {
           <FormTransaction />
         </Container>
       </main>
+      <Error message={transactions.error} />
     </>
   );
 }
