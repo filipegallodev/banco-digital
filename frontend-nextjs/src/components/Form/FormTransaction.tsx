@@ -1,12 +1,11 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { clearStatus, fetchTransaction } from "@/store/reducers/transactions";
+import { clearTransactionStatus, fetchTransaction } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
 import { CircularProgress } from "@mui/material";
-import Error from "../Status/Error";
 import Success from "../Status/Success";
 
 const TransactionForm = () => {
@@ -17,12 +16,12 @@ const TransactionForm = () => {
   const [transactionValue, setTransactionValue] = useState<string>();
   const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useAppSelector(
+  const { data, loading } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
 
   useEffect(() => {
-    dispatch(clearStatus());
+    dispatch(clearTransactionStatus());
   }, [dispatch]);
 
   useEffect(() => {
@@ -84,7 +83,6 @@ const TransactionForm = () => {
         </ButtonContainer>
       </Form>
       <Success message={data?.status} />
-      <Error message={error} />
     </Container>
   );
 };

@@ -4,13 +4,12 @@ import * as Styled from "../../styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Input from "@/components/Form/Input";
 import Success from "@/components/Status/Success";
-import Error from "@/components/Status/Error";
 import { CircularProgress } from "@mui/material";
 import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
-  const { data, error, loading } = useAppSelector(
+  const { data, loading } = useAppSelector(
     (state: IReduxState) => state.user
   );
   const [changeEmailData, setChangeEmailData] = useState({
@@ -92,7 +91,7 @@ const ProfileChangeEmail = () => {
             </Styled.Button>
             {loading && <CircularProgress />}
             <Success message={!inputError ? data.status : ""} />
-            <Error message={error || inputError} />
+            {inputError && <p>{inputError}</p>}
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>
