@@ -43,7 +43,7 @@ const Error = ({ message }: { message: string | null }) => {
           <AlertTitle>
             <strong>Erro</strong>
           </AlertTitle>
-          <TextError>{message}</TextError>
+          <TextError>{message.replace("Error: ", "")}</TextError>
         </Alert>
       </Fade>
     </Container>
