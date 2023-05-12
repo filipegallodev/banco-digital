@@ -4,7 +4,6 @@ import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
-import Error from "../Status/Error";
 import { CircularProgress } from "@mui/material";
 import Success from "../Status/Success";
 
@@ -14,7 +13,7 @@ const FormLogin = () => {
     password: "",
   });
   const dispatch = useAppDispatch();
-  const { data, loading, error } = useAppSelector(
+  const { data, loading } = useAppSelector(
     (state: IReduxState) => state.login
   );
   const [unfilledFields, setUnfilledFields] = useState(true);
@@ -65,7 +64,6 @@ const FormLogin = () => {
           {loading && <CircularProgress />}
         </Styled.ButtonContainer>
         <Success message={data?.status} />
-        <Error message={error} />
       </Styled.Form>
     </Styled.FormContainer>
   );
