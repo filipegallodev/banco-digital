@@ -44,19 +44,18 @@ const NavContainer = styled.ul`
 `;
 
 const NavItem = styled.li`
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #aaa;
   list-style: none;
   padding: 16px 24px;
   font-size: 1.25rem;
   cursor: pointer;
   transition: 0.1s;
-  &:hover,
   &.active {
-    background-color: #ddd;
-    border-bottom: 2px solid #c500d0;
+    border-bottom: 4px solid #c500d0;
+    color: #c500d0;
   }
-  &.active {
-    background-color: #ccc;
+  &:hover {
+    background-color: #eee;
   }
 `;
 
