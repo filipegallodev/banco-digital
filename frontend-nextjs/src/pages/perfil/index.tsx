@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import ProfileOverview from "@/components/UserProfile/ProfileOverview";
 import ProfileEdit from "@/components/UserProfile/ProfileEdit";
 import ProfileChange from "@/components/UserProfile/ProfileChange/ProfileChange";
-import ProfileManage from "@/components/UserProfile/ProfileManage";
+import ProfileManage from "@/components/UserProfile/ProfileManage/ProfileManage";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
 
@@ -50,7 +50,7 @@ export default function Perfil() {
         </Container>
       </main>
       <Success message={user.data.status} />
-      <Error message={user.error}/>
+      <Error message={user.error} />
     </>
   );
 }
