@@ -23,7 +23,7 @@ const Header = () => {
         {user && (
           <ControllContainer>
             <UserProfile onClick={() => router.push("/perfil")}>
-              <UserIcon />
+              <UserIcon>{user.firstName[0]}</UserIcon>
               <UserName>
                 {user.firstName} {user.lastName}
               </UserName>
@@ -83,8 +83,13 @@ const UserProfile = styled.div`
 const UserIcon = styled.div`
   width: 56px;
   height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   border-radius: 100%;
+  color: #333;
+  font-size: 1.75rem;
   filter: drop-shadow(0px 0px 2px #fff);
 `;
 
