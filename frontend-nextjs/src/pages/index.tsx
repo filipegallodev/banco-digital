@@ -10,6 +10,7 @@ import * as Styled from "@/components/styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import AuthPage from "@/components/AuthPage";
 import Error from "@/components/Status/Error";
+import Success from "@/components/Status/Success";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -50,6 +51,7 @@ export default function Home() {
           ) : null}
         </Container>
       </main>
+      <Success message={login.data?.status || register.data?.status} />
       <Error message={login.error || register.error} />
     </>
   );

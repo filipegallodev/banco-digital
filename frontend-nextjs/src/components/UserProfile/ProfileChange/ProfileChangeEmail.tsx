@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import * as Styled from "../../styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Input from "@/components/Form/Input";
-import Success from "@/components/Status/Success";
 import { CircularProgress } from "@mui/material";
 import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
@@ -90,7 +89,6 @@ const ProfileChangeEmail = () => {
               Trocar e-mail
             </Styled.Button>
             {loading && <CircularProgress />}
-            <Success message={!inputError ? data.status : ""} />
             {inputError && <p>{inputError}</p>}
           </Styled.ButtonContainer>
         </Styled.Form>

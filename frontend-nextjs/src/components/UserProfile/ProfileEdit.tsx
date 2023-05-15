@@ -4,13 +4,12 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
 import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
-import Success from "../Status/Success";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 import CurrencyInput from "react-currency-input-field";
 
 const ProfileEdit = () => {
-  const { data, loading } = useAppSelector(
+  const { loading } = useAppSelector(
     (state: IReduxState) => state.user
   );
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
@@ -138,7 +137,6 @@ const ProfileEdit = () => {
               {loading ? "Salvando" : "Salvar"}
             </Styled.Button>
             {loading && <CircularProgress />}
-            <Success message={data.status} />
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>

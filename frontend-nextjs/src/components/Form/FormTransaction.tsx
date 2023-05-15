@@ -6,7 +6,6 @@ import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
 import { CircularProgress } from "@mui/material";
-import Success from "../Status/Success";
 
 const TransactionForm = () => {
   const [transactionData, setTransactionData] = useState<ITransactionFormData>({
@@ -82,7 +81,6 @@ const TransactionForm = () => {
           {loading && <CircularProgress />}
         </ButtonContainer>
       </Form>
-      <Success message={data?.status} />
     </Container>
   );
 };

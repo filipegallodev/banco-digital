@@ -5,7 +5,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
 import { CircularProgress } from "@mui/material";
-import Success from "../Status/Success";
 
 const FormLogin = () => {
   const [loginData, setLoginData] = useState<ILoginFormData>({
@@ -63,7 +62,6 @@ const FormLogin = () => {
           </Styled.Button>
           {loading && <CircularProgress />}
         </Styled.ButtonContainer>
-        <Success message={data?.status} />
       </Styled.Form>
     </Styled.FormContainer>
   );

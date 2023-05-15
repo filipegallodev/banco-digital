@@ -3,13 +3,12 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import React, { useState, useEffect } from "react";
 import * as Styled from "../../styles/Components.styled";
 import Input from "@/components/Form/Input";
-import Success from "@/components/Status/Success";
 import { CircularProgress } from "@mui/material";
 import { fetchPasswordUpdate } from "@/store/reducers/user";
 
 const ProfileChangePassword = () => {
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(
+  const { loading } = useAppSelector(
     (state: IReduxState) => state.user
   );
   const [changePasswordData, setChangePasswordData] = useState({
@@ -82,7 +81,6 @@ const ProfileChangePassword = () => {
               Trocar senha
             </Styled.Button>
             {loading && <CircularProgress />}
-            <Success message={!inputError ? data.status : ""} />
             {inputError && <p>{inputError}</p>}
           </Styled.ButtonContainer>
         </Styled.Form>

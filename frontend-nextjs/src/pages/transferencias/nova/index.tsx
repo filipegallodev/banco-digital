@@ -3,6 +3,7 @@ import FormTransaction from "@/components/Form/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import Error from "@/components/Status/Error";
+import Success from "@/components/Status/Success";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
@@ -39,6 +40,7 @@ export default function Nova() {
           <FormTransaction />
         </Container>
       </main>
+      <Success message={transactions.data?.status} />
       <Error message={transactions.error} />
     </>
   );

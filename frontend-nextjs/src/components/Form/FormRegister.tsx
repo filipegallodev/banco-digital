@@ -4,7 +4,6 @@ import { fetchRegister } from "@/store/reducers/register";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
-import Success from "../Status/Success";
 import { CircularProgress } from "@mui/material";
 
 const FormRegister = () => {
@@ -102,7 +101,6 @@ const FormRegister = () => {
           </Styled.Button>
           {loading && <CircularProgress />}
         </Styled.ButtonContainer>
-        <Success message={data?.status} />
       </Styled.Form>
     </Styled.FormContainer>
   );

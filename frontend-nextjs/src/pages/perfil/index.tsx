@@ -11,6 +11,7 @@ import ProfileEdit from "@/components/UserProfile/ProfileEdit";
 import ProfileChange from "@/components/UserProfile/ProfileChange/ProfileChange";
 import ProfileManage from "@/components/UserProfile/ProfileManage";
 import Error from "@/components/Status/Error";
+import Success from "@/components/Status/Success";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
@@ -48,6 +49,7 @@ export default function Perfil() {
           {profileScreen}
         </Container>
       </main>
+      <Success message={user.data.status} />
       <Error message={user.error}/>
     </>
   );
