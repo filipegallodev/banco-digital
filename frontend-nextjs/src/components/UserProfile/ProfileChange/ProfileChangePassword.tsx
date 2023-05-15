@@ -8,9 +8,7 @@ import { fetchPasswordUpdate } from "@/store/reducers/user";
 
 const ProfileChangePassword = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector(
-    (state: IReduxState) => state.user
-  );
+  const { loading } = useAppSelector((state: IReduxState) => state.user);
   const [changePasswordData, setChangePasswordData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -73,7 +71,8 @@ const ProfileChangePassword = () => {
               disabled={
                 !changePasswordData.oldPassword ||
                 !changePasswordData.newPasswordConfirm ||
-                inputError
+                inputError ||
+                loading
                   ? true
                   : false
               }

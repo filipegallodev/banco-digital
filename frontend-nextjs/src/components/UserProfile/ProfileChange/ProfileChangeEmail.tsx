@@ -8,9 +8,7 @@ import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(
-    (state: IReduxState) => state.user
-  );
+  const { data, loading } = useAppSelector((state: IReduxState) => state.user);
   const [changeEmailData, setChangeEmailData] = useState({
     oldEmail: "",
     newEmail: "",
