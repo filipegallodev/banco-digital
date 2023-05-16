@@ -1,5 +1,5 @@
 import AuthPage from "@/components/AuthPage";
-import FormTransaction from "@/components/Form/FormTransaction";
+import FormTransaction from "@/components/Form/FormTransaction/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import Error from "@/components/Status/Error";
