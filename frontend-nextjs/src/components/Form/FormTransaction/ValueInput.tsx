@@ -1,36 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CurrencyInput from "react-currency-input-field";
+import styled from "styled-components";
 
 interface IProps {
   label: string;
   id: string;
-  formData: ITransactionFormData;
-  setFormData: React.Dispatch<React.SetStateAction<any>>;
   value: string | undefined;
   setValue: React.Dispatch<React.SetStateAction<any>>;
   [key: string]: any;
 }
 
-const ValueInput = ({
-  label,
-  id,
-  formData,
-  setFormData,
-  value,
-  setValue,
-  ...args
-}: IProps) => {
-  useEffect(() => {
-    if (!value) return;
-    setFormData({
-      ...formData,
-      value: value.replace(",", ".").replace(/(\.$)/g, ""),
-    });
-  }, [value]);
-
+const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <Label htmlFor={id}>{label}</Label>
       <CurrencyInput
         id={id}
         name={id}
@@ -38,11 +21,17 @@ const ValueInput = ({
         prefix="R$ "
         decimalsLimit={2}
         value={value}
-        onValueChange={(value) => setValue(value)}
+        onValueChange={(newValue) => setValue(newValue)}
         {...args}
       />
     </>
   );
 };
+
+const Label = styled.label`
+  display: block;
+  margin: 16px 0px 8px 0px;
+  font-size: 1.25rem;
+`;
 
 export default ValueInput;
