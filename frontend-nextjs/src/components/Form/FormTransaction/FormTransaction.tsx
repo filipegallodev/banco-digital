@@ -32,10 +32,11 @@ const TransactionForm = () => {
   );
 
   useEffect(() => {
-    if (!transactionValue) return;
     setTransactionData({
       ...transactionData,
-      value: transactionValue.replace(",", ".").replace(/(\.$)/g, ""),
+      value: transactionValue
+        ? transactionValue.replace(",", ".").replace(/(\.$)/g, "")
+        : "",
     });
   }, [transactionValue]);
 
