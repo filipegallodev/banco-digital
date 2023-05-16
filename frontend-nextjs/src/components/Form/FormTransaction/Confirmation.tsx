@@ -9,17 +9,15 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 interface IProps {
   formData: ITransactionFormData;
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-  value: string | undefined;
-  setValue: React.Dispatch<React.SetStateAction<any>>;
-  [key: string]: any;
+  transactionValue: string | undefined;
+  setTransactionValue: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const Confirmation = ({
   formData,
   setFormData,
-  value,
-  setValue,
-  ...args
+  transactionValue,
+  setTransactionValue,
 }: IProps) => {
   const { loading } = useAppSelector(
     (state: IReduxState) => state.transactions
@@ -30,10 +28,8 @@ const Confirmation = ({
       <ValueInput
         label="Valor"
         id="transaction-value-confirm"
-        formData={formData}
-        setFormData={setFormData}
-        value={value}
-        setValue={setValue}
+        value={transactionValue}
+        setValue={setTransactionValue}
         disabled
       />
       <TargetInput

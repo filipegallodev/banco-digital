@@ -5,10 +5,8 @@ import {
   fetchTransaction,
 } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
-import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
-import { CircularProgress } from "@mui/material";
 import ProcessStepper from "../../ProcessStepper";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
@@ -27,72 +25,26 @@ const TransactionForm = () => {
     inititalTransactionData
   );
   const [transactionValue, setTransactionValue] = useState<string>();
-  const [unfilledFields, setUnfilledFields] = useState(true);
   const [activeStep, setActiveStep] = useState<number>(0);
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector(
+  const { loading, error } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
-  const [transactionStep, setTransactionStep] = useState<JSX.Element>(<p></p>);
 
   useEffect(() => {
-    switch (activeStep) {
-      case 0:
-        return setTransactionStep(
-          <ValueInput
-            label="Quanto deseja transferir?"
-            id="transaction-value"
-            formData={transactionData}
-            setFormData={setTransactionData}
-            value={transactionValue}
-            setValue={setTransactionValue}
-          />
-        );
-      case 1:
-        return setTransactionStep(
-          <TargetInput
-            label="Para quem você deseja transferir essa quantia?"
-            id="transaction-target"
-            formData={transactionData}
-            setFormData={setTransactionData}
-            placeholder="email@exemplo.com"
-          />
-        );
-      case 2:
-        return setTransactionStep(
-          <Confirmation
-            formData={transactionData}
-            setFormData={setTransactionData}
-            value={transactionValue}
-            setValue={setTransactionValue}
-          />
-        );
-      default:
-        return setTransactionStep(
-          <ValueInput
-            label="Quanto deseja transferir?"
-            id="transaction-value"
-            formData={transactionData}
-            setFormData={setTransactionData}
-            value={transactionValue}
-            setValue={setTransactionValue}
-          />
-        );
-    }
-  }, [activeStep]);
+    if (!transactionValue) return;
+    setTransactionData({
+      ...transactionData,
+      value: transactionValue.replace(",", ".").replace(/(\.$)/g, ""),
+    });
+  }, [transactionValue]);
 
   useEffect(() => {
     dispatch(clearTransactionStatus());
   }, [dispatch]);
 
   useEffect(() => {
-    if (transactionData.value && transactionData.target)
-      return setUnfilledFields(false);
-    setUnfilledFields(true);
-  }, [transactionData]);
-
-  useEffect(() => {
-    if (transactionData.value && transactionData.target && !loading) {
+    if (transactionData.value && transactionData.target && !error && !loading) {
       setTransactionData(inititalTransactionData);
       setTransactionValue("");
       setActiveStep(0);
@@ -101,17 +53,37 @@ const TransactionForm = () => {
 
   function handleTransaction(event: React.FormEvent) {
     event.preventDefault();
-    if (transactionData.value && transactionData.target) {
-      setActiveStep(activeStep + 1);
+    if (transactionData.value && transactionData.target)
       dispatch(fetchTransaction(transactionData));
-    }
   }
 
   return (
     <Container>
       <ProcessStepper steps={steps} activeStep={activeStep} />
       <Form onSubmit={handleTransaction}>
-        {transactionStep}
+        {activeStep === 0 ? (
+          <ValueInput
+            label="Quanto deseja transferir?"
+            id="transaction-value"
+            value={transactionValue}
+            setValue={setTransactionValue}
+          />
+        ) : activeStep === 1 ? (
+          <TargetInput
+            label="Para quem você deseja transferir essa quantia?"
+            id="transaction-target"
+            formData={transactionData}
+            setFormData={setTransactionData}
+            placeholder="email@exemplo.com"
+          />
+        ) : (
+          <Confirmation
+            formData={transactionData}
+            setFormData={setTransactionData}
+            transactionValue={transactionValue}
+            setTransactionValue={setTransactionValue}
+          />
+        )}
       </Form>
       <ButtonContainer>
         <Styled.Button
@@ -158,12 +130,6 @@ const Form = styled.form`
       outline: double;
     }
   }
-`;
-
-const Label = styled.label`
-  display: block;
-  margin: 16px 0px 8px 0px;
-  font-size: 1.25rem;
 `;
 
 const ButtonContainer = styled.div`
