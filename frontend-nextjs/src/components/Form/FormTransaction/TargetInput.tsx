@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface IProps {
   label: string;
@@ -11,10 +12,10 @@ interface IProps {
   [key: string]: any;
 }
 
-const ValueInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
+const TargetInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <Label htmlFor={id}>{label}</Label>
       <input
         type="text"
         id={id}
@@ -32,4 +33,10 @@ const ValueInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
   );
 };
 
-export default ValueInput;
+const Label = styled.label`
+  display: block;
+  margin: 16px 0px 8px 0px;
+  font-size: 1.25rem;
+`;
+
+export default TargetInput;
