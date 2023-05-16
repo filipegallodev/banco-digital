@@ -59,7 +59,12 @@ const TransactionForm = () => {
 
   return (
     <Container>
-      <ProcessStepper steps={steps} activeStep={activeStep} />
+      <ProcessStepper
+        steps={steps}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        transactionData={transactionData}
+      />
       <Form onSubmit={handleTransaction}>
         {activeStep === 0 ? (
           <ValueInput
