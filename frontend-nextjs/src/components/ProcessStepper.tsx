@@ -3,6 +3,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Box from "@mui/material/Box";
+import styled from "styled-components";
 
 interface IProps {
   steps: string[];
@@ -15,23 +16,24 @@ const ProcessStepper = ({ steps, activeStep }: IProps) => {
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  transform: "scale(1.5)",
-                },
-                "& .MuiStepLabel-label": {
-                  fontSize: "1.35rem",
-                },
-              }}
-            >
-              {label}
-            </StepLabel>
+            <StepLabelStyled>{label}</StepLabelStyled>
           </Step>
         ))}
       </Stepper>
     </Box>
   );
 };
+
+const StepLabelStyled = styled(StepLabel)`
+  & .MuiSvgIcon-root {
+    transform: scale(1.5);
+    &.Mui-completed {
+      color: #080;
+    }
+  }
+  & .MuiStepLabel-label {
+    font-size: 1.35rem;
+  }
+`;
 
 export default ProcessStepper;
