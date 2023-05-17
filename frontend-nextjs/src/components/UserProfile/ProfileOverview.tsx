@@ -12,8 +12,10 @@ const ProfileOverview = () => {
         <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
         <p>Nome: {user?.firstName}</p>
         <p>Sobrenome: {user?.lastName}</p>
-        <p>Data de nascimento: {user?.birth}</p>
-        <p>E-mail: {user?.username}</p>
+        <p>
+          Data de nascimento:{" "}
+          {user?.birth?.replace(/(\d{4})\-(\d{2})\-(\d{2})/g, "$3/$2/$1")}
+        </p>
         <p>Telefone: {user?.phoneNumber}</p>
       </div>
       <div>
@@ -23,8 +25,14 @@ const ProfileOverview = () => {
       </div>
       <div>
         <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
-        <p>Renda: {user?.income}</p>
-        <p>Emprego: {user?.job}</p>
+        <p>
+          Renda:{" "}
+          {Number(user?.income).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </p>
+        <p>Profissão: {user?.job}</p>
       </div>
     </div>
   );

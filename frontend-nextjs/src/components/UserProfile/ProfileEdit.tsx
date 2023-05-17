@@ -120,7 +120,7 @@ const ProfileEdit = () => {
               />
             </Styled.CurrencyInputContainer>
             <Input
-              name="Emprego"
+              name="Profissão"
               id="edit-job"
               formData={formData}
               saveFormData={setFormData}
