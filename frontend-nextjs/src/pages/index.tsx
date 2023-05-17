@@ -11,6 +11,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import AuthPage from "@/components/AuthPage";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -51,6 +52,12 @@ export default function Home() {
           ) : null}
         </Container>
       </main>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={login.loading || register.loading || user.loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Success message={login.data?.status || register.data?.status} />
       <Error message={login.error || register.error} />
     </>

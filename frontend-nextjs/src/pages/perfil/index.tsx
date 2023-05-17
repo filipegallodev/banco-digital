@@ -12,6 +12,7 @@ import ProfileChange from "@/components/UserProfile/ProfileChange/ProfileChange"
 import ProfileManage from "@/components/UserProfile/ProfileManage/ProfileManage";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
@@ -49,6 +50,12 @@ export default function Perfil() {
           {profileScreen}
         </Container>
       </main>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={user.loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Success message={user.data.status} />
       <Error message={user.error} />
     </>

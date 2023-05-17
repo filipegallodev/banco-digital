@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import { clearTransactionStatus } from "@/store/reducers/transactions";
+import { Backdrop, CircularProgress } from "@mui/material";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
@@ -40,6 +41,12 @@ export default function Nova() {
           <FormTransaction />
         </Container>
       </main>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={transactions.loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <Success message={transactions.data?.status} />
       <Error message={transactions.error} />
     </>
