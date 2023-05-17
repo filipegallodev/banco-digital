@@ -63,7 +63,7 @@ export const SubTitle = styled.h2`
 `;
 
 export const ThirdTitle = styled.h3`
-  margin: 16px 0px;
+  margin: 32px 0px 16px 0px;
   font-size: 1.5rem;
   text-transform: uppercase;
   box-sizing: border-box;
