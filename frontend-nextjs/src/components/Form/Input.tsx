@@ -24,11 +24,11 @@ const Input = ({
   eyeToDisplay,
   ...args
 }: IProps) => {
-  const [formValue, setFormValue] = useState<string | number | undefined>();
+  const [formValue, setFormValue] = useState<string | number>("");
   const [displayValue, setDisplayValue] = useState<boolean>(false);
 
   useEffect(() => {
-    if (value) setFormValue(value);
+    if (value) return setFormValue(value);
   }, [value]);
 
   useEffect(() => {
@@ -38,8 +38,16 @@ const Input = ({
   useEffect(() => {
     if (displayValue && typeof value === "string")
       setFormValue(value.substring(0, 3) + "*".repeat(value.length));
-    if (!displayValue) setFormValue(value);
+    if (!displayValue && typeof value !== "undefined") setFormValue(value);
   }, [displayValue]);
+
+  function handleChange(event: React.FormEvent<HTMLInputElement>) {
+    saveFormData({
+      ...formData,
+      [id.replace(/\D+\-/g, "")]: event.currentTarget.value,
+    });
+    setFormValue(event.currentTarget.value);
+  }
 
   return (
     <>
@@ -50,12 +58,7 @@ const Input = ({
           id={id}
           name={id}
           value={formValue}
-          onChange={({ target }) =>
-            saveFormData({
-              ...formData,
-              [id.replace(/\D+\-/g, "")]: target.value,
-            })
-          }
+          onChange={handleChange}
           {...args}
         />
         {displayValue ? (
