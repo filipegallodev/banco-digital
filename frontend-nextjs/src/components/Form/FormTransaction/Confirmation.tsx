@@ -37,6 +37,7 @@ const Confirmation = ({
         id="transaction-target-confirm"
         placeholder="Nenhuma conta preenchida"
         formData={formData}
+        value={formData.target}
         setFormData={setFormData}
         disabled
       />

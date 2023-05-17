@@ -9,9 +9,7 @@ import styled from "styled-components";
 import CurrencyInput from "react-currency-input-field";
 
 const ProfileEdit = () => {
-  const { loading } = useAppSelector(
-    (state: IReduxState) => state.user
-  );
+  const { loading } = useAppSelector((state: IReduxState) => state.user);
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<IUserUpdateFormData>({
@@ -66,10 +64,7 @@ const ProfileEdit = () => {
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
-              value={formData.username.replace(
-                /(\w+)(\w{4}\@\D+)/g,
-                "$1************"
-              )}
+              value={formData.username}
               eyeToDisplay={true}
               disabled
             />

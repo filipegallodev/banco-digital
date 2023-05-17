@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 
 interface IProps {
   name: string;
   id: string;
   type?: string;
+  value: string | number | undefined;
   formData: object;
   saveFormData: React.Dispatch<React.SetStateAction<any>>;
   eyeToDisplay?: boolean;
@@ -16,11 +18,29 @@ const Input = ({
   name,
   id,
   type = "text",
+  value,
   formData,
   saveFormData,
   eyeToDisplay,
   ...args
 }: IProps) => {
+  const [formValue, setFormValue] = useState<string | number | undefined>();
+  const [displayValue, setDisplayValue] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (value) setFormValue(value);
+  }, [value]);
+
+  useEffect(() => {
+    if (eyeToDisplay) setDisplayValue(true);
+  }, [eyeToDisplay]);
+
+  useEffect(() => {
+    if (displayValue && typeof value === "string")
+      setFormValue(value.substring(0, 3) + "*".repeat(value.length));
+    if (!displayValue) setFormValue(value);
+  }, [displayValue]);
+
   return (
     <>
       <Label htmlFor={id}>{name}</Label>
@@ -29,6 +49,7 @@ const Input = ({
           type={type}
           id={id}
           name={id}
+          value={formValue}
           onChange={({ target }) =>
             saveFormData({
               ...formData,
@@ -37,7 +58,13 @@ const Input = ({
           }
           {...args}
         />
-        {eyeToDisplay && <VisibilityOffOutlinedIcon />}
+        {displayValue ? (
+          <VisibilityOffRoundedIcon onClick={() => setDisplayValue(false)} />
+        ) : (
+          eyeToDisplay && (
+            <VisibilityRoundedIcon onClick={() => setDisplayValue(true)} />
+          )
+        )}
       </InputContainer>
     </>
   );

@@ -12,9 +12,7 @@ const FormLogin = () => {
     password: "",
   });
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(
-    (state: IReduxState) => state.login
-  );
+  const { data, loading } = useAppSelector((state: IReduxState) => state.login);
   const [unfilledFields, setUnfilledFields] = useState(true);
 
   const checkLoginFields = useCallback(() => {
@@ -48,12 +46,14 @@ const FormLogin = () => {
           name="E-mail"
           id="login-username"
           formData={loginData}
+          value={loginData.username}
           saveFormData={setLoginData}
         />
         <Input
           name="Senha"
           id="login-password"
           formData={loginData}
+          value={loginData.password}
           saveFormData={setLoginData}
         />
         <Styled.ButtonContainer>
