@@ -3,7 +3,7 @@ import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import * as Styled from "@/components/styles/Components.styled";
 import styled from "styled-components";
-import { CircularProgress } from "@mui/material";
+import { Checkbox, CircularProgress, FormControlLabel } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
 
 interface IProps {
@@ -41,7 +41,11 @@ const Confirmation = ({
         setFormData={setFormData}
         disabled
       />
-      <Label>Confirme os dados preenchidos.</Label>
+      <FormControlLabelStyled
+        required
+        control={<Checkbox />}
+        label="Confirme os dados inseridos."
+      />
       <ButtonContainer>
         <Styled.Button
           disabled={
@@ -62,10 +66,9 @@ const ButtonContainer = styled.div`
   gap: 8px;
 `;
 
-const Label = styled.label`
+const FormControlLabelStyled = styled(FormControlLabel)`
   display: block;
   margin: 16px 0px 8px 0px;
-  font-size: 1.25rem;
 `;
 
 export default Confirmation;
