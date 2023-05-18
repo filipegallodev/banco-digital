@@ -7,6 +7,7 @@ import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 import CurrencyInput from "react-currency-input-field";
+import PhoneInput from "../Form/PhoneInput";
 
 const ProfileEdit = () => {
   const { loading } = useAppSelector((state: IReduxState) => state.user);
@@ -76,15 +77,7 @@ const ProfileEdit = () => {
               saveFormData={setFormData}
               value={formData.birth}
             />
-            <Input
-              name="Telefone celular"
-              id="edit-phoneNumber"
-              type="tel"
-              placeholder="(00) 00000-0000"
-              formData={formData}
-              saveFormData={setFormData}
-              value={formData.phoneNumber}
-            />
+            <PhoneInput formData={formData} saveFormData={setFormData} />
           </div>
           <div>
             <Styled.ThirdTitle>Endereço</Styled.ThirdTitle>
