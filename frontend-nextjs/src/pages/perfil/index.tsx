@@ -6,7 +6,7 @@ import ReturnButton from "@/components/ReturnButton";
 import ProfileNav from "@/components/UserProfile/ProfileNav";
 import AuthPage from "@/components/AuthPage";
 import { useEffect, useState } from "react";
-import ProfileOverview from "@/components/UserProfile/ProfileOverview";
+import ProfileOverview from "@/components/UserProfile/ProfileOverview/ProfileOverview";
 import ProfileEdit from "@/components/UserProfile/ProfileEdit";
 import ProfileChange from "@/components/UserProfile/ProfileChange/ProfileChange";
 import ProfileManage from "@/components/UserProfile/ProfileManage/ProfileManage";

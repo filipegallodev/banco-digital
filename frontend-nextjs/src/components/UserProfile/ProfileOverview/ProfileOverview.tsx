@@ -1,55 +1,45 @@
 import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
-import * as Styled from "../styles/Components.styled";
+import * as Styled from "../../styles/Components.styled";
 import styled from "styled-components";
+import UserInfo from "./UserInfo";
 
 const ProfileOverview = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
-
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Informações Gerais</Styled.SubTitle>
       <div>
         <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
-        <p>
-          <strong>Nome:</strong> {user?.firstName}
-        </p>
-        <p>
-          <strong>Sobrenome:</strong> {user?.lastName}
-        </p>
-        <p>
-          <strong>Data de nascimento:</strong>{" "}
-          {user?.birth?.replace(/(\d{4})\-(\d{2})\-(\d{2})/g, "$3/$2/$1")}
-        </p>
-        <p>
-          <strong>Telefone:</strong>{" "}
-          {user?.phoneNumber?.replace(
+        <UserInfo field="Nome" data={user?.firstName} />
+        <UserInfo field="Sobrenome" data={user?.lastName} />
+        <UserInfo
+          field="Data de nascimento"
+          data={user?.birth?.replace(/(\d{4})\-(\d{2})\-(\d{2})/g, "$3/$2/$1")}
+        />
+        <UserInfo
+          field="Telefone"
+          data={user?.phoneNumber?.replace(
             /(\d{2})(\d{2})(\d{5})(\d{4})/g,
             "($2) $3-$4"
           )}
-        </p>
+        />
       </div>
       <div>
         <Styled.ThirdTitle>Endereço</Styled.ThirdTitle>
-        <p>
-          <strong>Cidade:</strong> {user?.city}
-        </p>
-        <p>
-          <strong>Estado:</strong> {user?.state}
-        </p>
+        <UserInfo field="Cidade" data={user?.city} />
+        <UserInfo field="Estado" data={user?.state} />
       </div>
       <div>
         <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
-        <p>
-          <strong>Renda:</strong>{" "}
-          {Number(user?.income).toLocaleString("pt-BR", {
+        <UserInfo
+          field="Renda"
+          data={Number(user?.income).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
           })}
-        </p>
-        <p>
-          <strong>Profissão:</strong> {user?.job}
-        </p>
+        />
+        <UserInfo field="Profissão" data={user?.job} />
       </div>
     </Container>
   );
