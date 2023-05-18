@@ -49,7 +49,6 @@ const NavItem = styled.li`
   padding: 16px 24px;
   font-size: 1.25rem;
   cursor: pointer;
-  transition: 0.1s;
   &.active {
     border-bottom: 4px solid #c500d0;
     color: #c500d0;
