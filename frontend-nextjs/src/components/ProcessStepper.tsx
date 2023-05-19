@@ -20,20 +20,22 @@ const ProcessStepper = ({
   transactionData,
 }: IProps) => {
   function isStepFailed(step: number) {
-    if (
-      step === 0 &&
-      activeStep > 0 &&
-      transactionData &&
-      !transactionData.value
-    )
-      return true;
-    if (
-      step === 1 &&
-      activeStep > 1 &&
-      transactionData &&
-      !transactionData.target
-    )
-      return true;
+    if (transactionData) {
+      if (
+        step === 0 &&
+        activeStep > 0 &&
+        transactionData &&
+        !transactionData.value
+      )
+        return true;
+      if (
+        step === 1 &&
+        activeStep > 1 &&
+        transactionData &&
+        !transactionData.target
+      )
+        return true;
+    }
     return false;
   }
 
