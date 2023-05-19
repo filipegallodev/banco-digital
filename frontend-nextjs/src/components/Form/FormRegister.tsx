@@ -16,7 +16,7 @@ const FormRegister = () => {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector(
+  const { loading } = useAppSelector(
     (state: IReduxState) => state.register
   );
 

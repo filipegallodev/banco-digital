@@ -12,7 +12,7 @@ const FormLogin = () => {
     password: "",
   });
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector((state: IReduxState) => state.login);
+  const { loading } = useAppSelector((state: IReduxState) => state.login);
   const [unfilledFields, setUnfilledFields] = useState(true);
 
   const checkLoginFields = useCallback(() => {

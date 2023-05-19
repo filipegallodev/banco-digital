@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     if (user.data.validToken) router.push("/painel");
-  }, [user.data.validToken]);
+  }, [user.data.validToken, router]);
 
   if (user.data.user) return <AuthPage />;
   return (

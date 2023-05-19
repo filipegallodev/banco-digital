@@ -39,7 +39,7 @@ const Input = ({
     if (displayValue && typeof value === "string")
       setFormValue(value.substring(0, 3) + "*".repeat(value.length));
     if (!displayValue && typeof value !== "undefined") setFormValue(value);
-  }, [displayValue]);
+  }, [displayValue, value]);
 
   function handleChange(event: React.FormEvent<HTMLInputElement>) {
     saveFormData({

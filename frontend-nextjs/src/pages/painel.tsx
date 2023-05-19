@@ -22,7 +22,7 @@ export default function Painel() {
   useEffect(() => {
     dispatch(fetchTransactionsList());
     if (login.data?.token) dispatch(resetLoginData());
-  }, [dispatch]);
+  }, [dispatch, login.data?.token]);
 
   if (!user.data.user) return <AuthPage />;
   return (

@@ -23,7 +23,7 @@ const ProfileChangePassword = () => {
       return setInputError("Senhas não coincidem.");
     }
     setInputError("");
-  }, [changePasswordData.newPassword, changePasswordData.newPasswordConfirm]);
+  }, [changePasswordData]);
 
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
