@@ -27,7 +27,7 @@ export default function Emprestimos() {
       setLoan(loanNumber);
       if (loan === 0 || loan === undefined) setCustomLoan(loanNumber);
     }
-  }, [user]);
+  }, [user.data.user?.loan, loan]);
 
   useEffect(() => {
     setFinalLoan(
