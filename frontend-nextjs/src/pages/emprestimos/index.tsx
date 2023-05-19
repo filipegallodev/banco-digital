@@ -31,10 +31,13 @@ export default function Emprestimos() {
 
   useEffect(() => {
     setFinalLoan(
-      (customLoan + customLoan * 0.0446).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      })
+      (customLoan + customLoan * (0.0446 * (installment * 0.5))).toLocaleString(
+        "pt-BR",
+        {
+          style: "currency",
+          currency: "BRL",
+        }
+      )
     );
   }, [customLoan, installment]);
 
