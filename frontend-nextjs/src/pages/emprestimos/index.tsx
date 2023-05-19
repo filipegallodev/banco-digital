@@ -7,11 +7,14 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
+import * as Styled from "../../components/styles/Components.styled";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
   const [loan, setLoan] = useState<number>();
   const [customLoan, setCustomLoan] = useState<number>(50);
+  const [installment, setInstallment] = useState<number>(0);
+  const [finalLoan, setFinalLoan] = useState<string>("");
 
   useEffect(() => {
     if (user.data.user?.loan) {
@@ -26,9 +29,24 @@ export default function Emprestimos() {
     }
   }, [user]);
 
-  function handleSliderChange(event: Event, newValue: number | number[]) {
+  useEffect(() => {
+    setFinalLoan(
+      (customLoan + customLoan * 0.0446).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      })
+    );
+  }, [customLoan, installment]);
+
+  function handleLoanChange(event: Event, newValue: number | number[]) {
     if (typeof newValue === "number") {
       setCustomLoan(newValue);
+    }
+  }
+
+  function handleInstallmentChange(event: Event, newValue: number | number[]) {
+    if (typeof newValue === "number") {
+      setInstallment(newValue);
     }
   }
 
@@ -60,6 +78,7 @@ export default function Emprestimos() {
         <Container>
           <ReturnButton />
           <Title>Empréstimos</Title>
+          <Styled.SubTitle>Valor</Styled.SubTitle>
           {loan && (
             <>
               <p>
@@ -88,10 +107,27 @@ export default function Emprestimos() {
                 min={50}
                 step={50}
                 max={loan}
-                onChange={handleSliderChange}
+                onChange={handleLoanChange}
               />
             </>
           )}
+          <Styled.SubTitle>Parcelamento</Styled.SubTitle>
+          <p>
+            Você pode parcelar em até 24 vezes! A taxa de juros é de 4,46% ao
+            mês.
+          </p>
+          <p>
+            Parcelas: {installment} de {finalLoan}/mês.
+          </p>
+          <p>Valor final: {finalLoan}.</p>
+          <Slider
+            aria-label="Loan"
+            value={installment}
+            min={1}
+            step={1}
+            max={24}
+            onChange={handleInstallmentChange}
+          />
         </Container>
       </main>
     </>
