@@ -20,10 +20,10 @@ const TransactionSection = () => {
   const [maxItems, setMaxItems] = useState<number>(5);
 
   useEffect(() => {
-    if (data?.allTransactions) {
+    if (data?.filteredTransactions) {
       let i = 0;
       return setTransactionsList(
-        data?.allTransactions.filter((transaction) => {
+        data?.filteredTransactions.filter((transaction) => {
           if (i < maxItems) {
             i++;
             return transaction;

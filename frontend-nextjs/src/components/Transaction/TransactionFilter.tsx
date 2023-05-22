@@ -1,3 +1,5 @@
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { filterTransactions } from "@/store/reducers/transactions";
 import React, { useState } from "react";
 
 export interface IFilter {
@@ -6,31 +8,27 @@ export interface IFilter {
 
 const TransactionFilter = () => {
   const [filter, setFilter] = useState<IFilter>();
+  const dispatch = useAppDispatch();
 
   function updateDate(e: React.FormEvent<HTMLSelectElement>) {
     setFilter({
       ...filter,
       [e.currentTarget.name]: e.currentTarget.value,
     });
-  }
-
-  function handleFilterSubmit(e: React.FormEvent) {
-    e.preventDefault();
+    if (!e.currentTarget.value) return;
+    dispatch(filterTransactions({ type: e.currentTarget.value }));
   }
 
   return (
     <div>
       <h3>Filtros</h3>
-      <form onSubmit={handleFilterSubmit}>
-        <div>
-          <h4>Tipo</h4>
-          <select name="type" onChange={updateDate}>
-            <option value="received">Recebido</option>
-            <option value="sent">Enviado</option>
-          </select>
-        </div>
-        <button>Filtrar</button>
-      </form>
+      <div>
+        <h4>Tipo</h4>
+        <select name="type" onChange={updateDate}>
+          <option value="received">Recebido</option>
+          <option value="sent">Enviado</option>
+        </select>
+      </div>
     </div>
   );
 };

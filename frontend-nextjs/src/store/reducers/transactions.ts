@@ -1,10 +1,12 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 import { AppThunk } from "../configureStore";
+import { IFilter } from "@/components/Transaction/TransactionFilter";
 
 const initialState: ITransactionReducerState = {
   loading: false,
   data: {
     status: null,
+    userAccountId: undefined,
     allTransactions: undefined,
     totalTransferValue: undefined,
     filteredTransactions: undefined,
@@ -33,6 +35,22 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
+    filterTransactions: (state, { payload }: { payload: IFilter }) => {
+      if (!state.data) return;
+      if (payload.type === "sent") {
+        const newList = state.data.allTransactions?.filter(
+          ({ originAccountId }) => state.data?.userAccountId === originAccountId
+        );
+        state.data.filteredTransactions = newList;
+      }
+      if (payload.type === "received") {
+        const newList = state.data.allTransactions?.filter(
+          ({ destinationAccountId }) =>
+            state.data?.userAccountId === destinationAccountId
+        );
+        state.data.filteredTransactions = newList;
+      }
+    },
     clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;
       state.error = null;
@@ -44,6 +62,7 @@ export const {
   fetchStarted,
   fetchSuccess,
   fetchError,
+  filterTransactions,
   clearTransactionStatus,
 } = slice.actions;
 const SERVER_URL = "http://localhost:3333/";
