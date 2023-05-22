@@ -7,6 +7,7 @@ const initialState: ITransactionReducerState = {
     status: null,
     allTransactions: undefined,
     totalTransferValue: undefined,
+    filteredTransactions: undefined,
   },
   error: null,
 };
@@ -23,6 +24,8 @@ const slice = createSlice({
     fetchSuccess: (state, action) => {
       state.loading = false;
       state.data = action.payload;
+      if (state.data)
+        state.data.filteredTransactions = state.data?.allTransactions;
       state.error = null;
     },
     fetchError: (state, action) => {

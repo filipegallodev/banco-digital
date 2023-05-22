@@ -17,6 +17,7 @@ interface ITransactionReducerState {
     status: null | string;
     allTransactions?: undefined | ITransaction[];
     totalTransferValue: undefined | string;
+    filteredTransactions: undefined | ITransaction[];
   };
   error: null | string;
 }
