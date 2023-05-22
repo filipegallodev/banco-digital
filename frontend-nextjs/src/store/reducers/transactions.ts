@@ -51,7 +51,9 @@ const slice = createSlice({
         state.data.filteredTransactions = newList;
       }
       if (state.data.allTransactions) {
-        const startDate = new Date(payload.start + "T00:00:00");
+        const startDate = payload.start
+          ? new Date(payload.start + "T00:00:00")
+          : new Date("1900-01-01T00:00:00");
         const endDate = payload.end
           ? new Date(payload.end + "T24:00:00")
           : new Date();
