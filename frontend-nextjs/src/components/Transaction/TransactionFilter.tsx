@@ -14,7 +14,7 @@ export interface IFilter {
 
 const TransactionFilter = () => {
   const [filter, setFilter] = useState<IFilter>({
-    type: "",
+    type: "received",
     start: "",
     end: "",
   });
@@ -28,7 +28,7 @@ const TransactionFilter = () => {
   }
 
   function handleFilterCleaning() {
-    setFilter({ type: "", start: "", end: "" });
+    setFilter({ type: "received", start: "", end: "" });
     dispatch(clearFilters());
   }
 
@@ -37,7 +37,7 @@ const TransactionFilter = () => {
       <h3>Filtros</h3>
       <div>
         <h4>Tipo</h4>
-        <select name="type" onChange={updateData}>
+        <select name="type" onChange={updateData} value={filter.type}>
           <option value="received">Recebido</option>
           <option value="sent">Enviado</option>
         </select>
