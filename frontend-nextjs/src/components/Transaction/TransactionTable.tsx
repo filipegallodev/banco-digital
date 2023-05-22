@@ -11,65 +11,83 @@ interface IProps {
 
 const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
-  const { error } = useAppSelector(
-    (state: IReduxState) => state.transactions
-  );
+  const { error } = useAppSelector((state: IReduxState) => state.transactions);
 
   if (!transactions?.length) return <p>{error}</p>;
   return (
-    <>
-      <Table>
-        <thead>
-          <tr>
-            <ColumnName>Valor</ColumnName>
-            <ColumnName>Tipo</ColumnName>
-            <ColumnName>Data</ColumnName>
-            <ColumnName>ID</ColumnName>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <BodyLine key={transaction.id}>
-              <Value
-                className={
-                  transaction.originAccountId === user?.accountId
-                    ? "negative"
-                    : "positive"
-                }
-              >
-                {transaction.value}
-              </Value>
-              <td>
-                {transaction.originAccountId === user?.accountId
-                  ? "Enviado"
-                  : "Recebido"}
-              </td>
-              <td>
-                {transaction.createdAt.replace(
-                  /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
-                  "$1 às $2"
-                )}
-              </td>
-              <td>
-                <TransactionId>{transaction.id}</TransactionId>
-              </td>
-            </BodyLine>
-          ))}
-        </tbody>
-      </Table>
-      <Button
-        onClick={() => setMaxItems(maxItems + 5)}
-        disabled={transactions.length < maxItems ? true : false}
-      >
-        {transactions.length < maxItems
-          ? "Fim das transações"
-          : "Carregar mais"}
-      </Button>
-    </>
+    <Container>
+      <FilterContainer>
+        <h3>Filtros</h3>
+        <select>
+          <option value="received">Recebido</option>
+          <option value="sent">Enviado</option>
+        </select>
+      </FilterContainer>
+      <TableContainer>
+        <Table>
+          <thead>
+            <tr>
+              <ColumnName>Valor</ColumnName>
+              <ColumnName>Tipo</ColumnName>
+              <ColumnName>Data</ColumnName>
+              <ColumnName>ID</ColumnName>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction) => (
+              <BodyLine key={transaction.id}>
+                <Value
+                  className={
+                    transaction.originAccountId === user?.accountId
+                      ? "negative"
+                      : "positive"
+                  }
+                >
+                  {transaction.value}
+                </Value>
+                <td>
+                  {transaction.originAccountId === user?.accountId
+                    ? "Enviado"
+                    : "Recebido"}
+                </td>
+                <td>
+                  {transaction.createdAt.replace(
+                    /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
+                    "$1 às $2"
+                  )}
+                </td>
+                <td>
+                  <TransactionId>{transaction.id}</TransactionId>
+                </td>
+              </BodyLine>
+            ))}
+          </tbody>
+        </Table>
+        <Button
+          onClick={() => setMaxItems(maxItems + 5)}
+          disabled={transactions.length < maxItems ? true : false}
+        >
+          {transactions.length < maxItems
+            ? "Fim das transações"
+            : "Carregar mais"}
+        </Button>
+      </TableContainer>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  margin: 24px 0px;
+`;
+
+const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Table = styled.table`
+  margin: 24px 0px;
   width: 100%;
   table-layout: fixed;
   text-align: center;
@@ -78,6 +96,8 @@ const Table = styled.table`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;
+
+const FilterContainer = styled.div``;
 
 const ColumnName = styled.th`
   font-size: 1.5rem;

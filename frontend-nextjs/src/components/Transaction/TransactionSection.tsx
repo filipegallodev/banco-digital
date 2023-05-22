@@ -61,7 +61,7 @@ const TransactionSection = () => {
         </Styled.Button>
         {loading && <CircularProgress />}
       </ButtonContainer>
-      <TableContainer>
+      <div>
         {loading ? (
           <Skeleton
             animation={"wave"}
@@ -77,7 +77,7 @@ const TransactionSection = () => {
             setMaxItems={setMaxItems}
           />
         )}
-      </TableContainer>
+      </div>
     </Container>
   );
 };
@@ -90,14 +90,6 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-`;
-
-const TableContainer = styled.div`
-  margin: 24px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
 `;
 
 export default TransactionSection;
