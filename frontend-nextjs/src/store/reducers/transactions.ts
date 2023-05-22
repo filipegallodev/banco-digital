@@ -50,6 +50,24 @@ const slice = createSlice({
         );
         state.data.filteredTransactions = newList;
       }
+      if (state.data.allTransactions) {
+        const startDate = new Date(payload.start + "T00:00:00");
+        const endDate = payload.end
+          ? new Date(payload.end + "T24:00:00")
+          : new Date();
+        console.log(new Date());
+        const newList = state.data.allTransactions.filter((transaction) => {
+          const transactionDate = new Date(
+            transaction.createdAt.replace(
+              /(\d{2})\/(\d{2})\/(\d{4})/g,
+              "$3/$2/$1"
+            )
+          );
+          if (transactionDate >= startDate && transactionDate <= endDate)
+            return transaction;
+        });
+        state.data.filteredTransactions = newList;
+      }
     },
     clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;
