@@ -37,19 +37,7 @@ const slice = createSlice({
     },
     filterTransactions: (state, { payload }: { payload: IFilter }) => {
       if (!state.data) return;
-      if (payload.type === "sent") {
-        const newList = state.data.allTransactions?.filter(
-          ({ originAccountId }) => state.data?.userAccountId === originAccountId
-        );
-        state.data.filteredTransactions = newList;
-      }
-      if (payload.type === "received") {
-        const newList = state.data.allTransactions?.filter(
-          ({ destinationAccountId }) =>
-            state.data?.userAccountId === destinationAccountId
-        );
-        state.data.filteredTransactions = newList;
-      }
+      clearFilters();
       if (state.data.allTransactions) {
         const startDate = payload.start
           ? new Date(payload.start + "T00:00:00")
@@ -68,6 +56,20 @@ const slice = createSlice({
             return transaction;
         });
         state.data.filteredTransactions = newList;
+        if (payload.type === "sent") {
+          const newList = state.data.filteredTransactions?.filter(
+            ({ originAccountId }) =>
+              state.data?.userAccountId === originAccountId
+          );
+          state.data.filteredTransactions = newList;
+        }
+        if (payload.type === "received") {
+          const newList = state.data.filteredTransactions?.filter(
+            ({ destinationAccountId }) =>
+              state.data?.userAccountId === destinationAccountId
+          );
+          state.data.filteredTransactions = newList;
+        }
       }
     },
     clearFilters: (state) => {
