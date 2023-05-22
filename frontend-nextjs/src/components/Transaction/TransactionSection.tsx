@@ -8,6 +8,7 @@ import styled from "styled-components";
 import TransactionTable from "./TransactionTable";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import * as Styled from "../styles/Components.styled";
+import TransactionFilter from "./TransactionFilter";
 
 const TransactionSection = () => {
   const { data, loading } = useAppSelector(
@@ -61,6 +62,7 @@ const TransactionSection = () => {
         </Styled.Button>
         {loading && <CircularProgress />}
       </ButtonContainer>
+      <TransactionFilter />
       <div>
         {loading ? (
           <Skeleton

@@ -16,13 +16,6 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   if (!transactions?.length) return <p>{error}</p>;
   return (
     <Container>
-      <FilterContainer>
-        <h3>Filtros</h3>
-        <select>
-          <option value="received">Recebido</option>
-          <option value="sent">Enviado</option>
-        </select>
-      </FilterContainer>
       <TableContainer>
         <Table>
           <thead>
@@ -96,8 +89,6 @@ const Table = styled.table`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;
-
-const FilterContainer = styled.div``;
 
 const ColumnName = styled.th`
   font-size: 1.5rem;
