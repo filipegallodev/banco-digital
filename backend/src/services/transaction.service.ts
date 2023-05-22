@@ -87,6 +87,7 @@ export async function list(authorization: string | undefined) {
   );
   return {
     status: "Busca concluída com sucesso.",
+    userAccountId: dbUserAccount.id,
     allTransactions: transactionsFormatter(allTransactions),
     totalTransferValue,
     success: true,
