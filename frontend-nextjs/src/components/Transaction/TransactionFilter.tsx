@@ -1,5 +1,8 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { filterTransactions } from "@/store/reducers/transactions";
+import {
+  clearFilters,
+  filterTransactions,
+} from "@/store/reducers/transactions";
 import React, { useState } from "react";
 import Input from "../Form/Input";
 
@@ -24,43 +27,44 @@ const TransactionFilter = () => {
     });
   }
 
-  function handleFilterSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    dispatch(filterTransactions(filter));
+  function handleFilterCleaning() {
+    setFilter({ type: "", start: "", end: "" });
+    dispatch(clearFilters());
   }
 
   return (
     <div>
       <h3>Filtros</h3>
-      <form onSubmit={handleFilterSubmit}>
-        <div>
-          <h4>Tipo</h4>
-          <select name="type" onChange={updateData}>
-            <option value="received">Recebido</option>
-            <option value="sent">Enviado</option>
-          </select>
-        </div>
-        <div>
-          <h4>Período</h4>
-          <Input
-            name="De"
-            id="filter-start"
-            type="date"
-            formData={filter}
-            saveFormData={setFilter}
-            value={filter.start}
-          />
-          <Input
-            name="Até"
-            id="filter-end"
-            type="date"
-            formData={filter}
-            saveFormData={setFilter}
-            value={filter.end}
-          />
-        </div>
-        <button>Filtrar</button>
-      </form>
+      <div>
+        <h4>Tipo</h4>
+        <select name="type" onChange={updateData}>
+          <option value="received">Recebido</option>
+          <option value="sent">Enviado</option>
+        </select>
+      </div>
+      <div>
+        <h4>Período</h4>
+        <Input
+          name="De"
+          id="filter-start"
+          type="date"
+          formData={filter}
+          saveFormData={setFilter}
+          value={filter.start}
+        />
+        <Input
+          name="Até"
+          id="filter-end"
+          type="date"
+          formData={filter}
+          saveFormData={setFilter}
+          value={filter.end}
+        />
+      </div>
+      <button onClick={handleFilterCleaning}>Limpar filtros</button>
+      <button onClick={() => dispatch(filterTransactions(filter))}>
+        Filtrar
+      </button>
     </div>
   );
 };

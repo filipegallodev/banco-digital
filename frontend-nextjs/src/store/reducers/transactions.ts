@@ -55,7 +55,6 @@ const slice = createSlice({
         const endDate = payload.end
           ? new Date(payload.end + "T24:00:00")
           : new Date();
-        console.log(new Date());
         const newList = state.data.allTransactions.filter((transaction) => {
           const transactionDate = new Date(
             transaction.createdAt.replace(
@@ -69,6 +68,10 @@ const slice = createSlice({
         state.data.filteredTransactions = newList;
       }
     },
+    clearFilters: (state) => {
+      if (state.data)
+        state.data.filteredTransactions = state.data.allTransactions;
+    },
     clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;
       state.error = null;
@@ -81,6 +84,7 @@ export const {
   fetchSuccess,
   fetchError,
   filterTransactions,
+  clearFilters,
   clearTransactionStatus,
 } = slice.actions;
 const SERVER_URL = "http://localhost:3333/";
