@@ -62,7 +62,7 @@ const TransactionSection = () => {
         </Styled.Button>
         {loading && <CircularProgress />}
       </ButtonContainer>
-      <TransactionFilter />
+      <TransactionFilter setMaxItems={setMaxItems} />
       <div>
         {loading ? (
           <Skeleton

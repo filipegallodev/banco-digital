@@ -12,7 +12,11 @@ export interface IFilter {
   end: string;
 }
 
-const TransactionFilter = () => {
+interface IProps {
+  setMaxItems: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const TransactionFilter = ({ setMaxItems }: IProps) => {
   const [filter, setFilter] = useState<IFilter>({
     type: "all",
     start: "",
@@ -30,6 +34,7 @@ const TransactionFilter = () => {
   function handleFilterCleaning() {
     setFilter({ type: "all", start: "", end: "" });
     dispatch(clearFilters());
+    setMaxItems(5);
   }
 
   return (
