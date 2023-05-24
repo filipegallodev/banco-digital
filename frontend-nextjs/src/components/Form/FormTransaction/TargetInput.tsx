@@ -28,6 +28,7 @@ const TargetInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
           })
         }
         {...args}
+        autoFocus
       />
     </>
   );

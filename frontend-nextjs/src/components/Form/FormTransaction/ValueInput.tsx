@@ -23,6 +23,7 @@ const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
         value={value}
         onValueChange={(newValue) => setValue(newValue)}
         {...args}
+        autoFocus
       />
     </>
   );
