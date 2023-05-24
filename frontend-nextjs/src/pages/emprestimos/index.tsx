@@ -31,7 +31,7 @@ export default function Emprestimos() {
   }, [user.data.user?.loan, loan]);
 
   useEffect(() => {
-    setFinalLoan(customLoan + customLoan * (0.0446234 * (installment * 0.62173)));
+    setFinalLoan(customLoan + customLoan * 0.0783 * installment);
   }, [customLoan, installment]);
 
   function handleLoanChange(event: Event, newValue: number | number[]) {
@@ -103,7 +103,7 @@ export default function Emprestimos() {
           )}
           <Styled.SubTitle>Parcelamento</Styled.SubTitle>
           <p>
-            Você pode parcelar em até 24 vezes! A taxa de juros é de 4,46% ao
+            Você pode parcelar em até 24 vezes! A taxa de juros é de 7,83% ao
             mês.
           </p>
           <p>
