@@ -8,13 +8,14 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import * as Styled from "../../components/styles/Components.styled";
+import { currencyFormatter } from "@/helper/currencyFormatter";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
   const [loan, setLoan] = useState<number>();
   const [customLoan, setCustomLoan] = useState<number>(50);
-  const [installment, setInstallment] = useState<number>(0);
-  const [finalLoan, setFinalLoan] = useState<string>("");
+  const [installment, setInstallment] = useState<number>(1);
+  const [finalLoan, setFinalLoan] = useState<number>(0);
 
   useEffect(() => {
     if (user.data.user?.loan) {
@@ -30,15 +31,7 @@ export default function Emprestimos() {
   }, [user.data.user?.loan, loan]);
 
   useEffect(() => {
-    setFinalLoan(
-      (customLoan + customLoan * (0.0446 * (installment * 0.5))).toLocaleString(
-        "pt-BR",
-        {
-          style: "currency",
-          currency: "BRL",
-        }
-      )
-    );
+    setFinalLoan(customLoan + customLoan * (0.0446234 * (installment * 0.62173)));
   }, [customLoan, installment]);
 
   function handleLoanChange(event: Event, newValue: number | number[]) {
@@ -86,14 +79,8 @@ export default function Emprestimos() {
             <>
               <p>
                 {customLoan
-                  ? customLoan.toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })
-                  : loan.toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
+                  ? currencyFormatter(customLoan)
+                  : currencyFormatter(loan)}
               </p>
               <CurrencyInput
                 id="custom-loan-value"
@@ -120,9 +107,11 @@ export default function Emprestimos() {
             mês.
           </p>
           <p>
-            Parcelas: {installment} de {finalLoan}/mês.
+            Parcelas: {installment} de{" "}
+            {currencyFormatter(finalLoan / installment)}
+            /mês.
           </p>
-          <p>Valor final: {finalLoan}.</p>
+          <p>Valor final: {currencyFormatter(finalLoan)}.</p>
           <Slider
             aria-label="Loan"
             value={installment}
