@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import * as Styled from "@/components/styles/Components.styled";
@@ -22,6 +22,7 @@ const Confirmation = ({
   const { loading } = useAppSelector(
     (state: IReduxState) => state.transactions
   );
+  const [confirmation, setConfirmation] = useState(false);
 
   return (
     <>
@@ -45,11 +46,17 @@ const Confirmation = ({
         required
         control={<Checkbox />}
         label="Confirme os dados inseridos."
+        value={confirmation}
+        onChange={() => setConfirmation(!confirmation)}
       />
       <ButtonContainer>
         <Styled.Button
           disabled={
-            loading ? true : !(formData.value && formData.target) ? true : false
+            loading
+              ? true
+              : !(formData.value && formData.target && confirmation)
+              ? true
+              : false
           }
         >
           {loading ? "Transferindo" : "Enviar"}
