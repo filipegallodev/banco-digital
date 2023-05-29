@@ -142,14 +142,9 @@ export async function token(authorization: string | undefined) {
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "ID de usuário inválido.", success: false };
   const dbUserAccount = await PrismaUtil.findAccount(dbUser);
-  const brazilianCurrency = currencyFormatter(
-    "pt-BR",
-    "BRL",
-    dbUserAccount?.balance
-  );
   const user = {
     ...dbUser,
-    balance: brazilianCurrency,
+    balance: currencyFormatter("pt-BR", "BRL", dbUserAccount?.balance),
     loan: currencyFormatter("pt-BR", "BRL", loanCalculation(dbUser.income)),
   };
   return { status: "Token validado com sucesso.", success: true, user };

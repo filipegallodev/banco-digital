@@ -59,7 +59,13 @@ const LoanSection = () => {
     }
   }
 
-  if (!loan) return null;
+  if (!loan)
+    return (
+      <Styled.Text>
+        Empréstimo indisponível para sua conta. Atualize seu salário em seu
+        perfil para obter novas opções de empréstimo.
+      </Styled.Text>
+    );
   return (
     <>
       <LoanStepper

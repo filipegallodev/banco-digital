@@ -24,6 +24,8 @@ export default function Painel() {
     if (login.data?.token) dispatch(resetLoginData());
   }, [dispatch, login.data?.token]);
 
+  console.log(user.data.user?.loan === "R$ 0,00");
+
   if (!user.data.user) return <AuthPage />;
   return (
     <>
@@ -70,9 +72,13 @@ export default function Painel() {
             />
             <DashboardItem
               name="Empréstimos"
-              prefix="até"
+              prefix={user.data.user?.loan === "R$ 0,00" ? "" : "até"}
               page="emprestimos"
-              data={user.data.user?.loan}
+              data={
+                user.data.user?.loan === "R$ 0,00"
+                  ? "Indisponível"
+                  : user.data.user?.loan
+              }
               loading={transactions.loading}
             />
           </DashboardContainer>
