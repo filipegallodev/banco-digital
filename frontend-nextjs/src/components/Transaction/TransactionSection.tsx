@@ -73,7 +73,7 @@ const TransactionSection = () => {
             variant="rectangular"
             width={1200}
             height={344}
-            sx={{ borderRadius: "6px" }}
+            sx={{ borderRadius: "6px", marginBottom: "24px" }}
           />
         ) : (
           <TransactionTable

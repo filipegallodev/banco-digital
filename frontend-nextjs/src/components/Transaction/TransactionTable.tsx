@@ -13,7 +13,12 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
   const { error } = useAppSelector((state: IReduxState) => state.transactions);
 
-  if (!transactions?.length) return <p>{error}</p>;
+  if (!transactions?.length)
+    return (
+      <Error>
+        <p>{error}</p>
+      </Error>
+    );
   return (
     <Container>
       <TableContainer>
@@ -68,6 +73,14 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
     </Container>
   );
 };
+
+const Error = styled.div`
+  width: 1200px;
+  height: 344px;
+  font-size: 1.25rem;
+  margin-bottom: 24px;
+  text-align: center;
+`;
 
 const Container = styled.div`
   margin-bottom: 24px;
