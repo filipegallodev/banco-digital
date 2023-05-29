@@ -26,7 +26,6 @@ const Confirmation = ({
 
   return (
     <>
-      <Styled.SubTitle>Confirmação</Styled.SubTitle>
       <ValueInput
         label="Valor"
         id="transaction-value-confirm"

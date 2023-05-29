@@ -68,29 +68,36 @@ const TransactionForm = () => {
       />
       <Form onSubmit={handleTransaction}>
         {activeStep === 0 ? (
-          <ValueInput
-            title="Valor"
-            label="Quanto deseja transferir?"
-            id="transaction-value"
-            value={transactionValue}
-            setValue={setTransactionValue}
-          />
+          <>
+            <Styled.SubTitle>Valor</Styled.SubTitle>
+            <ValueInput
+              label="Quanto deseja transferir?"
+              id="transaction-value"
+              value={transactionValue}
+              setValue={setTransactionValue}
+            />
+          </>
         ) : activeStep === 1 ? (
-          <TargetInput
-            title="Destino"
-            label="Para quem você deseja transferir essa quantia?"
-            id="transaction-target"
-            formData={transactionData}
-            setFormData={setTransactionData}
-            placeholder="email@exemplo.com"
-          />
+          <>
+            <Styled.SubTitle>Destino</Styled.SubTitle>
+            <TargetInput
+              label="Para quem você deseja transferir essa quantia?"
+              id="transaction-target"
+              formData={transactionData}
+              setFormData={setTransactionData}
+              placeholder="email@exemplo.com"
+            />
+          </>
         ) : (
-          <Confirmation
-            formData={transactionData}
-            setFormData={setTransactionData}
-            transactionValue={transactionValue}
-            setTransactionValue={setTransactionValue}
-          />
+          <>
+            <Styled.SubTitle>Confirmação</Styled.SubTitle>
+            <Confirmation
+              formData={transactionData}
+              setFormData={setTransactionData}
+              transactionValue={transactionValue}
+              setTransactionValue={setTransactionValue}
+            />
+          </>
         )}
       </Form>
       <ButtonContainer>

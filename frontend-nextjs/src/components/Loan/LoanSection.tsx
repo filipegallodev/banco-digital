@@ -6,7 +6,7 @@ import { Slider } from "@mui/material";
 import * as Styled from "@/components/styles/Components.styled";
 import LoanStepper from "./LoanStepper";
 
-const steps = ["Valor", "Parcelamento", "Confirmação"];
+const steps = ["Defina o valor", "Quantidade de parcelas", "Confirmação"];
 
 const LoanSection = () => {
   const user = useAppSelector((state) => state.user);

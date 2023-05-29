@@ -3,7 +3,6 @@ import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
 
 interface IProps {
-  title?: string;
   label: string;
   id: string;
   formData: {
@@ -14,17 +13,9 @@ interface IProps {
   [key: string]: any;
 }
 
-const TargetInput = ({
-  title,
-  label,
-  id,
-  formData,
-  setFormData,
-  ...args
-}: IProps) => {
+const TargetInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
   return (
     <>
-      {title && <Styled.SubTitle>{title}</Styled.SubTitle>}
       <Label htmlFor={id}>{label}</Label>
       <input
         type="text"
