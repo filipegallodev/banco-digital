@@ -13,7 +13,7 @@ interface IProps {
   transactionData?: ITransactionFormData;
 }
 
-const ProcessStepper = ({
+const TransactionStepper = ({
   steps,
   activeStep,
   setActiveStep,
@@ -82,4 +82,4 @@ const StepLabelStyled = styled(StepLabel)`
   }
 `;
 
-export default ProcessStepper;
+export default TransactionStepper;

@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
-import ProcessStepper from "../../ProcessStepper";
+import TransactionStepper from "./TransactionStepper";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import Confirmation from "./Confirmation";
@@ -60,7 +60,7 @@ const TransactionForm = () => {
 
   return (
     <Container>
-      <ProcessStepper
+      <TransactionStepper
         steps={steps}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
