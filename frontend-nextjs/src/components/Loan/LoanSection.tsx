@@ -4,6 +4,9 @@ import { currencyFormatter } from "@/helper/currencyFormatter";
 import CurrencyInput from "react-currency-input-field";
 import { Slider } from "@mui/material";
 import * as Styled from "@/components/styles/Components.styled";
+import LoanStepper from "./LoanStepper";
+
+const steps = ["Valor", "Parcelamento", "Confirmação"];
 
 const LoanSection = () => {
   const user = useAppSelector((state) => state.user);
@@ -11,6 +14,7 @@ const LoanSection = () => {
   const [customLoan, setCustomLoan] = useState<number>(50);
   const [installment, setInstallment] = useState<number>(1);
   const [finalLoan, setFinalLoan] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
     if (user.data.user?.loan) {
@@ -55,9 +59,15 @@ const LoanSection = () => {
     }
   }
 
+  if (!loan) return null;
   return (
     <>
-      {loan && (
+      <LoanStepper
+        steps={steps}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+      />
+      {activeStep === 0 ? (
         <>
           <Styled.SubTitle>Valor</Styled.SubTitle>
           <p>
@@ -83,24 +93,42 @@ const LoanSection = () => {
             onChange={handleLoanChange}
           />
         </>
+      ) : activeStep === 1 ? (
+        <>
+          <Styled.SubTitle>Parcelamento</Styled.SubTitle>
+          <p>
+            Você pode parcelar em até 24 vezes! A taxa de juros é de 4,83% ao
+            mês.
+          </p>
+          <p>
+            Parcelas: {installment} de{" "}
+            {currencyFormatter(finalLoan / installment)}
+            /mês.
+          </p>
+          <p>Valor final: {currencyFormatter(finalLoan)}.</p>
+          <Slider
+            aria-label="Loan"
+            value={installment}
+            min={1}
+            step={1}
+            max={24}
+            onChange={handleInstallmentChange}
+          />
+        </>
+      ) : (
+        <>
+          <Styled.SubTitle>Confirmação</Styled.SubTitle>
+          <p>Confirme os dados antes de confirmar o empréstimo.</p>
+          <p>Valor a ser emprestado: {currencyFormatter(finalLoan)}</p>
+          <p>
+            Parcelamento: {installment} parcela{"(s)"} de{" "}
+            {currencyFormatter(finalLoan / installment)}
+            /mês
+          </p>
+          <p>Confirmo os dados.</p>
+          <button>Solicitar</button>
+        </>
       )}
-      <Styled.SubTitle>Parcelamento</Styled.SubTitle>
-      <p>
-        Você pode parcelar em até 24 vezes! A taxa de juros é de 4,83% ao mês.
-      </p>
-      <p>
-        Parcelas: {installment} de {currencyFormatter(finalLoan / installment)}
-        /mês.
-      </p>
-      <p>Valor final: {currencyFormatter(finalLoan)}.</p>
-      <Slider
-        aria-label="Loan"
-        value={installment}
-        min={1}
-        step={1}
-        max={24}
-        onChange={handleInstallmentChange}
-      />
     </>
   );
 };
