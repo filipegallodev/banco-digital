@@ -1,8 +1,10 @@
 import React from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
+import * as Styled from "@/components/styles/Components.styled";
 
 interface IProps {
+  title?: string;
   label: string;
   id: string;
   value: string | undefined;
@@ -10,9 +12,10 @@ interface IProps {
   [key: string]: any;
 }
 
-const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
+const ValueInput = ({ title, label, id, value, setValue, ...args }: IProps) => {
   return (
     <>
+      {title && <Styled.SubTitle>{title}</Styled.SubTitle>}
       <Label htmlFor={id}>{label}</Label>
       <CurrencyInput
         id={id}

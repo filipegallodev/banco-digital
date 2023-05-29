@@ -69,6 +69,7 @@ const TransactionForm = () => {
       <Form onSubmit={handleTransaction}>
         {activeStep === 0 ? (
           <ValueInput
+            title="Valor"
             label="Quanto deseja transferir?"
             id="transaction-value"
             value={transactionValue}
@@ -76,6 +77,7 @@ const TransactionForm = () => {
           />
         ) : activeStep === 1 ? (
           <TargetInput
+            title="Destino"
             label="Para quem você deseja transferir essa quantia?"
             id="transaction-target"
             formData={transactionData}
