@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 
 interface IProps {
@@ -24,7 +24,7 @@ const DashboardItem = ({
   }
 
   return (
-    <Container onClick={handleClick}>
+    <Container onClick={handleClick} className={page ? "page-avaliable" : ""}>
       <Name>{name}</Name>
       <Data
         className={
@@ -51,9 +51,13 @@ const Container = styled.div`
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  transition: 0.1s;
-  cursor: pointer;
-  &:hover {
+  &.page-avaliable {
+    cursor: pointer;
+    transition: 0.1s;
+    box-shadow: 0px 0px 0px 2px #ff9bfd;
+  }
+  &.page-avaliable:hover {
+    background-color: #fef;
     box-shadow: 0px 0px 0px 2px #ce3ccc;
   }
 `;
