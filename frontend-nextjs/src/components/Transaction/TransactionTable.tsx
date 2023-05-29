@@ -70,7 +70,7 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
 };
 
 const Container = styled.div`
-  margin: 24px 0px;
+  margin-bottom: 24px;
 `;
 
 const TableContainer = styled.div`
@@ -80,7 +80,7 @@ const TableContainer = styled.div`
 `;
 
 const Table = styled.table`
-  margin: 24px 0px;
+  margin-bottom: 24px;
   width: 100%;
   table-layout: fixed;
   text-align: center;

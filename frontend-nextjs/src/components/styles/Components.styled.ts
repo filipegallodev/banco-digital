@@ -76,6 +76,10 @@ export const ThirdTitle = styled.h3`
   }
 `;
 
+export const Text = styled.p`
+  font-size: 1.25rem;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;

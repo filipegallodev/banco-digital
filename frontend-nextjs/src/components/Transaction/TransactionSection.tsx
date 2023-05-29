@@ -50,20 +50,23 @@ const TransactionSection = () => {
 
   return (
     <Container>
-      <ButtonContainer>
+      <Styled.ButtonContainer>
         <Styled.Button onClick={() => router.push("transferencias/nova")}>
-          Transferir
+          Nova transferência
         </Styled.Button>
-        <Styled.Button
-          disabled={loading}
-          onClick={handleTransactionListRefresh}
-        >
-          <RefreshRoundedIcon />
-        </Styled.Button>
-        {loading && <CircularProgress />}
-      </ButtonContainer>
+      </Styled.ButtonContainer>
       <TransactionFilter setMaxItems={setMaxItems} />
       <div>
+        <HistoryContainer>
+          <Styled.SubTitle>Histórico</Styled.SubTitle>
+          <Styled.Button
+            disabled={loading}
+            onClick={handleTransactionListRefresh}
+          >
+            <RefreshRoundedIcon />
+          </Styled.Button>
+          {loading && <CircularProgress />}
+        </HistoryContainer>
         {loading ? (
           <Skeleton
             animation={"wave"}
@@ -88,10 +91,10 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ButtonContainer = styled.div`
+const HistoryContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export default TransactionSection;
