@@ -6,7 +6,7 @@ const SectionTitle = ({ children }: { children: string }) => {
 };
 
 const Title = styled.h1`
-  margin: 52px 0px;
+  margin: 52px 0px 48px 0px;
   font-size: 2.5rem;
   text-transform: uppercase;
   box-sizing: border-box;

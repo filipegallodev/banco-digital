@@ -34,7 +34,7 @@ const ReturnButton = () => {
 
 const Container = styled.div`
   position: absolute;
-  top: 8px;
+  top: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,6 +72,7 @@ const RoutesPathContainer = styled.div`
 const Route = styled.span`
   cursor: pointer;
   transition: 0.1s;
+  font-size: 1.125rem;
   &:hover {
     color: #111;
   }

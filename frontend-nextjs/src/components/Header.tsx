@@ -45,6 +45,7 @@ const Container = styled.header`
   height: 132px;
   display: flex;
   box-shadow: 0px 0px 4px 2px #fa92ff;
+  margin-bottom: 24px;
 `;
 
 const Content = styled.div`
@@ -54,6 +55,9 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 1240px) {
+    margin: 0 24px;
+  }
 `;
 
 const Title = styled.span`
