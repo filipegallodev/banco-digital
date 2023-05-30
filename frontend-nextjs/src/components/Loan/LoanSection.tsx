@@ -125,16 +125,31 @@ const LoanSection = () => {
         <>
           <Styled.SubTitle>Confirmação</Styled.SubTitle>
           <p>Confirme os dados antes de confirmar o empréstimo.</p>
-          <p>Valor a ser emprestado: {currencyFormatter(finalLoan)}</p>
+          <p>Valor a ser emprestado: {currencyFormatter(customLoan)}</p>
           <p>
             Parcelamento: {installment} parcela{"(s)"} de{" "}
             {currencyFormatter(finalLoan / installment)}
             /mês
           </p>
-          <p>Confirmo os dados.</p>
-          <button>Solicitar</button>
+          <p>Total a ser pago: {currencyFormatter(finalLoan)}</p>
+          <p>Confirme as informações.</p>
+          <Styled.Button>Solicitar</Styled.Button>
         </>
       )}
+      <Styled.ButtonContainer>
+        <Styled.Button
+          onClick={() => setActiveStep(activeStep - 1)}
+          disabled={activeStep === 0}
+        >
+          Voltar
+        </Styled.Button>
+        <Styled.Button
+          onClick={() => setActiveStep(activeStep + 1)}
+          disabled={activeStep >= steps.length - 1}
+        >
+          Próximo
+        </Styled.Button>
+      </Styled.ButtonContainer>
     </>
   );
 };

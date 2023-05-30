@@ -76,6 +76,9 @@ const ButtonContainer = styled.div`
 const FormControlLabelStyled = styled(FormControlLabel)`
   display: block;
   margin: 16px 0px 8px 0px;
+  & .MuiTypography-root {
+    font-family: "Rubik", sans-serif;
+  }
 `;
 
 export default Confirmation;
