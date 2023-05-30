@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styled from "styled-components";
 import FormLogin from "@/components/Form/FormLogin";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -12,6 +11,8 @@ import AuthPage from "@/components/AuthPage";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
 import { Backdrop, CircularProgress } from "@mui/material";
+import SectionTitle from "@/components/Section/SectionTitle";
+import SectionContainer from "@/components/Section/SectionContainer";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -35,8 +36,8 @@ export default function Home() {
       </Head>
       <Header />
       <main className="animeRight">
-        <Container>
-          <Title>O que deseja fazer?</Title>
+        <SectionContainer>
+          <SectionTitle>O que deseja fazer?</SectionTitle>
           <Styled.ButtonContainer>
             <Styled.Button onClick={() => setForm("register")}>
               Criar uma conta
@@ -50,7 +51,7 @@ export default function Home() {
           ) : form === "register" ? (
             <FormRegister />
           ) : null}
-        </Container>
+        </SectionContainer>
       </main>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -63,26 +64,3 @@ export default function Home() {
     </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 1200px;
-  min-height: 50vh;
-`;
-
-const Title = styled.h1`
-  margin: 52px 0px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  &::before {
-    content: "";
-    width: 32px;
-    height: 4px;
-    background-color: #c500d0;
-    position: absolute;
-  }
-`;

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styled from "styled-components";
 import Header from "@/components/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import ReturnButton from "@/components/ReturnButton";
@@ -13,6 +12,8 @@ import ProfileManage from "@/components/UserProfile/ProfileManage/ProfileManage"
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
 import { Backdrop, CircularProgress } from "@mui/material";
+import SectionContainer from "@/components/Section/SectionContainer";
+import SectionTitle from "@/components/Section/SectionTitle";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
@@ -43,12 +44,12 @@ export default function Perfil() {
       </Head>
       <Header />
       <main className="animeRight">
-        <Container>
+        <SectionContainer>
           <ReturnButton />
-          <Title>Meu perfil</Title>
+          <SectionTitle>Meu perfil</SectionTitle>
           <ProfileNav menuItem={menuItem} setMenuItem={setMenuItem} />
           {profileScreen}
-        </Container>
+        </SectionContainer>
       </main>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -61,26 +62,3 @@ export default function Perfil() {
     </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  margin: 0 auto;
-  min-height: 50vh;
-  max-width: 1200px;
-`;
-
-const Title = styled.h1`
-  margin: 52px 0px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  &::before {
-    content: "";
-    width: 32px;
-    height: 4px;
-    background-color: #c500d0;
-    position: absolute;
-  }
-`;

@@ -2,6 +2,8 @@ import AuthPage from "@/components/AuthPage";
 import DashboardContainer from "@/components/Dashboard/DashboardContainer";
 import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header";
+import SectionTitle from "@/components/Section/SectionTitle";
+import SectionContainer from "@/components/Section/SectionContainer";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
@@ -37,8 +39,8 @@ export default function Painel() {
       </Head>
       <Header />
       <main className="animeRight">
-        <Container>
-          <Title>Visão geral</Title>
+        <SectionContainer>
+          <SectionTitle>Visão geral</SectionTitle>
           <WelcomeMessage>
             Olá, {user.data && user.data.user?.firstName}! Aqui está o resumo de
             sua conta:
@@ -82,34 +84,11 @@ export default function Painel() {
               loading={transactions.loading}
             />
           </DashboardContainer>
-        </Container>
+        </SectionContainer>
       </main>
     </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1200px;
-`;
-
-const Title = styled.h1`
-  margin: 52px 0px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  &::before {
-    content: "";
-    width: 32px;
-    height: 4px;
-    background-color: #c500d0;
-    position: absolute;
-  }
-`;
 
 const WelcomeMessage = styled.p`
   font-size: 1.35rem;

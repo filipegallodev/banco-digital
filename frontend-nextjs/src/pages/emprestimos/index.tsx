@@ -4,8 +4,9 @@ import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React from "react";
-import styled from "styled-components";
 import LoanSection from "@/components/Loan/LoanSection";
+import SectionContainer from "@/components/Section/SectionContainer";
+import SectionTitle from "@/components/Section/SectionTitle";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
@@ -21,35 +22,12 @@ export default function Emprestimos() {
       </Head>
       <Header />
       <main className="animeRight">
-        <Container>
+        <SectionContainer>
           <ReturnButton />
-          <Title>Empréstimos</Title>
+          <SectionTitle>Empréstimos</SectionTitle>
           <LoanSection />
-        </Container>
+        </SectionContainer>
       </main>
     </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 0 auto 24px auto;
-  max-width: 1200px;
-`;
-
-const Title = styled.h1`
-  margin: 52px 0px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  &::before {
-    content: "";
-    width: 32px;
-    height: 4px;
-    background-color: #c500d0;
-    position: absolute;
-  }
-`;

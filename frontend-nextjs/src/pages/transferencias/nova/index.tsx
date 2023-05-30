@@ -2,6 +2,8 @@ import AuthPage from "@/components/AuthPage";
 import FormTransaction from "@/components/Form/FormTransaction/FormTransaction";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
+import SectionTitle from "@/components/Section/SectionTitle";
+import SectionContainer from "@/components/Section/SectionContainer";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
@@ -11,7 +13,6 @@ import { clearTransactionStatus } from "@/store/reducers/transactions";
 import { Backdrop, CircularProgress } from "@mui/material";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import styled from "styled-components";
 
 export default function Nova() {
   const user = useTokenAuthentication();
@@ -35,11 +36,11 @@ export default function Nova() {
       </Head>
       <Header />
       <main className="animeRight">
-        <Container>
+        <SectionContainer>
           <ReturnButton />
-          <Title>Realizar Transferência</Title>
+          <SectionTitle>Realizar Transferência</SectionTitle>
           <FormTransaction />
-        </Container>
+        </SectionContainer>
       </main>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -52,26 +53,3 @@ export default function Nova() {
     </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1200px;
-`;
-
-const Title = styled.h1`
-  margin: 52px 0px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  &::before {
-    content: "";
-    width: 32px;
-    height: 4px;
-    background-color: #c500d0;
-    position: absolute;
-  }
-`;
