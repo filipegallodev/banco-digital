@@ -25,8 +25,9 @@ const LoanInstallment = ({
         <strong>{currencyFormatter(finalLoan / installment)}</strong>
         /mês .
       </Styled.Text>
-      <Styled.Text>Escolha a quantidade de parcelas:</Styled.Text>
+      <Styled.Label htmlFor="installment">Escolha a quantidade de parcelas:</Styled.Label>
       <Styled.Select
+      id="installment"
         value={installment}
         onChange={({ target }) => setInstallment(Number(target.value))}
       >

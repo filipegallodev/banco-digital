@@ -1,6 +1,4 @@
 import React from "react";
-import CurrencyInput from "react-currency-input-field";
-import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
 
 interface IProps {
@@ -14,8 +12,8 @@ interface IProps {
 const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
   return (
     <>
-      <Label htmlFor={id}>{label}</Label>
-      <CurrencyInput
+      <Styled.Label htmlFor={id}>{label}</Styled.Label>
+      <Styled.CurrencyInputStyled
         id={id}
         name={id}
         placeholder="R$ 0,00"
@@ -29,11 +27,5 @@ const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
     </>
   );
 };
-
-const Label = styled.label`
-  display: block;
-  margin: 16px 0px 8px 0px;
-  font-size: 1.25rem;
-`;
 
 export default ValueInput;

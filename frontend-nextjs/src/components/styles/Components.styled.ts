@@ -14,6 +14,7 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   display: block;
+  margin: 16px 0px 8px 0px;
   font-size: 1.25rem;
 `;
 
@@ -89,7 +90,9 @@ export const Select = styled.select`
 
 export const FormControlLabelStyled = styled(FormControlLabel)`
   display: flex;
-  margin: 16px 0px 8px 0px;
+  &.MuiFormControlLabel-root {
+    margin: 16px 0px 8px 0px;
+  }
   & .MuiTypography-root {
     font-family: "Rubik", sans-serif;
   }

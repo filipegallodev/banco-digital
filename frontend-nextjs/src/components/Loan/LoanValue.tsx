@@ -25,7 +25,9 @@ const LoanValue = ({ customLoan, setCustomLoan, loan }: IProps) => {
   return (
     <>
       <Styled.SubTitle>Valor</Styled.SubTitle>
-      <Styled.Text>Defina o valor que deseja como empréstimo:</Styled.Text>
+      <Styled.Label htmlFor="custom-loan-value">
+        Defina o valor que deseja como empréstimo:
+      </Styled.Label>
       <Styled.CurrencyInputStyled
         id="custom-loan-value"
         name="custom-loan-value"

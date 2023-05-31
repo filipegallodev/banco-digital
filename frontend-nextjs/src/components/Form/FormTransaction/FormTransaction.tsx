@@ -1,11 +1,7 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import {
-  clearTransactionStatus,
-  fetchTransaction,
-} from "@/store/reducers/transactions";
+import { clearTransactionStatus } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import * as Styled from "@/components/styles/Components.styled";
 import TransactionStepper from "./TransactionStepper";
 import ValueInput from "./ValueInput";
@@ -52,21 +48,15 @@ const TransactionForm = () => {
     }
   }, [loading]);
 
-  function handleTransaction(event: React.FormEvent) {
-    event.preventDefault();
-    if (transactionData.value && transactionData.target)
-      dispatch(fetchTransaction(transactionData));
-  }
-
   return (
-    <Container>
+    <>
       <TransactionStepper
         steps={steps}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         transactionData={transactionData}
       />
-      <Form onSubmit={handleTransaction}>
+      <>
         {activeStep === 0 ? (
           <>
             <Styled.SubTitle>Valor</Styled.SubTitle>
@@ -89,18 +79,15 @@ const TransactionForm = () => {
             />
           </>
         ) : (
-          <>
-            <Styled.SubTitle>Confirmação</Styled.SubTitle>
-            <Confirmation
-              formData={transactionData}
-              setFormData={setTransactionData}
-              transactionValue={transactionValue}
-              setTransactionValue={setTransactionValue}
-            />
-          </>
+          <Confirmation
+            formData={transactionData}
+            setFormData={setTransactionData}
+            transactionValue={transactionValue}
+            setTransactionValue={setTransactionValue}
+          />
         )}
-      </Form>
-      <ButtonContainer>
+      </>
+      <Styled.ButtonContainer style={{ marginTop: "24px" }}>
         <Styled.Button
           onClick={() => setActiveStep(activeStep - 1)}
           disabled={activeStep === 0}
@@ -113,44 +100,9 @@ const TransactionForm = () => {
         >
           Próximo
         </Styled.Button>
-      </ButtonContainer>
-    </Container>
+      </Styled.ButtonContainer>
+    </>
   );
 };
-
-const Container = styled.div`
-  margin-bottom: 24px;
-  width: 100%;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
-
-const Form = styled.form`
-  max-width: 600px;
-  & input {
-    width: 100%;
-    padding: 10px 12px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    font-size: 1.125rem;
-    transition: 0.1s;
-    &:hover {
-      box-shadow: 0px 0px 0px 2px #aaa;
-    }
-    &:focus {
-      box-shadow: 0px 0px 0px 2px #222;
-      outline: double;
-    }
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
 
 export default TransactionForm;

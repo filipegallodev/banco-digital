@@ -4,6 +4,8 @@ import TargetInput from "./TargetInput";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox, CircularProgress, FormControlLabel } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { fetchTransaction } from "@/store/reducers/transactions";
 
 interface IProps {
   formData: ITransactionFormData;
@@ -22,9 +24,16 @@ const Confirmation = ({
     (state: IReduxState) => state.transactions
   );
   const [confirmation, setConfirmation] = useState(false);
+  const dispatch = useAppDispatch();
+
+  function handleTransaction(event: React.FormEvent) {
+    event.preventDefault();
+    if (formData.value && formData.target) dispatch(fetchTransaction(formData));
+  }
 
   return (
     <>
+      <Styled.SubTitle>Confirmação</Styled.SubTitle>
       <ValueInput
         label="Valor"
         id="transaction-value-confirm"
@@ -57,6 +66,7 @@ const Confirmation = ({
               ? true
               : false
           }
+          onClick={handleTransaction}
         >
           {loading ? "Transferindo" : "Enviar"}
         </Styled.Button>
