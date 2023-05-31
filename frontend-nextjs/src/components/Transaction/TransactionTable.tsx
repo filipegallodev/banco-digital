@@ -26,9 +26,9 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
           <thead>
             <tr>
               <ColumnName>Valor</ColumnName>
-              <ColumnName>Tipo</ColumnName>
+              <ColumnName className="show500">Tipo</ColumnName>
               <ColumnName>Data</ColumnName>
-              <ColumnName>ID</ColumnName>
+              <ColumnName className="show650">ID</ColumnName>
             </tr>
           </thead>
           <tbody>
@@ -43,7 +43,7 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
                 >
                   {transaction.value}
                 </Value>
-                <td>
+                <td className="show500">
                   {transaction.originAccountId === user?.accountId
                     ? "Enviado"
                     : "Recebido"}
@@ -54,7 +54,7 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
                     "$1 às $2"
                   )}
                 </td>
-                <td>
+                <td className="show650">
                   <TransactionId>{transaction.id}</TransactionId>
                 </td>
               </BodyLine>
@@ -101,6 +101,16 @@ const Table = styled.table`
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  @media (max-width: 650px) {
+    & .show650 {
+      display: none;
+    }
+  }
+  @media (max-width: 500px) {
+    & .show500 {
+      display: none;
+    }
+  }
 `;
 
 const ColumnName = styled.th`

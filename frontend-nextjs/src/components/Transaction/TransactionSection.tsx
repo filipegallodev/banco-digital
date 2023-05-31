@@ -71,7 +71,7 @@ const TransactionSection = () => {
           <Skeleton
             animation={"wave"}
             variant="rectangular"
-            width={1200}
+            width="100%"
             height={344}
             sx={{ borderRadius: "6px", marginBottom: "24px" }}
           />

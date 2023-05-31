@@ -17,6 +17,9 @@ const Title = styled.h1`
     background-color: #c500d0;
     position: absolute;
   }
+  @media (max-width: 400px) {
+    font-size: 2.25rem;
+  }
 `;
 
 export default SectionTitle;

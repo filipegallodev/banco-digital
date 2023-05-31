@@ -42,7 +42,8 @@ const Header = () => {
 const Container = styled.header`
   background-color: #151515;
   color: #f5f5f5;
-  height: 132px;
+  min-height: 132px;
+  height: 100%;
   display: flex;
   box-shadow: 0px 0px 4px 2px #fa92ff;
   margin-bottom: 24px;
@@ -58,6 +59,11 @@ const Content = styled.div`
   @media (max-width: 1240px) {
     margin: 0 24px;
   }
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: 32px;
+    margin: 32px 0px;
+  }
 `;
 
 const Title = styled.span`
@@ -71,6 +77,10 @@ const ControllContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 64px;
+  @media (max-width: 400px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 `;
 
 const UserProfile = styled.div`

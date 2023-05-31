@@ -95,6 +95,10 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 25% 1fr;
   gap: 32px;
+  @media (max-width: 1240px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const DateContainer = styled.div`
@@ -104,6 +108,10 @@ const DateContainer = styled.div`
   gap: 8px;
   & div {
     margin: 0;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
