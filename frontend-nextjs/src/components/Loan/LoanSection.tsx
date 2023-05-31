@@ -8,11 +8,19 @@ import LoanValue from "./LoanValue";
 
 const steps = ["Defina o valor", "Quantidade de parcelas", "Confirmação"];
 
+export interface IInstallment {
+  amount: number;
+  dueDay: number;
+}
+
 const LoanSection = () => {
   const user = useAppSelector((state) => state.user);
   const [loan, setLoan] = useState<number>();
   const [customLoan, setCustomLoan] = useState<number>(50);
-  const [installment, setInstallment] = useState<number>(1);
+  const [installment, setInstallment] = useState<IInstallment>({
+    amount: 1,
+    dueDay: 1,
+  });
   const [finalLoan, setFinalLoan] = useState<number>(0);
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -30,8 +38,19 @@ const LoanSection = () => {
   }, [user.data.user?.loan, loan]);
 
   useEffect(() => {
-    setFinalLoan(customLoan + customLoan * 0.0483 * installment);
-  }, [customLoan, installment]);
+    setFinalLoan(
+      Number(
+        (
+          Number(
+            (
+              (customLoan * 0.0483 * installment.amount + customLoan) /
+              installment.amount
+            ).toFixed(2)
+          ) * installment.amount
+        ).toFixed(2)
+      )
+    );
+  }, [customLoan, installment.amount]);
 
   if (user.loading) return <Styled.Text>Carregando...</Styled.Text>;
   if (!loan)
