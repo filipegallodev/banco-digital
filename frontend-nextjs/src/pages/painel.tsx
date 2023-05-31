@@ -26,8 +26,6 @@ export default function Painel() {
     if (login.data?.token) dispatch(resetLoginData());
   }, [dispatch, login.data?.token]);
 
-  console.log(user.data.user?.loan === "R$ 0,00");
-
   if (!user.data.user) return <AuthPage />;
   return (
     <>

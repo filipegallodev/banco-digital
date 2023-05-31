@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import CurrencyInput from "react-currency-input-field";
+import { Slider } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
 
 export const FormContainer = styled.div`
   max-width: 600px;
@@ -14,38 +17,76 @@ export const Label = styled.label`
   font-size: 1.25rem;
 `;
 
-export const CurrencyInputContainer = styled.div`
-  margin: 4px 0px 12px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const CurrencyInputStyled = styled(CurrencyInput)`
+  max-width: 600px;
   width: 100%;
-  gap: 8px;
-  & svg {
-    color: #555;
-    cursor: pointer;
-    transition: 0.1s;
-    &:hover {
-      color: #000;
-    }
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.125rem;
+  transition: 0.1s;
+  &:enabled:not(&:focus):hover {
+    box-shadow: 0px 0px 0px 2px #aaa;
   }
-  & input {
-    width: 100%;
-    padding: 10px 12px;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    font-size: 1.125rem;
-    transition: 0.1s;
-    &:enabled:not(&:focus):hover {
-      box-shadow: 0px 0px 0px 2px #aaa;
-    }
-    &:focus {
-      box-shadow: 0px 0px 0px 2px #f200ff;
-      outline: none;
-      border-inline: 0px;
-    }
+  &:focus {
+    box-shadow: 0px 0px 0px 2px #f200ff;
+    outline: none;
+    border-inline: 0px;
   }
+`;
+
+export const Input = styled.input`
+  max-width: 600px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.125rem;
+  transition: 0.1s;
+  &:enabled:not(&:focus):hover {
+    box-shadow: 0px 0px 0px 2px #aaa;
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 2px #f200ff;
+    outline: none;
+    border-inline: 0px;
+  }
+`;
+
+export const Select = styled.select`
+  max-width: 600px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.125rem;
+  transition: 0.1s;
+  &:enabled:not(&:focus):hover {
+    box-shadow: 0px 0px 0px 2px #aaa;
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 2px #f200ff;
+    outline: none;
+    border-inline: 0px;
+  }
+`;
+
+export const FormControlLabelStyled = styled(FormControlLabel)`
+  display: flex;
+  margin: 16px 0px 8px 0px;
+  & .MuiTypography-root {
+    font-family: "Rubik", sans-serif;
+  }
+  & .MuiCheckbox-root {
+    padding-left: 0px;
+  }
+`;
+
+export const SliderStyled = styled(Slider)`
+  margin: 8px 0px;
 `;
 
 export const SubTitle = styled.h2`
@@ -78,6 +119,7 @@ export const ThirdTitle = styled.h3`
 
 export const Text = styled.p`
   font-size: 1.25rem;
+  margin-bottom: 8px;
 `;
 
 export const ButtonContainer = styled.div`

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { currencyFormatter } from "@/helper/currencyFormatter";
-import CurrencyInput from "react-currency-input-field";
-import { Slider } from "@mui/material";
 import * as Styled from "@/components/styles/Components.styled";
 import LoanStepper from "./LoanStepper";
+import { Checkbox } from "@mui/material";
 
 const steps = ["Defina o valor", "Quantidade de parcelas", "Confirmação"];
 
@@ -15,6 +14,7 @@ const LoanSection = () => {
   const [installment, setInstallment] = useState<number>(1);
   const [finalLoan, setFinalLoan] = useState<number>(0);
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [confirmation, setConfirmation] = useState<boolean>(false);
 
   useEffect(() => {
     if (user.data.user?.loan) {
@@ -59,6 +59,14 @@ const LoanSection = () => {
     }
   }
 
+  function handleLoanRequest() {
+    console.log({
+      requestedLoan: customLoan,
+      installment,
+      debt: finalLoan,
+    });
+  }
+
   if (!loan)
     return (
       <Styled.Text>
@@ -76,12 +84,8 @@ const LoanSection = () => {
       {activeStep === 0 ? (
         <>
           <Styled.SubTitle>Valor</Styled.SubTitle>
-          <p>
-            {customLoan
-              ? currencyFormatter(customLoan)
-              : currencyFormatter(loan)}
-          </p>
-          <CurrencyInput
+          <Styled.Text>Defina o valor que deseja como empréstimo:</Styled.Text>
+          <Styled.CurrencyInputStyled
             id="custom-loan-value"
             name="custom-loan-value"
             placeholder="R$ 0,00"
@@ -90,7 +94,7 @@ const LoanSection = () => {
             value={customLoan}
             onValueChange={(value) => handleInputChange(value)}
           />
-          <Slider
+          <Styled.SliderStyled
             aria-label="Loan"
             value={customLoan}
             min={50}
@@ -102,17 +106,29 @@ const LoanSection = () => {
       ) : activeStep === 1 ? (
         <>
           <Styled.SubTitle>Parcelamento</Styled.SubTitle>
-          <p>
-            Você pode parcelar em até 24 vezes! A taxa de juros é de 4,83% ao
-            mês.
-          </p>
-          <p>
-            Parcelas: {installment} de{" "}
-            {currencyFormatter(finalLoan / installment)}
-            /mês.
-          </p>
-          <p>Valor final: {currencyFormatter(finalLoan)}.</p>
-          <Slider
+          <Styled.Text>
+            Você pode parcelar em até 24 vezes! A taxa de juros é de{" "}
+            <strong>4,83%</strong> ao mês.
+          </Styled.Text>
+          <Styled.Text>
+            Parcelas: <strong>{installment}</strong> de{" "}
+            <strong>{currencyFormatter(finalLoan / installment)}</strong>
+            /mês .
+          </Styled.Text>
+          <Styled.Text>
+            Valor total a ser pago:{" "}
+            <strong>{currencyFormatter(finalLoan)}</strong>.
+          </Styled.Text>
+          <Styled.Text>Escolha a quantidade de parcelas:</Styled.Text>
+          <Styled.Select
+            value={installment}
+            onChange={({ target }) => setInstallment(Number(target.value))}
+          >
+            {Array.from(new Array(24)).map((item, index) => (
+              <option key={index}>{index + 1}</option>
+            ))}
+          </Styled.Select>
+          <Styled.SliderStyled
             aria-label="Loan"
             value={installment}
             min={1}
@@ -124,16 +140,35 @@ const LoanSection = () => {
       ) : (
         <>
           <Styled.SubTitle>Confirmação</Styled.SubTitle>
-          <p>Confirme os dados antes de confirmar o empréstimo.</p>
-          <p>Valor a ser emprestado: {currencyFormatter(customLoan)}</p>
-          <p>
-            Parcelamento: {installment} parcela{"(s)"} de{" "}
-            {currencyFormatter(finalLoan / installment)}
+          <Styled.Text>
+            Confirme todos os dados antes de efetuar o empréstimo.
+          </Styled.Text>
+          <Styled.Text>
+            Valor a ser emprestado:{" "}
+            <strong>{currencyFormatter(customLoan)}</strong>
+          </Styled.Text>
+          <Styled.Text>
+            Parcelamento: <strong>{installment}</strong> parcela{"(s)"} de{" "}
+            <strong>{currencyFormatter(finalLoan / installment)}</strong>
             /mês
-          </p>
-          <p>Total a ser pago: {currencyFormatter(finalLoan)}</p>
-          <p>Confirme as informações.</p>
-          <Styled.Button>Solicitar</Styled.Button>
+          </Styled.Text>
+          <Styled.Text>
+            Total a ser pago: <strong>{currencyFormatter(finalLoan)}</strong>
+          </Styled.Text>
+          <Styled.FormControlLabelStyled
+            required
+            control={<Checkbox />}
+            label="Confirme as informações."
+            value={confirmation}
+            onChange={() => setConfirmation(!confirmation)}
+          />
+          <Styled.ButtonContainer style={{ marginBottom: "24px" }}>
+            <Styled.Button disabled={!confirmation} onClick={handleLoanRequest}>
+              Solicitar
+              {/* {loading ? "Solicitando" : "Solicitar"} */}
+            </Styled.Button>
+            {/* {loading && <CircularProgress />} */}
+          </Styled.ButtonContainer>
         </>
       )}
       <Styled.ButtonContainer>

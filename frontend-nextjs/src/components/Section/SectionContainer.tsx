@@ -10,10 +10,10 @@ const Container = styled.section`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto 48px auto;
   max-width: 1200px;
   @media (max-width: 1240px) {
-    margin: 0 24px;
+    margin: 0 24px 48px 24px;
   }
 `;
 

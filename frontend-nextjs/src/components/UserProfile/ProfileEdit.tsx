@@ -99,19 +99,17 @@ const ProfileEdit = () => {
           <div>
             <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
             <Styled.Label>Renda</Styled.Label>
-            <Styled.CurrencyInputContainer>
-              <CurrencyInput
-                id="income-value"
-                name="income-value"
-                placeholder="R$ 0,00"
-                prefix="R$ "
-                decimalsLimit={2}
-                value={formData.income}
-                onValueChange={(value) =>
-                  setFormData({ ...formData, income: value })
-                }
-              />
-            </Styled.CurrencyInputContainer>
+            <Styled.CurrencyInputStyled
+              id="income-value"
+              name="income-value"
+              placeholder="R$ 0,00"
+              prefix="R$ "
+              decimalsLimit={2}
+              value={formData.income}
+              onValueChange={(value) =>
+                setFormData({ ...formData, income: value })
+              }
+            />
             <Input
               name="Profissão"
               id="edit-job"

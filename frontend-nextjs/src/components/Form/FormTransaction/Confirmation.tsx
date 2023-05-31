@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import * as Styled from "@/components/styles/Components.styled";
-import styled from "styled-components";
 import { Checkbox, CircularProgress, FormControlLabel } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
 
@@ -42,14 +41,14 @@ const Confirmation = ({
         setFormData={setFormData}
         disabled
       />
-      <FormControlLabelStyled
+      <Styled.FormControlLabelStyled
         required
         control={<Checkbox />}
         label="Confirme os dados inseridos."
         value={confirmation}
         onChange={() => setConfirmation(!confirmation)}
       />
-      <ButtonContainer>
+      <Styled.ButtonContainer>
         <Styled.Button
           disabled={
             loading
@@ -62,23 +61,9 @@ const Confirmation = ({
           {loading ? "Transferindo" : "Enviar"}
         </Styled.Button>
         {loading && <CircularProgress />}
-      </ButtonContainer>
+      </Styled.ButtonContainer>
     </>
   );
 };
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const FormControlLabelStyled = styled(FormControlLabel)`
-  display: block;
-  margin: 16px 0px 8px 0px;
-  & .MuiTypography-root {
-    font-family: "Rubik", sans-serif;
-  }
-`;
 
 export default Confirmation;
