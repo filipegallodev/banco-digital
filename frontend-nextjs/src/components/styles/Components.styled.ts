@@ -59,6 +59,7 @@ export const Select = styled.select`
   max-width: 600px;
   width: 100%;
   padding: 10px 12px;
+  padding-right: 32px;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
@@ -72,6 +73,18 @@ export const Select = styled.select`
     outline: none;
     border-inline: 0px;
   }
+  // Select arrow styles
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
 `;
 
 export const FormControlLabelStyled = styled(FormControlLabel)`

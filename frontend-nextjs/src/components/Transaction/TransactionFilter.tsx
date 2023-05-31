@@ -49,11 +49,11 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
       <Container>
         <div>
           <Styled.ThirdTitle>Tipo</Styled.ThirdTitle>
-          <SelectStyled name="type" onChange={updateData} value={filter.type}>
+          <Styled.Select name="type" onChange={updateData} value={filter.type}>
             <option value="all">Tudo</option>
             <option value="received">Recebido</option>
             <option value="sent">Enviado</option>
-          </SelectStyled>
+          </Styled.Select>
         </div>
         <div>
           <Styled.ThirdTitle>Período</Styled.ThirdTitle>
@@ -104,24 +104,6 @@ const DateContainer = styled.div`
   gap: 8px;
   & div {
     margin: 0;
-  }
-`;
-
-const SelectStyled = styled.select`
-  width: 100%;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
-  transition: 0.1s;
-  &:enabled:not(&:focus):hover {
-    box-shadow: 0px 0px 0px 2px #aaa;
-  }
-  &:focus {
-    box-shadow: 0px 0px 0px 2px #f200ff;
-    outline: none;
-    border-inline: 0px;
   }
 `;
 
