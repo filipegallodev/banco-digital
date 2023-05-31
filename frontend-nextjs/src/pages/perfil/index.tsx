@@ -14,6 +14,7 @@ import Success from "@/components/Status/Success";
 import { Backdrop, CircularProgress } from "@mui/material";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
+import Footer from "@/components/Footer";
 
 export default function Perfil() {
   const user = useTokenAuthentication();
@@ -51,6 +52,7 @@ export default function Perfil() {
           {profileScreen}
         </SectionContainer>
       </main>
+      <Footer />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={user.loading}

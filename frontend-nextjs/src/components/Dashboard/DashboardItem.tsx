@@ -43,12 +43,13 @@ const DashboardItem = ({
 
 const Container = styled.div`
   width: 100%;
-  height: 320px;
+  height: 100%;
+  padding: 64px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: #fff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   &.page-avaliable {
@@ -59,6 +60,16 @@ const Container = styled.div`
   &.page-avaliable:hover {
     background-color: #fef;
     box-shadow: 0px 0px 0px 2px #ce3ccc;
+  }
+  @media (max-width: 800px) {
+    height: 100%;
+    padding: 48px 0px;
+  }
+  @media (max-width: 600px) {
+    height: 100%;
+    padding: 32px;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 `;
 

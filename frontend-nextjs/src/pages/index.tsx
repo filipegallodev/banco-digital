@@ -13,6 +13,7 @@ import Success from "@/components/Status/Success";
 import { Backdrop, CircularProgress } from "@mui/material";
 import SectionTitle from "@/components/Section/SectionTitle";
 import SectionContainer from "@/components/Section/SectionContainer";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -53,6 +54,7 @@ export default function Home() {
           ) : null}
         </SectionContainer>
       </main>
+      <Footer />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={login.loading || register.loading || user.loading}

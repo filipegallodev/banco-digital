@@ -12,6 +12,7 @@ import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Footer from "@/components/Footer";
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -40,8 +41,8 @@ export default function Painel() {
         <SectionContainer>
           <SectionTitle>Visão geral</SectionTitle>
           <WelcomeMessage>
-            Olá, {user.data && user.data.user?.firstName}! Aqui está o resumo de
-            sua conta:
+            Olá<strong>{user.data && ", " + user.data.user?.firstName}</strong>!
+            Aqui está o resumo de sua conta:
           </WelcomeMessage>
           <DashboardContainer>
             <DashboardItem
@@ -84,6 +85,7 @@ export default function Painel() {
           </DashboardContainer>
         </SectionContainer>
       </main>
+      <Footer />
     </>
   );
 }

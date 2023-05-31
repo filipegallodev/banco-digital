@@ -7,6 +7,7 @@ import React from "react";
 import LoanSection from "@/components/Loan/LoanSection";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
+import Footer from "@/components/Footer";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
@@ -28,6 +29,7 @@ export default function Emprestimos() {
           <LoanSection />
         </SectionContainer>
       </main>
+      <Footer />
     </>
   );
 }

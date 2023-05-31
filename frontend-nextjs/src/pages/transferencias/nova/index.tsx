@@ -13,6 +13,7 @@ import { clearTransactionStatus } from "@/store/reducers/transactions";
 import { Backdrop, CircularProgress } from "@mui/material";
 import Head from "next/head";
 import React, { useEffect } from "react";
+import Footer from "@/components/Footer";
 
 export default function Nova() {
   const user = useTokenAuthentication();
@@ -42,6 +43,7 @@ export default function Nova() {
           <FormTransaction />
         </SectionContainer>
       </main>
+      <Footer />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={transactions.loading}

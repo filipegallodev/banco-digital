@@ -7,6 +7,7 @@ import TransactionSection from "@/components/Transaction/TransactionSection";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React from "react";
+import Footer from "@/components/Footer";
 
 export default function Transferencias() {
   const user = useTokenAuthentication();
@@ -31,6 +32,7 @@ export default function Transferencias() {
           <TransactionSection />
         </SectionContainer>
       </main>
+      <Footer />
     </>
   );
 }
