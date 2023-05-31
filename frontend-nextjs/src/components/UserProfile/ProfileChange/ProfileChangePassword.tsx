@@ -51,6 +51,7 @@ const ProfileChangePassword = () => {
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
             value={changePasswordData.oldPassword}
+            type="password"
           />
           <Input
             name="Nova senha"
@@ -58,6 +59,7 @@ const ProfileChangePassword = () => {
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
             value={changePasswordData.newPassword}
+            type="password"
           />
           <Input
             name="Confirme a nova senha"
@@ -65,6 +67,7 @@ const ProfileChangePassword = () => {
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
             value={changePasswordData.newPasswordConfirm}
+            type="password"
           />
           <Styled.ButtonContainer>
             <Styled.Button
@@ -79,7 +82,6 @@ const ProfileChangePassword = () => {
             >
               Trocar senha
             </Styled.Button>
-            {loading && <CircularProgress />}
             {inputError && <p>{inputError}</p>}
           </Styled.ButtonContainer>
         </Styled.Form>

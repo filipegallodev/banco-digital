@@ -70,7 +70,6 @@ const Confirmation = ({
         >
           {loading ? "Transferindo" : "Enviar"}
         </Styled.Button>
-        {loading && <CircularProgress />}
       </Styled.ButtonContainer>
     </>
   );

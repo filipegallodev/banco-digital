@@ -55,12 +55,12 @@ const FormLogin = () => {
           formData={loginData}
           value={loginData.password}
           saveFormData={setLoginData}
+          type="password"
         />
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>
             {loading ? "Entrando" : "Entrar"}
           </Styled.Button>
-          {loading && <CircularProgress />}
         </Styled.ButtonContainer>
       </Styled.Form>
     </Styled.FormContainer>

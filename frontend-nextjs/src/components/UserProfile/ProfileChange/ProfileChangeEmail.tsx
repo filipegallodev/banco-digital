@@ -80,7 +80,6 @@ const ProfileChangeEmail = () => {
             >
               Trocar e-mail
             </Styled.Button>
-            {loading && <CircularProgress />}
             {inputError && <p>{inputError}</p>}
           </Styled.ButtonContainer>
         </Styled.Form>

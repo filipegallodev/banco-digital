@@ -16,9 +16,7 @@ const FormRegister = () => {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector(
-    (state: IReduxState) => state.register
-  );
+  const { loading } = useAppSelector((state: IReduxState) => state.register);
 
   const checkRegisterFields = useCallback(() => {
     const { firstName, lastName, username, password } = registerData;
@@ -90,6 +88,7 @@ const FormRegister = () => {
             value={registerData.password}
             saveFormData={setRegisterData}
             onBlur={handleUserPassword}
+            type="password"
           />
           {invalidPassword && (
             <p>
@@ -103,7 +102,6 @@ const FormRegister = () => {
           <Styled.Button disabled={loading || unfilledFields}>
             {loading ? "Cadastrando" : "Registrar"}
           </Styled.Button>
-          {loading && <CircularProgress />}
         </Styled.ButtonContainer>
       </Styled.Form>
     </Styled.FormContainer>
