@@ -91,13 +91,17 @@ export const Select = styled.select`
 export const FormControlLabelStyled = styled(FormControlLabel)`
   display: flex;
   &.MuiFormControlLabel-root {
-    margin: 16px 0px 8px 0px;
+    margin: 20px 0px;
+  }
+  & .MuiButtonBase-root {
+    padding: 0px;
+    padding-right: 8px;
   }
   & .MuiTypography-root {
     font-family: "Rubik", sans-serif;
   }
-  & .MuiCheckbox-root {
-    padding-left: 0px;
+  & .MuiTouchRipple-root {
+    border-radius: 0px;
   }
 `;
 
@@ -112,7 +116,7 @@ export const SubTitle = styled.h2`
   box-sizing: border-box;
   &::before {
     content: "";
-    width: 26px;
+    width: 24px;
     height: 4px;
     background-color: #c500d0;
     position: absolute;
@@ -126,7 +130,7 @@ export const ThirdTitle = styled.h3`
   box-sizing: border-box;
   &::before {
     content: "";
-    width: 18px;
+    width: 16px;
     height: 3px;
     background-color: #c500d0;
     position: absolute;
