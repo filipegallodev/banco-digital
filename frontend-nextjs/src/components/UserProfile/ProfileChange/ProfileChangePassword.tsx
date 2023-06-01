@@ -46,7 +46,7 @@ const ProfileChangePassword = () => {
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleFormSubmit}>
           <Input
-            name="Senha atual"
+            label="Senha atual"
             id="oldPassword"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
@@ -54,7 +54,7 @@ const ProfileChangePassword = () => {
             type="password"
           />
           <Input
-            name="Nova senha"
+            label="Nova senha"
             id="newPassword"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
@@ -62,7 +62,7 @@ const ProfileChangePassword = () => {
             type="password"
           />
           <Input
-            name="Confirme a nova senha"
+            label="Confirme a nova senha"
             id="newPasswordConfirm"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}

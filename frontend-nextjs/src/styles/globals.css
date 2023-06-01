@@ -19,7 +19,7 @@ main {
 
 body > div {
   color: #111;
-  background: #f5f5f5;
+  background: #f5f5fb;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -115,7 +115,7 @@ const Table = styled.table`
 
 const ColumnName = styled.th`
   font-size: 1.5rem;
-  background-color: #ddd;
+  background-color: #dddde5;
   height: 64px;
   padding: 0px 16px;
   text-transform: uppercase;
@@ -137,7 +137,7 @@ const BodyLine = styled.tr`
   height: 56px;
   animation: ${AppearAnimation} 0.5s forwards;
   &:nth-child(even) {
-    background-color: #eee;
+    background-color: #fefeff;
   }
   & td {
     padding: 0px 16px;

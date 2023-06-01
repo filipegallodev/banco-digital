@@ -37,6 +37,23 @@ export const CurrencyInputStyled = styled(CurrencyInput)`
   }
 `;
 
+export const InputContainer = styled.div`
+  margin: 4px 0px 12px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+  & svg {
+    color: #555;
+    cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+      color: #000;
+    }
+  }
+`;
+
 export const Input = styled.input`
   max-width: 600px;
   width: 100%;
@@ -46,6 +63,9 @@ export const Input = styled.input`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   font-size: 1.125rem;
   transition: 0.1s;
+  &:disabled {
+    background: #f5f5fb;
+  }
   &:enabled:not(&:focus):hover {
     box-shadow: 0px 0px 0px 2px #aaa;
   }

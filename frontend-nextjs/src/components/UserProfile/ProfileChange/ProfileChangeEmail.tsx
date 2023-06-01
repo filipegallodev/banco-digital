@@ -44,7 +44,7 @@ const ProfileChangeEmail = () => {
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleFormSubmit}>
           <Input
-            name="E-mail atual"
+            label="E-mail atual"
             id="oldEmail"
             type="email"
             formData={changeEmailData}
@@ -52,7 +52,7 @@ const ProfileChangeEmail = () => {
             value={changeEmailData.oldEmail}
           />
           <Input
-            name="Novo e-mail"
+            label="Novo e-mail"
             id="newEmail"
             type="email"
             formData={changeEmailData}
@@ -60,7 +60,7 @@ const ProfileChangeEmail = () => {
             value={changeEmailData.newEmail}
           />
           <Input
-            name="Confirme o novo e-mail"
+            label="Confirme o novo e-mail"
             id="newEmailConfirm"
             type="email"
             formData={changeEmailData}

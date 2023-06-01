@@ -21,7 +21,7 @@ const Footer = () => {
 const FooterStyled = styled.footer`
   width: 100%;
   margin-top: 64px;
-  background: #e5e5e5;
+  background: #eeeefa;
   padding: 48px 24px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 `;

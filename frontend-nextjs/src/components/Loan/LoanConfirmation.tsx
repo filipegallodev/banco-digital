@@ -42,7 +42,8 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
         disabled
       />
       <Styled.Label htmlFor="installment-amount">
-        Parcelamento, <strong>{installment.amount}</strong> vezes de:
+        Parcelamento, <strong>{installment.amount}</strong> vez
+        {installment.amount <= 1 ? "" : "es"} de:
       </Styled.Label>
       <Styled.CurrencyInputStyled
         id="installment-amount"

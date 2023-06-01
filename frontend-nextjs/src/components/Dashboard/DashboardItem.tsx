@@ -50,7 +50,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: #fffbff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   &.page-avaliable {
     cursor: pointer;
@@ -58,7 +58,7 @@ const Container = styled.div`
     box-shadow: 0px 0px 0px 2px #ff9bfd;
   }
   &.page-avaliable:hover {
-    background-color: #fef;
+    background-color: #ffeeff;
     box-shadow: 0px 0px 0px 2px #ce3ccc;
   }
   @media (max-width: 800px) {

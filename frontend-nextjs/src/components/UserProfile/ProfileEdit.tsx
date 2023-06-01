@@ -6,7 +6,6 @@ import Input from "../Form/Input";
 import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
-import CurrencyInput from "react-currency-input-field";
 import UserPhoneInput from "../Form/UserPhoneInput";
 
 const ProfileEdit = () => {
@@ -45,7 +44,7 @@ const ProfileEdit = () => {
           <div>
             <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
             <Input
-              name="Nome"
+              label="Nome"
               id="edit-first-name"
               formData={formData}
               saveFormData={setFormData}
@@ -53,7 +52,7 @@ const ProfileEdit = () => {
               disabled
             />
             <Input
-              name="Sobrenome"
+              label="Sobrenome"
               id="edit-last-name"
               formData={formData}
               saveFormData={setFormData}
@@ -61,7 +60,7 @@ const ProfileEdit = () => {
               disabled
             />
             <Input
-              name="E-mail"
+              label="E-mail"
               id="edit-username"
               formData={formData}
               saveFormData={setFormData}
@@ -70,7 +69,7 @@ const ProfileEdit = () => {
               disabled
             />
             <Input
-              name="Data de nascimento"
+              label="Data de nascimento"
               id="edit-birth"
               type="date"
               formData={formData}
@@ -82,14 +81,14 @@ const ProfileEdit = () => {
           <div>
             <Styled.ThirdTitle>Endereço</Styled.ThirdTitle>
             <Input
-              name="Cidade"
+              label="Cidade"
               id="edit-city"
               formData={formData}
               saveFormData={setFormData}
               value={formData.city}
             />
             <Input
-              name="Estado"
+              label="Estado"
               id="edit-state"
               formData={formData}
               saveFormData={setFormData}
@@ -111,7 +110,7 @@ const ProfileEdit = () => {
               }
             />
             <Input
-              name="Profissão"
+              label="Profissão"
               id="edit-job"
               formData={formData}
               saveFormData={setFormData}

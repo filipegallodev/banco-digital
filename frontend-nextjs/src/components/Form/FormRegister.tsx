@@ -58,14 +58,14 @@ const FormRegister = () => {
       <Styled.Form onSubmit={handleUserRegister}>
         <div>
           <Input
-            name="Nome"
+            label="Nome"
             id="register-firstName"
             formData={registerData}
             value={registerData.firstName}
             saveFormData={setRegisterData}
           />
           <Input
-            name="Sobrenome"
+            label="Sobrenome"
             id="register-lastName"
             formData={registerData}
             value={registerData.lastName}
@@ -73,7 +73,7 @@ const FormRegister = () => {
           />
         </div>
         <Input
-          name="E-mail"
+          label="E-mail"
           id="register-username"
           type="email"
           formData={registerData}
@@ -82,7 +82,7 @@ const FormRegister = () => {
         />
         <div>
           <Input
-            name="Senha"
+            label="Senha"
             id="register-password"
             formData={registerData}
             value={registerData.password}

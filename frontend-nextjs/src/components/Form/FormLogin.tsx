@@ -43,14 +43,14 @@ const FormLogin = () => {
       <Styled.SubTitle>Faça seu login</Styled.SubTitle>
       <Styled.Form onSubmit={handleUserLogin}>
         <Input
-          name="E-mail"
+          label="E-mail"
           id="login-username"
           formData={loginData}
           value={loginData.username}
           saveFormData={setLoginData}
         />
         <Input
-          name="Senha"
+          label="Senha"
           id="login-password"
           formData={loginData}
           value={loginData.password}

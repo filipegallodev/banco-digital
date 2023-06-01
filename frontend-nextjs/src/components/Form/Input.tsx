@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import * as Styled from "@/components/styles/Components.styled";
 
 interface IProps {
-  name: string;
+  label: string;
   id: string;
   type?: string;
   value: string | number | undefined;
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const Input = ({
-  name,
+  label,
   id,
   type = "text",
   value,
@@ -51,9 +51,9 @@ const Input = ({
 
   return (
     <>
-      <Label htmlFor={id}>{name}</Label>
-      <InputContainer>
-        <StyledInput
+      <Styled.Label htmlFor={id}>{label}</Styled.Label>
+      <Styled.InputContainer>
+        <Styled.Input
           type={type}
           id={id}
           name={id}
@@ -68,49 +68,9 @@ const Input = ({
             <VisibilityRoundedIcon onClick={() => setDisplayValue(true)} />
           )
         )}
-      </InputContainer>
+      </Styled.InputContainer>
     </>
   );
 };
-
-const Label = styled.label`
-  display: block;
-  font-size: 1.25rem;
-`;
-
-const InputContainer = styled.div`
-  margin: 4px 0px 12px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 8px;
-  & svg {
-    color: #555;
-    cursor: pointer;
-    transition: 0.1s;
-    &:hover {
-      color: #000;
-    }
-  }
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
-  transition: 0.1s;
-  &:enabled:not(&:focus):hover {
-    box-shadow: 0px 0px 0px 2px #aaa;
-  }
-  &:focus {
-    box-shadow: 0px 0px 0px 2px #f200ff;
-    outline: none;
-    border-inline: 0px;
-  }
-`;
 
 export default Input;

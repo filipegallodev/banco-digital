@@ -59,7 +59,7 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
           <Styled.ThirdTitle>Período</Styled.ThirdTitle>
           <DateContainer>
             <Input
-              name="De"
+              label="De"
               id="filter-start"
               type="date"
               formData={filter}
@@ -67,7 +67,7 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
               value={filter.start}
             />
             <Input
-              name="Até"
+              label="Até"
               id="filter-end"
               type="date"
               formData={filter}

@@ -44,7 +44,7 @@ const NavContainer = styled.ul`
 `;
 
 const NavItem = styled.li`
-  border-bottom: 2px solid #aaa;
+  border-bottom: 2px solid #aac;
   list-style: none;
   padding: 16px 24px;
   font-size: 1.25rem;
@@ -54,7 +54,7 @@ const NavItem = styled.li`
     color: #c500d0;
   }
   &:hover {
-    background-color: #eee;
+    background-color: #eeeef5;
   }
 `;
 
