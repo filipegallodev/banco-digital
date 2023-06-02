@@ -78,7 +78,7 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
         </div>
       </Container>
       <Styled.ButtonContainer>
-        <Styled.Button onClick={handleFilterCleaning}>
+        <Styled.Button onClick={handleFilterCleaning} className="secondary">
           Limpar filtros
         </Styled.Button>
         <Styled.Button onClick={() => dispatch(filterTransactions(filter))}>

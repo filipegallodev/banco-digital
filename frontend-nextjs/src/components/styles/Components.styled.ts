@@ -170,31 +170,46 @@ export const ButtonContainer = styled.div`
   gap: 8px;
 `;
 
-export const Button = styled.button`
+export const DefaultButtonStyles = styled.button`
   display: flex;
-  background-color: ${(props) => props.theme.button.color};
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
   font-size: 1.25rem;
   color: ${(props) => props.theme.background};
   cursor: pointer;
   transition: 0.1s;
   &:disabled {
-    box-shadow: none;
-    background-color: #eee;
+    box-shadow: 0px 0px 0px 2px #bbb;
+    background: #bbb;
     cursor: not-allowed;
-  }
-  &:enabled:hover {
-    box-shadow: 0px 0px 4px ${(props) => props.theme.button.color};
   }
 `;
 
-export const DangerButton = styled(Button)`
-  background-color: #f55;
+export const Button = styled(DefaultButtonStyles)`
+  background: ${(props) => props.theme.button.color};
+  box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
+  color: ${(props) => props.theme.background};
+  &:enabled:not(.secondary):hover {
+    background: ${(props) => props.theme.button.hover};
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.hover};
+  }
+  &.secondary {
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+    background: ${(props) => props.theme.button.secondary.color};
+    color: #050505;
+    &:hover {
+      box-shadow: 0px 0px 0px 2px
+        ${(props) => props.theme.button.secondary.hover};
+    }
+  }
+`;
+
+export const DangerButton = styled(DefaultButtonStyles)`
+  background: #f55;
+  box-shadow: 0px 0px 0px 2px #f55;
   &:enabled:hover {
+    background: #f22;
     box-shadow: 0px 0px 0px 3px #f55;
-    background-color: #f22;
   }
 `;
