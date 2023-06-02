@@ -21,7 +21,7 @@ const Footer = () => {
 const FooterStyled = styled.footer`
   width: 100%;
   margin-top: 64px;
-  background: #eeeefa;
+  background: ${(props) => props.theme.button.secondary.color};
   padding: 48px 24px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -32,10 +32,10 @@ const Container = styled.div`
 
 const LinkStyled = styled.a`
   font-weight: 500;
-  color: #d036d8;
+  color: ${(props) => props.theme.button.color}cc;
   transition: 0.1s;
   &:hover {
-    color: #fb00ff;
+    color: ${(props) => props.theme.button.color};
   }
 `;
 

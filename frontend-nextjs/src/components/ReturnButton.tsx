@@ -46,18 +46,18 @@ const Button = styled.button`
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  background-color: #555;
+  background-color: #333;
   color: #fff;
   cursor: pointer;
   transition: 0.1s;
   display: flex;
   &:hover {
-    background-color: #222;
+    box-shadow: 0px 0px 4px #333;
   }
 `;
 
 const RightArrow = styled.span`
-  color: #c500d0;
+  color: ${(props) => props.theme.button.color};
   font-weight: 500;
 `;
 

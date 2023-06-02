@@ -115,8 +115,9 @@ const Table = styled.table`
 
 const ColumnName = styled.th`
   font-size: 1.5rem;
-  background-color: #dddde5;
-  height: 64px;
+  background-color: #fff;
+  height: 72px;
+  border-bottom: 2px solid #050505;
   padding: 0px 16px;
   text-transform: uppercase;
 `;
@@ -134,11 +135,9 @@ const AppearAnimation = keyframes`
 
 const BodyLine = styled.tr`
   font-size: 1.25rem;
-  height: 56px;
+  height: 72px;
+  background: #fff;
   animation: ${AppearAnimation} 0.5s forwards;
-  &:nth-child(even) {
-    background-color: #fefeff;
-  }
   & td {
     padding: 0px 16px;
   }

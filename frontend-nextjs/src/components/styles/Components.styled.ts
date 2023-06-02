@@ -18,25 +18,6 @@ export const Label = styled.label`
   font-size: 1.25rem;
 `;
 
-export const CurrencyInputStyled = styled(CurrencyInput)`
-  max-width: 600px;
-  width: 100%;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
-  transition: 0.1s;
-  &:enabled:not(&:focus):hover {
-    box-shadow: 0px 0px 0px 2px #aaa;
-  }
-  &:focus {
-    box-shadow: 0px 0px 0px 2px #f200ff;
-    outline: none;
-    border-inline: 0px;
-  }
-`;
-
 export const InputContainer = styled.div`
   margin: 4px 0px 12px 0px;
   display: flex;
@@ -64,13 +45,35 @@ export const Input = styled.input`
   font-size: 1.125rem;
   transition: 0.1s;
   &:disabled {
-    background: #f5f5fb;
+    background: transparent;
   }
   &:enabled:not(&:focus):hover {
     box-shadow: 0px 0px 0px 2px #aaa;
   }
   &:focus {
-    box-shadow: 0px 0px 0px 2px #f200ff;
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
+    outline: none;
+    border-inline: 0px;
+  }
+`;
+
+export const CurrencyInputStyled = styled(CurrencyInput)`
+  max-width: 600px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.125rem;
+  transition: 0.1s;
+  &:disabled {
+    background: transparent;
+  }
+  &:enabled:not(&:focus):hover {
+    box-shadow: 0px 0px 0px 2px #aaa;
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
     outline: none;
     border-inline: 0px;
   }
@@ -90,7 +93,7 @@ export const Select = styled.select`
     box-shadow: 0px 0px 0px 2px #aaa;
   }
   &:focus {
-    box-shadow: 0px 0px 0px 2px #f200ff;
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
     outline: none;
     border-inline: 0px;
   }
@@ -138,7 +141,7 @@ export const SubTitle = styled.h2`
     content: "";
     width: 24px;
     height: 4px;
-    background-color: #c500d0;
+    background-color: ${(props) => props.theme.button.color};
     position: absolute;
   }
 `;
@@ -152,7 +155,7 @@ export const ThirdTitle = styled.h3`
     content: "";
     width: 16px;
     height: 3px;
-    background-color: #c500d0;
+    background-color: ${(props) => props.theme.button.color};
     position: absolute;
   }
 `;
@@ -169,22 +172,22 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   display: flex;
-  background-color: #fa92ff;
+  background-color: ${(props) => props.theme.button.color};
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
   font-size: 1.25rem;
+  color: ${(props) => props.theme.background};
   cursor: pointer;
   transition: 0.1s;
   &:disabled {
     box-shadow: none;
-    background-color: #e5e5e5;
+    background-color: #eee;
     cursor: not-allowed;
   }
   &:enabled:hover {
-    box-shadow: 0px 0px 0px 3px #fa92ff;
-    background-color: #f53fff;
+    box-shadow: 0px 0px 4px ${(props) => props.theme.button.color};
   }
 `;
 

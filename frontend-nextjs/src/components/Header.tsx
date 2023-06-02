@@ -40,12 +40,12 @@ const Header = () => {
 };
 
 const Container = styled.header`
-  background-color: #151522;
+  background-color: #050505;
   color: #f5f5f5;
   min-height: 132px;
   height: 100%;
   display: flex;
-  box-shadow: 0px 0px 4px 2px #fa92ff;
+  box-shadow: 0px 0px 4px 2px ${(props) => props.theme.button.color};
   margin-bottom: 24px;
 `;
 
@@ -90,7 +90,7 @@ const UserProfile = styled.div`
   cursor: pointer;
   transition: 0.1s;
   &:hover {
-    color: #fa92ff;
+    color: ${(props) => props.theme.button.color};
   }
 `;
 
@@ -100,7 +100,7 @@ const UserIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background: ${(props) => props.theme.button.secondary.color};
   border-radius: 100%;
   color: #333;
   font-size: 1.75rem;
@@ -118,12 +118,13 @@ const LogoutButton = styled.button`
   border: none;
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background: ${(props) => props.theme.button.secondary.color};
   transition: 0.2s;
   cursor: pointer;
   display: flex;
   gap: 8px;
   &:hover {
-    background-color: #ffc1ff;
+    background-color: ${(props) => props.theme.button.secondary.hover};
   }
 `;
 

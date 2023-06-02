@@ -50,16 +50,16 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  background-color: #fffbff;
+  background-color: ${(props) => props.theme.button.secondary.color};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   &.page-avaliable {
     cursor: pointer;
     transition: 0.1s;
-    box-shadow: 0px 0px 0px 2px #ff9bfd;
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.secondary.hover};
   }
   &.page-avaliable:hover {
-    background-color: #ffeeff;
-    box-shadow: 0px 0px 0px 2px #ce3ccc;
+    background-color: ${(props) => props.theme.button.secondary.hover}30;
+    box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
   }
   @media (max-width: 800px) {
     height: 100%;

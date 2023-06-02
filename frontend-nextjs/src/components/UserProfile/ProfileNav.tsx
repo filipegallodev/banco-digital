@@ -50,11 +50,11 @@ const NavItem = styled.li`
   font-size: 1.25rem;
   cursor: pointer;
   &.active {
-    border-bottom: 4px solid #c500d0;
-    color: #c500d0;
+    border-bottom: 4px solid ${(props) => props.theme.button.color};
+    color: ${(props) => props.theme.button.color};
   }
   &:hover {
-    background-color: #eeeef5;
+    background-color: ${(props) => props.theme.button.hover}15;
   }
 `;
 
