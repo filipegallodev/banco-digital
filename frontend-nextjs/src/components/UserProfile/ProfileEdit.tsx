@@ -39,6 +39,10 @@ const ProfileEdit = () => {
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Editar informações</Styled.SubTitle>
+      <Styled.Text>
+        Você pode alterar as informações que desejar, exceto os campos que estão
+        desativados.
+      </Styled.Text>
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleUserUpdate}>
           <div>
@@ -130,7 +134,6 @@ const ProfileEdit = () => {
 };
 
 const Container = styled.div`
-  max-width: 600px;
   width: 100%;
 `;
 

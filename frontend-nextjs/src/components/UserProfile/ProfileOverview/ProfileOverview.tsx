@@ -9,6 +9,7 @@ const ProfileOverview = () => {
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Informações Gerais</Styled.SubTitle>
+      <Styled.Text>Estas são as informações da sua conta.</Styled.Text>
       <div>
         <Styled.ThirdTitle>Básico</Styled.ThirdTitle>
         <UserInfo field="Nome" data={user?.firstName} />

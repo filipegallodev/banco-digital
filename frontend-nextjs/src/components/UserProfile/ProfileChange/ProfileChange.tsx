@@ -8,6 +8,9 @@ const ProfileChange = () => {
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Trocar e-mail/senha</Styled.SubTitle>
+      <Styled.Text>
+        Nesta seção você pode alterar seu e-mail e sua senha.
+      </Styled.Text>
       <ProfileChangeEmail />
       <ProfileChangePassword />
     </Container>

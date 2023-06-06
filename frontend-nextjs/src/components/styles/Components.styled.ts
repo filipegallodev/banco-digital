@@ -162,6 +162,7 @@ export const ThirdTitle = styled.h3`
 
 export const Text = styled.p`
   font-size: 1.25rem;
+  margin-bottom: 8px;
 `;
 
 export const ButtonContainer = styled.div`

@@ -14,6 +14,8 @@ const ProfileManage = () => {
   return (
     <div className="animeRight">
       <Styled.SubTitle>Gerenciar perfil</Styled.SubTitle>
+      <Styled.Text>Aqui você pode deletar sua conta, se desejar.</Styled.Text>
+      <Styled.ThirdTitle>Excluir</Styled.ThirdTitle>
       <Styled.DangerButton onClick={() => dispatch(openModal())}>
         Excluir perfil
       </Styled.DangerButton>
