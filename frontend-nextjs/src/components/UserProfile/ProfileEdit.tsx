@@ -5,7 +5,6 @@ import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
 import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
 import { CircularProgress } from "@mui/material";
-import styled from "styled-components";
 import UserPhoneInput from "../Form/UserPhoneInput";
 
 const ProfileEdit = () => {
@@ -37,7 +36,7 @@ const ProfileEdit = () => {
   }
 
   return (
-    <Container className="animeRight">
+    <div className="animeRight">
       <Styled.SubTitle>Editar informações</Styled.SubTitle>
       <Styled.Text>
         Você pode alterar as informações que desejar, exceto os campos que estão
@@ -129,12 +128,8 @@ const ProfileEdit = () => {
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-`;
 
 export default ProfileEdit;
