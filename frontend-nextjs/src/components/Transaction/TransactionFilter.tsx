@@ -59,15 +59,14 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
           <Styled.ThirdTitle>Período</Styled.ThirdTitle>
           <DateContainer>
             <Input
-              label="De"
               id="filter-start"
               type="date"
               formData={filter}
               saveFormData={setFilter}
               value={filter.start}
             />
+            <p>até</p>
             <Input
-              label="Até"
               id="filter-end"
               type="date"
               formData={filter}
@@ -91,10 +90,7 @@ const TransactionFilter = ({ setMaxItems }: IProps) => {
 
 const Container = styled.div`
   width: 100%;
-  margin-bottom: 16px;
-  display: grid;
-  grid-template-columns: 25% 1fr;
-  gap: 32px;
+  margin-bottom: 24px;
   @media (max-width: 1240px) {
     display: flex;
     flex-direction: column;
@@ -105,9 +101,12 @@ const DateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
   & div {
     margin: 0;
+  }
+  & p {
+    font-size: 1.25rem;
   }
   @media (max-width: 500px) {
     flex-direction: column;

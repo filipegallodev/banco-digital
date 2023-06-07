@@ -41,6 +41,7 @@ export const Input = styled.input`
   padding: 12px 16px;
   border: none;
   border-radius: 4px;
+  background: #fff;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.15);
   font-size: 1.25rem;
   transition: 0.1s;
@@ -60,11 +61,12 @@ export const Input = styled.input`
 export const CurrencyInputStyled = styled(CurrencyInput)`
   max-width: 600px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 16px;
   border: none;
   border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
+  background: #fff;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.15);
+  font-size: 1.25rem;
   transition: 0.1s;
   &:disabled {
     background: transparent;
@@ -82,12 +84,13 @@ export const CurrencyInputStyled = styled(CurrencyInput)`
 export const Select = styled.select`
   max-width: 600px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 16px;
   padding-right: 32px;
   border: none;
   border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
+  background: #fff;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.15);
+  font-size: 1.25rem;
   transition: 0.1s;
   &:enabled:not(&:focus):hover {
     box-shadow: 0px 0px 0px 2px #aaa;
