@@ -1,26 +1,23 @@
 import Head from "next/head";
-import FormLogin from "@/components/Form/FormLogin";
+import AuthSection from "@/components/Form/Auth/AuthSection";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import FormRegister from "@/components/Form/FormRegister";
 import Header from "@/components/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
-import * as Styled from "@/components/styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import AuthPage from "@/components/AuthPage";
 import Error from "@/components/Status/Error";
 import Success from "@/components/Status/Success";
 import { Backdrop, CircularProgress } from "@mui/material";
-import SectionTitle from "@/components/Section/SectionTitle";
 import SectionContainer from "@/components/Section/SectionContainer";
 import Footer from "@/components/Footer";
+import styled from "styled-components";
 
 export default function Home() {
   const user = useTokenAuthentication();
-  const router = useRouter();
-  const [form, setForm] = useState<string>("");
   const login = useAppSelector((state: IReduxState) => state.login);
   const register = useAppSelector((state: IReduxState) => state.register);
+  const router = useRouter();
 
   useEffect(() => {
     if (user.data.validToken) router.push("/painel");
@@ -38,20 +35,12 @@ export default function Home() {
       <Header />
       <main className="animeRight">
         <SectionContainer>
-          <SectionTitle>O que deseja fazer?</SectionTitle>
-          <Styled.ButtonContainer>
-            <Styled.Button onClick={() => setForm("register")}>
-              Criar uma conta
-            </Styled.Button>
-            <Styled.Button onClick={() => setForm("login")}>
-              Fazer login
-            </Styled.Button>
-          </Styled.ButtonContainer>
-          {form === "login" ? (
-            <FormLogin />
-          ) : form === "register" ? (
-            <FormRegister />
-          ) : null}
+          <Container>
+            <MainSection>
+              <h2>Seja bem-vindo!</h2>
+            </MainSection>
+            <AuthSection />
+          </Container>
         </SectionContainer>
       </main>
       <Footer />
@@ -66,3 +55,20 @@ export default function Home() {
     </>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 32px;
+  width: 100%;
+  min-height: 100vh;
+`;
+
+const MainSection = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+`;

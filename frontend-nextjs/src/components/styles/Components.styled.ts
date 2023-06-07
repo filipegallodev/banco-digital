@@ -38,11 +38,11 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   max-width: 600px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 16px;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.15);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   transition: 0.1s;
   &:disabled {
     background: transparent;
@@ -134,7 +134,7 @@ export const SliderStyled = styled(Slider)`
 
 export const SubTitle = styled.h2`
   margin: 32px 0px;
-  font-size: 2rem;
+  font-size: 2.125rem;
   text-transform: uppercase;
   box-sizing: border-box;
   &::before {
@@ -148,7 +148,7 @@ export const SubTitle = styled.h2`
 
 export const ThirdTitle = styled.h3`
   margin: 32px 0px 16px 0px;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   text-transform: uppercase;
   box-sizing: border-box;
   &::before {

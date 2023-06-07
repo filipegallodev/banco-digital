@@ -2,8 +2,8 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
-import Input from "./Input";
-import * as Styled from "../styles/Components.styled";
+import Input from "../Input";
+import * as Styled from "../../styles/Components.styled";
 import { CircularProgress } from "@mui/material";
 
 const FormLogin = () => {
@@ -40,19 +40,19 @@ const FormLogin = () => {
 
   return (
     <Styled.FormContainer className="animeRight">
-      <Styled.SubTitle>Faça seu login</Styled.SubTitle>
+      <Styled.ThirdTitle>Login</Styled.ThirdTitle>
       <Styled.Form onSubmit={handleUserLogin}>
         <Input
-          label="E-mail"
           id="login-username"
+          placeholder="E-mail"
           formData={loginData}
           value={loginData.username}
           saveFormData={setLoginData}
           autocomplete="current-username"
         />
         <Input
-          label="Senha"
           id="login-password"
+          placeholder="Senha"
           formData={loginData}
           value={loginData.password}
           saveFormData={setLoginData}

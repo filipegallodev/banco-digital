@@ -2,9 +2,9 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { fetchRegister } from "@/store/reducers/register";
 import React, { useCallback, useEffect, useState } from "react";
-import Input from "./Input";
-import * as Styled from "../styles/Components.styled";
-import PasswordRequirements from "../PasswordRequirements";
+import Input from "../Input";
+import * as Styled from "../../styles/Components.styled";
+import PasswordRequirements from "../../PasswordRequirements";
 import styled from "styled-components";
 
 const FormRegister = () => {
@@ -55,7 +55,7 @@ const FormRegister = () => {
 
   return (
     <Styled.FormContainer className="animeRight">
-      <Styled.SubTitle>Cadastre-se</Styled.SubTitle>
+      <Styled.ThirdTitle>Cadastre-se</Styled.ThirdTitle>
       <Styled.Text>
         É simples, basta preencher os campos e criar sua conta:
       </Styled.Text>
@@ -79,8 +79,7 @@ const FormRegister = () => {
         <Input
           id="register-username"
           type="email"
-          placeholder="Email"
-          autocomplete="new-username"
+          placeholder="E-mail"
           formData={registerData}
           value={registerData.username}
           saveFormData={setRegisterData}
@@ -94,7 +93,6 @@ const FormRegister = () => {
             saveFormData={setRegisterData}
             onBlur={handleUserPassword}
             type="password"
-            autocomplete="new-password"
           />
           {invalidPassword && (
             <Styled.ErrorText>Formato de senha inválido.</Styled.ErrorText>
