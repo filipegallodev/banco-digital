@@ -59,7 +59,7 @@ const ProfileChangePassword = () => {
             saveFormData={setChangePasswordData}
             value={changePasswordData.oldPassword}
             type="password"
-            autoComplete="off"
+            autoComplete="current-password"
           />
           <Input
             label="Nova senha"

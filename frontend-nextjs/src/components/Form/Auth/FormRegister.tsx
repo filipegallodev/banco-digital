@@ -94,7 +94,7 @@ const FormRegister = () => {
           saveFormData={setRegisterData}
           onBlur={handleUserPassword}
           type="password"
-          autoComplete="off"
+          autoComplete="new-password"
         />
         {invalidPassword && (
           <Styled.ErrorText>Formato de senha inválido.</Styled.ErrorText>
