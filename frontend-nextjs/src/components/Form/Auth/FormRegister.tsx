@@ -84,7 +84,7 @@ const FormRegister = () => {
           formData={registerData}
           value={registerData.username}
           saveFormData={setRegisterData}
-          autoComplete="new-password"
+          autoComplete="off"
         />
         <Input
           id="register-password"
