@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import * as Styled from "@/components/styles/Components.styled";
+import styled from "styled-components";
 
 interface IProps {
-  label: string;
+  label?: string;
   id: string;
   type?: string;
   value: string | number | undefined;
@@ -50,8 +51,8 @@ const Input = ({
   }
 
   return (
-    <>
-      <Styled.Label htmlFor={id}>{label}</Styled.Label>
+    <Container>
+      {label && <Styled.Label htmlFor={id}>{label}</Styled.Label>}
       <Styled.InputContainer>
         <Styled.Input
           type={type}
@@ -69,8 +70,12 @@ const Input = ({
           )
         )}
       </Styled.InputContainer>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+`;
 
 export default Input;

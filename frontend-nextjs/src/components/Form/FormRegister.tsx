@@ -4,8 +4,8 @@ import { fetchRegister } from "@/store/reducers/register";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
-import { CircularProgress } from "@mui/material";
 import PasswordRequirements from "../PasswordRequirements";
+import styled from "styled-components";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState<IRegisterFormData>({
@@ -55,36 +55,40 @@ const FormRegister = () => {
 
   return (
     <Styled.FormContainer className="animeRight">
-      <Styled.SubTitle>Preencha seu cadastro</Styled.SubTitle>
+      <Styled.SubTitle>Cadastre-se</Styled.SubTitle>
+      <Styled.Text>
+        É simples, basta preencher os campos e criar sua conta:
+      </Styled.Text>
       <Styled.Form onSubmit={handleUserRegister}>
-        <div>
+        <NameContainer>
           <Input
-            label="Nome"
             id="register-firstName"
+            placeholder="Nome"
             formData={registerData}
             value={registerData.firstName}
             saveFormData={setRegisterData}
           />
           <Input
-            label="Sobrenome"
             id="register-lastName"
+            placeholder="Sobrenome"
             formData={registerData}
             value={registerData.lastName}
             saveFormData={setRegisterData}
           />
-        </div>
+        </NameContainer>
         <Input
-          label="E-mail"
           id="register-username"
           type="email"
+          placeholder="Email"
+          autocomplete="new-username"
           formData={registerData}
           value={registerData.username}
           saveFormData={setRegisterData}
         />
         <div>
           <Input
-            label="Senha"
             id="register-password"
+            placeholder="Nova senha"
             formData={registerData}
             value={registerData.password}
             saveFormData={setRegisterData}
@@ -99,12 +103,18 @@ const FormRegister = () => {
         </div>
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>
-            {loading ? "Cadastrando" : "Registrar"}
+            {loading ? "Cadastrando" : "Cadastre-se"}
           </Styled.Button>
         </Styled.ButtonContainer>
       </Styled.Form>
     </Styled.FormContainer>
   );
 };
+
+const NameContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 16px;
+`;
 
 export default FormRegister;

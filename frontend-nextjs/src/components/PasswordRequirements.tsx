@@ -22,7 +22,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin-bottom: 8px;
 `;
 

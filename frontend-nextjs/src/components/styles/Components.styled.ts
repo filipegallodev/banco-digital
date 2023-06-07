@@ -14,12 +14,12 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   display: block;
-  margin: 16px 0px 8px 0px;
+  margin-bottom: 8px;
   font-size: 1.25rem;
 `;
 
 export const InputContainer = styled.div`
-  margin: 4px 0px 12px 0px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +41,7 @@ export const Input = styled.input`
   padding: 10px 12px;
   border: none;
   border-radius: 4px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.15);
   font-size: 1.125rem;
   transition: 0.1s;
   &:disabled {
@@ -162,7 +162,7 @@ export const ThirdTitle = styled.h3`
 
 export const Text = styled.p`
   font-size: 1.25rem;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 export const ErrorText = styled(Text)`
