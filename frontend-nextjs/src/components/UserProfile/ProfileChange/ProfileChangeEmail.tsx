@@ -6,14 +6,16 @@ import Input from "@/components/Form/Input";
 import { CircularProgress } from "@mui/material";
 import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
+const defaultEmailData = {
+  oldEmail: "",
+  newEmail: "",
+  newEmailConfirm: "",
+};
+
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
   const { data, loading } = useAppSelector((state: IReduxState) => state.user);
-  const [changeEmailData, setChangeEmailData] = useState({
-    oldEmail: "",
-    newEmail: "",
-    newEmailConfirm: "",
-  });
+  const [changeEmailData, setChangeEmailData] = useState(defaultEmailData);
   const [inputError, setInputError] = useState<string>("");
 
   useEffect(() => {
@@ -29,13 +31,15 @@ const ProfileChangeEmail = () => {
 
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
-    if (changeEmailData.oldEmail && changeEmailData.newEmail && !inputError)
+    if (changeEmailData.oldEmail && changeEmailData.newEmail && !inputError) {
       dispatch(
         fetchEmailUpdate({
           oldEmail: changeEmailData.oldEmail,
           newEmail: changeEmailData.newEmail,
         })
       );
+      setChangeEmailData(defaultEmailData);
+    }
   }
 
   return (
@@ -47,6 +51,7 @@ const ProfileChangeEmail = () => {
             label="E-mail atual"
             id="oldEmail"
             type="email"
+            placeholder="atual@exemplo.com"
             formData={changeEmailData}
             saveFormData={setChangeEmailData}
             value={changeEmailData.oldEmail}
@@ -55,6 +60,7 @@ const ProfileChangeEmail = () => {
             label="Novo e-mail"
             id="newEmail"
             type="email"
+            placeholder="novo@exemplo.com"
             formData={changeEmailData}
             saveFormData={setChangeEmailData}
             value={changeEmailData.newEmail}
@@ -63,6 +69,7 @@ const ProfileChangeEmail = () => {
             label="Confirme o novo e-mail"
             id="newEmailConfirm"
             type="email"
+            placeholder="novo@exemplo.com"
             formData={changeEmailData}
             saveFormData={setChangeEmailData}
             value={changeEmailData.newEmailConfirm}
@@ -80,7 +87,7 @@ const ProfileChangeEmail = () => {
             >
               Trocar e-mail
             </Styled.Button>
-            {inputError && <p>{inputError}</p>}
+            {inputError && <Styled.ErrorText>{inputError}</Styled.ErrorText>}
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>

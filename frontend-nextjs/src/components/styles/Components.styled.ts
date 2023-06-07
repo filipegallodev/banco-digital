@@ -165,6 +165,11 @@ export const Text = styled.p`
   margin-bottom: 8px;
 `;
 
+export const ErrorText = styled(Text)`
+  font-size: 1rem;
+  color: #f22;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;

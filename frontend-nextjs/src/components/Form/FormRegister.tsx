@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import * as Styled from "../styles/Components.styled";
 import { CircularProgress } from "@mui/material";
+import PasswordRequirements from "../PasswordRequirements";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState<IRegisterFormData>({
@@ -92,12 +93,9 @@ const FormRegister = () => {
             autocomplete="new-password"
           />
           {invalidPassword && (
-            <p>
-              Formato de senha inválido. Utilize ao menos oito caracteres, uma
-              letra minúscula, uma letra maiúscula, um número e um caractere
-              especial.
-            </p>
+            <Styled.ErrorText>Formato de senha inválido.</Styled.ErrorText>
           )}
+          <PasswordRequirements />
         </div>
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>

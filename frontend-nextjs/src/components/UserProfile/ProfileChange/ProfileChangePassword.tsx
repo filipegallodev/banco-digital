@@ -3,17 +3,21 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import React, { useState, useEffect } from "react";
 import * as Styled from "../../styles/Components.styled";
 import Input from "@/components/Form/Input";
-import { CircularProgress } from "@mui/material";
+import PasswordRequirements from "../../PasswordRequirements";
 import { fetchPasswordUpdate } from "@/store/reducers/user";
+import { useRouter } from "next/navigation";
+
+const defaultPasswordData = {
+  oldPassword: "",
+  newPassword: "",
+  newPasswordConfirm: "",
+};
 
 const ProfileChangePassword = () => {
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state: IReduxState) => state.user);
-  const [changePasswordData, setChangePasswordData] = useState({
-    oldPassword: "",
-    newPassword: "",
-    newPasswordConfirm: "",
-  });
+  const [changePasswordData, setChangePasswordData] =
+    useState(defaultPasswordData);
   const [inputError, setInputError] = useState<string>("");
 
   useEffect(() => {
@@ -31,18 +35,21 @@ const ProfileChangePassword = () => {
       changePasswordData.oldPassword &&
       changePasswordData.newPassword &&
       !inputError
-    )
+    ) {
       dispatch(
         fetchPasswordUpdate({
           oldPassword: changePasswordData.oldPassword,
           newPassword: changePasswordData.newPassword,
         })
       );
+      setChangePasswordData(defaultPasswordData);
+    }
   }
 
   return (
     <>
       <Styled.ThirdTitle>Senha</Styled.ThirdTitle>
+      <PasswordRequirements />
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleFormSubmit}>
           <Input
@@ -85,7 +92,7 @@ const ProfileChangePassword = () => {
             >
               Trocar senha
             </Styled.Button>
-            {inputError && <p>{inputError}</p>}
+            {inputError && <Styled.ErrorText>{inputError}</Styled.ErrorText>}
           </Styled.ButtonContainer>
         </Styled.Form>
       </Styled.FormContainer>
