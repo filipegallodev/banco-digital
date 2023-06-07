@@ -5,14 +5,20 @@ import React, { useCallback, useEffect, useState } from "react";
 import Input from "../Input";
 import * as Styled from "../../styles/Components.styled";
 
+const defaultLoginData = {
+  username: "",
+  password: "",
+};
+
 const FormLogin = () => {
   const { loading } = useAppSelector((state: IReduxState) => state.login);
   const dispatch = useAppDispatch();
-  const [loginData, setLoginData] = useState<ILoginFormData>({
-    username: "",
-    password: "",
-  });
+  const [loginData, setLoginData] = useState<ILoginFormData>(defaultLoginData);
   const [unfilledFields, setUnfilledFields] = useState(true);
+
+  useEffect(() => {
+    setLoginData(defaultLoginData);
+  }, []);
 
   const checkLoginFields = useCallback(() => {
     const { username, password } = loginData;
@@ -47,7 +53,7 @@ const FormLogin = () => {
           formData={loginData}
           value={loginData.username}
           saveFormData={setLoginData}
-          autoComplete="off"
+          autoComplete="current-username"
           autoFocus
         />
         <Input
@@ -57,7 +63,7 @@ const FormLogin = () => {
           value={loginData.password}
           saveFormData={setLoginData}
           type="password"
-          autoComplete="off"
+          autoComplete="current-password"
         />
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>

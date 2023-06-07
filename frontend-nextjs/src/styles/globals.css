@@ -25,6 +25,11 @@ body > div {
   justify-content: space-between;
 }
 
+input {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.25rem;
+}
+
 a {
   color: inherit;
   text-decoration: none;
