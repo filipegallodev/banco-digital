@@ -1,6 +1,7 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 import { AppThunk } from "../configureStore";
 
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const initialState: IUserReducerState = {
   loading: false,
   data: {
@@ -48,8 +49,6 @@ export const {
   resetState,
   clearStatus,
 } = slice.actions;
-const SERVER_URL = "http://localhost:3333/";
-// const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
 const fetchData = async (
   dispatch: Dispatch<Action<string>>,

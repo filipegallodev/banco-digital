@@ -1,5 +1,6 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const initialState: IRegisterReducerState = {
   loading: false,
   data: {
@@ -36,8 +37,6 @@ const slice = createSlice({
 
 export const { fetchStarted, fetchSuccess, fetchError, clearRegisterStatus } =
   slice.actions;
-const SERVER_URL = "http://localhost:3333/";
-// const SERVER_URL = "https://ng-cash-app-production.up.railway.app/";
 
 export const fetchRegister =
   (registerData: IRegisterFormData) =>
