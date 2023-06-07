@@ -47,7 +47,7 @@ const FormLogin = () => {
           formData={loginData}
           value={loginData.username}
           saveFormData={setLoginData}
-          autoComplete="current-username"
+          autoComplete="off"
           autoFocus
         />
         <Input
@@ -57,7 +57,7 @@ const FormLogin = () => {
           value={loginData.password}
           saveFormData={setLoginData}
           type="password"
-          autoComplete="current-password"
+          autoComplete="off"
         />
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>

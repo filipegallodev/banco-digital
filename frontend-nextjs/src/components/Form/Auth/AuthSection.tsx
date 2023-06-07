@@ -3,13 +3,15 @@ import * as Styled from "../../styles/Components.styled";
 import FormLogin from "../../Form/Auth/FormLogin";
 import FormRegister from "../../Form/Auth/FormRegister";
 import styled from "styled-components";
+import { useAppSelector } from "@/hooks/useAppSelector";
 
 const AuthSection = () => {
   const [form, setForm] = useState<string>("");
+  const { data } = useAppSelector((state) => state.register);
 
   useEffect(() => {
     setForm("login");
-  }, []);
+  }, [data?.status]);
 
   return (
     <Section className="animeRight">
