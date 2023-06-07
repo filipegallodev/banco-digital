@@ -6,13 +6,13 @@ const Footer = () => {
   return (
     <FooterStyled>
       <Container>
-        <Styled.Text>
+        <p>
           Desenvolvido por{" "}
           <LinkStyled href="https://github.com/filipegallodev">
             Filipe
           </LinkStyled>
           .
-        </Styled.Text>
+        </p>
       </Container>
     </FooterStyled>
   );
@@ -28,6 +28,7 @@ const FooterStyled = styled.footer`
 
 const Container = styled.div`
   text-align: center;
+  font-size: 1.25rem;
 `;
 
 const LinkStyled = styled.a`

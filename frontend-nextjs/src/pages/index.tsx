@@ -12,6 +12,8 @@ import { Backdrop, CircularProgress } from "@mui/material";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
 import styled from "styled-components";
+import BankImage from "../../public/bank-auth-page.webp";
+import Image from "next/image";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -36,13 +38,13 @@ export default function Home() {
         <SectionContainer>
           <Container>
             <MainSection>
-              <SectionTitle>Seja bem-vindo!</SectionTitle>
+              <ImageStyled src={BankImage} alt="Imagem de banco" />
+              <SectionTitle>Banco Digital</SectionTitle>
             </MainSection>
             <AuthSection />
           </Container>
         </SectionContainer>
       </main>
-      <Footer />
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={login.loading || register.loading || user.loading}
@@ -56,19 +58,26 @@ export default function Home() {
 }
 
 const Container = styled.div`
-  margin-top: 60px;
+  margin-top: 10%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1200px;
-  min-height: 100vh;
+  height: 100%;
 `;
 
 const MainSection = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   min-width: 400px;
-  min-height: 600px;
+  min-height: 75vh;
+`;
+
+const ImageStyled = styled(Image)`
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
 `;
