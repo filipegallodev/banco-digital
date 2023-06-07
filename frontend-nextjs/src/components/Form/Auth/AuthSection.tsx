@@ -34,6 +34,7 @@ const AuthSection = () => {
 };
 
 const Section = styled.section`
+  max-width: 600px;
   width: 100%;
 `;
 

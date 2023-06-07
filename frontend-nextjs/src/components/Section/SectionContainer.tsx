@@ -12,7 +12,6 @@ const Container = styled.section`
   justify-content: center;
   margin: 0 auto 48px auto;
   max-width: 1200px;
-  width: 100%;
   @media (max-width: 1240px) {
     margin: 0 24px 48px 24px;
   }
