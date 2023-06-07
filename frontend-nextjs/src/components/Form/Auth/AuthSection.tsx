@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Styled from "../../styles/Components.styled";
 import FormLogin from "../../Form/Auth/FormLogin";
 import FormRegister from "../../Form/Auth/FormRegister";
 import styled from "styled-components";
 
 const AuthSection = () => {
-  const [form, setForm] = useState<string>("login");
+  const [form, setForm] = useState<string>("");
+
+  useEffect(() => {
+    setForm("login");
+  }, []);
 
   return (
-    <Section>
+    <Section className="animeRight">
       <Styled.SubTitle>O que deseja fazer?</Styled.SubTitle>
       <Styled.ButtonContainer>
         <Styled.Button

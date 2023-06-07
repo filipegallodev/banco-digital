@@ -67,6 +67,7 @@ const FormRegister = () => {
             formData={registerData}
             value={registerData.firstName}
             saveFormData={setRegisterData}
+            autoFocus
           />
           <Input
             id="register-lastName"
@@ -83,22 +84,22 @@ const FormRegister = () => {
           formData={registerData}
           value={registerData.username}
           saveFormData={setRegisterData}
+          autocomplete={false}
         />
-        <div>
-          <Input
-            id="register-password"
-            placeholder="Nova senha"
-            formData={registerData}
-            value={registerData.password}
-            saveFormData={setRegisterData}
-            onBlur={handleUserPassword}
-            type="password"
-          />
-          {invalidPassword && (
-            <Styled.ErrorText>Formato de senha inválido.</Styled.ErrorText>
-          )}
-          <PasswordRequirements />
-        </div>
+        <Input
+          id="register-password"
+          placeholder="Nova senha"
+          formData={registerData}
+          value={registerData.password}
+          saveFormData={setRegisterData}
+          onBlur={handleUserPassword}
+          type="password"
+          autocomplete={false}
+        />
+        {invalidPassword && (
+          <Styled.ErrorText>Formato de senha inválido.</Styled.ErrorText>
+        )}
+        <PasswordRequirements />
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>
             {loading ? "Cadastrando" : "Cadastre-se"}

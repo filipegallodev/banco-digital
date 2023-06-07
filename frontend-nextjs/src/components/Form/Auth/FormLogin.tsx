@@ -4,15 +4,14 @@ import { fetchLogin } from "@/store/reducers/login";
 import React, { useCallback, useEffect, useState } from "react";
 import Input from "../Input";
 import * as Styled from "../../styles/Components.styled";
-import { CircularProgress } from "@mui/material";
 
 const FormLogin = () => {
+  const { loading } = useAppSelector((state: IReduxState) => state.login);
+  const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState<ILoginFormData>({
     username: "",
     password: "",
   });
-  const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state: IReduxState) => state.login);
   const [unfilledFields, setUnfilledFields] = useState(true);
 
   const checkLoginFields = useCallback(() => {
@@ -49,6 +48,7 @@ const FormLogin = () => {
           value={loginData.username}
           saveFormData={setLoginData}
           autocomplete="current-username"
+          autoFocus
         />
         <Input
           id="login-password"
