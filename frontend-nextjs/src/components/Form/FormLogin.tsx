@@ -48,6 +48,7 @@ const FormLogin = () => {
           formData={loginData}
           value={loginData.username}
           saveFormData={setLoginData}
+          autocomplete="current-username"
         />
         <Input
           label="Senha"
@@ -56,6 +57,7 @@ const FormLogin = () => {
           value={loginData.password}
           saveFormData={setLoginData}
           type="password"
+          autocomplete="current-password"
         />
         <Styled.ButtonContainer>
           <Styled.Button disabled={loading || unfilledFields}>

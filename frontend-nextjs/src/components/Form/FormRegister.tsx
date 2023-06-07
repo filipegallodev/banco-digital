@@ -89,6 +89,7 @@ const FormRegister = () => {
             saveFormData={setRegisterData}
             onBlur={handleUserPassword}
             type="password"
+            autocomplete="new-password"
           />
           {invalidPassword && (
             <p>

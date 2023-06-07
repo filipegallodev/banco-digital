@@ -52,6 +52,7 @@ const ProfileChangePassword = () => {
             saveFormData={setChangePasswordData}
             value={changePasswordData.oldPassword}
             type="password"
+            autocomplete="current-password"
           />
           <Input
             label="Nova senha"
@@ -60,6 +61,7 @@ const ProfileChangePassword = () => {
             saveFormData={setChangePasswordData}
             value={changePasswordData.newPassword}
             type="password"
+            autocomplete="new-password"
           />
           <Input
             label="Confirme a nova senha"
@@ -68,6 +70,7 @@ const ProfileChangePassword = () => {
             saveFormData={setChangePasswordData}
             value={changePasswordData.newPasswordConfirm}
             type="password"
+            autocomplete="new-password"
           />
           <Styled.ButtonContainer>
             <Styled.Button
