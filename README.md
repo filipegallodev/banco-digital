@@ -1,6 +1,6 @@
 # 💸 Banco Digital (EM ATUALIZAÇÃO)
 
-![Banco Digital Cover](https://i.imgur.com/lHEZFnI.jpg)
+![Banco Digital Cover]()
 
 ## 🎯 Objetivo
 
