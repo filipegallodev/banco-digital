@@ -50,8 +50,8 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
                 </td>
                 <td>
                   {transaction.createdAt.replace(
-                    /(\d{2}\/\d{2}\/\d{4}) (\d{2}\:\d{2})(\:\d{2})/g,
-                    "$1 às $2"
+                    /(\d{1,2})\/(\d{1,2})\/(\d{4})\D (\d{1,2})\:(\d{2})\:\d{2} (\D{2})/g,
+                    `$2/$1/$3 às $4:$5 $6`
                   )}
                 </td>
                 <td className="show650">
