@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 const Header = () => {
   const user = useAppSelector((state: IReduxState) => state.user.data.user);
@@ -19,7 +20,10 @@ const Header = () => {
   return (
     <Container>
       <Content>
-        <Title onClick={() => router.push("/painel")}>Banco Digital</Title>
+        <TitleContainer>
+          <AccountBalanceIcon fontSize="large" />
+          <Title onClick={() => router.push("/painel")}>Banco Digital</Title>
+        </TitleContainer>
         {user && (
           <ControllContainer>
             <UserProfile onClick={() => router.push("/perfil")}>
@@ -64,6 +68,12 @@ const Content = styled.div`
     gap: 32px;
     margin: 32px 0px;
   }
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
 `;
 
 const Title = styled.span`
