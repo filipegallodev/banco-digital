@@ -49,6 +49,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 6px;
   background-color: ${(props) => props.theme.button.secondary.color};
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
