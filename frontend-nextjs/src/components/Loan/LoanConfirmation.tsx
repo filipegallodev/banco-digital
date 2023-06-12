@@ -15,11 +15,11 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
 
   function handleLoanRequest() {
     console.log({
-      requestedLoan: customLoan,
-      installment,
-      installmentValue: Number((finalLoan / installment.amount).toFixed(2)),
-      dueDay: installment.dueDay,
-      debt: finalLoan,
+      loan: { requested: customLoan, debt: finalLoan },
+      installment: {
+        ...installment,
+        value: Number((finalLoan / installment.amount).toFixed(2)),
+      },
     });
   }
 
