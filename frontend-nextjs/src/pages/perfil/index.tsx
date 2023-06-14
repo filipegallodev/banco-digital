@@ -54,7 +54,11 @@ export default function Perfil() {
       </main>
       <Footer />
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          cursor: "wait",
+        }}
         open={user.loading}
       >
         <CircularProgress color="inherit" />

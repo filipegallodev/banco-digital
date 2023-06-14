@@ -46,7 +46,11 @@ export default function Home() {
         </SectionContainer>
       </main>
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          cursor: "wait",
+        }}
         open={login.loading || register.loading || user.loading}
       >
         <CircularProgress color="inherit" />
