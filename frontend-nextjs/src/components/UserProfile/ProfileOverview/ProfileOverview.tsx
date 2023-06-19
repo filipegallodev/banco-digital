@@ -5,7 +5,7 @@ import styled from "styled-components";
 import UserInfo from "./UserInfo";
 
 const ProfileOverview = () => {
-  const user = useAppSelector((state: IReduxState) => state.user.data.user);
+  const user = useAppSelector((state) => state.user.data.user);
   return (
     <Container className="animeRight">
       <Styled.SubTitle>Informações Gerais</Styled.SubTitle>

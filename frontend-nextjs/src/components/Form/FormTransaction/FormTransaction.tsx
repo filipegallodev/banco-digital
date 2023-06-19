@@ -7,6 +7,7 @@ import TransactionStepper from "./TransactionStepper";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import Confirmation from "./Confirmation";
+import { useRouter } from "next/router";
 
 const steps = [
   "Valor da transferência",
@@ -23,9 +24,10 @@ const TransactionForm = () => {
   const [transactionValue, setTransactionValue] = useState<string>();
   const [activeStep, setActiveStep] = useState<number>(0);
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector(
-    (state: IReduxState) => state.transactions
+  const { loading, data, error } = useAppSelector(
+    (state) => state.transactions
   );
+  const router = useRouter();
 
   useEffect(() => {
     setTransactionData({
@@ -42,9 +44,7 @@ const TransactionForm = () => {
 
   useEffect(() => {
     if (transactionData.value && transactionData.target && !error && !loading) {
-      setTransactionData(inititalTransactionData);
-      setTransactionValue("");
-      setActiveStep(0);
+      router.push("/transferencias");
     }
   }, [loading]);
 

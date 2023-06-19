@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ValueInput from "./ValueInput";
 import TargetInput from "./TargetInput";
 import * as Styled from "@/components/styles/Components.styled";
-import { Checkbox, CircularProgress, FormControlLabel } from "@mui/material";
+import { Checkbox } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { fetchTransaction } from "@/store/reducers/transactions";
@@ -20,9 +20,7 @@ const Confirmation = ({
   transactionValue,
   setTransactionValue,
 }: IProps) => {
-  const { loading } = useAppSelector(
-    (state: IReduxState) => state.transactions
-  );
+  const { loading } = useAppSelector((state) => state.transactions);
   const [confirmation, setConfirmation] = useState(false);
   const dispatch = useAppDispatch();
 

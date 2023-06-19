@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
 import { IInstallment } from "./LoanSection";
 import { months } from "./LoanInstallment";
 import { fetchLoan } from "@/store/reducers/loan";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useRouter } from "next/router";
 
 interface IProps {
   customLoan: number;
@@ -14,7 +16,13 @@ interface IProps {
 
 const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
   const [confirmation, setConfirmation] = useState<boolean>(false);
+  const { loading, data } = useAppSelector((state) => state.loan);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (data.status) router.push("/emprestimos");
+  }, [data.status]);
 
   function handleLoanRequest() {
     const loan = {
@@ -24,7 +32,6 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
         value: Number((finalLoan / installment.amount).toFixed(2)),
       },
     };
-    console.log(loan);
     dispatch(fetchLoan(loan));
   }
 
@@ -90,10 +97,8 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
       />
       <Styled.ButtonContainer style={{ marginBottom: "24px" }}>
         <Styled.Button disabled={!confirmation} onClick={handleLoanRequest}>
-          Solicitar
-          {/* {loading ? "Solicitando" : "Solicitar"} */}
+          {loading ? "Solicitando" : "Solicitar"}
         </Styled.Button>
-        {/* {loading && <CircularProgress />} */}
       </Styled.ButtonContainer>
     </>
   );

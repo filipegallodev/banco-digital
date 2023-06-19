@@ -17,7 +17,7 @@ const FormRegister = () => {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [unfilledFields, setUnfilledFields] = useState(true);
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state: IReduxState) => state.register);
+  const { loading } = useAppSelector((state) => state.register);
 
   const checkRegisterFields = useCallback(() => {
     const { firstName, lastName, username, password } = registerData;

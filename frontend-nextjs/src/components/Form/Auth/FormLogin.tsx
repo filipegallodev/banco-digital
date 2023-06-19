@@ -11,7 +11,7 @@ const defaultLoginData = {
 };
 
 const FormLogin = () => {
-  const { loading } = useAppSelector((state: IReduxState) => state.login);
+  const { loading } = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState<ILoginFormData>(defaultLoginData);
   const [unfilledFields, setUnfilledFields] = useState(true);

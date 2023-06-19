@@ -15,7 +15,7 @@ const defaultPasswordData = {
 
 const ProfileChangePassword = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state: IReduxState) => state.user);
+  const { loading } = useAppSelector((state) => state.user);
   const [changePasswordData, setChangePasswordData] =
     useState(defaultPasswordData);
   const [inputError, setInputError] = useState<string>("");

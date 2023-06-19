@@ -8,7 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
 const Header = () => {
-  const user = useAppSelector((state: IReduxState) => state.user.data.user);
+  const user = useAppSelector((state) => state.user.data.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
 

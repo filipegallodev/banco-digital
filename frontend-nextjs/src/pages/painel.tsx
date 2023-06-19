@@ -17,10 +17,8 @@ import Footer from "@/components/Footer";
 export default function Painel() {
   const user = useTokenAuthentication();
   const dispatch = useAppDispatch();
-  const transactions = useAppSelector(
-    (state: IReduxState) => state.transactions
-  );
-  const login = useAppSelector((state: IReduxState) => state.login);
+  const transactions = useAppSelector((state) => state.transactions);
+  const login = useAppSelector((state) => state.login);
 
   useEffect(() => {
     dispatch(fetchTransactionsList());

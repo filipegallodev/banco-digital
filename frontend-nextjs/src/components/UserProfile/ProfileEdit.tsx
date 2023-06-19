@@ -8,8 +8,8 @@ import { CircularProgress } from "@mui/material";
 import UserPhoneInput from "../Form/UserPhoneInput";
 
 const ProfileEdit = () => {
-  const { loading } = useAppSelector((state: IReduxState) => state.user);
-  const user = useAppSelector((state: IReduxState) => state.user.data.user);
+  const { loading } = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.data.user);
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<IUserUpdateFormData>({
     firstName: user?.firstName || "",

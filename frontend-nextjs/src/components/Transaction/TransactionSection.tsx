@@ -11,9 +11,7 @@ import * as Styled from "../styles/Components.styled";
 import TransactionFilter from "./TransactionFilter";
 
 const TransactionSection = () => {
-  const { data, loading } = useAppSelector(
-    (state: IReduxState) => state.transactions
-  );
+  const { data, loading } = useAppSelector((state) => state.transactions);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [transactionsList, setTransactionsList] = useState<ITransaction[]>();

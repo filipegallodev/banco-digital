@@ -17,8 +17,8 @@ import Image from "next/image";
 
 export default function Home() {
   const user = useTokenAuthentication();
-  const login = useAppSelector((state: IReduxState) => state.login);
-  const register = useAppSelector((state: IReduxState) => state.register);
+  const login = useAppSelector((state) => state.login);
+  const register = useAppSelector((state) => state.register);
   const router = useRouter();
 
   useEffect(() => {

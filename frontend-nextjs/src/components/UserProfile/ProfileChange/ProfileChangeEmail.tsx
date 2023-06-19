@@ -14,7 +14,7 @@ const defaultEmailData = {
 
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector((state: IReduxState) => state.user);
+  const { data, loading } = useAppSelector((state) => state.user);
   const [changeEmailData, setChangeEmailData] = useState(defaultEmailData);
   const [inputError, setInputError] = useState<string>("");
 

@@ -12,7 +12,7 @@ import Modal from "@mui/material/Modal";
 const DeleteProfileModal = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const modal = useAppSelector((state: IReduxState) => state.modal);
+  const modal = useAppSelector((state) => state.modal);
 
   function handleUserDelete() {
     dispatch(fetchUserDelete());
