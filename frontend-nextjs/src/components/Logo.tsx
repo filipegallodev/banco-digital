@@ -3,11 +3,15 @@ import { useRouter } from "next/router";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import styled from "styled-components";
 
-const Logo = ({ className }: { className: string }) => {
+interface IProps {
+  styleClass?: string;
+}
+
+const Logo = ({ styleClass }: IProps) => {
   const router = useRouter();
 
   return (
-    <LogoContainer className={className}>
+    <LogoContainer className={styleClass}>
       <AccountBalanceIconStyled />
       <TitleContainer>
         <Title onClick={() => router.push("/painel")}>

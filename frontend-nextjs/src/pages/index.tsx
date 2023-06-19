@@ -40,7 +40,7 @@ export default function Home() {
           <Container>
             <MainSection>
               <ImageStyled src={BankImage} alt="Imagem de banco" />
-              <Logo className="black large" />
+              <Logo styleClass="black large" />
             </MainSection>
             <AuthSection />
           </Container>
