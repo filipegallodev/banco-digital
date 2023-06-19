@@ -3,6 +3,8 @@ import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
 import { IInstallment } from "./LoanSection";
 import { months } from "./LoanInstallment";
+import { fetchLoan } from "@/store/reducers/loan";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 
 interface IProps {
   customLoan: number;
@@ -12,15 +14,18 @@ interface IProps {
 
 const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
   const [confirmation, setConfirmation] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   function handleLoanRequest() {
-    console.log({
+    const loan = {
       loan: { requested: customLoan, debt: finalLoan },
       installment: {
         ...installment,
         value: Number((finalLoan / installment.amount).toFixed(2)),
       },
-    });
+    };
+    console.log(loan);
+    dispatch(fetchLoan(loan));
   }
 
   return (

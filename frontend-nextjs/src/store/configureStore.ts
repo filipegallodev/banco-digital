@@ -1,11 +1,24 @@
-import { Action, combineReducers, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import {
+  Action,
+  combineReducers,
+  configureStore,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import login from "./reducers/login";
 import user from "./reducers/user";
 import register from "./reducers/register";
 import transactions from "./reducers/transactions";
 import modal from "./reducers/modal";
+import loan from "./reducers/loan";
 
-const reducer = combineReducers({ user, login, register, transactions, modal });
+const reducer = combineReducers({
+  user,
+  login,
+  register,
+  transactions,
+  modal,
+  loan,
+});
 const store = configureStore({ reducer });
 
 export type RootState = ReturnType<typeof store.getState>;
