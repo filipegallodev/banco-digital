@@ -12,12 +12,15 @@ const Logo = ({ styleClass }: IProps) => {
 
   return (
     <LogoContainer className={styleClass}>
-      <AccountBalanceIconStyled />
+      <AccountBalanceIconStyled className={styleClass} />
       <TitleContainer>
-        <Title onClick={() => !styleClass && router.push("/painel")}>
+        <Title
+          className={styleClass}
+          onClick={() => !styleClass && router.push("/painel")}
+        >
           <span>Next</span>Bank
         </Title>
-        <SubTitle>Banco Digital</SubTitle>
+        <SubTitle className={styleClass}>Banco Digital</SubTitle>
       </TitleContainer>
     </LogoContainer>
   );
@@ -32,13 +35,15 @@ const LogoContainer = styled.div`
     color: #3a2b5a;
     cursor: default;
   }
-  &.large {
-    transform: scale(1.5);
-  }
 `;
 
 const AccountBalanceIconStyled = styled(AccountBalanceIcon)`
-  font-size: 3.75rem;
+  &.MuiSvgIcon-fontSizeMedium {
+    font-size: 3.75rem;
+  }
+  &.MuiSvgIcon-fontSizeMedium.large {
+    font-size: 5.35rem;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -53,11 +58,18 @@ const Title = styled.span`
   & span {
     color: #6113fd;
   }
+  &.large {
+    font-size: 3.75rem;
+    line-height: 3.25rem;
+  }
 `;
 
 const SubTitle = styled.span`
   font-weight: 500;
   font-size: 1.25rem;
+  &.large {
+    font-size: 1.9rem;
+  }
 `;
 
 export default Logo;
