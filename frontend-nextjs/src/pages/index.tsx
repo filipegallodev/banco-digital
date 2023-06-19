@@ -39,8 +39,10 @@ export default function Home() {
         <SectionContainer>
           <Container>
             <MainSection>
-              <ImageStyled src={BankImage} alt="Imagem de banco" />
-              <Logo styleClass="black large" />
+              <LogoAndImageContainer>
+                <ImageStyled src={BankImage} alt="Imagem de banco" />
+                <Logo styleClass="black large" />
+              </LogoAndImageContainer>
             </MainSection>
             <AuthSection />
           </Container>
@@ -63,23 +65,26 @@ export default function Home() {
 }
 
 const Container = styled.div`
-  margin-top: 10%;
+  max-width: 1200px;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
 `;
 
 const MainSection = styled.section`
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+`;
+
+const LogoAndImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  min-width: 400px;
-  min-height: 75vh;
 `;
 
 const ImageStyled = styled(Image)`

@@ -14,7 +14,7 @@ const Logo = ({ styleClass }: IProps) => {
     <LogoContainer className={styleClass}>
       <AccountBalanceIconStyled />
       <TitleContainer>
-        <Title onClick={() => router.push("/painel")}>
+        <Title onClick={() => !styleClass && router.push("/painel")}>
           <span>Next</span>Bank
         </Title>
         <SubTitle>Banco Digital</SubTitle>
@@ -30,6 +30,7 @@ const LogoContainer = styled.div`
   cursor: pointer;
   &.black {
     color: #3a2b5a;
+    cursor: default;
   }
   &.large {
     transform: scale(1.5);
