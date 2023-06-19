@@ -6,6 +6,7 @@ import {
   IEmailUpdateFormData,
   IPasswordUpdateFormData,
 } from "../types/user";
+import Decimal from "decimal.js";
 
 const prisma = new PrismaClient();
 
@@ -153,6 +154,29 @@ export async function findTransactions(field: string, user: User) {
       },
     });
     return transactions;
+  } catch (error) {
+    return;
+  }
+}
+
+export async function createLoan(loanValue: number, user: User) {
+  try {
+    const account = await prisma.account.findUnique({
+      where: {
+        id: user.accountId,
+      },
+    });
+    const updatedAccount = await prisma.account.update({
+      where: {
+        id: user.accountId,
+      },
+      data: {
+        balance: new Decimal(account?.balance ? account?.balance : 0).plus(
+          new Decimal(loanValue)
+        ),
+      },
+    });
+    return updatedAccount;
   } catch (error) {
     return;
   }
