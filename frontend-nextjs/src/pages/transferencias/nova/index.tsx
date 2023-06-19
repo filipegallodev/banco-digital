@@ -17,9 +17,7 @@ import Footer from "@/components/Footer";
 
 export default function Nova() {
   const user = useTokenAuthentication();
-  const transactions = useAppSelector(
-    (state: IReduxState) => state.transactions
-  );
+  const transactions = useAppSelector((state) => state.transactions);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
