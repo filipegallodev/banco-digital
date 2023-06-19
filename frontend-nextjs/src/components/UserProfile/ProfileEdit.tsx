@@ -3,7 +3,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import * as Styled from "../styles/Components.styled";
 import Input from "../Form/Input";
-import { clearStatus, fetchUserUpdate } from "@/store/reducers/user";
+import { clearUserStatus, fetchUserUpdate } from "@/store/reducers/user";
 import { CircularProgress } from "@mui/material";
 import UserPhoneInput from "../Form/UserPhoneInput";
 
@@ -25,7 +25,7 @@ const ProfileEdit = () => {
   });
 
   useEffect(() => {
-    dispatch(clearStatus());
+    dispatch(clearUserStatus());
   }, [dispatch]);
 
   function handleUserUpdate(event: React.FormEvent) {

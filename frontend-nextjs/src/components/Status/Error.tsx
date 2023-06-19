@@ -2,10 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Alert, AlertTitle, Fade } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { clearStatus } from "@/store/reducers/user";
-import { resetLoginData } from "@/store/reducers/login";
+import { clearUserStatus } from "@/store/reducers/user";
 import { clearRegisterStatus } from "@/store/reducers/register";
-import { clearTransactionStatus } from "@/store/reducers/transactions";
 
 const Error = ({ message }: { message: string | null }) => {
   const dispatch = useAppDispatch();
@@ -16,10 +14,8 @@ const Error = ({ message }: { message: string | null }) => {
   }, [message]);
 
   const handleClose = useCallback(() => {
-    dispatch(clearStatus());
-    dispatch(resetLoginData());
+    dispatch(clearUserStatus());
     dispatch(clearRegisterStatus());
-    dispatch(clearTransactionStatus());
   }, [dispatch]);
 
   useEffect(() => {

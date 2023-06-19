@@ -6,11 +6,18 @@ import SectionContainer from "@/components/Section/SectionContainer";
 import TransactionSection from "@/components/Transaction/TransactionSection";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "@/components/Footer";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { clearTransactionStatus } from "@/store/reducers/transactions";
 
 export default function Transferencias() {
   const user = useTokenAuthentication();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearTransactionStatus());
+  }, []);
 
   if (!user.data.user) return <AuthPage />;
   return (

@@ -4,7 +4,7 @@ import * as Styled from "../../styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Input from "@/components/Form/Input";
 import { CircularProgress } from "@mui/material";
-import { clearStatus, fetchEmailUpdate } from "@/store/reducers/user";
+import { clearUserStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
 const defaultEmailData = {
   oldEmail: "",
@@ -19,7 +19,7 @@ const ProfileChangeEmail = () => {
   const [inputError, setInputError] = useState<string>("");
 
   useEffect(() => {
-    dispatch(clearStatus());
+    dispatch(clearUserStatus());
   }, [dispatch]);
 
   useEffect(() => {

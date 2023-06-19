@@ -30,14 +30,14 @@ const slice = createSlice({
       state.data = initialState.data;
       state.error = action.payload;
     },
-    resetLoginData: (state) => {
+    clearLoginStatus: (state) => {
       state.data = initialState.data;
       state.error = null;
     },
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError, resetLoginData } =
+export const { fetchStarted, fetchSuccess, fetchError, clearLoginStatus } =
   slice.actions;
 
 export const fetchLogin =

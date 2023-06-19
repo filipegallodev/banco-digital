@@ -29,10 +29,14 @@ const slice = createSlice({
       state.data = initialState.data;
       state.error = action.payload;
     },
+    clearLoanStatus: (state) => {
+      state.data = initialState.data;
+    },
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+export const { fetchStarted, fetchSuccess, fetchError, clearLoanStatus } =
+  slice.actions;
 
 export const fetchLoan =
   (loanData: ILoan): AppThunk =>

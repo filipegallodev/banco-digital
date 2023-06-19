@@ -35,7 +35,7 @@ const slice = createSlice({
       state.error = null;
       localStorage.removeItem("jwt-token");
     },
-    clearStatus: (state) => {
+    clearUserStatus: (state) => {
       state.data.status = null;
       state.error = null;
     },
@@ -47,7 +47,7 @@ export const {
   fetchSuccess,
   fetchError,
   resetState,
-  clearStatus,
+  clearUserStatus,
 } = slice.actions;
 
 const fetchData = async (

@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import LoanSection from "@/components/Loan/LoanSection";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
@@ -12,10 +12,17 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { Backdrop, CircularProgress } from "@mui/material";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { clearLoanStatus } from "@/store/reducers/loan";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
   const loan = useAppSelector((state) => state.loan);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearLoanStatus());
+  }, []);
 
   if (!user.data) return <AuthPage />;
   return (
