@@ -72,12 +72,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-width: 1150px) {
+    gap: 32px;
+    margin-top: 32px;
+  }
 `;
 
 const MainSection = styled.section`
   min-width: 400px;
   display: flex;
   align-items: center;
+  @media (max-width: 450px) {
+    min-width: 0px;
+    width: 100%;
+  }
 `;
 
 const LogoAndImageContainer = styled.div`

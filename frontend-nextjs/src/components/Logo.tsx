@@ -43,6 +43,9 @@ const AccountBalanceIconStyled = styled(AccountBalanceIcon)`
   }
   &.MuiSvgIcon-fontSizeMedium.large {
     font-size: 5.35rem;
+    @media (max-width: 450px) {
+      font-size: 3.75rem;
+    }
   }
 `;
 
@@ -53,14 +56,18 @@ const TitleContainer = styled.div`
 
 const Title = styled.span`
   font-size: 2.5rem;
-  font-weight: 700;
   line-height: 2.25rem;
+  font-weight: 700;
   & span {
     color: #6113fd;
   }
   &.large {
     font-size: 3.75rem;
     line-height: 3.25rem;
+    @media (max-width: 450px) {
+      font-size: 2.5rem;
+      line-height: 2.25rem;
+    }
   }
 `;
 
@@ -69,6 +76,9 @@ const SubTitle = styled.span`
   font-size: 1.25rem;
   &.large {
     font-size: 1.9rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 1.25rem;
   }
 `;
 
