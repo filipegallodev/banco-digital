@@ -6,6 +6,7 @@ import React from "react";
 import styled from "styled-components";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import Logo from "./Logo";
 
 const Header = () => {
   const user = useAppSelector((state) => state.user.data.user);
@@ -20,10 +21,7 @@ const Header = () => {
   return (
     <Container>
       <Content>
-        <TitleContainer>
-          <AccountBalanceIcon fontSize="large" />
-          <Title onClick={() => router.push("/painel")}>Banco Digital</Title>
-        </TitleContainer>
+        <Logo />
         {user && (
           <ControllContainer>
             <UserProfile onClick={() => router.push("/perfil")}>
@@ -68,18 +66,6 @@ const Content = styled.div`
     gap: 32px;
     margin: 32px 0px;
   }
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-`;
-
-const Title = styled.span`
-  font-size: 2rem;
-  text-transform: uppercase;
-  cursor: pointer;
 `;
 
 const ControllContainer = styled.div`

@@ -14,6 +14,7 @@ import SectionTitle from "@/components/Section/SectionTitle";
 import styled from "styled-components";
 import BankImage from "../../public/bank-auth-page.webp";
 import Image from "next/image";
+import Logo from "../components/Logo";
 
 export default function Home() {
   const user = useTokenAuthentication();
@@ -29,8 +30,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Banco Digital | Seja Bem-vindo!</title>
-        <meta name="description" content="Bem-vindo ao seu Banco Digital!" />
+        <title>NextBank | Seja Bem-vindo!</title>
+        <meta name="description" content="Bem-vindo ao seu NextBank!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -39,7 +40,7 @@ export default function Home() {
           <Container>
             <MainSection>
               <ImageStyled src={BankImage} alt="Imagem de banco" />
-              <SectionTitle>Banco Digital</SectionTitle>
+              <Logo className="black large" />
             </MainSection>
             <AuthSection />
           </Container>
@@ -76,6 +77,7 @@ const MainSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
   min-width: 400px;
   min-height: 75vh;
 `;

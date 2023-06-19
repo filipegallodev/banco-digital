@@ -1,12 +1,12 @@
-# 💸 Banco Digital (EM ATUALIZAÇÃO)
+# 💸 NextBank (EM ATUALIZAÇÃO)
 
-![Banco Digital Cover]()
+![NextBank Cover]()
 
 ## 🎯 Objetivo
 
 OBS: Como está em atualização, apenas a tela antiga está disponível, mas já não possui mais as suas funcionalidades ativas.
 
-Criação de uma aplicação WEB para um Banco Digital fictício. Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possibilitar que usuários da NG consigam realizar transferências internas entre si.
+Criação de uma aplicação WEB para um NextBank fictício. Estruturar uma aplicação web fullstack, dockerizada, cujo objetivo seja possibilitar que usuários da NG consigam realizar transferências internas entre si.
 
 ## ⚙️ Funcionalidades
 
@@ -18,7 +18,7 @@ Criação de uma aplicação WEB para um Banco Digital fictício. Estruturar uma
 
 ## 🔗 Link para teste
 
-[Banco Digital Fictício](https://ngcash-app.vercel.app/)
+[NextBank Fictício](https://ngcash-app.vercel.app/)
 
 ## 🛠 Tecnologias
 

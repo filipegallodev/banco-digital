@@ -23,11 +23,8 @@ export default function Transferencias() {
   return (
     <>
       <Head>
-        <title>Transferências | Banco Digital</title>
-        <meta
-          name="description"
-          content="Transferências do seu Banco Digital!"
-        />
+        <title>Transferências | NextBank</title>
+        <meta name="description" content="Transferências do seu NextBank!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

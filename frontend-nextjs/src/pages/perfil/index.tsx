@@ -38,8 +38,8 @@ export default function Perfil() {
   return (
     <>
       <Head>
-        <title>Meu perfil | Banco Digital</title>
-        <meta name="description" content="Meu perfil do Banco Digital." />
+        <title>Meu perfil | NextBank</title>
+        <meta name="description" content="Meu perfil do NextBank." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
