@@ -53,7 +53,7 @@ const ProfileChangePassword = () => {
       <Styled.FormContainer>
         <Styled.Form onSubmit={handleFormSubmit}>
           <Input
-            label="Senha atual"
+            placeholder="Senha atual"
             id="oldPassword"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
@@ -62,7 +62,7 @@ const ProfileChangePassword = () => {
             autoComplete="current-password"
           />
           <Input
-            label="Nova senha"
+            placeholder="Nova senha"
             id="newPassword"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}
@@ -71,7 +71,7 @@ const ProfileChangePassword = () => {
             autoComplete="new-password"
           />
           <Input
-            label="Confirme a nova senha"
+            placeholder="Confirme a nova senha"
             id="newPasswordConfirm"
             formData={changePasswordData}
             saveFormData={setChangePasswordData}

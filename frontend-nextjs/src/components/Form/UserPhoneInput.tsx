@@ -2,6 +2,7 @@ import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import styled from "styled-components";
+import * as Styled from "@/components/styles/Components.styled";
 
 interface IProps {
   formData: IUserUpdateFormData;
@@ -11,7 +12,7 @@ interface IProps {
 const UserPhoneInput = ({ formData, saveFormData }: IProps) => {
   return (
     <>
-      <Label htmlFor="edit-phoneNumber">Telefone celular</Label>
+      <Styled.Label htmlFor="edit-phoneNumber">Telefone celular</Styled.Label>
       <InputMaskStyled
         placeholder="+99 (99) 99999-9999"
         inputProps={{ id: "edit-phoneNumber" }}
@@ -41,7 +42,7 @@ const InputMaskStyled = styled(PhoneInput)`
     border-radius: 4px;
     border: none;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    padding: 10px 12px 10px 48px;
+    padding: 12px 16px 12px 64px;
     font-size: 1.125rem;
     transition: 0.1s;
     &:enabled:not(&:focus):hover {

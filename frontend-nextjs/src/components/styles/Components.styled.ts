@@ -19,7 +19,6 @@ export const Label = styled.label`
 `;
 
 export const InputContainer = styled.div`
-  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +35,7 @@ export const InputContainer = styled.div`
 `;
 
 export const Input = styled.input`
+  margin-bottom: 16px;
   max-width: 600px;
   width: 100%;
   padding: 12px 16px;
@@ -59,6 +59,7 @@ export const Input = styled.input`
 `;
 
 export const CurrencyInputStyled = styled(CurrencyInput)`
+  margin-bottom: 16px;
   max-width: 600px;
   width: 100%;
   padding: 12px 16px;
