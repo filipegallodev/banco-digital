@@ -20,5 +20,7 @@ export async function newLoan(
   const userId = checkAuth(authorization);
   const dbUser = await PrismaUtil.findUser("id", userId);
   if (!dbUser) return { status: "Usuário não encontrado.", success: false };
+  console.log(loan);
+  console.log(installment);
   return { status: "Tudo Ok.", success: true };
 }
