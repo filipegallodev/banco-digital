@@ -7,7 +7,7 @@ import SectionContainer from "@/components/Section/SectionContainer";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
-import { resetLoginData } from "@/store/reducers/login";
+import { clearLoginStatus } from "@/store/reducers/login";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
@@ -22,7 +22,7 @@ export default function Painel() {
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
-    if (login.data?.token) dispatch(resetLoginData());
+    if (login.data?.token) dispatch(clearLoginStatus());
   }, [dispatch, login.data?.token]);
 
   if (!user.data.user) return <AuthPage />;
