@@ -56,7 +56,10 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
       />
       <Styled.Label htmlFor="due-day">
         Melhor dia de pagamento, a partir de{" "}
-        <strong>{months[new Date().getMonth() + 2]}</strong>:
+        <strong>
+          {months[new Date().getMonth() + 1]} de {new Date().getFullYear()}
+        </strong>
+        :
       </Styled.Label>
       <Styled.CurrencyInputStyled
         id="due-day"

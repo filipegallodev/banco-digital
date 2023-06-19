@@ -43,7 +43,10 @@ const LoanInstallment = ({
       </Styled.Text>
       <Styled.Label htmlFor="due-day">
         Defina o melhor dia de pagamento das parcelas, começando a partir de{" "}
-        {months[new Date().getMonth() + 2]}:
+        <strong>
+          {months[new Date().getMonth() + 1]} de {new Date().getFullYear()}
+        </strong>
+        :
       </Styled.Label>
       <Styled.Select
         id="due-day"
