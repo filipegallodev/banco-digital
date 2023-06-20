@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# prisma migrations
+migrations
+
 # old routes file
 routes.ts
 

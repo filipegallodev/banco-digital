@@ -7,6 +7,7 @@ import {
   IPasswordUpdateFormData,
 } from "../types/user";
 import Decimal from "decimal.js";
+import { ILoan } from "../types/loan";
 
 const prisma = new PrismaClient();
 
@@ -159,8 +160,18 @@ export async function findTransactions(field: string, user: User) {
   }
 }
 
-export async function createLoan(loanValue: number, user: User) {
+export async function createLoan(loanData: ILoan, user: User) {
   try {
+    await prisma.loan.create({
+      data: {
+        value: loanData.loan.requested,
+        debt: loanData.loan.debt,
+        installmentAmount: loanData.installment.amount,
+        installmentDueDay: loanData.installment.dueDay,
+        installmentValue: loanData.installment.value,
+        requesterId: user.accountId,
+      },
+    });
     const account = await prisma.account.findUnique({
       where: {
         id: user.accountId,
@@ -172,7 +183,7 @@ export async function createLoan(loanValue: number, user: User) {
       },
       data: {
         balance: new Decimal(account?.balance ? account?.balance : 0).plus(
-          new Decimal(loanValue)
+          new Decimal(loanData.loan.requested)
         ),
       },
     });

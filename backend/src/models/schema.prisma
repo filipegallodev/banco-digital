@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:MgK9Uky1bi7AVkzqMQa6@containers-us-west-115.railway.app:6238/railway"
 }
 
 model User {
@@ -32,6 +32,7 @@ model Account {
   users                User?
   receivedTransactions Transaction[] @relation("destinationAccount")
   sentTransactions     Transaction[] @relation("originAccount")
+  loans                Loan[]        @relation("requester")
 }
 
 model Transaction {
@@ -42,4 +43,16 @@ model Transaction {
   destinationAccountId String
   originAccount        Account  @relation("originAccount", fields: [originAccountId], references: [id])
   originAccountId      String
+}
+
+model Loan {
+  id                String   @id @unique @default(uuid())
+  value             Decimal
+  debt              Decimal
+  requestedAt       DateTime @default(now())
+  installmentAmount Int
+  installmentDueDay Int
+  installmentValue  Decimal
+  requester         Account  @relation("requester", fields: [requesterId], references: [id])
+  requesterId       String
 }
