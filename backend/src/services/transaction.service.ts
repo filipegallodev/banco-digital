@@ -85,6 +85,12 @@ export async function list(authorization: string | undefined) {
     dbUserAccount,
     allTransactions
   );
+  allTransactions = allTransactions.map((transaction) => {
+    transaction.createdAt = new Date(
+      transaction.createdAt.getTime() - 10800000
+    );
+    return transaction;
+  });
   return {
     status: "Busca concluída com sucesso.",
     userAccountId: dbUserAccount.id,
