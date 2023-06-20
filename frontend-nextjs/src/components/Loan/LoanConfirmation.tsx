@@ -16,13 +16,13 @@ interface IProps {
 
 const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
   const [confirmation, setConfirmation] = useState<boolean>(false);
-  const { loading, data } = useAppSelector((state) => state.loan);
+  const { loading, data, error } = useAppSelector((state) => state.loan);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    if (data.status) router.push("/emprestimos");
-  }, [data.status]);
+    if (data.status || error) router.push("/emprestimos");
+  }, [router, data.status, error]);
 
   function handleLoanRequest() {
     const loan = {

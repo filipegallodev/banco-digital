@@ -22,7 +22,7 @@ export default function Emprestimos() {
 
   useEffect(() => {
     dispatch(clearLoanStatus());
-  }, []);
+  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (

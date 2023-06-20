@@ -13,17 +13,20 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "@/components/Footer";
+import { clearLoanStatus } from "@/store/reducers/loan";
 
 export default function Painel() {
   const user = useTokenAuthentication();
   const dispatch = useAppDispatch();
   const transactions = useAppSelector((state) => state.transactions);
+  const loan = useAppSelector((state) => state.loan);
   const login = useAppSelector((state) => state.login);
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
     if (login.data?.token) dispatch(clearLoginStatus());
-  }, [dispatch, login.data?.token]);
+    if (loan.data.status || loan.error) dispatch(clearLoanStatus());
+  }, [dispatch, loan.data.status, loan.error, login.data?.token]);
 
   if (!user.data.user) return <AuthPage />;
   return (

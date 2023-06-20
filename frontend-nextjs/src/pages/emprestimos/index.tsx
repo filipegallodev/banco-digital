@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useRouter } from "next/router";
 import * as Styled from "@/components/styles/Components.styled";
+import Success from "@/components/Status/Success";
+import Error from "@/components/Status/Error";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
@@ -36,6 +38,8 @@ export default function Emprestimos() {
         </SectionContainer>
       </main>
       <Footer />
+      <Success message={loan.data.status} />
+      <Error message={loan.error} />
     </>
   );
 }
