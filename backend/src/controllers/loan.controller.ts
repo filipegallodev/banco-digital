@@ -22,7 +22,7 @@ export async function getLoans(
   try {
     const data = await LoanService.getLoans(req.headers.authorization);
     if (!data?.success) throw new Error(data?.status);
-    res.status(200).json({ status: data.status, loans: data.loans });
+    res.status(200).json({ loans: data.loans, nextLoan: data.nextLoan });
   } catch (err) {
     if (err instanceof Error) {
       res.status(401).json({ error: err.message });

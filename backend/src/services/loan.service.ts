@@ -30,5 +30,9 @@ export async function getLoans(authorization: string | undefined) {
   const loans = await PrismaUtil.getLoans(dbUser);
   if (!loans)
     return { status: "Nenhum empréstimo encontrado.", success: false };
-  return { status: "Sucesso na busca dos empréstimos.", loans, success: true };
+  return {
+    loans,
+    nextLoan: loans[loans.length - 1].requestedAt.getTime() + 86400000,
+    success: true,
+  };
 }
