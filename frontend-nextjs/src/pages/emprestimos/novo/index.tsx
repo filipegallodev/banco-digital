@@ -12,17 +12,10 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { Backdrop, CircularProgress } from "@mui/material";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { clearLoanStatus } from "@/store/reducers/loan";
 
 export default function Emprestimos() {
   const user = useTokenAuthentication();
   const loan = useAppSelector((state) => state.loan);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(clearLoanStatus());
-  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (

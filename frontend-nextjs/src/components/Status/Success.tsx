@@ -4,8 +4,15 @@ import styled, { keyframes } from "styled-components";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { clearUserStatus } from "@/store/reducers/user";
 import { clearRegisterStatus } from "@/store/reducers/register";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { clearLoanStatus } from "@/store/reducers/loan";
 
 const Success = ({ message }: { message: string | undefined | null }) => {
+  const userStatus = useAppSelector((state) => state.user.data.status);
+  const transactionStatus = useAppSelector(
+    (state) => state.transactions.data?.status
+  );
+  const loanStatus = useAppSelector((state) => state.loan.data.status);
   const dispatch = useAppDispatch();
   const [showAlert, setShowAlert] = useState(true);
 
@@ -14,8 +21,9 @@ const Success = ({ message }: { message: string | undefined | null }) => {
   }, [message]);
 
   const handleClose = useCallback(() => {
-    dispatch(clearUserStatus());
-    dispatch(clearRegisterStatus());
+    if (userStatus) dispatch(clearUserStatus());
+    if (transactionStatus) dispatch(clearRegisterStatus());
+    if (loanStatus) dispatch(clearLoanStatus());
   }, [dispatch]);
 
   useEffect(() => {
