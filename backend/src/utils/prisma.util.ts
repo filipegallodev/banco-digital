@@ -192,3 +192,16 @@ export async function createLoan(loanData: ILoan, user: User) {
     return;
   }
 }
+
+export async function getLoans(user: User) {
+  try {
+    const loans = await prisma.loan.findMany({
+      where: {
+        requesterId: user.accountId,
+      },
+    });
+    return loans;
+  } catch (error) {
+    return;
+  }
+}

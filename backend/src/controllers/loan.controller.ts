@@ -13,3 +13,20 @@ export async function newLoan(req: Request, res: Response, next: NextFunction) {
     next(err);
   }
 }
+
+export async function getLoans(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const data = await LoanService.getLoans(req.headers.authorization);
+    if (!data?.success) throw new Error(data?.status);
+    res.status(200).json({ status: data.status, loans: data.loans });
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(401).json({ error: err.message });
+    }
+    next(err);
+  }
+}
