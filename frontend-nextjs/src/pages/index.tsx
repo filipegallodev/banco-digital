@@ -67,14 +67,18 @@ export default function Home() {
 const Container = styled.div`
   max-width: 1200px;
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  @media (max-height: 800px) {
+    min-height: 100vh;
+  }
   @media (max-width: 1150px) {
     gap: 32px;
     margin-top: 32px;
+    justify-content: center;
   }
 `;
 
