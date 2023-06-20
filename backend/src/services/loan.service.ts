@@ -13,7 +13,9 @@ export async function newLoan(
   if (
     loans &&
     new Date().getTime() <
-      loans[loans.length - 1].requestedAt.getTime() + 86400000
+      (loans.length >= 1
+        ? loans[loans.length - 1].requestedAt.getTime() + 86400000
+        : 0)
   )
     return {
       status: "Você só pode solicitar 1 empréstimo a cada 24 horas.",
@@ -30,9 +32,13 @@ export async function getLoans(authorization: string | undefined) {
   const loans = await PrismaUtil.getLoans(dbUser);
   if (!loans)
     return { status: "Nenhum empréstimo encontrado.", success: false };
+  const nextLoan =
+    loans.length >= 1
+      ? loans[loans.length - 1].requestedAt.getTime() + 86400000
+      : 0;
   return {
     loans,
-    nextLoan: loans[loans.length - 1].requestedAt.getTime() + 86400000,
+    nextLoan,
     success: true,
   };
 }

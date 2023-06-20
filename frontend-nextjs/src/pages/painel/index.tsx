@@ -13,7 +13,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "@/components/Footer";
-import { clearLoanStatus } from "@/store/reducers/loan";
+import { clearLoanStatus, getLoans } from "@/store/reducers/loan";
 
 export default function Painel() {
   const user = useTokenAuthentication();
