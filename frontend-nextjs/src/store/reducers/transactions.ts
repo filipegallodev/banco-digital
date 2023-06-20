@@ -2,11 +2,12 @@ import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 import { AppThunk } from "../configureStore";
 import { IFilter } from "@/components/Transaction/TransactionFilter";
 
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+const SERVER_URL = "http://localhost:3333/";
 const initialState: ITransactionReducerState = {
   loading: false,
   data: {
     status: null,
+    attention: null,
     userAccountId: undefined,
     allTransactions: undefined,
     totalTransferValue: undefined,

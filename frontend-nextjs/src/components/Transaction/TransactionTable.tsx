@@ -11,12 +11,12 @@ interface IProps {
 
 const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
   const user = useAppSelector((state) => state.user.data.user);
-  const { error } = useAppSelector((state) => state.transactions);
+  const { data } = useAppSelector((state) => state.transactions);
 
   if (!transactions?.length)
     return (
       <Error>
-        <p>{error}</p>
+        <p>{data?.attention}</p>
       </Error>
     );
   return (
@@ -77,9 +77,11 @@ const TransactionTable = ({ transactions, maxItems, setMaxItems }: IProps) => {
 const Error = styled.div`
   width: 1200px;
   height: 344px;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Container = styled.div`

@@ -23,6 +23,7 @@ export async function list(req: Request, res: Response, next: NextFunction) {
     if (!data?.success) throw new Error(data?.status);
     res.status(200).json({
       status: data.status,
+      attention: data.attention,
       userAccountId: data.userAccountId,
       allTransactions: data.allTransactions,
       totalTransferValue: data.totalTransferValue,

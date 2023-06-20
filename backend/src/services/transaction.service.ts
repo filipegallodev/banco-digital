@@ -79,20 +79,23 @@ export async function list(authorization: string | undefined) {
   if (receivedTransactions) allTransactions = [...receivedTransactions];
   if (sentTransactions)
     allTransactions = [...allTransactions, ...sentTransactions];
-  if (!allTransactions.length)
-    return { status: "Nenhuma transferência encontrada.", success: false };
   const totalTransferValue = getTotalTransferValue(
     dbUserAccount,
     allTransactions
   );
-  allTransactions = allTransactions.map((transaction) => {
-    transaction.createdAt = new Date(
-      transaction.createdAt.getTime() - 10800000
-    );
-    return transaction;
-  });
+  if (allTransactions.length) {
+    allTransactions = allTransactions.map((transaction) => {
+      transaction.createdAt = new Date(
+        transaction.createdAt.getTime() - 10800000
+      );
+      return transaction;
+    });
+  }
+  let attention = null;
+  if (!allTransactions.length) attention = "Nenhuma transferência encontrada.";
   return {
     status: "Busca concluída com sucesso.",
+    attention,
     userAccountId: dbUserAccount.id,
     allTransactions: transactionsFormatter(allTransactions),
     totalTransferValue,

@@ -15,6 +15,7 @@ interface ITransactionReducerState {
   loading: boolean;
   data: null | {
     status: null | string;
+    attention: null | string;
     userAccountId: undefined | string;
     allTransactions?: undefined | ITransaction[];
     totalTransferValue: undefined | string;
