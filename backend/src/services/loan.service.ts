@@ -37,7 +37,9 @@ export async function getLoans(authorization: string | undefined) {
       ? loans[loans.length - 1].requestedAt.getTime() + 86400000
       : 0;
   return {
-    loans,
+    loans: loans.sort((a, b) =>
+      new Date(a.requestedAt) < new Date(b.requestedAt) ? 1 : -1
+    ),
     nextLoan,
     success: true,
   };
