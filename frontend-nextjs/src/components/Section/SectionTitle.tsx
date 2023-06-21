@@ -14,7 +14,7 @@ const Title = styled.h1`
     content: "";
     width: 32px;
     height: 4px;
-    background-color: ${(props) => props.theme.button};
+    background-color: ${(props) => props.theme.button.color};
     position: absolute;
   }
   @media (max-width: 400px) {

@@ -13,7 +13,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "@/components/Footer";
-import { clearLoanStatus, getLoans } from "@/store/reducers/loan";
+import { clearLoanStatus } from "@/store/reducers/loan";
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -42,8 +42,13 @@ export default function Painel() {
         <SectionContainer>
           <SectionTitle>Visão geral</SectionTitle>
           <WelcomeMessage>
-            Olá<strong>{user.data && ", " + user.data.user?.firstName}</strong>!
-            Aqui está o resumo de sua conta:
+            Olá,{" "}
+            {user.data ? (
+              <strong>{user.data.user?.firstName}</strong>
+            ) : (
+              "Cliente"
+            )}
+            ! Aqui está o resumo de sua conta:
           </WelcomeMessage>
           <DashboardContainer>
             <DashboardItem
@@ -65,6 +70,7 @@ export default function Painel() {
             <DashboardItem
               name="Cartões"
               data={"0"}
+              page="cartoes"
               loading={transactions.loading}
             />
             <DashboardItem
