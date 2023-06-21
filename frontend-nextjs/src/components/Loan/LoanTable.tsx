@@ -24,9 +24,9 @@ const LoanTable = ({ loans, maxItems, setMaxItems }: IProps) => {
           <thead>
             <tr>
               <ColumnName>Valor</ColumnName>
-              <ColumnName className="show500">À Pagar</ColumnName>
-              <ColumnName className="show500">Parcelamento</ColumnName>
-              <ColumnName>Data</ColumnName>
+              <ColumnName className="show850">Parcelamento</ColumnName>
+              <ColumnName className="show1000">Total</ColumnName>
+              <ColumnName>Solicitado</ColumnName>
               <ColumnName className="show650">ID</ColumnName>
             </tr>
           </thead>
@@ -34,12 +34,12 @@ const LoanTable = ({ loans, maxItems, setMaxItems }: IProps) => {
             {loans.map((loan) => (
               <BodyLine key={loan.id}>
                 <Value>{currencyFormatter(Number(loan.value))}</Value>
-                <td className="show500">
-                  {currencyFormatter(Number(loan.debt))}
-                </td>
-                <td className="show500">
+                <td className="show850">
                   {loan.installmentAmount}x de{" "}
                   {currencyFormatter(Number(loan.installmentValue))}
+                </td>
+                <td className="show1000">
+                  {currencyFormatter(Number(loan.debt))}
                 </td>
                 <td>
                   {loan.requestedAt.replace(
@@ -94,6 +94,16 @@ const Table = styled.table`
   border-radius: 6px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  @media (max-width: 1000px) {
+    & .show1000 {
+      display: none;
+    }
+  }
+  @media (max-width: 850px) {
+    & .show850 {
+      display: none;
+    }
+  }
   @media (max-width: 650px) {
     & .show650 {
       display: none;
