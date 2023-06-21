@@ -56,7 +56,7 @@ const fetchData = async (
 };
 
 export const fetchLoan =
-  (loanData: ILoan): AppThunk =>
+  (loanData: ILoanForm): AppThunk =>
   async (dispatch) => {
     const token = localStorage.getItem("jwt-token");
     await fetchData(dispatch, "loan/new", {

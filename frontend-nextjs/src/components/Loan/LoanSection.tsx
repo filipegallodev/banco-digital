@@ -1,107 +1,114 @@
-import React, { useState, useEffect } from "react";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import * as Styled from "@/components/styles/Components.styled";
-import LoanStepper from "./LoanStepper";
-import LoanConfirmation from "./LoanConfirmation";
-import LoanInstallment from "./LoanInstallment";
-import LoanValue from "./LoanValue";
-
-const steps = ["Defina o valor", "Quantidade de parcelas", "Confirmação"];
-
-export interface IInstallment {
-  amount: number;
-  dueDay: number;
-}
+import { getLoans } from "@/store/reducers/loan";
+import { CircularProgress, Skeleton } from "@mui/material";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
+import * as Styled from "../styles/Components.styled";
+import LoanTable from "./LoanTable";
 
 const LoanSection = () => {
-  const user = useAppSelector((state) => state.user);
-  const [loan, setLoan] = useState<number>();
-  const [customLoan, setCustomLoan] = useState<number>(50);
-  const [installment, setInstallment] = useState<IInstallment>({
-    amount: 1,
-    dueDay: 1,
+  const { data, loading } = useAppSelector((state) => state.loan);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const [loanList, setLoanList] = useState<ILoan[]>();
+  const [maxItems, setMaxItems] = useState<number>(5);
+  const [nextLoan, setNextLoan] = useState({
+    date: "",
+    time: "",
+    milliseconds: 0,
   });
-  const [finalLoan, setFinalLoan] = useState<number>(0);
-  const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
-    if (user.data.user?.loan) {
-      const loanNumber = Number(
-        user.data.user.loan
-          .replace(/\D{2}\s/g, "")
-          .replaceAll(".", "")
-          .replace(",", ".")
-      );
-      setLoan(loanNumber);
-      if (loan === 0 || loan === undefined) setCustomLoan(loanNumber);
+    if (data.loans && data.loans.length && data.nextLoan) {
+      return setNextLoan({
+        date: new Date(data.nextLoan).toLocaleDateString(),
+        time: new Date(data.nextLoan).toLocaleTimeString(),
+        milliseconds: data.nextLoan,
+      });
     }
-  }, [user.data.user?.loan, loan]);
+  }, [data.loans, data.nextLoan]);
 
   useEffect(() => {
-    setFinalLoan(
-      Number(
-        (
-          Number(
-            (
-              (customLoan * 0.0483 * installment.amount + customLoan) /
-              installment.amount
-            ).toFixed(2)
-          ) * installment.amount
-        ).toFixed(2)
-      )
-    );
-  }, [customLoan, installment.amount]);
+    if (data.loans) {
+      let i = 0;
+      return setLoanList(
+        data?.loans.filter((loan) => {
+          if (i < maxItems) {
+            i++;
+            return loan;
+          }
+        })
+      );
+    }
+    dispatch(getLoans());
+  }, [dispatch, data, maxItems]);
 
-  if (user.loading) return <Styled.Text>Carregando...</Styled.Text>;
-  if (!loan)
-    return (
-      <Styled.Text>
-        Empréstimo indisponível para sua conta. Atualize seu salário em seu
-        perfil para obter novas opções de empréstimo.
-      </Styled.Text>
-    );
+  useEffect(() => {
+    if (maxItems === 5) return;
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [loanList, maxItems]);
+
+  function handleLoanListRefresh() {
+    dispatch(getLoans());
+    setMaxItems(5);
+  }
+
   return (
-    <>
-      <LoanStepper
-        steps={steps}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-      />
-      {activeStep === 0 ? (
-        <LoanValue
-          customLoan={customLoan}
-          setCustomLoan={setCustomLoan}
-          loan={loan}
-        />
-      ) : activeStep === 1 ? (
-        <LoanInstallment
-          installment={installment}
-          setInstallment={setInstallment}
-          finalLoan={finalLoan}
-        />
-      ) : (
-        <LoanConfirmation
-          customLoan={customLoan}
-          installment={installment}
-          finalLoan={finalLoan}
-        />
-      )}
-      <Styled.ButtonContainer>
-        <Styled.Button
-          onClick={() => setActiveStep(activeStep - 1)}
-          disabled={activeStep === 0}
-        >
-          Voltar
-        </Styled.Button>
-        <Styled.Button
-          onClick={() => setActiveStep(activeStep + 1)}
-          disabled={activeStep >= steps.length - 1}
-        >
-          Próximo
-        </Styled.Button>
-      </Styled.ButtonContainer>
-    </>
+    <Container>
+      <Styled.Button onClick={() => router.push("/emprestimos/novo")}>
+        {nextLoan.milliseconds && new Date().getTime() < nextLoan.milliseconds
+          ? "Simular empréstimo"
+          : "Solicitar empréstimo"}
+      </Styled.Button>
+      {nextLoan.milliseconds && new Date().getTime() < nextLoan.milliseconds ? (
+        <Styled.Text style={{ marginTop: "24px" }}>
+          Próximo empréstimo disponível em <strong>{nextLoan.date}</strong> às{" "}
+          <strong>{nextLoan.time}</strong>.
+        </Styled.Text>
+      ) : null}
+      <div>
+        <HistoryContainer>
+          <Styled.SubTitle>Histórico</Styled.SubTitle>
+          <Styled.Button disabled={loading} onClick={handleLoanListRefresh}>
+            <RefreshRoundedIcon />
+          </Styled.Button>
+          {loading && <CircularProgress />}
+        </HistoryContainer>
+        {loading ? (
+          <Skeleton
+            animation={"wave"}
+            variant="rectangular"
+            width="100%"
+            height={344}
+            sx={{ borderRadius: "6px", marginBottom: "24px" }}
+          />
+        ) : (
+          <LoanTable
+            loans={loanList}
+            maxItems={maxItems}
+            setMaxItems={setMaxItems}
+          />
+        )}
+      </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+`;
+
+const HistoryContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
 
 export default LoanSection;

@@ -1,7 +1,6 @@
 import React from "react";
 import * as Styled from "@/components/styles/Components.styled";
 import { currencyFormatter } from "@/helper/currencyFormatter";
-import { IInstallment } from "./LoanSection";
 
 interface IProps {
   installment: IInstallment;

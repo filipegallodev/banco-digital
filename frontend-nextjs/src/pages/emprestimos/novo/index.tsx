@@ -4,7 +4,7 @@ import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import LoanSection from "@/components/Loan/LoanSection";
+import LoanNew from "@/components/Loan/LoanNew";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
 import Footer from "@/components/Footer";
@@ -31,7 +31,7 @@ export default function Emprestimos() {
         <SectionContainer>
           <ReturnButton />
           <SectionTitle>Novo Empréstimo</SectionTitle>
-          <LoanSection />
+          <LoanNew />
         </SectionContainer>
       </main>
       <Footer />

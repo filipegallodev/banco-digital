@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
-import { IInstallment } from "./LoanSection";
 import { months } from "./LoanInstallment";
 import { fetchLoan } from "@/store/reducers/loan";
 import { useAppDispatch } from "@/hooks/useAppDispatch";

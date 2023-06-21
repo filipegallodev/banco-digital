@@ -1,4 +1,9 @@
-interface ILoan {
+interface IInstallment {
+  amount: number;
+  dueDay: number;
+}
+
+interface ILoanForm {
   loan: {
     requested: number;
     debt: number;
@@ -8,4 +13,20 @@ interface ILoan {
     dueDay: number;
     value: number;
   };
+}
+
+interface ILoan {
+  id: string;
+  value: string;
+  debt: string;
+  requestedAt: string;
+  installmentAmount: number;
+  installmentDueDay: number;
+  installmentValue: string;
+  requesterId: string;
+}
+
+interface ILoanFetch {
+  loans: ILoan[];
+  nextLoan: number;
 }
