@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import Logo from "./Logo";
 
 const Header = () => {
@@ -27,7 +26,9 @@ const Header = () => {
             <UserProfile onClick={() => router.push("/perfil")}>
               <UserIcon>{user.firstName[0]}</UserIcon>
               <UserName>
-                {user.firstName} {user.lastName}
+                {user.firstName.replace(/(\w+)\s((\w{1})\w+)(\D+)/g, "$1 $3") +
+                  " " +
+                  user.lastName}
               </UserName>
             </UserProfile>
             <LogoutButton onClick={handleUserLogout}>

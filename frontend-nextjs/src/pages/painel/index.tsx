@@ -44,7 +44,10 @@ export default function Painel() {
           <WelcomeMessage>
             Olá,{" "}
             {user.data ? (
-              <strong>{user.data.user?.firstName}</strong>
+              <strong>{user.data.user?.firstName.replace(
+                /(\w+)\s(\D+)/g,
+                "$1"
+              )}</strong>
             ) : (
               "Cliente"
             )}
