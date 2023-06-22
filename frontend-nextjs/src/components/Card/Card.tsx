@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import ChipImg from "@/../public/chip.png";
+import Image from "next/image";
 
 interface IProps {
   type: string;
@@ -14,22 +16,27 @@ const Card = ({ type, number, validity, owner }: IProps) => {
       <CardName>
         Next <span className={type}>{type}</span>
       </CardName>
-      <CardChip />
+      <Image src={ChipImg} width={72} height={72} alt="Chip do Cartão" />
       <CardNumber>{number}</CardNumber>
       <Box>
-        <CardDate>{validity}</CardDate>
         <CardOwner>{owner}</CardOwner>
+        <CardDate>{validity}</CardDate>
       </Box>
     </CardContainer>
   );
 };
 
 const CardContainer = styled.div`
-  max-width: 520px;
+  max-width: 500px;
   width: 100%;
   height: 320px;
-  background: #3c0775;
-  background: linear-gradient(157deg, #3c0775 0%, #54199c 48%, #8019cf 100%);
+  background: rgb(11, 0, 92);
+  background: linear-gradient(
+    145deg,
+    rgba(11, 0, 92, 1) 0%,
+    rgba(40, 25, 156, 1) 48%,
+    rgba(115, 40, 255, 1) 100%
+  );
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   border-radius: 16px;
   padding: 32px;
@@ -41,9 +48,9 @@ const CardContainer = styled.div`
 `;
 
 const CardName = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2.35rem;
   font-weight: 400;
-  letter-spacing: 0rem;
+  letter-spacing: 0.05rem;
   & span {
     font-weight: 500;
     text-transform: uppercase;
@@ -54,14 +61,6 @@ const CardName = styled.h2`
   & span.platinum {
     color: #34f5ff;
   }
-`;
-
-const CardChip = styled.div`
-  width: 64px;
-  height: 64px;
-  margin-left: 28px;
-  background: #ccc;
-  border-radius: 10px;
 `;
 
 const CardNumber = styled.p`
@@ -90,7 +89,7 @@ const CardDate = styled.p`
 `;
 
 const CardOwner = styled.p`
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-family: monospace;
   text-transform: uppercase;
 `;

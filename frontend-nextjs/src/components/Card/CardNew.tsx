@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import useTokenAuthentication from "@/hooks/useTokenAuthentication";
+import * as Styled from "../styles/Components.styled";
 
 interface ICardInfo {
   type: string;
-  owner: string;
 }
 
 const CardNew = () => {
+  const user = useTokenAuthentication();
   const [cardInfo, setCardInfo] = useState<ICardInfo>({
     type: "gold",
-    owner: "",
   });
 
+  if (!user.data.user) return null;
   return (
     <>
-      <select
+      <Styled.Select
+        id="card-type"
         value={cardInfo.type}
         onChange={({ target }) =>
           setCardInfo({ ...cardInfo, type: target.value })
@@ -23,15 +26,7 @@ const CardNew = () => {
       >
         <option value="gold">Gold</option>
         <option value="platinum">Platinum</option>
-      </select>
-      <input
-        type="text"
-        value={cardInfo.owner}
-        onChange={({ target }) =>
-          setCardInfo({ ...cardInfo, owner: target.value })
-        }
-        style={{ textTransform: "uppercase" }}
-      />
+      </Styled.Select>
       <Container>
         <Card
           type={cardInfo.type}
@@ -47,19 +42,14 @@ const CardNew = () => {
                   "$2"
                 )
           }
-          owner={cardInfo.owner}
-        />
-        <Card
-          type="gold"
-          number="1234 1234 1234 1234"
-          validity="03/33"
-          owner="Filipe Gallo"
-        />
-        <Card
-          type="platinum"
-          number="0000 0000 0000 0000"
-          validity="06/29"
-          owner="Filipe Gallo"
+          owner={
+            user.data.user?.firstName.replace(
+              /(\w+)\s((\w{1})\w+)(\D+)/g,
+              "$1 $3"
+            ) +
+            " " +
+            user.data.user?.lastName
+          }
         />
       </Container>
     </>
@@ -68,11 +58,9 @@ const CardNew = () => {
 
 const Container = styled.div`
   width: 100%;
+  margin: 48px 0px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 32px;
+  justify-content: center;
 `;
 
 export default CardNew;

@@ -9,7 +9,7 @@ import SectionTitle from "@/components/Section/SectionTitle";
 import Footer from "@/components/Footer";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
-import CardSection from "@/components/Card/CardSection";
+import CardNew from "@/components/Card/CardNew";
 
 export default function Cartoes() {
   const user = useTokenAuthentication();
@@ -27,9 +27,8 @@ export default function Cartoes() {
       <main className="animeRight">
         <SectionContainer>
           <ReturnButton />
-          <SectionTitle>Cartões</SectionTitle>
-          <p>Em breve.</p>
-          {/* <CardSection /> */}
+          <SectionTitle>Solicitar um novo cartão</SectionTitle>
+          <CardNew />
         </SectionContainer>
       </main>
       <Footer />
