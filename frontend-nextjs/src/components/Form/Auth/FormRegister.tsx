@@ -6,6 +6,7 @@ import Input from "../Input";
 import * as Styled from "../../styles/Components.styled";
 import PasswordRequirements from "../../PasswordRequirements";
 import styled from "styled-components";
+import { stringCapitalize } from "@/helper/stringCapitalize";
 
 const FormRegister = () => {
   const [registerData, setRegisterData] = useState<IRegisterFormData>({
@@ -33,12 +34,14 @@ const FormRegister = () => {
   function handleUserRegister(event: React.FormEvent) {
     event.preventDefault();
     if (checkRegisterFields() && !invalidPassword) {
+      let firstNameCapitalized = stringCapitalize(registerData.firstName);
+      let lastNameCapitalized = stringCapitalize(registerData.lastName);
       dispatch(
         fetchRegister({
           username: registerData.username.toLowerCase(),
           password: registerData.password,
-          firstName: registerData.firstName,
-          lastName: registerData.lastName,
+          firstName: firstNameCapitalized.join(" "),
+          lastName: lastNameCapitalized.join(" "),
         })
       );
     }
