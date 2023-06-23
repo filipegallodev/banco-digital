@@ -19,7 +19,7 @@ export default function Cartoes() {
     <>
       <Head>
         <title>Cartões | NextBank</title>
-        <meta name="description" content="Empréstimos do seu NextBank!" />
+        <meta name="description" content="Seus cartões do NextBank!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

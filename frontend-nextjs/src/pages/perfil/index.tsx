@@ -39,7 +39,7 @@ export default function Perfil() {
     <>
       <Head>
         <title>Meu perfil | NextBank</title>
-        <meta name="description" content="Meu perfil do NextBank." />
+        <meta name="description" content="Seu perfil do NextBank." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

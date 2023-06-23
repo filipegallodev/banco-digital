@@ -21,8 +21,8 @@ export default function Emprestimos() {
   return (
     <>
       <Head>
-        <title>Empréstimos | NextBank</title>
-        <meta name="description" content="Empréstimos do seu NextBank!" />
+        <title>Novo empréstimo | NextBank</title>
+        <meta name="description" content="Solicitar um novo empréstimo do NextBank!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
