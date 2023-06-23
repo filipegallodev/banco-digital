@@ -28,8 +28,7 @@ export default function Cartoes() {
         <SectionContainer>
           <ReturnButton />
           <SectionTitle>Cartões</SectionTitle>
-          <p>Em breve.</p>
-          {/* <CardSection /> */}
+          <CardSection />
         </SectionContainer>
       </main>
       <Footer />
