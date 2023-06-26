@@ -1,5 +1,5 @@
 import AuthPage from "@/components/AuthPage";
-import FormTransaction from "@/components/Form/FormTransaction/FormTransaction";
+import TransactionForm from "@/components/Transaction/TransactionForm";
 import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import SectionTitle from "@/components/Section/SectionTitle";
@@ -38,7 +38,7 @@ export default function Nova() {
         <SectionContainer>
           <ReturnButton />
           <SectionTitle>Realizar Transferência</SectionTitle>
-          <FormTransaction />
+          <TransactionForm />
         </SectionContainer>
       </main>
       <Footer />

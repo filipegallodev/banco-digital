@@ -4,9 +4,9 @@ import { clearTransactionStatus } from "@/store/reducers/transactions";
 import React, { useEffect, useState } from "react";
 import * as Styled from "@/components/styles/Components.styled";
 import TransactionStepper from "./TransactionStepper";
-import ValueInput from "./ValueInput";
-import TargetInput from "./TargetInput";
-import Confirmation from "./Confirmation";
+import TransactionValue from "./TransactionValue";
+import TransactionTarget from "./TransactionTarget";
+import TransactionConfirmation from "./TransactionConfirmation";
 import { useRouter } from "next/router";
 
 const steps = [
@@ -60,7 +60,7 @@ const TransactionForm = () => {
         {activeStep === 0 ? (
           <>
             <Styled.SubTitle>Valor</Styled.SubTitle>
-            <ValueInput
+            <TransactionValue
               label="Quanto deseja transferir?"
               id="transaction-value"
               value={transactionValue}
@@ -70,7 +70,7 @@ const TransactionForm = () => {
         ) : activeStep === 1 ? (
           <>
             <Styled.SubTitle>Destino</Styled.SubTitle>
-            <TargetInput
+            <TransactionTarget
               label="Para quem você deseja transferir essa quantia?"
               id="transaction-target"
               formData={transactionData}
@@ -79,7 +79,7 @@ const TransactionForm = () => {
             />
           </>
         ) : (
-          <Confirmation
+          <TransactionConfirmation
             formData={transactionData}
             setFormData={setTransactionData}
             transactionValue={transactionValue}

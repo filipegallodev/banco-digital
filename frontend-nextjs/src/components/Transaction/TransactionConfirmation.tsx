@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ValueInput from "./ValueInput";
-import TargetInput from "./TargetInput";
+import ValueInput from "./TransactionValue";
+import TargetInput from "./TransactionTarget";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -14,7 +14,7 @@ interface IProps {
   setTransactionValue: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const Confirmation = ({
+const TransactionConfirmation = ({
   formData,
   setFormData,
   transactionValue,
@@ -73,4 +73,4 @@ const Confirmation = ({
   );
 };
 
-export default Confirmation;
+export default TransactionConfirmation;

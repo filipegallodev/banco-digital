@@ -9,7 +9,7 @@ interface IProps {
   [key: string]: any;
 }
 
-const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
+const TransactionValue = ({ label, id, value, setValue, ...args }: IProps) => {
   return (
     <>
       <Styled.Label htmlFor={id}>{label}</Styled.Label>
@@ -28,4 +28,4 @@ const ValueInput = ({ label, id, value, setValue, ...args }: IProps) => {
   );
 };
 
-export default ValueInput;
+export default TransactionValue;
