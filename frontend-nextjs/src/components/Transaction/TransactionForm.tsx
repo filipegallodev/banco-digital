@@ -72,7 +72,7 @@ const TransactionForm = () => {
           <>
             <Styled.SubTitle>Destino</Styled.SubTitle>
             <TransactionTarget
-              label="Para quem você deseja transferir essa quantia?2"
+              label="Para quem você deseja transferir essa quantia?"
               id="transaction-target"
               formData={transactionData}
               setFormData={setTransactionData}
