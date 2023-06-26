@@ -19,6 +19,7 @@ const TransactionValue = ({ label, id, value, setValue, ...args }: IProps) => {
         placeholder="R$ 0,00"
         prefix="R$ "
         decimalsLimit={2}
+        decimalScale={2}
         value={value}
         onValueChange={(newValue) => setValue(newValue)}
         {...args}

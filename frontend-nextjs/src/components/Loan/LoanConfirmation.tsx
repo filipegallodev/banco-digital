@@ -49,6 +49,7 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
         placeholder="R$ 0,00"
         prefix="R$ "
         decimalsLimit={2}
+        decimalScale={2}
         value={customLoan}
         disabled
       />
@@ -62,6 +63,7 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
         placeholder="R$ 0,00"
         prefix="R$ "
         decimalsLimit={2}
+        decimalScale={2}
         value={(finalLoan / installment.amount).toFixed(2)}
         disabled
       />
@@ -84,6 +86,7 @@ const LoanConfirmation = ({ customLoan, installment, finalLoan }: IProps) => {
         placeholder="R$ 0,00"
         prefix="R$ "
         decimalsLimit={2}
+        decimalScale={2}
         value={finalLoan}
         disabled
       />

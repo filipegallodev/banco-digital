@@ -3,6 +3,7 @@ import React from "react";
 import * as Styled from "../../styles/Components.styled";
 import styled from "styled-components";
 import UserInfo from "./UserInfo";
+import { currencyFormatter } from "@/helper/currencyFormatter";
 
 const ProfileOverview = () => {
   const user = useAppSelector((state) => state.user.data.user);
@@ -35,10 +36,7 @@ const ProfileOverview = () => {
         <Styled.ThirdTitle>Financeiro</Styled.ThirdTitle>
         <UserInfo
           field="Renda"
-          data={Number(user?.income).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          })}
+          data={currencyFormatter(Number(user?.income))}
         />
         <UserInfo field="Profissão" data={user?.job} />
       </div>

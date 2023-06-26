@@ -9,6 +9,7 @@ import TransactionTarget from "./TransactionTarget";
 import TransactionConfirmation from "./TransactionConfirmation";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { currencyFormatter } from "@/helper/currencyFormatter";
 
 const steps = [
   "Valor da transferência",
@@ -72,7 +73,9 @@ const TransactionForm = () => {
           <>
             <Styled.SubTitle>Destino</Styled.SubTitle>
             <TransactionTarget
-              label="Para quem você deseja transferir essa quantia?"
+              label={`Para quem você deseja transferir ${currencyFormatter(
+                Number(transactionData.value)
+              )}?`}
               id="transaction-target"
               formData={transactionData}
               setFormData={setTransactionData}

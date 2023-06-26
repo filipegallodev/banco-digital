@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ValueInput from "./TransactionValue";
+import TransactionValue from "./TransactionValue";
 import TransactionTarget from "./TransactionTarget";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
@@ -32,7 +32,7 @@ const TransactionConfirmation = ({
   return (
     <>
       <Styled.SubTitle>Confirmação</Styled.SubTitle>
-      <ValueInput
+      <TransactionValue
         label="Valor"
         id="transaction-value-confirm"
         value={transactionValue}

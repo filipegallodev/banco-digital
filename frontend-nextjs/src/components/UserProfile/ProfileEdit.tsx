@@ -30,9 +30,7 @@ const ProfileEdit = () => {
 
   function handleUserUpdate(event: React.FormEvent) {
     event.preventDefault();
-    if (formData) {
-      dispatch(fetchUserUpdate(formData));
-    }
+    dispatch(fetchUserUpdate(formData));
   }
 
   return (
