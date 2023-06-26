@@ -12,7 +12,7 @@ interface IProps {
   [key: string]: any;
 }
 
-const TargetInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
+const TransactionTarget = ({ label, id, formData, setFormData, ...args }: IProps) => {
   return (
     <>
       <Styled.Label htmlFor={id}>{label}</Styled.Label>
@@ -34,4 +34,4 @@ const TargetInput = ({ label, id, formData, setFormData, ...args }: IProps) => {
   );
 };
 
-export default TargetInput;
+export default TransactionTarget;

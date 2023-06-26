@@ -8,6 +8,7 @@ import TransactionValue from "./TransactionValue";
 import TransactionTarget from "./TransactionTarget";
 import TransactionConfirmation from "./TransactionConfirmation";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 const steps = [
   "Valor da transferência",
@@ -71,12 +72,16 @@ const TransactionForm = () => {
           <>
             <Styled.SubTitle>Destino</Styled.SubTitle>
             <TransactionTarget
-              label="Para quem você deseja transferir essa quantia?"
+              label="Para quem você deseja transferir essa quantia?2"
               id="transaction-target"
               formData={transactionData}
               setFormData={setTransactionData}
               placeholder="email@exemplo.com"
             />
+            <EmailTest>
+              Utilize <span>teste@exemplo.com</span> para testar a
+              funcionalidade de transferência.
+            </EmailTest>
           </>
         ) : (
           <TransactionConfirmation
@@ -104,5 +109,12 @@ const TransactionForm = () => {
     </>
   );
 };
+
+const EmailTest = styled.p`
+  & span {
+    font-style: italic;
+    font-weight: 500;
+  }
+`;
 
 export default TransactionForm;

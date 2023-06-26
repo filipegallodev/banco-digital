@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ValueInput from "./TransactionValue";
-import TargetInput from "./TransactionTarget";
+import TransactionTarget from "./TransactionTarget";
 import * as Styled from "@/components/styles/Components.styled";
 import { Checkbox } from "@mui/material";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -39,7 +39,7 @@ const TransactionConfirmation = ({
         setValue={setTransactionValue}
         disabled
       />
-      <TargetInput
+      <TransactionTarget
         label="Destino"
         id="transaction-target-confirm"
         placeholder="Nenhuma conta preenchida"
