@@ -30,3 +30,8 @@ interface ILoanFetch {
   loans: ILoan[];
   nextLoan: number;
 }
+
+interface ILoanFilter {
+  start: string;
+  end: string;
+}

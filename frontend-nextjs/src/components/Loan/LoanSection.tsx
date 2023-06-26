@@ -8,6 +8,7 @@ import styled from "styled-components";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import * as Styled from "../styles/Components.styled";
 import LoanTable from "./LoanTable";
+import LoanFilter from "./LoanFilter";
 
 const LoanSection = () => {
   const { data, loading } = useAppSelector((state) => state.loan);
@@ -32,10 +33,10 @@ const LoanSection = () => {
   }, [data.loans, data.nextLoan]);
 
   useEffect(() => {
-    if (data.loans) {
+    if (data.filteredLoans) {
       let i = 0;
       return setLoanList(
-        data?.loans.filter((loan) => {
+        data?.filteredLoans.filter((loan) => {
           if (i < maxItems) {
             i++;
             return loan;
@@ -73,6 +74,7 @@ const LoanSection = () => {
           <strong>{nextLoan.time}</strong>.
         </Styled.Text>
       ) : null}
+      <LoanFilter setMaxItems={setMaxItems} />
       <div>
         <HistoryContainer>
           <Styled.SubTitle>Histórico</Styled.SubTitle>

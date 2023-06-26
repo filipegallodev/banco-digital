@@ -6,8 +6,9 @@ const initialState = {
   loading: false,
   data: {
     status: null,
-    loans: [],
+    loans: <ILoan[]>[],
     nextLoan: null,
+    filteredLoans: <ILoan[]>[],
   },
   error: null,
 };
@@ -23,11 +24,34 @@ const slice = createSlice({
     fetchSuccess: (state, action) => {
       state.loading = false;
       state.data = action.payload;
+      state.data.filteredLoans = state.data.loans;
     },
     fetchError: (state, action) => {
       state.loading = false;
       state.data = initialState.data;
       state.error = action.payload;
+    },
+    filterLoans: (state, { payload }: { payload: ILoanFilter }) => {
+      if (!state.data) return;
+      clearLoanFilters();
+      if (state.data.loans) {
+        const startDate = payload.start
+          ? new Date(payload.start + "T00:00:00")
+          : new Date("1900-01-01T00:00:00");
+        const endDate = payload.end
+          ? new Date(payload.end + "T24:00:00")
+          : new Date();
+        const newList = state.data.loans.filter((loan) => {
+          const loanDate = new Date(
+            loan.requestedAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/g, "$3/$2/$1")
+          );
+          if (loanDate >= startDate && loanDate <= endDate) return loan;
+        });
+        state.data.filteredLoans = newList;
+      }
+    },
+    clearLoanFilters: (state) => {
+      if (state.data) state.data.filteredLoans = state.data.loans;
     },
     clearLoanStatus: (state) => {
       state.data.status = null;
@@ -36,8 +60,14 @@ const slice = createSlice({
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError, clearLoanStatus } =
-  slice.actions;
+export const {
+  fetchStarted,
+  fetchSuccess,
+  fetchError,
+  filterLoans,
+  clearLoanFilters,
+  clearLoanStatus,
+} = slice.actions;
 
 const fetchData = async (
   dispatch: Dispatch<Action<string>>,

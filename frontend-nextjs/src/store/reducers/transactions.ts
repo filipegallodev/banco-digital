@@ -1,6 +1,5 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 import { AppThunk } from "../configureStore";
-import { IFilter } from "@/components/Transaction/TransactionFilter";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const initialState: ITransactionReducerState = {
@@ -37,7 +36,7 @@ const slice = createSlice({
       state.data = null;
       state.error = action.payload;
     },
-    filterTransactions: (state, { payload }: { payload: IFilter }) => {
+    filterTransactions: (state, { payload }: { payload: ITransactionFilter }) => {
       if (!state.data) return;
       clearFilters();
       if (state.data.allTransactions) {

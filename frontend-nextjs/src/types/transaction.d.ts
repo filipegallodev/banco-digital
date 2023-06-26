@@ -23,3 +23,9 @@ interface ITransactionReducerState {
   };
   error: null | string;
 }
+
+interface ITransactionFilter {
+  type: string;
+  start: string;
+  end: string;
+}
