@@ -17,9 +17,12 @@ Criação de uma aplicação WEB fullstack de um banco digital fictício, o Next
     - Filtros
   - Nova transferência
 - Empréstimos
-  - Listagem (ED)
+  - Listagem
+    - Filtros
   - Solicitar empréstimo
-- Cartões (ED)
+- Cartões
+  - Listagem (ED)
+  - Solicitar cartão (ED)
 - Investimentos (ED) 
 - Perfil
   - Visão geral
@@ -42,7 +45,7 @@ pnpm dev
 
 ## 🔗 Link para o NextBank
 
-[NextBank Fictício](https://nextbank-fg.vercel.app/)
+[NextBank - Banco Digital](https://nextbank-fg.vercel.app/)
 
 ## 🛠 Tecnologias
 
