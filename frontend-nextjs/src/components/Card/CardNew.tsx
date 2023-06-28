@@ -8,6 +8,7 @@ interface ICardInfo {
   type: string;
   validity: Date;
   number: string;
+  owner: string;
   invoiceClosing: string;
 }
 
@@ -15,7 +16,7 @@ const futureDate = new Date().getTime() + 315576000000;
 const cardValidity = new Date(futureDate)
   .toLocaleDateString()
   .replace(/(\d+\/)(\d{2})\/(\d{2})(\d{2})/g, "$2/$4");
-const cardNumber = "1234 1234 1234 1234";
+const cardNumber = "9999 9999 9999 9999";
 
 const CardNew = () => {
   const user = useTokenAuthentication();
@@ -23,12 +24,20 @@ const CardNew = () => {
     type: "gold",
     validity: new Date(futureDate),
     number: cardNumber,
+    owner:
+      user.data.user?.firstName.replace(/(\w+)\s((\w{1})\w+)(\D+)/g, "$1 $3") +
+      " " +
+      user.data.user?.lastName,
     invoiceClosing: "1",
   });
 
   if (!user.data.user) return null;
   return (
     <>
+      <Styled.Text>
+        Nosso cartão tem validade de <strong>10 anos</strong> a partir da
+        contratação do mesmo.
+      </Styled.Text>
       <FormContainer>
         <div>
           <Styled.Label htmlFor="card-type">Tipo do cartão</Styled.Label>
@@ -65,14 +74,7 @@ const CardNew = () => {
           type={cardInfo.type}
           number={cardNumber}
           validity={cardValidity}
-          owner={
-            user.data.user?.firstName.replace(
-              /(\w+)\s((\w{1})\w+)(\D+)/g,
-              "$1 $3"
-            ) +
-            " " +
-            user.data.user?.lastName
-          }
+          owner={cardInfo.owner}
         />
       </Container>
     </>
