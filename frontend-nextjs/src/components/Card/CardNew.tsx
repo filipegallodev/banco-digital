@@ -103,6 +103,8 @@ const CardNew = () => {
           number={cardNumber}
           validity={cardValidity}
           owner={cardInfo.owner}
+          cvv={"XXX"}
+          hidden={false}
         />
       </Container>
       <Styled.SubTitle>Confirmação e Solicitação</Styled.SubTitle>
