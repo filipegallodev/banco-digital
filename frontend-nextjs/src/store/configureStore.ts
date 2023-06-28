@@ -10,6 +10,7 @@ import register from "./reducers/register";
 import transactions from "./reducers/transactions";
 import modal from "./reducers/modal";
 import loan from "./reducers/loan";
+import card from "./reducers/card";
 
 const reducer = combineReducers({
   user,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   transactions,
   modal,
   loan,
+  card,
 });
 const store = configureStore({ reducer });
 
