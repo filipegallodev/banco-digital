@@ -89,12 +89,14 @@ const Container = styled.div`
 `;
 
 const AccordionStyled = styled(Accordion)`
-  max-width: 600px;
-  width: 100%;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  transition: 0.1s;
-  &:hover {
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  &.MuiPaper-root {
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    transition: 0.1s;
+    &:hover {
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 
