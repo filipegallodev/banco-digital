@@ -30,6 +30,7 @@ model Account {
   receivedTransactions Transaction[] @relation("destinationAccount")
   sentTransactions     Transaction[] @relation("originAccount")
   loans                Loan[]        @relation("requester")
+  cards                Card[]        @relation("account")
 }
 
 model Transaction {
@@ -52,4 +53,15 @@ model Loan {
   installmentValue  Decimal
   requester         Account  @relation("requester", fields: [requesterId], references: [id])
   requesterId       String
+}
+
+model Card {
+  id             String   @id @unique @default(uuid())
+  type           String
+  number         String
+  validity       DateTime
+  invoiceClosing String
+  requestedAt    DateTime @default(now())
+  account        Account  @relation("account", fields: [accountId], references: [id])
+  accountId      String
 }
