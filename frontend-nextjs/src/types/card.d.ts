@@ -8,6 +8,7 @@ interface ICard {
   invoiceClosing: string;
   requestedAt: Date;
   accountId: string;
+  hidden: boolean;
 }
 
 interface ICardForm {

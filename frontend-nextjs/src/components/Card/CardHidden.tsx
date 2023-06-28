@@ -2,20 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import ChipImg from "@/../public/chip.png";
 import Image from "next/image";
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { toggleCardHidden } from "@/store/reducers/card";
 
 interface IProps {
   type: string;
   number: string;
-  cvv: string;
-  validity: Date | string;
   owner: string;
   hidden: boolean;
 }
 
-const Card = ({ type, number, cvv, validity, owner, hidden }: IProps) => {
+const CardHidden = ({ type, number, owner, hidden }: IProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -24,23 +22,18 @@ const Card = ({ type, number, cvv, validity, owner, hidden }: IProps) => {
         <CardName>
           Next <span className={type}>{type}</span>
         </CardName>
-        <VisibilityRoundedIcon
+        <VisibilityOffRoundedIcon
           onClick={() => dispatch(toggleCardHidden({ type, hidden: !hidden }))}
         />
       </NameBox>
       <ImageAndCvvBox>
         <Image src={ChipImg} width={72} height={72} alt="Chip do Cartão" />
-        <CardCvv>Cvv {cvv}</CardCvv>
+        <CardCvv>Cvv ***</CardCvv>
       </ImageAndCvvBox>
-      <CardNumber>{number}</CardNumber>
+      <CardNumber>{"**** **** **** " + number.slice(-4)}</CardNumber>
       <Box>
         <CardOwner>{owner}</CardOwner>
-        <CardDate>
-          {String(validity).replace(
-            /(\d{2})(\d{2})\-(\d{2})\-(\w+)\:(\w+)\:(\w+)\.(\w+)/g,
-            "$3/$2"
-          )}
-        </CardDate>
+        <CardDate>**/**</CardDate>
       </Box>
     </CardContainer>
   );
@@ -134,4 +127,4 @@ const CardOwner = styled.span`
   text-transform: uppercase;
 `;
 
-export default Card;
+export default CardHidden;

@@ -30,7 +30,10 @@ export async function findCards(user: User) {
         accountId: user.accountId,
       },
     });
-    return cards;
+    const newCards = cards.map((card) => {
+      return { ...card, hidden: true };
+    });
+    return newCards;
   } catch (error) {
     return;
   }

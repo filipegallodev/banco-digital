@@ -2,6 +2,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import CardHidden from "./CardHidden";
 
 const CardList = () => {
   const { data } = useAppSelector((state) => state.card);
@@ -14,15 +15,27 @@ const CardList = () => {
     );
   return (
     <CardContainer>
-      {data.cards.map(({ id, type, number, validity, owner }) => (
-        <Card
-          key={id}
-          type={type}
-          number={number}
-          validity={validity}
-          owner={owner}
-        />
-      ))}
+      {data.cards.map(({ id, type, number, cvv, validity, owner, hidden }) =>
+        hidden ? (
+          <CardHidden
+            key={id}
+            type={type}
+            number={number}
+            owner={owner}
+            hidden={hidden}
+          />
+        ) : (
+          <Card
+            key={id}
+            type={type}
+            number={number}
+            validity={validity}
+            owner={owner}
+            cvv={cvv}
+            hidden={hidden}
+          />
+        )
+      )}
     </CardContainer>
   );
 };

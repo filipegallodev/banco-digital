@@ -31,11 +31,25 @@ const slice = createSlice({
       state.data.status = null;
       state.error = null;
     },
+    toggleCardHidden: (state, action) => {
+      if (state.data.cards) {
+        state.data.cards = state.data.cards.map((card) => {
+          if (card.type === action.payload.type)
+            return { ...card, hidden: action.payload.hidden };
+          return card;
+        });
+      }
+    },
   },
 });
 
-export const { fetchStarted, fetchSuccess, fetchError, clearCardStatus } =
-  slice.actions;
+export const {
+  fetchStarted,
+  fetchSuccess,
+  fetchError,
+  clearCardStatus,
+  toggleCardHidden,
+} = slice.actions;
 
 const fetchData = async (
   dispatch: Dispatch<Action<string>>,
