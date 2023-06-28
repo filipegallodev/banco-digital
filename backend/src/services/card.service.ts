@@ -20,3 +20,16 @@ export async function newCard(
   await CardUtil.createCard(cardData, dbUser);
   return { status: "Cartão solicitado com sucesso.", success: true };
 }
+
+export async function getCards(authorization: string | undefined) {
+  const userId = checkAuth(authorization);
+  const dbUser = await PrismaUtil.findUser("id", userId);
+  if (!dbUser) return { status: "Usuário não encontrado.", success: false };
+  const cards = await CardUtil.findCards(dbUser);
+  if (!cards) return { status: "Nenhum cartão encontrado.", success: false };
+  return {
+    cards,
+    status: "Busca de cartões concluída com sucesso.",
+    success: true,
+  };
+}
