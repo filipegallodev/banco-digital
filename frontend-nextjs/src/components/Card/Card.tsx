@@ -6,7 +6,7 @@ import Image from "next/image";
 interface IProps {
   type: string;
   number: string;
-  validity: string;
+  validity: Date | string;
   owner: string;
 }
 
@@ -20,7 +20,12 @@ const Card = ({ type, number, validity, owner }: IProps) => {
       <CardNumber>{number}</CardNumber>
       <Box>
         <CardOwner>{owner}</CardOwner>
-        <CardDate>{validity}</CardDate>
+        <CardDate>
+          {String(validity).replace(
+            /(\d{2})(\d{2})\-(\d{2})\-(\w+)\:(\w+)\:(\w+)\.(\w+)/g,
+            "$3/$2"
+          )}
+        </CardDate>
       </Box>
     </CardContainer>
   );

@@ -2,6 +2,8 @@ interface ICard {
   id: string;
   type: string;
   number: string;
+  cvv: string;
+  owner: string;
   validity: Date;
   invoiceClosing: string;
   requestedAt: Date;

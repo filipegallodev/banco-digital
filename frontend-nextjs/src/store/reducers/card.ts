@@ -17,7 +17,6 @@ const slice = createSlice({
   reducers: {
     fetchStarted: (state) => {
       state.loading = true;
-      state.data = initialState.data;
     },
     fetchSuccess: (state, action) => {
       state.loading = false;
@@ -26,7 +25,6 @@ const slice = createSlice({
     },
     fetchError: (state, action) => {
       state.loading = false;
-      state.data = initialState.data;
       state.error = action.payload;
     },
     clearCardStatus: (state) => {

@@ -10,16 +10,22 @@ import Footer from "@/components/Footer";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
 import CardNew from "@/components/Card/CardNew";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function Cartoes() {
   const user = useTokenAuthentication();
+  const { data, loading, error } = useAppSelector((state) => state.card);
 
   if (!user.data) return <AuthPage />;
   return (
     <>
       <Head>
         <title>Novo cartão | NextBank</title>
-        <meta name="description" content="Solicitar um novo cartão do NextBank!" />
+        <meta
+          name="description"
+          content="Solicitar um novo cartão do NextBank!"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -32,8 +38,16 @@ export default function Cartoes() {
         </SectionContainer>
       </main>
       <Footer />
-      <Success message={user.data.status} />
-      <Error message={user.error} />
+      <Backdrop
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          cursor: "wait",
+        }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }

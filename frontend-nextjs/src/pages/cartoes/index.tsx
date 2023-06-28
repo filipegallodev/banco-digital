@@ -3,16 +3,26 @@ import Header from "@/components/Header";
 import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
 import Footer from "@/components/Footer";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
 import CardSection from "@/components/Card/CardSection";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { getCards } from "@/store/reducers/card";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 
 export default function Cartoes() {
   const user = useTokenAuthentication();
+  const card = useAppSelector((state) => state.card);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (card.data.cards?.length) return;
+    dispatch(getCards());
+  }, [dispatch]);
 
   if (!user.data) return <AuthPage />;
   return (
@@ -32,8 +42,8 @@ export default function Cartoes() {
         </SectionContainer>
       </main>
       <Footer />
-      <Success message={user.data.status} />
-      <Error message={user.error} />
+      <Success message={card.data.status} />
+      <Error message={card.error} />
     </>
   );
 }

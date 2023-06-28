@@ -3,9 +3,10 @@ import { Alert, AlertTitle, Fade } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { clearUserStatus } from "@/store/reducers/user";
-import { clearRegisterStatus } from "@/store/reducers/register";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { clearLoanStatus } from "@/store/reducers/loan";
+import { clearCardStatus } from "@/store/reducers/card";
+import { clearTransactionStatus } from "@/store/reducers/transactions";
 
 const Error = ({ message }: { message: string | null }) => {
   const userStatus = useAppSelector((state) => state.user.data.status);
@@ -13,6 +14,7 @@ const Error = ({ message }: { message: string | null }) => {
     (state) => state.transactions.data?.status
   );
   const loanStatus = useAppSelector((state) => state.loan.data.status);
+  const cardStatus = useAppSelector((state) => state.card.data.status);
   const dispatch = useAppDispatch();
   const [showAlert, setShowAlert] = useState(true);
 
@@ -22,8 +24,9 @@ const Error = ({ message }: { message: string | null }) => {
 
   const handleClose = useCallback(() => {
     if (userStatus) dispatch(clearUserStatus());
-    if (transactionStatus) dispatch(clearRegisterStatus());
+    if (transactionStatus) dispatch(clearTransactionStatus());
     if (loanStatus) dispatch(clearLoanStatus());
+    if (cardStatus) dispatch(clearCardStatus());
   }, [dispatch]);
 
   useEffect(() => {

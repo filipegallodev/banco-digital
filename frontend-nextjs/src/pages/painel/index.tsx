@@ -14,6 +14,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "@/components/Footer";
 import { clearLoanStatus } from "@/store/reducers/loan";
+import { getCards } from "@/store/reducers/card";
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -21,9 +22,11 @@ export default function Painel() {
   const transactions = useAppSelector((state) => state.transactions);
   const loan = useAppSelector((state) => state.loan);
   const login = useAppSelector((state) => state.login);
+  const card = useAppSelector((state) => state.card);
 
   useEffect(() => {
     dispatch(fetchTransactionsList());
+    if (!card.data.cards?.length) dispatch(getCards());
     if (login.data?.token) dispatch(clearLoginStatus());
     if (loan.data.status || loan.error) dispatch(clearLoanStatus());
   }, [dispatch, loan.data.status, loan.error, login.data?.token]);
@@ -44,10 +47,9 @@ export default function Painel() {
           <WelcomeMessage>
             Olá,{" "}
             {user.data ? (
-              <strong>{user.data.user?.firstName.replace(
-                /(\w+)\s(\D+)/g,
-                "$1"
-              )}</strong>
+              <strong>
+                {user.data.user?.firstName.replace(/(\w+)\s(\D+)/g, "$1")}
+              </strong>
             ) : (
               "Cliente"
             )}
@@ -72,7 +74,9 @@ export default function Painel() {
             />
             <DashboardItem
               name="Cartões"
-              data={"0"}
+              data={String(
+                card.data.cards?.length ? card.data.cards?.length : 0
+              )}
               page="cartoes"
               loading={transactions.loading}
             />
