@@ -59,6 +59,8 @@ model Card {
   id             String   @id @unique @default(uuid())
   type           String
   number         String
+  cvv            String
+  owner          String
   validity       DateTime
   invoiceClosing String
   requestedAt    DateTime @default(now())

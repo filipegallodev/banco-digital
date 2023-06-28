@@ -14,11 +14,17 @@ export async function newCard(
   const result = cards?.find((card) => card.type === cardData.type);
   if (result)
     return {
+      cards,
       status: `Você já possui um cartão ${cardData.type.toUpperCase()}.`,
       success: false,
     };
   await CardUtil.createCard(cardData, dbUser);
-  return { status: "Cartão solicitado com sucesso.", success: true };
+  const newCards = await CardUtil.findCards(dbUser);
+  return {
+    cards: newCards,
+    status: "Cartão solicitado com sucesso.",
+    success: true,
+  };
 }
 
 export async function getCards(authorization: string | undefined) {
