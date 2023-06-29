@@ -1,4 +1,4 @@
-# 💸 NextBank
+# 💸 NextBank - Banco Digital
 
 ![NextBank Cover](https://i.imgur.com/hcISs7E.jpeg)
 
