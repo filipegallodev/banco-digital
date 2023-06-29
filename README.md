@@ -15,14 +15,14 @@ Criação de uma aplicação WEB fullstack de um banco digital fictício, o Next
 - Transferências
   - Listagem
     - Filtros
-  - Nova transferência
+  - Realizar transferência
 - Empréstimos
   - Listagem
     - Filtros
   - Solicitar empréstimo
 - Cartões
-  - Listagem (ED)
-  - Solicitar cartão (ED)
+  - Listagem
+  - Solicitar cartão
 - Investimentos (ED) 
 - Perfil
   - Visão geral
