@@ -7,15 +7,13 @@ import React from "react";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";
 import Footer from "@/components/Footer";
-import Success from "@/components/Status/Success";
-import Error from "@/components/Status/Error";
 import CardNew from "@/components/Card/CardNew";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 export default function Cartoes() {
   const user = useTokenAuthentication();
-  const { data, loading, error } = useAppSelector((state) => state.card);
+  const { loading } = useAppSelector((state) => state.card);
 
   if (!user.data) return <AuthPage />;
   return (

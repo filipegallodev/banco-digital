@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import * as Styled from "../../styles/Components.styled";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import Input from "@/components/Form/Input";
-import { CircularProgress } from "@mui/material";
 import { clearUserStatus, fetchEmailUpdate } from "@/store/reducers/user";
 
 const defaultEmailData = {

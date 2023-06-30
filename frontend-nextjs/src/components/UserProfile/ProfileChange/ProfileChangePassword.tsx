@@ -5,7 +5,6 @@ import * as Styled from "../../styles/Components.styled";
 import Input from "@/components/Form/Input";
 import PasswordRequirements from "../../PasswordRequirements";
 import { fetchPasswordUpdate } from "@/store/reducers/user";
-import { useRouter } from "next/navigation";
 
 const defaultPasswordData = {
   oldPassword: "",

@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Button } from "../styles/Components.styled";
-import { useAppSelector } from "@/hooks/useAppSelector";
 import { currencyFormatter } from "@/helper/currencyFormatter";
 
 interface IProps {

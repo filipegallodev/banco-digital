@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-
 export const CardContainer = styled.div`
   max-width: 500px;
   width: 100%;
