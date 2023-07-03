@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import ReturnButton from "@/components/ReturnButton";
 import ProfileNav from "@/components/UserProfile/ProfileNav";

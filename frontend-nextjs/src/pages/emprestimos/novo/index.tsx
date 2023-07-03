@@ -1,5 +1,5 @@
 import AuthPage from "@/components/AuthPage";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
@@ -22,7 +22,10 @@ export default function Emprestimos() {
     <>
       <Head>
         <title>Novo empréstimo | NextBank</title>
-        <meta name="description" content="Solicitar um novo empréstimo do NextBank!" />
+        <meta
+          name="description"
+          content="Solicitar um novo empréstimo do NextBank!"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

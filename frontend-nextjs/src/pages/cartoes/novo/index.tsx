@@ -1,5 +1,5 @@
 import AuthPage from "@/components/AuthPage";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";

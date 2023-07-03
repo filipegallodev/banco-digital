@@ -1,21 +1,13 @@
-import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { resetState } from "@/store/reducers/user";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
-import LogoutIcon from "@mui/icons-material/Logout";
-import Logo from "./Logo";
+import Logo from "../Logo";
+import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
   const user = useAppSelector((state) => state.user.data.user);
-  const dispatch = useAppDispatch();
   const router = useRouter();
-
-  function handleUserLogout() {
-    dispatch(resetState());
-    router.push("/");
-  }
 
   return (
     <Container>
@@ -31,10 +23,7 @@ const Header = () => {
                   user.lastName}
               </UserName>
             </UserProfile>
-            <LogoutButton onClick={handleUserLogout}>
-              <p>Sair</p>
-              <LogoutIcon />
-            </LogoutButton>
+            <HeaderMenu />
           </ControllContainer>
         )}
       </Content>
@@ -107,22 +96,6 @@ const UserIcon = styled.div`
 const UserName = styled.p`
   text-transform: uppercase;
   font-size: 1.25rem;
-`;
-
-const LogoutButton = styled.button`
-  padding: 16px;
-  font-size: 1.25rem;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  background: ${(props) => props.theme.button.secondary.color};
-  transition: 0.2s;
-  cursor: pointer;
-  display: flex;
-  gap: 8px;
-  &:hover {
-    background-color: ${(props) => props.theme.button.secondary.hover};
-  }
 `;
 
 export default Header;
