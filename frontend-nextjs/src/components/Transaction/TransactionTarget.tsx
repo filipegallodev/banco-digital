@@ -28,7 +28,6 @@ const TransactionTarget = ({
       target:
         typeof target === "string" ? target.trim() : formData.target.trim(),
     });
-    console.log(target);
   }
 
   return (
