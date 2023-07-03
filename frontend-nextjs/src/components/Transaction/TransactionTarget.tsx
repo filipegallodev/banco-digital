@@ -12,7 +12,13 @@ interface IProps {
   [key: string]: any;
 }
 
-const TransactionTarget = ({ label, id, formData, setFormData, ...args }: IProps) => {
+const TransactionTarget = ({
+  label,
+  id,
+  formData,
+  setFormData,
+  ...args
+}: IProps) => {
   return (
     <>
       <Styled.Label htmlFor={id}>{label}</Styled.Label>
@@ -24,7 +30,7 @@ const TransactionTarget = ({ label, id, formData, setFormData, ...args }: IProps
         onChange={({ target }) =>
           setFormData({
             ...formData,
-            target: target.value,
+            target: target.value.trim(),
           })
         }
         {...args}
