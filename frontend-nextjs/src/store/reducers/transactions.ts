@@ -84,9 +84,9 @@ const slice = createSlice({
     },
     clearFilters: (state) => {
       if (state.data)
-        state.data.filteredTransactions = state.data?.allTransactions
-          ? state.data?.allTransactions
-          : [];
+      state.data.filteredTransactions = state.data?.allTransactions
+      ? state.data?.allTransactions
+      : [];
     },
     clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;

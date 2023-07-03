@@ -6,18 +6,15 @@ import SectionContainer from "@/components/Section/SectionContainer";
 import TransactionSection from "@/components/Transaction/TransactionSection";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import Footer from "@/components/Footer";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { clearTransactionStatus } from "@/store/reducers/transactions";
+import Success from "@/components/Status/Success";
+import Error from "@/components/Status/Error";
+import { useAppSelector } from "@/hooks/useAppSelector";
 
 export default function Transferencias() {
   const user = useTokenAuthentication();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(clearTransactionStatus());
-  }, []);
+  const transactions = useAppSelector((state) => state.transactions);
 
   if (!user.data.user) return <AuthPage />;
   return (
@@ -37,6 +34,8 @@ export default function Transferencias() {
         </SectionContainer>
       </main>
       <Footer />
+      <Success message={transactions.data?.status} />
+      <Error message={transactions.error} />
     </>
   );
 }
