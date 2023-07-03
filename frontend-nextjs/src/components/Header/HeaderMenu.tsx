@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import styled from "styled-components";
@@ -97,17 +96,21 @@ const Container = styled.div`
   }
 `;
 
-const ButtonStyled = styled(Button)`
+const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-radius: 6px;
+  border: none;
   background-color: #fff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.1s;
   color: #000;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   text-transform: capitalize;
+  cursor: pointer;
   &:hover {
     background-color: ${(props) => props.theme.button.color};
   }
