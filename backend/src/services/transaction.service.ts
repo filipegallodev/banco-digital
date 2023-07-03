@@ -57,7 +57,15 @@ export async function create(
       value: transactionValue,
     },
   });
-  return { status: "Transferência realizada com sucesso.", success: true };
+  const transactionList = await list(authorization);
+  return {
+    status: "Transferência realizada com sucesso.",
+    attention: transactionList.attention,
+    userAccountId: transactionList.userAccountId,
+    allTransactions: transactionList.allTransactions,
+    totalTransferValue: transactionList.totalTransferValue,
+    success: true,
+  };
 }
 
 export async function list(authorization: string | undefined) {
