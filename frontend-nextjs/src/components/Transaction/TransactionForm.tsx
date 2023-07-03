@@ -10,7 +10,7 @@ import TransactionConfirmation from "./TransactionConfirmation";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { currencyFormatter } from "@/helper/currencyFormatter";
-import Alert from "@mui/material/Alert/Alert";
+import Alert from "@mui/material/Alert";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const steps = [
