@@ -153,7 +153,9 @@ const MenuItemStyled = styled(MenuItem)`
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  &.MuiButtonBase-root {
+    padding: 8px 16px;
+  }
   &.logout {
     color: #f55;
   }
