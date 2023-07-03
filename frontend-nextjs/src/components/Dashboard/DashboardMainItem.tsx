@@ -8,6 +8,7 @@ interface IProps {
   loading: boolean;
   prefix?: string;
   className: string;
+  icon: React.ReactElement;
 }
 
 const DashboardMainItem = ({
@@ -15,10 +16,14 @@ const DashboardMainItem = ({
   data = "R$ 0",
   loading,
   prefix = "",
+  icon,
 }: IProps) => {
   return (
     <Container>
-      <Name>{name}</Name>
+      <Name>
+        {icon}
+        {name}
+      </Name>
       <Data>{loading ? "Carregando..." : `${prefix} ${data}`}</Data>
     </Container>
   );
@@ -52,6 +57,10 @@ const Container = styled.div`
 const Name = styled.h2`
   text-transform: uppercase;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 `;
 
 const Data = styled.p`

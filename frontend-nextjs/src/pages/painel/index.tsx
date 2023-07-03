@@ -1,6 +1,4 @@
 import AuthPage from "@/components/AuthPage";
-import DashboardContainer from "@/components/Dashboard/DashboardContainer";
-import DashboardItem from "@/components/Dashboard/DashboardItem";
 import Header from "@/components/Header/Header";
 import SectionTitle from "@/components/Section/SectionTitle";
 import SectionContainer from "@/components/Section/SectionContainer";
@@ -15,12 +13,11 @@ import styled from "styled-components";
 import Footer from "@/components/Footer";
 import { clearLoanStatus } from "@/store/reducers/loan";
 import { getCards } from "@/store/reducers/card";
-import DashboardMainItem from "@/components/Dashboard/DashboardMainItem";
+import Dashboard from "@/components/Dashboard/Dashboard";
 
 export default function Painel() {
   const user = useTokenAuthentication();
   const dispatch = useAppDispatch();
-  const transactions = useAppSelector((state) => state.transactions);
   const loan = useAppSelector((state) => state.loan);
   const login = useAppSelector((state) => state.login);
   const card = useAppSelector((state) => state.card);
@@ -57,52 +54,7 @@ export default function Painel() {
             ! Aqui em seu painel, você consegue conferir um resumo geral de sua
             conta:
           </WelcomeMessage>
-          <DashboardMainItem
-            name="Saldo"
-            data={user.data.user?.balance}
-            loading={user.loading}
-            className="main"
-          />
-          <DashboardContainer>
-            <DashboardItem
-              name="Entrada e Saída"
-              page="entrada-saida"
-              data={transactions.data?.totalTransferValue.total}
-              loading={transactions.loading}
-            />
-            <DashboardItem
-              name="Transferências"
-              data={String(transactions.data?.allTransactions?.length || 0)}
-              page="transferencias"
-              loading={transactions.loading}
-            />
-
-            <DashboardItem
-              name="Cartões"
-              data={String(
-                card.data.cards?.length ? card.data.cards?.length : 0
-              )}
-              page="cartoes"
-              loading={transactions.loading}
-            />
-            <DashboardItem
-              name="Investimentos"
-              data={"0"}
-              page="investimentos"
-              loading={transactions.loading}
-            />
-            <DashboardItem
-              name="Empréstimos"
-              prefix={user.data.user?.loan === "R$ 0,00" ? "" : "até"}
-              page="emprestimos"
-              data={
-                user.data.user?.loan === "R$ 0,00"
-                  ? "Indisponível"
-                  : user.data.user?.loan
-              }
-              loading={transactions.loading}
-            />
-          </DashboardContainer>
+          <Dashboard />
         </SectionContainer>
       </main>
       <Footer />
