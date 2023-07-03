@@ -7,16 +7,41 @@ import { Divider } from "@mui/material";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { resetState } from "@/store/reducers/user";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
+import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
+import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
+import SwapHorizRoundedIcon from "@mui/icons-material/SwapHorizRounded";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 const MenuItems = [
-  { name: "Meu perfil", route: "/perfil" },
-  { name: "Painel", route: "/painel" },
-  { name: "Entrada e Saída", route: "/entrada-saida" },
-  { name: "Transferências", route: "/transferencias" },
-  { name: "Cartões", route: "/cartoes" },
-  { name: "Investimentos", route: "/investimentos" },
-  { name: "Empréstimos", route: "/emprestimos" },
-  { name: "Sair da conta", route: "/logout" },
+  { name: "Meu perfil", route: "/perfil", icon: <AccountCircleRoundedIcon /> },
+  { name: "Painel", route: "/painel", icon: <GridViewRoundedIcon /> },
+  {
+    name: "Entrada e Saída",
+    route: "/entrada-saida",
+    icon: <BarChartRoundedIcon />,
+  },
+  {
+    name: "Transferências",
+    route: "/transferencias",
+    icon: <SwapHorizRoundedIcon />,
+  },
+  { name: "Cartões", route: "/cartoes", icon: <CreditCardRoundedIcon /> },
+  {
+    name: "Investimentos",
+    route: "/investimentos",
+    icon: <TrendingUpRoundedIcon />,
+  },
+  {
+    name: "Empréstimos",
+    route: "/emprestimos",
+    icon: <BusinessCenterRoundedIcon />,
+  },
+  { name: "Sair da conta", route: "/logout", icon: <LogoutRoundedIcon /> },
 ];
 
 const HeaderMenu = () => {
@@ -71,6 +96,7 @@ const HeaderMenu = () => {
                   }
                   className={item.name === "Sair da conta" ? "logout" : ""}
                 >
+                  {item.icon}
                   {item.name}
                 </MenuItemStyled>
               </div>
@@ -81,6 +107,7 @@ const HeaderMenu = () => {
               key={item.name}
               onClick={() => router.push(item.route)}
             >
+              {item.icon}
               {item.name}
             </MenuItemStyled>
           );
@@ -123,6 +150,9 @@ const MenuStyled = styled(Menu)`
 `;
 
 const MenuItemStyled = styled(MenuItem)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 16px;
   &.logout {
     color: #f55;
