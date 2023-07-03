@@ -62,16 +62,18 @@ export default function Painel() {
               loading={user.loading}
             />
             <DashboardItem
+              name="Entrada e Saída"
+              page="entrada-saida"
+              data={transactions.data?.totalTransferValue.total}
+              loading={transactions.loading}
+            />
+            <DashboardItem
               name="Transferências"
               data={String(transactions.data?.allTransactions?.length || 0)}
               page="transferencias"
               loading={transactions.loading}
             />
-            <DashboardItem
-              name="Saída/Entrada"
-              data={transactions.data?.totalTransferValue}
-              loading={transactions.loading}
-            />
+
             <DashboardItem
               name="Cartões"
               data={String(

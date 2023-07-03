@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface IProps {
   name: string;
-  data?: string;
+  data?: string | null;
   page?: string;
   loading: boolean;
   prefix?: string;
@@ -28,8 +28,8 @@ const DashboardItem = ({
       <Name>{name}</Name>
       <Data
         className={
-          name === "Saída/Entrada" && !loading
-            ? data.includes("-R$")
+          name === "Entrada e Saída" && !loading
+            ? data?.includes("-R$")
               ? "negative"
               : "positive"
             : ""

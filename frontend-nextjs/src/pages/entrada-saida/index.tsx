@@ -10,15 +10,18 @@ import Footer from "@/components/Footer";
 import Success from "@/components/Status/Success";
 import Error from "@/components/Status/Error";
 
-export default function Investimentos() {
+export default function EntradaSaida() {
   const user = useTokenAuthentication();
 
   if (!user.data) return <AuthPage />;
   return (
     <>
       <Head>
-        <title>Investimentos | NextBank</title>
-        <meta name="description" content="Investimentos para o seu NextBank!" />
+        <title>Entrada e Saída | NextBank</title>
+        <meta
+          name="description"
+          content="Entrada e Saída para o seu NextBank!"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -26,7 +29,7 @@ export default function Investimentos() {
       <main className="animeRight">
         <SectionContainer>
           <ReturnButton />
-          <SectionTitle>Investimentos</SectionTitle>
+          <SectionTitle>Entrada e Saída</SectionTitle>
           <p>Em desenvolvimento.</p>
         </SectionContainer>
       </main>
