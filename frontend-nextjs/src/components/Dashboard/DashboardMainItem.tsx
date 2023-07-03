@@ -30,7 +30,7 @@ const DashboardMainItem = ({
 };
 
 const Container = styled.div`
-  margin: 32px 0px 16px 0px;
+  margin: 16px 0px;
   width: 100%;
   height: 100%;
   padding: 56px 0px;
@@ -65,6 +65,9 @@ const Name = styled.h2`
 
 const Data = styled.p`
   font-size: 2.25rem;
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 export default DashboardMainItem;

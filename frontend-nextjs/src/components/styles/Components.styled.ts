@@ -165,7 +165,8 @@ export const ThirdTitle = styled.h3`
 `;
 
 export const Text = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.45rem;
+  line-height: 1.4;
   margin-bottom: 16px;
 `;
 

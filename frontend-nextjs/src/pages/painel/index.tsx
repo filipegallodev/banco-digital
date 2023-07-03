@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import { clearLoanStatus } from "@/store/reducers/loan";
 import { getCards } from "@/store/reducers/card";
 import Dashboard from "@/components/Dashboard/Dashboard";
+import * as Styled from '@/components/styles/Components.styled'
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -42,7 +43,7 @@ export default function Painel() {
       <main className="animeRight">
         <SectionContainer>
           <SectionTitle>Visão geral</SectionTitle>
-          <WelcomeMessage>
+          <Styled.Text>
             Olá,{" "}
             {user.data ? (
               <strong>
@@ -53,7 +54,7 @@ export default function Painel() {
             )}
             ! Aqui em seu painel, você consegue conferir um resumo geral de sua
             conta:
-          </WelcomeMessage>
+          </Styled.Text>
           <Dashboard />
         </SectionContainer>
       </main>
@@ -63,5 +64,6 @@ export default function Painel() {
 }
 
 const WelcomeMessage = styled.p`
-  font-size: 1.35rem;
+  font-size: 1.45rem;
+  line-height: 1.4;
 `;
