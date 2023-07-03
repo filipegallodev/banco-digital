@@ -24,7 +24,7 @@ export const CardContainer = styled.div`
     height: 300px;
   }
   @media (max-width: 450px) {
-    height: 280px;
+    height: 260px;
   }
   @media (max-width: 390px) {
     height: 240px;
@@ -121,10 +121,10 @@ export const CardDate = styled.span`
     left: 0px;
   }
   @media (max-width: 520px) {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
   @media (max-width: 390px) {
-    font-size: 0.875rem;
+    font-size: 0.750rem;
   }
 `;
 
@@ -133,9 +133,9 @@ export const CardOwner = styled.span`
   font-family: monospace;
   text-transform: uppercase;
   @media (max-width: 520px) {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
   @media (max-width: 390px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 `;
