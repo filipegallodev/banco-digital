@@ -7,7 +7,11 @@ const Footer = () => {
       <Container>
         <p>
           Desenvolvido por{" "}
-          <LinkStyled href="https://github.com/filipegallodev">
+          <LinkStyled
+            href="https://github.com/filipegallodev"
+            rel="external"
+            target="_blank"
+          >
             Filipe
           </LinkStyled>
           .
