@@ -86,6 +86,7 @@ const TransactionForm = () => {
               formData={transactionData}
               setFormData={setTransactionData}
               placeholder="email@exemplo.com"
+              editable={true}
             />
             <Alert variant="outlined" severity="info">
               Utilize{" "}

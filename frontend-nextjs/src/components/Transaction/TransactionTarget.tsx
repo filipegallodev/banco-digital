@@ -11,6 +11,7 @@ interface IProps {
     target: string;
   };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
+  editable?: boolean;
   [key: string]: any;
 }
 
@@ -19,6 +20,7 @@ const TransactionTarget = ({
   id,
   formData,
   setFormData,
+  editable = false,
   ...args
 }: IProps) => {
   async function handeEmailPaste() {
@@ -48,7 +50,7 @@ const TransactionTarget = ({
           {...args}
           autoFocus
         />
-        <ContentPasteIconStyled onClick={handeEmailPaste} />
+        {editable && <ContentPasteIconStyled onClick={handeEmailPaste} />}
       </Box>
     </>
   );
