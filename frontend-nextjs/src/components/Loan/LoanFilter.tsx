@@ -36,6 +36,7 @@ const LoanFilter = ({ setMaxItems }: IProps) => {
             <Input
               id="filter-start"
               type="date"
+              placeholder="dd/mm/aaaa"
               formData={filter}
               saveFormData={setFilter}
               value={filter.start}
@@ -44,6 +45,7 @@ const LoanFilter = ({ setMaxItems }: IProps) => {
             <Input
               id="filter-end"
               type="date"
+              placeholder="dd/mm/aaaa"
               formData={filter}
               saveFormData={setFilter}
               value={filter.end}
