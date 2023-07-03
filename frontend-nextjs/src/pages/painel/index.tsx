@@ -83,6 +83,7 @@ export default function Painel() {
             <DashboardItem
               name="Investimentos"
               data={"0"}
+              page="investimentos"
               loading={transactions.loading}
             />
             <DashboardItem
