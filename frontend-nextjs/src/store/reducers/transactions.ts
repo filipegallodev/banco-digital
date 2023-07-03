@@ -1,8 +1,7 @@
 import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
 import { AppThunk } from "../configureStore";
 
-const SERVER_URL = "http://localhost:3333/";
-// const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 const initialState: ITransactionReducerState = {
   loading: false,
   data: {
@@ -33,7 +32,9 @@ const slice = createSlice({
       state.loading = false;
       state.data = action.payload;
       if (state.data)
-        state.data.filteredTransactions = state.data?.allTransactions;
+        state.data.filteredTransactions = state.data?.allTransactions
+          ? state.data?.allTransactions
+          : [];
       state.error = null;
     },
     fetchError: (state, action) => {
@@ -83,7 +84,9 @@ const slice = createSlice({
     },
     clearFilters: (state) => {
       if (state.data)
-        state.data.filteredTransactions = state.data.allTransactions;
+        state.data.filteredTransactions = state.data?.allTransactions
+          ? state.data?.allTransactions
+          : [];
     },
     clearTransactionStatus: (state) => {
       if (state.data) state.data.status = null;
