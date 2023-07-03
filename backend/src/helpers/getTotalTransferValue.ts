@@ -6,12 +6,25 @@ export default function getTotalTransferValue(
   account: Account,
   transactions: Transaction[]
 ) {
-  const totalValue = transactions.reduce((accumulator, transaction) => {
+  const receivedValue = transactions.reduce((accumulator, transaction) => {
     const accumulatorDecimal = new Decimal(accumulator);
     if (account.id === transaction.destinationAccountId) {
       return accumulatorDecimal.plus(transaction.value);
     }
-    return accumulatorDecimal.minus(transaction.value);
+    return accumulatorDecimal;
   }, new Decimal(0));
-  return currencyFormatter("pt-BR", "BRL", totalValue);
+
+  const sentValue = transactions.reduce((accumulator, transaction) => {
+    const accumulatorDecimal = new Decimal(accumulator);
+    if (account.id === transaction.originAccountId) {
+      return accumulatorDecimal.plus(transaction.value);
+    }
+    return accumulatorDecimal;
+  }, new Decimal(0));
+
+  return {
+    receivedValue: currencyFormatter("pt-BR", "BRL", receivedValue),
+    sentValue: currencyFormatter("pt-BR", "BRL", sentValue),
+    total: currencyFormatter("pt-BR", "BRL", receivedValue.minus(sentValue)),
+  };
 }

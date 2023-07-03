@@ -16,10 +16,14 @@ interface ITransactionReducerState {
   data: null | {
     status: null | string;
     attention: null | string;
-    userAccountId: undefined | string;
-    allTransactions?: undefined | ITransaction[];
-    totalTransferValue: undefined | string;
-    filteredTransactions: undefined | ITransaction[];
+    userAccountId: null | string;
+    allTransactions?: null | ITransaction[];
+    totalTransferValue: {
+      receivedValue: null | string;
+      sentValue: null | string;
+      total: null | string;
+    };
+    filteredTransactions: null | ITransaction[];
   };
   error: null | string;
 }

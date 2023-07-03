@@ -24,7 +24,7 @@ const ReturnButton = () => {
         {routesName.map((route) => (
           <span key={route}>
             <RightArrow>{" > "}</RightArrow>
-            <Route onClick={() => router.push(`/${route}`)}>{route}</Route>
+            <Route onClick={() => router.push(`/${route}`)}>{route.split("-").join(" e ")}</Route>
           </span>
         ))}
       </RoutesPathContainer>
