@@ -10,6 +10,8 @@ import TransactionConfirmation from "./TransactionConfirmation";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { currencyFormatter } from "@/helper/currencyFormatter";
+import Alert from "@mui/material/Alert/Alert";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const steps = [
   "Valor da transferência",
@@ -50,6 +52,10 @@ const TransactionForm = () => {
     }
   }, [loading]);
 
+  function handleEmailCopy(event: React.MouseEvent<HTMLSpanElement>) {
+    navigator.clipboard.writeText(event.currentTarget.innerText);
+  }
+
   return (
     <>
       <TransactionStepper
@@ -81,10 +87,14 @@ const TransactionForm = () => {
               setFormData={setTransactionData}
               placeholder="email@exemplo.com"
             />
-            <EmailTest>
-              Utilize <span>teste@exemplo.com</span> para testar a
-              funcionalidade de transferência.
-            </EmailTest>
+            <Alert variant="outlined" severity="info">
+              Utilize{" "}
+              <EmailTest onClick={handleEmailCopy}>
+                teste@exemplo.com{" "}
+                <ContentCopyIcon style={{ fontSize: "1rem" }} />
+              </EmailTest>{" "}
+              caso não conheça outro para transferir.
+            </Alert>
           </>
         ) : (
           <TransactionConfirmation
@@ -113,11 +123,12 @@ const TransactionForm = () => {
   );
 };
 
-const EmailTest = styled.p`
-  & span {
-    font-style: italic;
-    font-weight: 500;
-  }
+const EmailTest = styled.span`
+  gap: 8px;
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
 `;
 
 export default TransactionForm;
