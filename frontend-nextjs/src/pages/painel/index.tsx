@@ -15,6 +15,7 @@ import styled from "styled-components";
 import Footer from "@/components/Footer";
 import { clearLoanStatus } from "@/store/reducers/loan";
 import { getCards } from "@/store/reducers/card";
+import DashboardMainItem from "@/components/Dashboard/DashboardMainItem";
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -53,14 +54,16 @@ export default function Painel() {
             ) : (
               "Cliente"
             )}
-            ! Aqui está o resumo de sua conta:
+            ! Aqui em seu painel, você consegue conferir um resumo geral de sua
+            conta:
           </WelcomeMessage>
+          <DashboardMainItem
+            name="Saldo"
+            data={user.data.user?.balance}
+            loading={user.loading}
+            className="main"
+          />
           <DashboardContainer>
-            <DashboardItem
-              name="Saldo"
-              data={user.data.user?.balance}
-              loading={user.loading}
-            />
             <DashboardItem
               name="Entrada e Saída"
               page="entrada-saida"

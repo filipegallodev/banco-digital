@@ -76,11 +76,11 @@ const Container = styled.div`
 
 const Name = styled.h2`
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 `;
 
 const Data = styled.p`
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   &.negative {
     color: #f22;
   }

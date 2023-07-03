@@ -9,7 +9,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  margin: 32px 0;
+  margin-bottom: 32px;
   gap: 16px;
   @media (max-width: 800px) {
     grid-template-columns: 1fr 1fr;
