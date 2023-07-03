@@ -41,6 +41,9 @@ const ProfileNav = ({ menuItem, setMenuItem }: IProps) => {
 
 const NavContainer = styled.ul`
   display: flex;
+  @media (max-width: 860px) {
+    flex-direction: column;
+  }
 `;
 
 const NavItem = styled.li`
@@ -52,9 +55,17 @@ const NavItem = styled.li`
   &.active {
     border-bottom: 4px solid ${(props) => props.theme.button.color};
     color: ${(props) => props.theme.button.color};
+    @media (max-width: 860px) {
+    border-bottom: none;
+    border-left: 4px solid ${(props) => props.theme.button.color};
+  }
   }
   &:hover {
     background-color: ${(props) => props.theme.button.hover}15;
+  }
+  @media (max-width: 860px) {
+    border-bottom: none;
+    border-left: 2px solid #aac;
   }
 `;
 
