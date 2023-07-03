@@ -22,10 +22,11 @@ const TransactionTarget = ({
   ...args
 }: IProps) => {
   async function handeEmailPaste() {
-    const target =await navigator.clipboard.readText();
+    const target = await navigator.clipboard.readText();
     setFormData({
       ...formData,
-      target: typeof target === "string" ? target : formData.target,
+      target:
+        typeof target === "string" ? target.trim() : formData.target.trim(),
     });
     console.log(target);
   }
