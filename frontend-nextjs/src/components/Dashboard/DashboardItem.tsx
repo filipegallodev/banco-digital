@@ -8,6 +8,7 @@ interface IProps {
   page?: string;
   loading: boolean;
   prefix?: string;
+  icon: React.ReactElement;
 }
 
 const DashboardItem = ({
@@ -16,6 +17,7 @@ const DashboardItem = ({
   page,
   loading,
   prefix = "",
+  icon,
 }: IProps) => {
   const route = useRouter();
 
@@ -25,7 +27,10 @@ const DashboardItem = ({
 
   return (
     <Container onClick={handleClick} className={page ? "page-avaliable" : ""}>
-      <Name>{name}</Name>
+      <Name>
+        {icon}
+        {name}
+      </Name>
       <Data
         className={
           name === "Entrada e Saída" && !loading
@@ -77,6 +82,10 @@ const Container = styled.div`
 const Name = styled.h2`
   text-transform: uppercase;
   font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 `;
 
 const Data = styled.p`
