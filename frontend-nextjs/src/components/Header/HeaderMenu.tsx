@@ -62,7 +62,7 @@ const HeaderMenu = () => {
             item.name === "Entrada e Saída"
           ) {
             return (
-              <div>
+              <div key={item.name}>
                 <Divider />
                 <MenuItemStyled
                   onClick={() =>
@@ -78,7 +78,10 @@ const HeaderMenu = () => {
             );
           }
           return (
-            <MenuItemStyled onClick={() => router.push(item.route)}>
+            <MenuItemStyled
+              key={item.name}
+              onClick={() => router.push(item.route)}
+            >
               {item.name}
             </MenuItemStyled>
           );
