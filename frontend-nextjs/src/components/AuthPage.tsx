@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import styled from "styled-components";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 const AuthPage = () => {
   const user = useAppSelector((state) => state.user);
@@ -26,6 +27,7 @@ const AuthPage = () => {
       <Header />
       <main className="animeRight">
         <Container>
+          <CircularProgress />
           <AuthText>Autenticando...</AuthText>
         </Container>
       </main>
@@ -38,6 +40,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 16px;
   margin: 0 auto;
   max-width: 1200px;
   height: calc(100vh - 132px);
