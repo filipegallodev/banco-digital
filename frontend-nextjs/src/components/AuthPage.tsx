@@ -1,9 +1,20 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header/Header";
 import styled from "styled-components";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useRouter } from "next/router";
 
 const AuthPage = () => {
+  const user = useAppSelector((state) => state.user);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user.loading === false && user.data.validToken === null) {
+      router.push("/");
+    }
+  }, [user.loading, user.data.validToken, router]);
+
   return (
     <>
       <Head>
