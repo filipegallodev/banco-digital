@@ -9,6 +9,7 @@ interface IProps {
   loading: boolean;
   prefix?: string;
   icon: React.ReactElement;
+  style?: {};
 }
 
 const DashboardItem = ({
@@ -18,6 +19,7 @@ const DashboardItem = ({
   loading,
   prefix = "",
   icon,
+  style = {},
 }: IProps) => {
   const route = useRouter();
 
@@ -26,7 +28,11 @@ const DashboardItem = ({
   }
 
   return (
-    <Container onClick={handleClick} className={page ? "page-avaliable" : ""}>
+    <Container
+      onClick={handleClick}
+      className={page ? "page-avaliable" : ""}
+      style={style}
+    >
       <Name>
         {icon}
         {name}
@@ -67,11 +73,11 @@ const Container = styled.div`
     background-color: ${(props) => props.theme.button.secondary.hover}30;
     box-shadow: 0px 0px 0px 2px ${(props) => props.theme.button.color};
   }
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     height: 100%;
     padding: 48px 0px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     height: 100%;
     padding: 32px;
     align-items: flex-start;
@@ -89,7 +95,7 @@ const Name = styled.h2`
 `;
 
 const Data = styled.p`
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   &.negative {
     color: #f22;
   }

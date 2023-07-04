@@ -5,10 +5,11 @@ import DashboardMainItem from "@/components/Dashboard/DashboardMainItem";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
-import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
-import SwapHorizRoundedIcon from '@mui/icons-material/SwapHorizRounded';
-import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
-import BusinessCenterRoundedIcon from '@mui/icons-material/BusinessCenterRounded';
+import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
+import SwapHorizRoundedIcon from "@mui/icons-material/SwapHorizRounded";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
+import styled from "styled-components";
 
 const Dashboard = () => {
   const user = useAppSelector((state) => state.user);
@@ -46,6 +47,8 @@ const Dashboard = () => {
           loading={transactions.loading}
           icon={<CreditCardRoundedIcon />}
         />
+      </DashboardContainer>
+      <Box>
         <DashboardItem
           name="Investimentos"
           data={"0"}
@@ -65,9 +68,19 @@ const Dashboard = () => {
           loading={transactions.loading}
           icon={<BusinessCenterRoundedIcon />}
         />
-      </DashboardContainer>
+      </Box>
     </>
   );
 };
+
+const Box = styled.div`
+  margin: 16px 0px 32px 0px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+`;
 
 export default Dashboard;

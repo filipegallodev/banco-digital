@@ -9,12 +9,11 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  margin-bottom: 32px;
   gap: 16px;
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     grid-template-columns: 1fr;
   }
 `;

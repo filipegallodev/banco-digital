@@ -46,9 +46,13 @@ const Container = styled.div`
     height: 100%;
     padding: 48px 0px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     height: 100%;
-    padding: 32px;
+    padding: 48px;
+  }
+  @media (max-width: 700px) {
+    height: 100%;
+    padding: 40px 32px;
     align-items: flex-start;
     justify-content: flex-start;
   }
@@ -64,8 +68,8 @@ const Name = styled.h2`
 `;
 
 const Data = styled.p`
-  font-size: 2.25rem;
-  @media (max-width: 600px) {
+  font-size: 2rem;
+  @media (max-width: 700px) {
     font-size: 2rem;
   }
 `;
