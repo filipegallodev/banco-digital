@@ -12,7 +12,7 @@ import SectionContainer from "@/components/Section/SectionContainer";
 import styled from "styled-components";
 import BankImage from "../../public/bank-auth-page.webp";
 import Image from "next/image";
-import Logo from "../components/Logo";
+import Logo from "../components/Header/Logo";
 
 export default function Home() {
   const user = useTokenAuthentication();

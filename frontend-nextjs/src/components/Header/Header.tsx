@@ -2,7 +2,7 @@ import { useAppSelector } from "@/hooks/useAppSelector";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
-import Logo from "../Logo";
+import Logo from "./Logo";
 import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {

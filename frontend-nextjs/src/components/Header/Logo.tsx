@@ -29,6 +29,7 @@ const Logo = ({ styleClass }: IProps) => {
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 4px;
   color: #eef;
   cursor: pointer;
   &.black {
