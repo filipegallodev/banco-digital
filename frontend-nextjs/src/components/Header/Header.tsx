@@ -32,7 +32,7 @@ const Header = () => {
 };
 
 const Container = styled.header`
-  background-color: #050505;
+  background-color: #050512;
   color: #f5f5f5;
   min-height: 132px;
   height: 100%;
