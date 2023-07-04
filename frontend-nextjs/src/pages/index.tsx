@@ -75,7 +75,7 @@ const Container = styled.div`
   }
   @media (max-width: 1150px) {
     gap: 32px;
-    margin-top: 32px;
+    margin: 32px 0px 64px 0px;
     justify-content: center;
   }
 `;
