@@ -9,12 +9,11 @@ import { clearLoginStatus } from "@/store/reducers/login";
 import { fetchTransactionsList } from "@/store/reducers/transactions";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import Footer from "@/components/Footer";
 import { clearLoanStatus } from "@/store/reducers/loan";
 import { getCards } from "@/store/reducers/card";
 import Dashboard from "@/components/Dashboard/Dashboard";
-import * as Styled from '@/components/styles/Components.styled'
+import * as Styled from "@/components/styles/Components.styled";
 
 export default function Painel() {
   const user = useTokenAuthentication();
@@ -62,8 +61,3 @@ export default function Painel() {
     </>
   );
 }
-
-const WelcomeMessage = styled.p`
-  font-size: 1.45rem;
-  line-height: 1.4;
-`;

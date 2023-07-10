@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import ReturnButton from "@/components/ReturnButton";
 import useTokenAuthentication from "@/hooks/useTokenAuthentication";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import LoanNew from "@/components/Loan/LoanNew";
 import SectionContainer from "@/components/Section/SectionContainer";
 import SectionTitle from "@/components/Section/SectionTitle";

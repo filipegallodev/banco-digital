@@ -26,12 +26,6 @@ const UserPhoneInput = ({ formData, saveFormData }: IProps) => {
   );
 };
 
-const Label = styled.label`
-  display: block;
-  margin: 16px 0px 8px 0px;
-  font-size: 1.25rem;
-`;
-
 const InputMaskStyled = styled(PhoneInput)`
   & .flag-button {
     border: none;

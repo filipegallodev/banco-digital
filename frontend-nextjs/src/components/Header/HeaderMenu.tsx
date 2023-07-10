@@ -9,7 +9,6 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { resetState } from "@/store/reducers/user";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
-import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
 import CreditCardRoundedIcon from "@mui/icons-material/CreditCardRounded";
 import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import SwapHorizRoundedIcon from "@mui/icons-material/SwapHorizRounded";
@@ -51,7 +50,6 @@ const HeaderMenu = () => {
   const dispatch = useAppDispatch();
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
-    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   }
 

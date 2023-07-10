@@ -13,7 +13,7 @@ const defaultEmailData = {
 
 const ProfileChangeEmail = () => {
   const dispatch = useAppDispatch();
-  const { data, loading } = useAppSelector((state) => state.user);
+  const { loading } = useAppSelector((state) => state.user);
   const [changeEmailData, setChangeEmailData] = useState(defaultEmailData);
   const [inputError, setInputError] = useState<string>("");
 

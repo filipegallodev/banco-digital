@@ -28,7 +28,7 @@ const TransactionForm = () => {
   const [transactionValue, setTransactionValue] = useState<string>();
   const [activeStep, setActiveStep] = useState<number>(0);
   const dispatch = useAppDispatch();
-  const { loading, data, error } = useAppSelector(
+  const { loading, error } = useAppSelector(
     (state) => state.transactions
   );
   const router = useRouter();
